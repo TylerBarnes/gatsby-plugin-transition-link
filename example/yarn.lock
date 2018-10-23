@@ -7920,11 +7920,6 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-context-consumer-hoc@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-context-consumer-hoc/-/react-context-consumer-hoc-2.1.1.tgz#b47b20f84a45777026b2799c0ccf3f2096045324"
-  integrity sha512-UcWktkb3OK7rz9MRoWsry7vwBR/5tounOXrX4DLAWI6ZgIHfK3N9wLBlSjYT9M+niICrgoslOeT23R9xxws7TA==
-
 react-dev-utils@^4.2.1:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-4.2.3.tgz#5b42d9ea58d5e9e017a2f57a40a8af408a3a46fb"
