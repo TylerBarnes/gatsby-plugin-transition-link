@@ -21,6 +21,8 @@ const TransitionHandler = props => {
         <TransitionWithContext key={props.location.pathname}>
           {state => {
             // use transition groups entering state to hide the incoming component
+            // supposedly this should instead be done with a setTimeout and the in prop... https://github.com/reactjs/react-transition-group/issues/284
+            // This works for now.
             const visibility = state === 'entering' ? 'hidden' : 'visible'
 
             return (
