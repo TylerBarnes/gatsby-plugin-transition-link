@@ -1,29 +1,39 @@
 import React from 'react'
 import { Transition, TransitionGroup } from 'react-transition-group'
-// import TransitionGroup from 'react-transition-group'
 import { Consumer } from '../store/createContext'
 import { withContext } from 'react-context-consumer-hoc'
-import Delayed from './Delayed'
 import AppProvider from '../store/provider'
 
 const TransitionWithContext = withContext(
   [Consumer],
-  context => ({ timeout: context.exitTimeout }) // mapContextToProps
+  context => ({
+    timeout: {
+      enter: context.delayNext,
+      exit: context.exitTimeout,
+    },
+  }) // mapContextToProps
 )(Transition)
-
-const DelayedWithContext = withContext(
-  [Consumer],
-  context => ({ wait: context.delayNext }) // mapContextToProps
-)(Delayed)
 
 const TransitionHandler = props => {
   return (
     <AppProvider>
       <TransitionGroup>
         <TransitionWithContext key={props.location.pathname}>
-          <div style={{ position: 'absolute', width: '100%' }}>
-            <DelayedWithContext>{props.children}</DelayedWithContext>
-          </div>
+          {state => {
+            const visibility = state == 'entering' ? 'hidden' : 'visible'
+
+            return (
+              <div
+                style={{
+                  position: 'absolute',
+                  width: '100%',
+                  visibility: visibility,
+                }}
+              >
+                {props.children}
+              </div>
+            )
+          }}
         </TransitionWithContext>
       </TransitionGroup>
     </AppProvider>
