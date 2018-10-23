@@ -4,12 +4,12 @@ import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
 
 import Layout from '../components/layout'
 
-const SecondPage = () => (
-  <Layout>
+const SecondPage = ({location: {state}}) => (
+  <Layout locationState={state}>
     <h1>Hi from the second page</h1>
     <p>Welcome to page 2</p>
     <Link to="/">Go home normally</Link>
-    <br />
+    {/* <br />
     <TransitionLink
       to="/"
       exitAnimationTimeout={2000}
@@ -38,7 +38,7 @@ const SecondPage = () => (
       <span aria-label="pointing right" role="img">
         👉
       </span>
-    </TransitionLink>
+    </TransitionLink> */}
   </Layout>
 )
 

@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, locationState }) => {
+  const headerColor = locationState && locationState.headerBgColor ? locationState.headerBgColor : "rebeccapurple"
+  return (
   <div
     style={{
-      background: 'rebeccapurple',
+      background: headerColor,
       marginBottom: '1.45rem',
     }}
   >
@@ -29,5 +31,6 @@ const Header = ({ siteTitle }) => (
     </div>
   </div>
 )
+}
 
 export default Header
