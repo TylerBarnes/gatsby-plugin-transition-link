@@ -20,8 +20,8 @@ const IndexPage = () => (
     <br />
     <TransitionLink
       to="/page-2"
-      exitAnimationTimeout={2000}
-      hideNextFor={1000}
+      exitAnimationTimeout={4000}
+      hideNextFor={2000}
       triggerFn={startAnimation}
       nextState={{
         animation: 'fromHome',
