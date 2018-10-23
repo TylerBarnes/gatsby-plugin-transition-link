@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
+// import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
 
 import Layout from '../components/layout'
 
