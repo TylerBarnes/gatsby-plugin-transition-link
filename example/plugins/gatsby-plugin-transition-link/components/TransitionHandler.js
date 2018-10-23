@@ -16,7 +16,7 @@ const TransitionHandler = props => {
               {state => {
                 // use transition groups entering state to hide the incoming component
                 // supposedly this should instead be done with a setTimeout and the in prop... https://github.com/reactjs/react-transition-group/issues/284
-                // This works for now.
+                // This works for now. Later, the transition states could be used for actual animation instead of controlling the display overlap. For some reason the in prop does nothing even if I hard code it to false
                 const visibility = state === 'entering' ? 'hidden' : 'visible'
 
                 return (
