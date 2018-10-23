@@ -21,7 +21,7 @@ const TransitionHandler = props => {
         <TransitionWithContext key={props.location.pathname}>
           {state => {
             // use transition groups entering state to hide the incoming component
-            const visibility = state == 'entering' ? 'hidden' : 'visible'
+            const visibility = state === 'entering' ? 'hidden' : 'visible'
 
             return (
               <div
