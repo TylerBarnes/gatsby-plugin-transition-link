@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, navigate } from "gatsby";
 import { Location } from "@reach/router";
-import { Consumer } from "../../store/createContext";
+import { Consumer } from "./store/createContext";
 
 export default class TransitionLink extends Component {
   constructor(props) {
