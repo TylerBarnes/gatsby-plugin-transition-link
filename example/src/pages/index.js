@@ -1,31 +1,41 @@
 import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import { TimelineMax } from 'gsap/all'
-import GSAP from 'react-gsap-enhancer'
+// import GSAP from 'react-gsap-enhancer'
 
 import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
 import Layout from '../components/layout'
-
-const moveAnimation = ({ target, options }) => {
-  const totalTime = options.timeout / 1000
-
-  return new TimelineMax()
-    .to(target.find({ name: 'transitionCover' }), totalTime / 2, { y: '0%' })
-    .set(target.find({ name: 'layoutContents' }), { opacity: 0 })
-    .to(target.find({ name: 'transitionCover' }), totalTime / 2, { y: '-100%' })
-}
 
 class Index extends Component {
   constructor(props) {
     super(props)
 
     this.startAnimation = this.startAnimation.bind(this)
+    this.moveAnimation = this.moveAnimation.bind(this)
+
+    this.layoutContents = React.createRef()
+    this.transitionCover = React.createRef()
+  }
+
+  moveAnimation = ({ options }) => {
+    const totalTime = options.timeout / 1000
+
+    return new TimelineMax()
+      .to(this.transitionCover, totalTime / 2, { y: '0%' })
+      .set(this.layoutContents, { opacity: 0 })
+      .to(this.transitionCover, totalTime / 2, { y: '-100%' })
+
+    // return new TimelineMax()
+    //   .to(target.find({ name: 'transitionCover' }), totalTime / 2, { y: '0%' })
+    //   .set(target.find({ name: 'layoutContents' }), { opacity: 0 })
+    //   .to(target.find({ name: 'transitionCover' }), totalTime / 2, { y: '-100%' })
   }
 
   startAnimation = timeout => {
     console.log('starting animation')
 
-    this.addAnimation(moveAnimation, { timeout })
+    // this.addAnimation(moveAnimation, { timeout })
+    this.moveAnimation({ options: { timeout } })
 
     setTimeout(() => {
       console.log(`Animation finished after ${timeout}ms`)
@@ -35,7 +45,7 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        <section name="layoutContents">
+        <section ref={r => (this.layoutContents = r)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
 
@@ -46,9 +56,7 @@ class Index extends Component {
             exitAnimationTimeout={1000}
             hideNextFor={600}
             triggerFn={this.startAnimation}
-            nextState={{
-              animation: 'fromHome',
-            }}
+            nextState={{ animation: 'fromHome' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing down" role="img">
@@ -90,7 +98,7 @@ class Index extends Component {
         </TransitionLink> */}
         </section>
         <div
-          name="transitionCover"
+          ref={r => (this.transitionCover = r)}
           style={{
             position: 'fixed',
             background: 'rebeccapurple',
@@ -106,4 +114,5 @@ class Index extends Component {
   }
 }
 
-export default GSAP()(Index)
+export default Index
+// export default GSAP()(Index)
