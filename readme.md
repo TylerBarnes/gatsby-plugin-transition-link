@@ -58,7 +58,7 @@ Go to page 2
 </TransitionLink>
 ```
 
-If you're using a Gatsby v1 style layout component (using `gatsby-plugin-layout`) or another plugin that prevents transitions from working properly, you can wrap TransitionHandler around pages yourself.
+If you're using a Gatsby v1 style layout component (using `gatsby-plugin-layout`) or if another plugin prevents transitions from working properly, you can wrap TransitionHandler around pages yourself.
 
 ```jsx
 import { TransitionHandler } from 'gatsby-plugin-transition-link`;
@@ -67,6 +67,8 @@ const Layout = ({element, location}) => (
     <TransitionHandler location={props.location}>{element}</TransitionHandler>
 )
 ```
+
+TransitionHandler needs to be outside the page component though, not inside it. If you're using v2 style layouts as components, that's not the place to put TransitionHandler. You can put it in the `wrapPageElement` or `wrapRootElement` hooks.
 
 ## Props
 
@@ -125,9 +127,16 @@ const Page = ({ children, location: { state } }) => (
 
 I haven't tried it yet but theoretically you could wrap TransitionLink in your own component and use that as a link everywhere.
 ```jsx
-const FadeLink = ({children, to}) => (
+const Link = ({children, to}) => (
   <TransitionLink to={to} exitFor={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
  )
  
- <FadeLink to="/page-2">Go to page 2</FadeLink>
+ <Link to="/page-2">Go to page 2</Link>
+```
+
+or you could abstract away various animations.
+
+```jsx
+<Link to="/page-2 transition="fade">Go to page 2</Link>
+<Link to="/page-3" transition="swipeLeft">Go to page 3</Link>
 ```
