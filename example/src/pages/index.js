@@ -16,16 +16,11 @@ class Index extends Component {
     this.transitionCover = React.createRef()
   }
 
-  verticalAnimation = (timeout, direction) => {
+  verticalAnimation = (time, direction) => {
     const directionTo = direction == 'up' ? '-100%' : '100%'
     const directionFrom = direction == 'up' ? '100%' : '-100%'
 
-    console.log('starting animation')
-    setTimeout(() => {
-      console.log(`Animation finished after ${timeout}ms`)
-    }, timeout)
-
-    const totalTime = timeout / 1000
+    const totalTime = time / 1000
     console.log(totalTime / 2)
 
     return new TimelineMax()
@@ -54,7 +49,7 @@ class Index extends Component {
             to="/page-2"
             exitFor={1000}
             entryIn={600}
-            exitFn={timeout => this.verticalAnimation(timeout, 'down')}
+            exitFn={time => this.verticalAnimation(time, 'down')}
             entryState={{ animation: 'fromBottom' }}
           >
             Go to page 2 that way{' '}
@@ -67,7 +62,7 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exitFor={1200}
-            exitFn={timeout => this.verticalAnimation(timeout, 'up')}
+            exitFn={time => this.verticalAnimation(time, 'up')}
             entryIn={500}
             entryState={{ layoutTheme: 'dark' }}
           >
