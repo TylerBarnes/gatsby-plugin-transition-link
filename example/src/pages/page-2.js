@@ -4,9 +4,12 @@ import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 
-const SecondPage = ({location: {state}}) => (
-  <Layout locationState={state}>
-    <h1>Hi from the second page</h1>
+const SecondPage = ({ location: { state } }) => (
+  <Layout theme={state ? state.layoutTheme : null}>
+    <h1>
+      Hi from the second page{' '}
+      {state && state.layoutTheme === 'dark' ? `(dark theme)` : null}
+    </h1>
     <p>Welcome to page 2</p>
     <Link to="/">Go home normally</Link>
     {/* <br />
