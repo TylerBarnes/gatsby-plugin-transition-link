@@ -75,9 +75,9 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exitFor={2000}
+                exitFn={timeout => this.exitHorizontal(timeout, 'left')}
                 enterIn={1000}
-                triggerFn={timeout => this.exitHorizontal(timeout, 'left')}
-                nextState={{ animation: 'fromRight' }}
+                enterState={{ animation: 'fromRight' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing left" role="img">
@@ -89,8 +89,8 @@ export default class SecondPage extends Component {
                 to="/"
                 exitFor={2000}
                 enterIn={1000}
-                triggerFn={timeout => this.exitHorizontal(timeout, 'right')}
-                nextState={{ animation: 'fromLeft' }}
+                exitFn={timeout => this.exitHorizontal(timeout, 'right')}
+                enterState={{ animation: 'fromLeft' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">

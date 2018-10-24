@@ -53,8 +53,8 @@ class Index extends Component {
             to="/page-2"
             exitFor={1000}
             enterIn={600}
-            triggerFn={timeout => this.verticalAnimation(timeout, 'down')}
-            nextState={{ animation: 'fromBottom' }}
+            exitFn={timeout => this.verticalAnimation(timeout, 'down')}
+            enterState={{ animation: 'fromBottom' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -67,8 +67,8 @@ class Index extends Component {
             to="/page-2"
             exitFor={1200}
             enterIn={500}
-            triggerFn={timeout => this.verticalAnimation(timeout, 'up')}
-            nextState={{ animation: 'fromHome', layoutTheme: 'dark' }}
+            exitFn={timeout => this.verticalAnimation(timeout, 'up')}
+            enterState={{ animation: 'fromHome', layoutTheme: 'dark' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">

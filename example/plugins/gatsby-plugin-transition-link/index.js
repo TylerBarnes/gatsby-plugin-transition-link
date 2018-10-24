@@ -15,10 +15,10 @@ export default class TransitionLink extends Component {
     updateExitTimeout(timeout)
     updateDelayNext(enterIn)
 
-    this.props.triggerFn(timeout)
+    this.props.exitFn(timeout)
 
     navigate(this.props.to, {
-      state: this.props.nextState,
+      state: this.props.enterState,
     })
 
     setTimeout(() => updateExitTimeout(0), timeout)
