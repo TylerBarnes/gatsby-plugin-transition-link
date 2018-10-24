@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'gatsby'
-import { TimelineMax } from 'gsap/all'
+import { TimelineMax } from 'gsap'
 // import GSAP from 'react-gsap-enhancer'
 
 import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
