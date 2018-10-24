@@ -62,11 +62,11 @@ export default class SecondPage extends Component {
     return (
       <>
         <section ref={n => (this.layoutWrapper = n)}>
-          <Layout theme={state ? state.layoutTheme : null}>
+          <Layout theme={state && state.layoutTheme ? state.layoutTheme : null}>
             <div ref={n => (this.layoutContents = n)}>
               <h1>
                 Hi from the second page{' '}
-                {state && state.layoutTheme === 'dark' ? `(dark theme)` : null}
+                {state && state.layoutTheme === 'dark' ? `(dark state)` : null}
               </h1>
               <p>Welcome to page 2</p>
               <Link to="/">Go home normally</Link>
@@ -101,10 +101,10 @@ export default class SecondPage extends Component {
           </Layout>
         </section>
         <div
-          ref={r => (this.transitionCover = r)}
+          ref={n => (this.transitionCover = n)}
           style={{
             position: 'fixed',
-            background: 'rebeccapurple',
+            background: '#4b2571',
             top: 0,
             left: 0,
             width: '100vw',

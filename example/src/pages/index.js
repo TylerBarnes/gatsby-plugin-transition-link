@@ -81,7 +81,7 @@ class Index extends Component {
           ref={r => (this.transitionCover = r)}
           style={{
             position: 'absolute',
-            background: 'rebeccapurple',
+            background: '#4b2571',
             top: 0,
             left: 0,
             width: '100vw',
