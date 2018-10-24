@@ -1,26 +1,23 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link, navigate } from 'gatsby'
+
 import { Consumer } from './store/createContext'
 
 export default class TransitionLink extends Component {
-  constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(event, timeout, updateExitTimeout, updateDelayNext, entryIn) {
+  handleClick({ event, exitFor, updateExitTimeout, updateDelayNext, entryIn }) {
     event.preventDefault()
 
-    updateExitTimeout(timeout)
+    updateExitTimeout(exitFor)
     updateDelayNext(entryIn)
 
-    this.props.exitFn(timeout)
+    this.props.exitFn(exitFor)
 
     navigate(this.props.to, {
       state: this.props.entryState,
     })
 
-    setTimeout(() => updateExitTimeout(0), timeout)
+    setTimeout(() => updateExitTimeout(0), exitFor)
     setTimeout(() => updateDelayNext(0), entryIn)
   }
 
@@ -29,18 +26,18 @@ export default class TransitionLink extends Component {
       props: { to, children },
     } = this
 
-    return to && children ? (
+    return (
       <Consumer>
         {({ updateExitTimeout, updateDelayNext }) => (
           <Link
-            onClick={e =>
-              this.handleClick(
-                e,
-                this.props.exitFor,
+            onClick={event =>
+              this.handleClick({
+                event,
                 updateExitTimeout,
                 updateDelayNext,
-                this.props.entryIn
-              )
+                exitFor: this.props.exitFor,
+                entryIn: this.props.entryIn,
+              })
             }
             to={this.props.to}
           >
@@ -48,6 +45,15 @@ export default class TransitionLink extends Component {
           </Link>
         )}
       </Consumer>
-    ) : null
+    )
   }
+}
+
+TransitionLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+  exitFor: PropTypes.number,
+  entryIn: PropTypes.number,
+  exitFn: PropTypes.func,
+  entryState: PropTypes.object,
 }
