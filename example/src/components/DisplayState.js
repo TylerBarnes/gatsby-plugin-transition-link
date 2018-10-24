@@ -2,9 +2,13 @@ import React from 'react'
 import { Location } from '@reach/router'
 
 function print_r(o) {
-  return JSON.stringify(o, null, '\t')
-    .replace(/\n/g, '<br>')
-    .replace(/\t/g, '&nbsp;&nbsp;&nbsp;')
+  if (typeof window !== undefined) {
+    return JSON.stringify(o, null, '\t')
+      .replace(/\n/g, '<br>')
+      .replace(/\t/g, '&nbsp;&nbsp;&nbsp;')
+  } else {
+    return null
+  }
 }
 
 function DisplayState() {
