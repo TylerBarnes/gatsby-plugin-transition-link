@@ -5,6 +5,8 @@ import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
 import Layout from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
+import DisplayState from '../components/DisplayState'
+
 export default class SecondPage extends Component {
   constructor(props) {
     super(props)
@@ -76,8 +78,8 @@ export default class SecondPage extends Component {
                 to="/"
                 exitFor={2000}
                 exitFn={timeout => this.exitHorizontal(timeout, 'left')}
-                enterIn={1000}
-                enterState={{ animation: 'fromRight' }}
+                entryIn={1000}
+                entryState={{ animation: 'fromRight' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing left" role="img">
@@ -88,15 +90,17 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exitFor={2000}
-                enterIn={1000}
+                entryIn={1000}
                 exitFn={timeout => this.exitHorizontal(timeout, 'right')}
-                enterState={{ animation: 'fromLeft' }}
+                entryState={{ animation: 'fromLeft' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
                   👉
                 </span>
               </TransitionLink>
+
+              <DisplayState />
             </div>
           </Layout>
         </section>

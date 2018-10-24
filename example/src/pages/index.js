@@ -4,6 +4,7 @@ import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
 import Layout from '../components/layout'
+import DisplayState from '../components/DisplayState'
 
 class Index extends Component {
   constructor(props) {
@@ -52,9 +53,9 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exitFor={1000}
-            enterIn={600}
+            entryIn={600}
             exitFn={timeout => this.verticalAnimation(timeout, 'down')}
-            enterState={{ animation: 'fromBottom' }}
+            entryState={{ animation: 'fromBottom' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -66,9 +67,9 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exitFor={1200}
-            enterIn={500}
             exitFn={timeout => this.verticalAnimation(timeout, 'up')}
-            enterState={{ animation: 'fromHome', layoutTheme: 'dark' }}
+            entryIn={500}
+            entryState={{ layoutTheme: 'dark' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -76,6 +77,8 @@ class Index extends Component {
             </span>
             and give us a dark theme when we get there.
           </TransitionLink>
+
+          <DisplayState />
         </section>
         <div
           ref={r => (this.transitionCover = r)}
