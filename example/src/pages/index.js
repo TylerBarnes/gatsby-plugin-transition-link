@@ -17,8 +17,8 @@ class Index extends Component {
   }
 
   verticalAnimation = (time, direction) => {
-    const directionTo = direction == 'up' ? '-100%' : '100%'
-    const directionFrom = direction == 'up' ? '100%' : '-100%'
+    const directionTo = direction === 'up' ? '-100%' : '100%'
+    const directionFrom = direction === 'up' ? '100%' : '-100%'
 
     // convert ms to s for gsap
     const seconds = time / 1000
