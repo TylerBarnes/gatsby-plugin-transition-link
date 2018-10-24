@@ -1,34 +1,34 @@
-import React, { Component } from "react";
-import { Link, navigate } from "gatsby";
-import { Location } from "@reach/router";
-import { Consumer } from "./store/createContext";
+import React, { Component } from 'react'
+import { Link, navigate } from 'gatsby'
+import { Location } from '@reach/router'
+import { Consumer } from './store/createContext'
 
 export default class TransitionLink extends Component {
   constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(event, timeout, updateExitTimeout, updateDelayNext, hideNextFor) {
-    event.preventDefault();
+  handleClick(event, timeout, updateExitTimeout, updateDelayNext, enterIn) {
+    event.preventDefault()
 
-    updateExitTimeout(timeout);
-    updateDelayNext(hideNextFor);
+    updateExitTimeout(timeout)
+    updateDelayNext(enterIn)
 
-    this.props.triggerFn(timeout);
+    this.props.triggerFn(timeout)
 
     navigate(this.props.to, {
-      state: this.props.nextState
-    });
+      state: this.props.nextState,
+    })
 
-    setTimeout(() => updateExitTimeout(0), timeout);
-    setTimeout(() => updateDelayNext(0), hideNextFor);
+    setTimeout(() => updateExitTimeout(0), timeout)
+    setTimeout(() => updateDelayNext(0), enterIn)
   }
 
   render() {
     const {
-      props: { to, children }
-    } = this;
+      props: { to, children },
+    } = this
 
     return to && children ? (
       <Consumer>
@@ -37,10 +37,10 @@ export default class TransitionLink extends Component {
             onClick={e =>
               this.handleClick(
                 e,
-                this.props.exitAnimationTimeout,
+                this.props.exitFor,
                 updateExitTimeout,
                 updateDelayNext,
-                this.props.hideNextFor
+                this.props.enterIn
               )
             }
             to={this.props.to}
@@ -49,7 +49,7 @@ export default class TransitionLink extends Component {
           </Link>
         )}
       </Consumer>
-    ) : null;
+    ) : null
   }
 }
 
@@ -62,10 +62,10 @@ export class TransitionState extends Component {
             this.props.children,
             child =>
               React.cloneElement(child, { transitionState: location.state })
-          );
-          return childrenWithProps;
+          )
+          return childrenWithProps
         }}
       </Location>
-    );
+    )
   }
 }
