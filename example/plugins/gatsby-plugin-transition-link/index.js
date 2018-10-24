@@ -5,7 +5,13 @@ import { Link, navigate } from 'gatsby'
 import { Consumer } from './store/createContext'
 
 export default class TransitionLink extends Component {
-  handleClick({ event, exitFor, updateExitTimeout, updateDelayNext, entryIn }) {
+  triggerTransition({
+    event,
+    exitFor,
+    updateExitTimeout,
+    updateDelayNext,
+    entryIn,
+  }) {
     event.preventDefault()
 
     updateExitTimeout(exitFor)
@@ -23,7 +29,7 @@ export default class TransitionLink extends Component {
 
   render() {
     const {
-      props: { to, children },
+      props: { to, children, exitFor, entryIn },
     } = this
 
     return (
@@ -31,17 +37,17 @@ export default class TransitionLink extends Component {
         {({ updateExitTimeout, updateDelayNext }) => (
           <Link
             onClick={event =>
-              this.handleClick({
+              this.triggerTransition({
                 event,
                 updateExitTimeout,
                 updateDelayNext,
-                exitFor: this.props.exitFor,
-                entryIn: this.props.entryIn,
+                exitFor,
+                entryIn,
               })
             }
-            to={this.props.to}
+            to={to}
           >
-            {this.props.children}
+            {children}
           </Link>
         )}
       </Consumer>
