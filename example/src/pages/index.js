@@ -20,17 +20,17 @@ class Index extends Component {
     const directionTo = direction == 'up' ? '-100%' : '100%'
     const directionFrom = direction == 'up' ? '100%' : '-100%'
 
-    const totalTime = time / 1000
-    console.log(totalTime / 2)
+    // convert ms to s for gsap
+    const seconds = time / 1000
 
     return new TimelineMax()
       .set(this.transitionCover, { y: directionFrom })
-      .to(this.transitionCover, totalTime / 2, {
+      .to(this.transitionCover, seconds / 2, {
         y: '0%',
         ease: Power1.easeInOut,
       })
       .set(this.layoutContents, { opacity: 0 })
-      .to(this.transitionCover, totalTime / 2, {
+      .to(this.transitionCover, seconds / 2, {
         y: directionTo,
         ease: Power1.easeIn,
       })
@@ -39,7 +39,7 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        <section ref={r => (this.layoutContents = r)}>
+        <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
 
@@ -76,7 +76,7 @@ class Index extends Component {
           <DisplayState />
         </section>
         <div
-          ref={r => (this.transitionCover = r)}
+          ref={n => (this.transitionCover = n)}
           style={{
             position: 'absolute',
             background: '#4b2571',

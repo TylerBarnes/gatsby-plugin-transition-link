@@ -37,20 +37,20 @@ export default class SecondPage extends Component {
       : null
   }
 
-  exitHorizontal = (timeout, direction) => {
-    const totalTime = timeout / 1000
+  exitHorizontal = (time, direction) => {
+    const seconds = time / 1000
 
     const directionTo = direction === 'left' ? '-100%' : '100%'
     const directionFrom = direction === 'left' ? '100%' : '-100%'
 
     return new TimelineMax()
       .set(this.transitionCover, { x: directionFrom, display: 'block' })
-      .to(this.transitionCover, totalTime / 2, {
+      .to(this.transitionCover, seconds / 2, {
         x: '0%',
         ease: Power1.easeInOut,
       })
       .set(this.layoutWrapper, { opacity: 0 })
-      .to(this.transitionCover, totalTime / 2, {
+      .to(this.transitionCover, seconds / 2, {
         x: directionTo,
         ease: Power1.easeInOut,
       })
@@ -77,7 +77,7 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exitFor={2000}
-                exitFn={timeout => this.exitHorizontal(timeout, 'left')}
+                exitFn={time => this.exitHorizontal(time, 'left')}
                 entryIn={1000}
               >
                 Go back to the homepage that way{' '}
@@ -90,7 +90,7 @@ export default class SecondPage extends Component {
                 to="/"
                 exitFor={2000}
                 entryIn={1000}
-                exitFn={timeout => this.exitHorizontal(timeout, 'right')}
+                exitFn={time => this.exitHorizontal(time, 'right')}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
