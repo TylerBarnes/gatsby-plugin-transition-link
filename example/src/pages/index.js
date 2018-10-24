@@ -9,13 +9,16 @@ class Index extends Component {
   constructor(props) {
     super(props)
 
-    this.startAnimation = this.startAnimation.bind(this)
+    this.verticalAnimation = this.verticalAnimation.bind(this)
 
     this.layoutContents = React.createRef()
     this.transitionCover = React.createRef()
   }
 
-  startAnimation = timeout => {
+  verticalAnimation = (timeout, direction) => {
+    const directionTo = direction == 'up' ? '-100%' : '100%'
+    const directionFrom = direction == 'up' ? '100%' : '-100%'
+
     console.log('starting animation')
     setTimeout(() => {
       console.log(`Animation finished after ${timeout}ms`)
@@ -25,13 +28,14 @@ class Index extends Component {
     console.log(totalTime / 2)
 
     return new TimelineMax()
+      .set(this.transitionCover, { y: directionFrom })
       .to(this.transitionCover, totalTime / 2, {
         y: '0%',
         ease: Power1.easeInOut,
       })
       .set(this.layoutContents, { opacity: 0 })
       .to(this.transitionCover, totalTime / 2, {
-        y: '-100%',
+        y: directionTo,
         ease: Power1.easeIn,
       })
   }
@@ -49,11 +53,11 @@ class Index extends Component {
             to="/page-2"
             exitAnimationTimeout={1000}
             hideNextFor={600}
-            triggerFn={this.startAnimation}
+            triggerFn={timeout => this.verticalAnimation(timeout, 'down')}
             nextState={{ animation: 'fromBottom' }}
           >
             Go to page 2 that way{' '}
-            <span aria-label="pointing down" role="img">
+            <span aria-label="pointing up" role="img">
               👇
             </span>{' '}
             and animate in the next page
@@ -63,14 +67,14 @@ class Index extends Component {
             to="/page-2"
             exitAnimationTimeout={1200}
             hideNextFor={500}
-            triggerFn={this.startAnimation}
+            triggerFn={timeout => this.verticalAnimation(timeout, 'up')}
             nextState={{ animation: 'fromHome', layoutTheme: 'dark' }}
           >
             Go to page 2 that way{' '}
-            <span aria-label="pointing down" role="img">
-              👇
+            <span aria-label="pointing up" role="img">
+              ☝️
             </span>
-            but give us a dark theme when we get there.
+            and give us a dark theme when we get there.
           </TransitionLink>
         </section>
         <div

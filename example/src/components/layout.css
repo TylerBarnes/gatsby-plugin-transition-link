@@ -639,3 +639,7 @@ pre tt:after {
 .dark.layout-wrapper .layout-inner * {
   color: white;
 }
+
+br {
+  line-height: 3;
+}
