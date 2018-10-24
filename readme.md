@@ -26,9 +26,9 @@ In trying to figure out an easy way to create and manage these more complex tran
 
 Links are already the mediator between pages so it makes sense that they would also describe the transition between them.
 
-TransitionLink provides a simple api for triggering an animation, keeping the current page from unmounting, specifying when the next page will display, and sending state to the next page to be used in it's own entry animation.
+TransitionLink provides a simple api for using a link to trigger an animation, delay the current page from unmounting, delay when the next page will display, and send state to the next page to be used in it's own entry animation.
 
-Managing transitions using links means navigating from a home page to a blog post can have a totally different animation than going from the same home page to a contact page.
+Managing transitions using links means navigating from a home page to a blog post can easily have a different animation than going from the same home page to a contact page.
 
 ## Usage
 
@@ -57,18 +57,6 @@ import TransitionLink from 'gatsby-plugin-transition-link`;
 Go to page 2
 </TransitionLink>
 ```
-
-If you're using a Gatsby v1 style layout component (using `gatsby-plugin-layout`) or if another plugin prevents transitions from working properly, you can wrap TransitionHandler around pages yourself.
-
-```jsx
-import { TransitionHandler } from 'gatsby-plugin-transition-link`;
-
-const Layout = ({element, location}) => (
-    <TransitionHandler location={props.location}>{element}</TransitionHandler>
-)
-```
-
-TransitionHandler needs to be outside the page component though, not inside it. If you're using v2 style layouts as components, that's not the place to put TransitionHandler. You can put it in the `wrapPageElement` or `wrapRootElement` hooks.
 
 ## Props
 
@@ -140,3 +128,17 @@ or you could abstract away various animations.
 <Link to="/page-2 transition="fade">Go to page 2</Link>
 <Link to="/page-3" transition="swipeLeft">Go to page 3</Link>
 ```
+
+
+## Installation Conflicts
+TransitionLink uses the `wrapPageElement` hook to add the necessary components. If another plugin prevents transitions from working properly by using the same hook, you can wrap TransitionHandler around pages yourself.
+
+```jsx
+import { TransitionHandler } from 'gatsby-plugin-transition-link`;
+
+const Layout = ({element, location}) => (
+    <TransitionHandler location={props.location}>{element}</TransitionHandler>
+)
+```
+
+TransitionHandler needs to be outside the page component though, not inside it. If you're using v2 style layouts as components, that's not the place to put TransitionHandler. You can put it in the `wrapPageElement` or `wrapRootElement` hooks. For most projects adding it to gatsby-config.js should work.
