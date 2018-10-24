@@ -1,4 +1,4 @@
-IMPORTANT: This plugin is basically pre-alpha. Very little testing has been done. Use it at your own risk.
+***IMPORTANT:*** This plugin is basically pre-alpha. Very little testing has been done. Use it at your own risk. I've also only used it with GSAP. I'm not sure what the implementation would look like with other animation frameworks but theoretically it should work.
 
 # Gatsby Plugin Transition Link
 
@@ -8,7 +8,7 @@ A plugin for custom page animations in Gatsby.
 
 ## Installation
 
-NOTE: currently this project isn't actually on npm. It should be up in a couple days. For now the plugin is sitting in the example sites plugins folder.
+***NOTE:*** currently this project isn't actually on npm. It should be up in a couple days. For now the plugin is sitting in the example sites plugins folder.
 
 `npm i gatsby-plugin-transition-link`
 
@@ -20,7 +20,7 @@ Also install `react-transition-group`. This is used for preventing our pages fro
 
 ## Overview / Idea
 
-In the past I thought of page transitions in single instances where each page has it's own entry and exit animation. Because of this I ended up using a fade transition everywhere due to the complexity of managing multiple animations to and from specific pages. Where would I describe the transition from page A to page B vs page A to page C?
+In the past I thought of page transitions in single instances with each page having it's own entry and exit animation. Because of this I always ended up using a fade transition everywhere due to the complexity of managing multiple animations to and from specific pages. Where would I cleanly describe the transition from page A to page B vs page A to page C?
 
 In trying to figure out an easy way to create and manage these more complex transitions it suddenly hit me: The Link is the link!
 
@@ -28,7 +28,7 @@ Links are already the mediator between pages so it makes sense that they would a
 
 TransitionLink provides a simple api for triggering an animation, keeping the current page from unmounting, specifying when the next page will display, and sending state to the next page to be used in it's own entry animation.
 
-Managing transitions using links means navigating from a home page to a blog post can have a totally different animation than going from the same home page to a contact page for example.
+Managing transitions using links means navigating from a home page to a blog post can have a totally different animation than going from the same home page to a contact page.
 
 ## Usage
 
@@ -50,8 +50,8 @@ import TransitionLink from 'gatsby-plugin-transition-link`;
 <TransitionLink
   to="/page-2"
   exitFor={1000}
-  entryIn={600}
   exitFn={time => this.verticalAnimation(time, 'down')}
+  entryIn={600}
   entryState={{ animation: 'fromBottom' }}
 >
 Go to page 2
@@ -72,15 +72,15 @@ const Layout = ({element, location}) => (
 
 ### to
 
-`to` is used exactly the same as in gatsby-link.
+Used exactly the same as in gatsby-link.
 
 ### exitFor
 
-`exitFor` is the time in milliseconds your animation will take to finish. The exiting page will unmount after this.
+The time in milliseconds your animation will take to finish. The exiting page will unmount after this.
 
 ### exitFn
 
-`exitFn` is a function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the value from the `exitFor` prop.
+A function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the value from the `exitFor` prop.
 ex:
 
 ```jsx
@@ -89,11 +89,11 @@ exitFn={time => this.verticalAnimation(time, 'down')}
 
 ### entryIn
 
-`entryIn` is the amount of time to delay displaying the next route.
+The amount of time to delay displaying the next route.
 
 ### entryState
 
-`entryState` is an object that gets passed to the next page, useful for specifying entry animations on the next page or for changing page styles based on which animation or page the user is coming from.
+An object that gets passed to the next page, useful for specifying entry animations on the next page or for changing page styles based on which animation or page the user is coming from.
 
 You can use Reach Routers Location provider component to access this anywhere.
 
@@ -119,4 +119,14 @@ Your pages and templates will also receive the location prop and its state.
 const Page = ({ children, location: { state } }) => (
   <div className={state.somethingPassedIn}>{children}</div>
 );
+```
+
+## Default transitions
+
+I haven't tried it yet but theoretically you could wrap TransitionLink in your own component and use that as a link everywhere.
+```jsx
+const FadeLink = ({children, to}) => (
+  <TransitionLink to={to} exitFor={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
+  
+ <FadeLink to="/page-2">Go to page 2</FadeLink>
 ```
