@@ -1,7 +1,8 @@
 {
-  "name": "transition-link",
+  "name": "gatsby-plugin-transition-link",
   "version": "0.0.1",
-  "description": "A component to act as the mediator between two pages, facilitating exit and entry animations as a single motion.",
+  "description": "A link component for page transitions in gatsby",
+  "homepage": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "main": "index.js",
   "directories": {
     "example": "example"
