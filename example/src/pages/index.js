@@ -51,8 +51,8 @@ class Index extends Component {
           <br />
           <TransitionLink
             to="/page-2"
-            exitAnimationTimeout={1000}
-            hideNextFor={600}
+            exitFor={1000}
+            enterIn={600}
             triggerFn={timeout => this.verticalAnimation(timeout, 'down')}
             nextState={{ animation: 'fromBottom' }}
           >
@@ -65,8 +65,8 @@ class Index extends Component {
           <br />
           <TransitionLink
             to="/page-2"
-            exitAnimationTimeout={1200}
-            hideNextFor={500}
+            exitFor={1200}
+            enterIn={500}
             triggerFn={timeout => this.verticalAnimation(timeout, 'up')}
             nextState={{ animation: 'fromHome', layoutTheme: 'dark' }}
           >
