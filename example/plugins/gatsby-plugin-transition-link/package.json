@@ -1,7 +1,7 @@
 {
   "name": "transition-link",
   "version": "0.0.1",
-  "description": "A component to act as the mediator between two pages, facilitating exit and entry animations as a single smooth motion.",
+  "description": "A component to act as the mediator between two pages, facilitating exit and entry animations as a single motion.",
   "main": "index.js",
   "directories": {
     "example": "example"
