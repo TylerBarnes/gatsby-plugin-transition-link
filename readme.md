@@ -20,7 +20,7 @@ Also install `react-transition-group`. This is used for preventing our pages fro
 
 ## Overview / Idea
 
-In the past I thought of page transitions in single instance where each page has it's own entry and exit animation. Because of this I ended up using a fade transition everywhere due to the complexity of managing multiple animations to and from specific pages. Where would I describe the transition from page A to page B vs page A to page C?
+In the past I thought of page transitions in single instances where each page has it's own entry and exit animation. Because of this I ended up using a fade transition everywhere due to the complexity of managing multiple animations to and from specific pages. Where would I describe the transition from page A to page B vs page A to page C?
 
 In trying to figure out an easy way to create and manage these more complex transitions it suddenly hit me: The Link is the link!
 
@@ -34,7 +34,7 @@ Managing transitions using links means navigating from a home page to a blog pos
 
 Add `gatsby-plugin-transition-link` to your gatsby config.
 
-```javascript
+```jsx
 module.exports = {
     plugins: [
       `gatsby-plugin-transition-link`
@@ -44,26 +44,26 @@ module.exports = {
 
 Use it in your project
 
-```javascript
+```jsx
 import TransitionLink from 'gatsby-plugin-transition-link`;
 
 <TransitionLink
-            to="/page-2"
-            exitFor={1000}
-            entryIn={600}
-            exitFn={time => this.verticalAnimation(time, 'down')}
-            entryState={{ animation: 'fromBottom' }}
-          >
+  to="/page-2"
+  exitFor={1000}
+  entryIn={600}
+  exitFn={time => this.verticalAnimation(time, 'down')}
+  entryState={{ animation: 'fromBottom' }}
+>
 Go to page 2
 </TransitionLink>
 ```
 
 If you're using a Gatsby v1 style layout component (using `gatsby-plugin-layout`) or another plugin that prevents transitions from working properly, you can wrap TransitionHandler around pages yourself.
 
-```javascript
+```jsx
 import { TransitionHandler } from 'gatsby-plugin-transition-link`;
 
-const Layout = ({children, location}) => (
+const Layout = ({element, location}) => (
     <TransitionHandler location={props.location}>{element}</TransitionHandler>
 )
 ```
@@ -83,7 +83,7 @@ const Layout = ({children, location}) => (
 `exitFn` is a function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the value from the `exitFor` prop.
 ex:
 
-```javascript
+```jsx
 exitFn={time => this.verticalAnimation(time, 'down')}
 ```
 
@@ -97,7 +97,7 @@ exitFn={time => this.verticalAnimation(time, 'down')}
 
 You can use Reach Routers Location provider component to access this anywhere.
 
-```javascript
+```jsx
 import { Location } from "@reach/router";
 
 <SomeComponent>
@@ -113,9 +113,9 @@ import { Location } from "@reach/router";
 </SomeComponent>;
 ```
 
-Your pages and templates will also receive the location prop.
+Your pages and templates will also receive the location prop and its state.
 
-```javascript
+```jsx
 const Page = ({ children, location: { state } }) => (
   <div className={state.somethingPassedIn}>{children}</div>
 );
