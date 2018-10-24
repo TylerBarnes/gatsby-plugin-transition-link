@@ -79,6 +79,7 @@ export default class SecondPage extends Component {
                 exitFor={2000}
                 exitFn={time => this.exitHorizontal(time, 'left')}
                 entryIn={1000}
+                entryState={{ pass: 'Whatever you want', to: 'the next page' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing left" role="img">
@@ -91,6 +92,7 @@ export default class SecondPage extends Component {
                 exitFor={2000}
                 entryIn={1000}
                 exitFn={time => this.exitHorizontal(time, 'right')}
+                entryState={{ pass: 'Whatever you want', to: 'the next page' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
