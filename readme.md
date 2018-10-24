@@ -127,6 +127,7 @@ I haven't tried it yet but theoretically you could wrap TransitionLink in your o
 ```jsx
 const FadeLink = ({children, to}) => (
   <TransitionLink to={to} exitFor={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
-  
+ )
+ 
  <FadeLink to="/page-2">Go to page 2</FadeLink>
 ```
