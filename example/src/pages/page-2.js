@@ -79,7 +79,6 @@ export default class SecondPage extends Component {
                 exitFor={2000}
                 exitFn={timeout => this.exitHorizontal(timeout, 'left')}
                 entryIn={1000}
-                entryState={{ animation: 'fromRight' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing left" role="img">
@@ -92,7 +91,6 @@ export default class SecondPage extends Component {
                 exitFor={2000}
                 entryIn={1000}
                 exitFn={timeout => this.exitHorizontal(timeout, 'right')}
-                entryState={{ animation: 'fromLeft' }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
