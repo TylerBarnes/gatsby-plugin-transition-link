@@ -625,12 +625,17 @@ pre tt:after {
 
 .layout-wrapper {
   min-height: 100vh;
+  display: flex;
 }
 
-.dark.layout-wrapper {
+.layout-inner {
+  width: 100%;
+}
+
+.dark.layout-wrapper .layout-inner {
   background: black;
 }
 
-.dark.layout-wrapper * {
+.dark.layout-wrapper .layout-inner * {
   color: white;
 }

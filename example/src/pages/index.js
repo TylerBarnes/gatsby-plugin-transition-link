@@ -50,12 +50,13 @@ class Index extends Component {
             exitAnimationTimeout={1000}
             hideNextFor={600}
             triggerFn={this.startAnimation}
-            nextState={{ animation: 'fromHome' }}
+            nextState={{ animation: 'fromBottom' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing down" role="img">
               👇
-            </span>
+            </span>{' '}
+            and animate in the next page
           </TransitionLink>
           <br />
           <TransitionLink
@@ -70,23 +71,6 @@ class Index extends Component {
               👇
             </span>
             but give us a dark theme when we get there.
-          </TransitionLink>
-
-          <br />
-          <TransitionLink
-            to="/page-2"
-            exitAnimationTimeout={2000}
-            hideNextFor={1000}
-            triggerFn={this.startAnimation}
-            nextState={{
-              animation: 'liftUp',
-            }}
-          >
-            Go to page 2 with a{' '}
-            <span aria-label="fire" role="img">
-              🔥
-            </span>
-            y transition
           </TransitionLink>
         </section>
         <div

@@ -6,8 +6,8 @@ import { StaticQuery, graphql } from 'gatsby'
 import Header from './header'
 import './layout.css'
 
-const Layout = ({ children, theme }) => (
-  <div className={`layout-wrapper ${theme}`}>
+const Layout = ({ children, theme, style }) => (
+  <div className={`layout-wrapper ${theme}`} style={style}>
     <StaticQuery
       query={graphql`
         query SiteTitleQuery {
@@ -19,7 +19,7 @@ const Layout = ({ children, theme }) => (
         }
       `}
       render={data => (
-        <>
+        <div className="layout-inner">
           <Helmet
             title={data.site.siteMetadata.title}
             meta={[
@@ -40,7 +40,7 @@ const Layout = ({ children, theme }) => (
           >
             {children}
           </div>
-        </>
+        </div>
       )}
     />
   </div>
