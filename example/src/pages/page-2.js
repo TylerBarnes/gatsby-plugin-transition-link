@@ -70,7 +70,9 @@ export default class SecondPage extends Component {
                 Hi from the second page{' '}
                 {state && state.layoutTheme === 'dark' ? `(dark state)` : null}
               </h1>
-              <p>Welcome to page 2</p>
+              <p>
+                There are only 2 pages here but there are 4 transitions!
+              </p>
               <Link to="/">Go home normally</Link>
 
               <br />
@@ -99,7 +101,6 @@ export default class SecondPage extends Component {
                   👉
                 </span>
               </TransitionLink>
-
               <DisplayState />
             </div>
           </Layout>
