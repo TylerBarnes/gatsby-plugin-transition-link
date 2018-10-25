@@ -1,4 +1,4 @@
-***IMPORTANT:*** This plugin is basically pre-alpha. Very little testing has been done. Use it at your own risk. I've also only used it with GSAP. I'm not sure what the implementation would look like with other animation frameworks but theoretically it should work.
+**_IMPORTANT:_** This plugin is basically pre-alpha. Very little testing has been done. Use it at your own risk. I've also only used it with GSAP. I'm not sure what the implementation would look like with other animation frameworks but theoretically it should work.
 
 # Gatsby Plugin Transition Link
 
@@ -8,15 +8,11 @@ A plugin for custom page animations in Gatsby.
 
 ## Installation
 
-***NOTE:*** currently this project isn't actually on npm. It should be up in a couple days. For now the plugin is sitting in the example sites plugins folder.
-
 `npm i gatsby-plugin-transition-link`
 
 or
 
 `yarn add gatsby-plugin-transition-link`
-
-Also install `react-transition-group`. This is used for preventing our pages from unmounting before transitions are finished.
 
 ## Overview / Idea
 
@@ -114,23 +110,29 @@ const Page = ({ children, location: { state } }) => (
 ## Default transitions
 
 I haven't tried it yet but theoretically you could wrap TransitionLink in your own component and use that as a link everywhere.
+
 ```jsx
 const Link = ({children, to}) => (
   <TransitionLink to={to} exitFor={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
  )
- 
+
  <Link to="/page-2">Go to page 2</Link>
 ```
 
 or you could abstract away various animations.
 
 ```jsx
-<Link to="/page-2 transition="fade">Go to page 2</Link>
-<Link to="/page-3" transition="swipeLeft">Go to page 3</Link>
+<Link to="/page-2" transition="fade">
+  Go to page 2
+</Link>
+
+<Link to="/page-3" transition="swipeLeft">
+  Go to page 3
+</Link>
 ```
 
-
 ## Installation Conflicts
+
 TransitionLink uses the `wrapPageElement` hook to add the necessary components. If another plugin prevents transitions from working properly by using the same hook, you can wrap TransitionHandler around pages yourself.
 
 ```jsx
