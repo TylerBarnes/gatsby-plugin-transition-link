@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "shippedProposals": true,
+        "modules": "commonjs",
+        "targets": {
+          "node": 4
+        }
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}

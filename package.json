@@ -1,15 +1,27 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "0.0.1",
-  "description": "A link component for page transitions in gatsby",
+  "version": "0.0.3",
+  "description": "A link component for page transitions in gatsby.",
   "homepage": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "main": "index.js",
-  "directories": {
-    "example": "example"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Tyler Barnes",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "copy-npm-files": "cp -rf package.json lib && cp -rf readme.md",
+    "clean-lib": "node_modules/.bin/rimraf ./lib",
+    "build": "yarn clean-lib && babel src --out-dir lib --ignore __tests__ && yarn copy-npm-files",
+    "publish": "yarn build && cd lib && npm publish"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "react": "^16.6.0",
+    "react-transition-group": "^2.5.0"
+  }
 }
