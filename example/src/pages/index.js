@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import { TimelineMax, Power1 } from 'gsap'
 
-import TransitionLink from '../../plugins/gatsby-plugin-transition-link'
+import TransitionLink from 'gatsby-plugin-transition-link'
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
 
