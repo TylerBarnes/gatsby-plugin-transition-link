@@ -11,14 +11,17 @@ function print_r(o) {
 
 function DisplayState() {
   return (
-    <section style={{ marginTop: '100px' }}>
-      <h4>Current location state</h4>
-      <Location>
-        {({ location: { state } }) => (
-          <pre dangerouslySetInnerHTML={{ __html: print_r(state) }} />
-        )}
-      </Location>
-    </section>
+    <Location>
+      {({ location: { state } }) =>
+        state ? (
+          <section style={{ marginTop: '100px' }}>
+            <h4>Current location state</h4>
+
+            <pre dangerouslySetInnerHTML={{ __html: print_r(state) }} />
+          </section>
+        ) : null
+      }
+    </Location>
   )
 }
 
