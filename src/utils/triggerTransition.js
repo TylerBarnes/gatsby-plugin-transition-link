@@ -21,11 +21,14 @@ const triggerTransition = ({
   exitFn(exitFor);
 
   navigate(to);
-  updateEntryState(entryState);
+
   updateExitState(exitState);
 
   setTimeout(() => updateExitTimeout(0), exitFor);
-  setTimeout(() => updateDelayNext(0), entryIn);
+  setTimeout(() => {
+    updateEntryState(entryState);
+    updateDelayNext(0);
+  }, entryIn);
 };
 
 export { triggerTransition };
