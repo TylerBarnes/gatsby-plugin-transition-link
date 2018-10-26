@@ -7,7 +7,7 @@
   "author": "Tyler Barnes",
   "license": "ISC",
   "scripts": {
-    "copy-npm-files": "cp -rf package.json lib && cp -rf readme.md",
+    "copy-npm-files": "cp -rf package.json lib && cp -rf readme.md lib",
     "clean-lib": "node_modules/.bin/rimraf ./lib",
     "build": "yarn clean-lib && babel src --out-dir lib --ignore __tests__ && yarn copy-npm-files",
     "publish": "yarn build && cd lib && npm publish"
