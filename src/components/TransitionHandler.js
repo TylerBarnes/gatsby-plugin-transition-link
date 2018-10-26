@@ -24,8 +24,6 @@ const TransitionHandler = props => {
                   status: transitionStatus
                 });
 
-                console.log(passedStateWithStatus);
-
                 const childWithTransitionState = React.Children.map(
                   props.children,
                   child => {
