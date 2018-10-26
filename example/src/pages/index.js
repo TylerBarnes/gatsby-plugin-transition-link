@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
 import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink from 'gatsby-plugin-transition-link'
@@ -43,7 +42,7 @@ class Index extends Component {
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
 
-          <Link to="/page-2">Go to page 2 normally</Link>
+          <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
           <TransitionLink
             to="/page-2"
@@ -51,6 +50,7 @@ class Index extends Component {
             entryIn={600}
             exitFn={time => this.verticalAnimation(time, 'down')}
             entryState={{ animation: 'fromBottom' }}
+            exitState={{ test: 'exit state' }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Location } from '@reach/router'
+import { TransitionConsumer } from 'gatsby-plugin-transition-link'
 
 function print_r(o) {
   if (typeof window === `undefined`) return
@@ -11,17 +11,17 @@ function print_r(o) {
 
 function DisplayState() {
   return (
-    <Location>
-      {({ location: { state } }) =>
-        state ? (
+    <TransitionConsumer>
+      {context =>
+        context ? (
           <section style={{ marginTop: '100px' }}>
             <h4>Current location state</h4>
 
-            <pre dangerouslySetInnerHTML={{ __html: print_r(state) }} />
+            <pre dangerouslySetInnerHTML={{ __html: print_r(context) }} />
           </section>
         ) : null
       }
-    </Location>
+    </TransitionConsumer>
   )
 }
 

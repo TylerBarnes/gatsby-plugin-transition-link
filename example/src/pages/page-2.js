@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
 import TransitionLink from 'gatsby-plugin-transition-link'
 
 import Layout from '../components/layout'
@@ -19,15 +18,12 @@ export default class SecondPage extends Component {
   }
 
   componentDidMount() {
-    const {
-      location: { state = null },
-      location,
-    } = this.props
+    const { transitionStatus, entryState } = this.props
 
     const animation =
-      location && state && state.animation ? state.animation : false
+      entryState && entryState.animation ? entryState.animation : false
 
-    return animation === 'fromBottom'
+    return transitionStatus === 'entered' && animation === 'fromBottom'
       ? new TimelineMax().fromTo(
           this.layoutContents,
           2,
@@ -57,23 +53,27 @@ export default class SecondPage extends Component {
   }
 
   render() {
-    const {
-      location: { state },
-    } = this.props
+    const { entryState } = this.props
 
     return (
       <>
         <section ref={n => (this.layoutWrapper = n)}>
-          <Layout theme={state && state.layoutTheme ? state.layoutTheme : null}>
+          <Layout
+            theme={
+              entryState && entryState.layoutTheme
+                ? entryState.layoutTheme
+                : null
+            }
+          >
             <div ref={n => (this.layoutContents = n)}>
               <h1>
                 Hi from the second page{' '}
-                {state && state.layoutTheme === 'dark' ? `(dark state)` : null}
+                {entryState && entryState.layoutTheme === 'dark'
+                  ? `(dark state)`
+                  : null}
               </h1>
-              <p>
-                There are only 2 pages here but there are 4 transitions!
-              </p>
-              <Link to="/">Go home normally</Link>
+              <p>There are only 2 pages here but there are 4 transitions!</p>
+              <TransitionLink to="/">Go home normally</TransitionLink>
 
               <br />
               <TransitionLink
