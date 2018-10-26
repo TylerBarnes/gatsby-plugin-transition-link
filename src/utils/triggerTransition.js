@@ -1,15 +1,15 @@
 import { navigate } from "gatsby";
 
 const triggerTransition = ({
-  event = null,
-  exitFor = 0,
-  updateExitTimeout,
-  updateDelayNext,
-  entryIn = 0,
   to,
-  entryState = {},
+  event = null,
   exitFn = false,
+  exitFor = 0,
+  entryIn = 0,
+  entryState = {},
   exitState = {},
+  updateDelayNext,
+  updateExitTimeout,
   updateEntryState,
   updateExitState
 }) => {
