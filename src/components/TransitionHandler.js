@@ -1,42 +1,56 @@
-import React from 'react'
-import { Transition, TransitionGroup } from 'react-transition-group'
-import { Consumer } from '../store/createContext'
-import AppProvider from '../store/provider'
+import React from "react";
+import { Transition, TransitionGroup } from "react-transition-group";
+import { Consumer } from "../context/createTransitionContext";
+import { PublicProvider } from "../context/createTransitionContext";
+import InternalProvider from "../context/InternalProvider";
 
 const TransitionHandler = props => {
   return (
-    <AppProvider>
+    <InternalProvider>
       <Consumer>
-        {({ delayNext, exitTimeout }) => (
+        {({ delayNext, exitTimeout, entryState, exitState }) => (
           <TransitionGroup>
             <Transition
               timeout={{ enter: delayNext, exit: exitTimeout }}
               key={props.location.pathname}
             >
-              {state => {
-                // use transition groups entering state to hide the incoming component
-                // supposedly this should instead be done with a setTimeout and the in prop... https://github.com/reactjs/react-transition-group/issues/284
-                // This works for now. Later, the transition states could be used for actual animation instead of controlling the display overlap. For some reason the in prop does nothing for me even if I hard code it to false
-                const visibility = state === 'entering' ? 'hidden' : 'visible'
+              {transitionStatus => {
+                const isExiting =
+                  transitionStatus !== "entered" &&
+                  transitionStatus !== "entering";
 
-                return (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      width: '100%',
-                      visibility: visibility,
-                    }}
-                  >
-                    {props.children}
+                const passedState = isExiting ? exitState : entryState;
+                const passedStateWithStatus = Object.assign({}, passedState, {
+                  status: transitionStatus
+                });
+
+                console.log(passedStateWithStatus);
+
+                const childWithTransitionState = React.Children.map(
+                  props.children,
+                  child => {
+                    return React.cloneElement(child, {
+                      transitionStatus: transitionStatus,
+                      entryState: entryState,
+                      exitState: exitState
+                    });
+                  }
+                );
+
+                return transitionStatus !== "entering" ? (
+                  <div style={{ position: "absolute", width: "100%" }}>
+                    <PublicProvider value={passedStateWithStatus}>
+                      {childWithTransitionState}
+                    </PublicProvider>
                   </div>
-                )
+                ) : null;
               }}
             </Transition>
           </TransitionGroup>
         )}
       </Consumer>
-    </AppProvider>
-  )
-}
+    </InternalProvider>
+  );
+};
 
-export default TransitionHandler
+export default TransitionHandler;
