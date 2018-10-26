@@ -1,6 +1,7 @@
 ✔ pass the same transitionState to pages / templates that's passed to the TransitionConsumer @done(18-10-26 10:49)
 ✔ prevent transitionlinks from being clicked while a transition is in progress @done(18-10-26 15:23)
 ✔ prevent scroll jumping when transitioning @done(18-10-26 16:04)
+☐ BUG: state is reseting before the page transitions from page 2 to page 1. Stopped working in 1c56134dd2dfe3ec3004b97174d34886776b1ac7
 ☐ clean up the internal variables and make them all consistent
 ☐ refactor to make things easier to understand and add comments where necessary
 ☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
