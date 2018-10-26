@@ -1,4 +1,4 @@
-**_IMPORTANT:_** This plugin is basically pre-alpha. Very little testing has been done. Use it at your own risk. I've also only used it with GSAP. I'm not sure what the implementation would look like with other animation frameworks but theoretically it should work.
+**_IMPORTANT:_** This plugin is pre-alpha. V1 is being worked on and there will be breaking changes very soon.
 
 # Gatsby Plugin Transition Link
 
@@ -40,17 +40,19 @@ module.exports = {
 
 Use it in your project
 
-```jsx
+```javascript
 import TransitionLink from 'gatsby-plugin-transition-link`;
+```
 
+```jsx
 <TransitionLink
   to="/page-2"
   exitFor={1000}
-  exitFn={time => this.verticalAnimation(time, 'down')}
+  exitFn={time => this.verticalAnimation(time, "down")}
   entryIn={600}
-  entryState={{ animation: 'fromBottom' }}
+  entryState={{ animation: "fromBottom" }}
 >
-Go to page 2
+  Go to page 2
 </TransitionLink>
 ```
 
@@ -100,11 +102,11 @@ Along with the state you pass to the exiting or entering pages, a property calle
 You can use the TransitionConsumer component to access the transition state anywhere.
 
 ```jsx
-import { TransitionConsumer } from 'gatsby-plugin-transition-link'
+import { TransitionConsumer } from "gatsby-plugin-transition-link";
+```
 
-<TransitionConsumer>
-  {state => console.log(state)}
-</TransitionConsumer>
+```jsx
+<TransitionConsumer>{state => console.log(state)}</TransitionConsumer>
 ```
 
 Your pages and templates will also receive three props: transitionStatus, entryState, and exitState.
