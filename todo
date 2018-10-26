@@ -1,5 +1,5 @@
 ✔ pass the same transitionState to pages / templates that's passed to the TransitionConsumer @done(18-10-26 10:49)
-☐ prevent transitionlinks from being clicked while a transition is in progress
+✔ prevent transitionlinks from being clicked while a transition is in progress @done(18-10-26 15:23)
 ☐ prevent scroll jumping when transitioning
 ☐ clean up the internal variables and make them all consistent
 ☐ refactor to make things easier to understand and add comments where necessary
