@@ -20,24 +20,30 @@ const TransitionLink = ({
         updateExitTimeout,
         updateDelayNext,
         updateEntryState,
-        updateExitState
+        updateExitState,
+        toggleInTransition,
+        inTransition
       }) => (
-        // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
         <Link
           onClick={event =>
-            triggerTransition({
-              event,
-              updateExitTimeout,
-              updateDelayNext,
-              exitFor,
-              entryIn,
-              to,
-              exitFn,
-              exitState,
-              updateExitState,
-              entryState,
-              updateEntryState
-            })
+            triggerTransition(
+              // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
+              {
+                event,
+                updateExitTimeout,
+                updateDelayNext,
+                exitFor,
+                entryIn,
+                to,
+                exitFn,
+                exitState,
+                updateExitState,
+                entryState,
+                updateEntryState,
+                toggleInTransition,
+                inTransition
+              }
+            )
           }
           to={to}
         >

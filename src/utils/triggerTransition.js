@@ -11,9 +11,14 @@ const triggerTransition = ({
   updateDelayNext,
   updateExitTimeout,
   updateEntryState,
-  updateExitState
+  updateExitState,
+  toggleInTransition,
+  inTransition
 }) => {
   event.preventDefault();
+
+  if (inTransition) return false;
+  toggleInTransition(true);
 
   updateExitTimeout(exitFor);
   updateDelayNext(entryIn);
@@ -31,6 +36,7 @@ const triggerTransition = ({
   setTimeout(() => {
     updateEntryState(entryState);
     updateDelayNext(0);
+    toggleInTransition(false);
   }, entryIn);
 };
 

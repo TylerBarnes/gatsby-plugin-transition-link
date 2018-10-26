@@ -8,6 +8,11 @@ class InternalProvider extends Component {
     delayNext: 0,
     entryState: {},
     exitState: {},
+    inTransition: false,
+    toggleInTransition: val =>
+      this.setState({
+        inTransition: val
+      }),
     updateExitTimeout: ms => this.setState({ exitTimeout: ms }),
     updateDelayNext: ms => this.setState({ delayNext: ms }),
     updateEntryState: state => this.setState({ entryState: state }),
