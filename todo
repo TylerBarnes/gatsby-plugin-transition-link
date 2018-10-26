@@ -10,5 +10,6 @@
     ☐ cover swipe up, left, right, down
     ☐ expanding bubble
     ☐ wipe in
+☐ Add example of using triggerTransition() to transition using events other than click
 ☐ release v1
 ☐ Write blog post for gatsbyjs.org
