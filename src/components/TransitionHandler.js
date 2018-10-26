@@ -28,9 +28,7 @@ const TransitionHandler = props => {
                   props.children,
                   child => {
                     return React.cloneElement(child, {
-                      transitionStatus: transitionStatus,
-                      entryState: entryState,
-                      exitState: exitState
+                      state: passedStateWithStatus
                     });
                   }
                 );
