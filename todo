@@ -1,4 +1,4 @@
-☐ pass the same transitionState to pages / templates that's passed to the TransitionConsumer
+✔ pass the same transitionState to pages / templates that's passed to the TransitionConsumer @done(18-10-26 10:49)
 ☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
 ☐ Add layer prop to transitionportal with the possible values of "bottom" "middle" and "above"
 ☐ Consider an option to separate entry and exit portals
