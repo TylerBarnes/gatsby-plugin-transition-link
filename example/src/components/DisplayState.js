@@ -15,7 +15,7 @@ function DisplayState() {
       {context =>
         context ? (
           <section style={{ marginTop: '100px' }}>
-            <h4>Current location state</h4>
+            <h4>Current transition state</h4>
 
             <pre dangerouslySetInnerHTML={{ __html: print_r(context) }} />
           </section>
