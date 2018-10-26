@@ -22,6 +22,7 @@ const TransitionLink = ({
         updateEntryState,
         updateExitState
       }) => (
+        // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
         <Link
           onClick={event =>
             triggerTransition({
