@@ -9,8 +9,7 @@
   "scripts": {
     "copy-npm-files": "cp -rf package.json lib && cp -rf readme.md lib",
     "clean-lib": "node_modules/.bin/rimraf ./lib",
-    "build": "yarn clean-lib && babel src --out-dir lib --ignore __tests__ && yarn copy-npm-files",
-    "publish": "yarn build && cd lib && npm publish"
+    "build": "yarn clean-lib && babel src --out-dir lib --ignore __tests__ && yarn copy-npm-files"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
