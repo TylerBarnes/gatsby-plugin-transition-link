@@ -73,6 +73,10 @@ ex:
 exitFn={time => this.verticalAnimation(time, 'down')}
 ```
 
+### exitState
+
+Could be used in place of exitFn to change the state of the exiting page instead of triggering a function. Or use them both if you want!
+
 ### entryIn
 
 The amount of time to delay displaying the next route.
@@ -81,29 +85,33 @@ The amount of time to delay displaying the next route.
 
 An object that gets passed to the next page, useful for specifying entry animations on the next page or for changing page styles based on which animation or page the user is coming from.
 
-You can use Reach Routers Location provider component to access this anywhere.
+## Transition status
 
-```jsx
-import { Location } from "@reach/router";
+Along with the state you pass to the exiting or entering pages, a property called "status" will be added to the state object with the values of "entered" or "exiting".
 
-<SomeComponent>
-  <Location>
-    {({ location: { state } }) => {
-      state.something === "something?" && (
-        <SomeOtherComponent triggerAnimation={state.maybeAnAnimationIfYouWant}>
-          {state.somethingElseTooIfYouWant}
-        </SomeOtherComponent>
-      );
-    }}
-  </Location>
-</SomeComponent>;
+```javascript
+{
+  status: "entered";
+}
 ```
 
-Your pages and templates will also receive the location prop and its state.
+## Accessing transition state
+
+You can use the TransitionConsumer component to access the transition state anywhere.
 
 ```jsx
-const Page = ({ children, location: { state } }) => (
-  <div className={state.somethingPassedIn}>{children}</div>
+import { TransitionConsumer } from 'gatsby-plugin-transition-link'
+
+<TransitionConsumer>
+  {state => console.log(state)}
+</TransitionConsumer>
+```
+
+Your pages and templates will also receive three props: transitionStatus, entryState, and exitState.
+
+```jsx
+const Page = ({ children, transitionStatus, entryState, exitState }) => (
+  <div className={transitionStatus}>{children}</div>
 );
 ```
 
@@ -130,6 +138,11 @@ or you could abstract away various animations.
   Go to page 3
 </Link>
 ```
+
+## Considerations
+
+If you use TransitionLink, you shouldn't also use gatsby-link. Currently I haven't set it up so entry and exit states can be reset by gatsby-link. This means your entry or exit animations will keep firing if you mix the normal gatsby-link with TransitionLink.
+You can still use TransitionLink the same way you use gatsby-link and you can even import it as Link if you want.
 
 ## Installation Conflicts
 

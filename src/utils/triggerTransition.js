@@ -1,28 +1,37 @@
-import { navigate } from 'gatsby'
+import { navigate } from "gatsby";
 
 const triggerTransition = ({
-  event,
-  exitFor,
-  updateExitTimeout,
-  updateDelayNext,
-  entryIn,
   to,
-  entryState,
-  exitFn,
+  event = null,
+  exitFn = false,
+  exitFor = 0,
+  entryIn = 0,
+  entryState = {},
+  exitState = {},
+  updateDelayNext,
+  updateExitTimeout,
+  updateEntryState,
+  updateExitState
 }) => {
-  event.preventDefault()
+  event.preventDefault();
 
-  updateExitTimeout(exitFor)
-  updateDelayNext(entryIn)
+  updateExitTimeout(exitFor);
+  updateDelayNext(entryIn);
 
-  exitFn(exitFor)
+  exitFn && exitFn(exitFor);
 
   navigate(to, {
-    state: entryState,
-  })
+    entryState: entryState,
+    exitState: exitState
+  });
 
-  setTimeout(() => updateExitTimeout(0), exitFor)
-  setTimeout(() => updateDelayNext(0), entryIn)
-}
+  updateExitState(exitState);
+  setTimeout(() => updateExitTimeout(0), exitFor);
 
-export { triggerTransition }
+  setTimeout(() => {
+    updateEntryState(entryState);
+    updateDelayNext(0);
+  }, entryIn);
+};
+
+export { triggerTransition };
