@@ -56,7 +56,10 @@ export default class SecondPage extends Component {
 
     return (
       <>
-        <section ref={n => (this.layoutWrapper = n)}>
+        <section
+          ref={n => (this.layoutWrapper = n)}
+          style={{ minHeight: '150vh' }}
+        >
           <Layout theme={state && state.layoutTheme ? state.layoutTheme : null}>
             <div ref={n => (this.layoutContents = n)}>
               <h1>

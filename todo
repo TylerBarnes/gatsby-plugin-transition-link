@@ -1,6 +1,6 @@
 ✔ pass the same transitionState to pages / templates that's passed to the TransitionConsumer @done(18-10-26 10:49)
 ✔ prevent transitionlinks from being clicked while a transition is in progress @done(18-10-26 15:23)
-☐ prevent scroll jumping when transitioning
+✔ prevent scroll jumping when transitioning @done(18-10-26 16:04)
 ☐ clean up the internal variables and make them all consistent
 ☐ refactor to make things easier to understand and add comments where necessary
 ☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
@@ -14,3 +14,6 @@
 ☐ Add example of using triggerTransition() to transition using events other than click
 ☐ release v1
 ☐ Write blog post for gatsbyjs.org
+
+Future
+☐ hook into location state so that going back and forward in the browser still triggers animation

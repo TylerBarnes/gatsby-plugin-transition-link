@@ -25,10 +25,7 @@ const triggerTransition = ({
 
   exitFn && exitFn(exitFor);
 
-  navigate(to, {
-    entryState: entryState,
-    exitState: exitState
-  });
+  navigate(to);
 
   updateExitState(exitState);
   setTimeout(() => updateExitTimeout(0), exitFor);
@@ -37,6 +34,8 @@ const triggerTransition = ({
     updateEntryState(entryState);
     updateDelayNext(0);
     toggleInTransition(false);
+
+    if (typeof window !== `undefined`) window.scrollTo(0, 0);
   }, entryIn);
 };
 
