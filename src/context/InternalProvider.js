@@ -10,6 +10,7 @@ class InternalProvider extends Component {
         inTransition: val
       }),
     // exit
+    exitDelay: 0,
     exitLength: 0,
     exitState: {},
     // entry
@@ -17,6 +18,7 @@ class InternalProvider extends Component {
     entryLength: 0,
     entryState: {},
     // state updates
+    updateExitDelay: ms => this.setState({ exitDelay: ms }),
     updateExitLength: ms => this.setState({ exitLength: ms }),
     updateExitState: state => this.setState({ exitState: state }),
     updateEntryDelay: ms => this.setState({ entryDelay: ms }),

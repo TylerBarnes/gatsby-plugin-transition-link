@@ -13,7 +13,14 @@ export default class TransitionHandler extends Component {
     return (
       <InternalProvider>
         <Consumer>
-          {({ entryDelay, exitLength, entryState, exitState, entryLength }) => (
+          {({
+            exitDelay,
+            exitLength,
+            exitState,
+            entryDelay,
+            entryLength,
+            entryState
+          }) => (
             <TransitionGroup>
               <DelayedTransition
                 delay={entryDelay}
@@ -23,8 +30,16 @@ export default class TransitionHandler extends Component {
                 {transitionStatus => {
                   const transitionState = {
                     transitionStatus,
-                    entryState,
-                    exitState
+                    entry: {
+                      state: entryState,
+                      delay: entryDelay,
+                      length: entryLength
+                    },
+                    exit: {
+                      state: exitState,
+                      delay: exitDelay,
+                      exit: exitLength
+                    }
                   };
 
                   const childWithTransitionState = React.Children.map(
