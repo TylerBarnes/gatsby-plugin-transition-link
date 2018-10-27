@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TransitionLink from 'gatsby-plugin-transition-link'
-
 import Layout from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
@@ -18,16 +17,15 @@ export default class SecondPage extends Component {
   }
 
   componentDidMount() {
-    const { transitionStatus, entryState } = this.props
+    const {
+      entry: { state },
+    } = this.props
 
-    const animation =
-      entryState && entryState.animation ? entryState.animation : false
-
-    return transitionStatus === 'entered' && animation === 'fromBottom'
+    return state.animation === 'fromBottom'
       ? new TimelineMax().fromTo(
           this.layoutContents,
-          2,
-          { y: '50%' },
+          1,
+          { y: '10%' },
           { y: '0%' }
         )
       : null
