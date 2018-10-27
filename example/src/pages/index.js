@@ -48,6 +48,24 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
+              in: 3000,
+              for: 3000,
+              trigger: () => console.log('so triggered by this exit'),
+              state: { it: 'is happening' },
+            }}
+            entry={{
+              in: 1000,
+              for: 4000,
+              trigger: () => console.log('and VERY triggered by this entry'),
+              state: { have: 'this' },
+            }}
+          >
+            delayed exit
+          </TransitionLink>
+          <br />
+          <TransitionLink
+            to="/page-2"
+            exit={{
               // in: 2000,
               for: 1000,
               state: {

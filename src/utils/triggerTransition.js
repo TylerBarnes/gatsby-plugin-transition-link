@@ -37,18 +37,23 @@ const triggerTransition = ({
 
   exitTrigger && exitTrigger(exitFor);
 
-  navigate(to);
-
-  updateExitState(exitState);
-  setTimeout(() => updateExitTimeout(0), exitFor);
-
+  // wait for exitIn to start navigating
   setTimeout(() => {
-    updateEntryState(entryState);
-    updateDelayNext(0);
-    toggleInTransition(false);
+    navigate(to);
 
-    if (typeof window !== `undefined`) window.scrollTo(0, 0);
-  }, entryIn);
+    updateExitState(exitState);
+    setTimeout(() => updateExitTimeout(0), exitFor);
+
+    // wait for entryIn to begin our entry animation
+    setTimeout(() => {
+      entryTrigger && entryTrigger(entryState);
+      updateEntryState(entryState);
+      updateDelayNext(0);
+      toggleInTransition(false);
+
+      if (typeof window !== `undefined`) window.scrollTo(0, 0);
+    }, entryIn);
+  }, exitIn);
 };
 
 export { triggerTransition };
