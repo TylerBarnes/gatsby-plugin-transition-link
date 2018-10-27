@@ -12,7 +12,7 @@ const TransitionLink = ({ to, children, exit, entry }) => {
         updateExitLength,
         updateDelayNext,
         updateEntryState,
-        updateEntryFor,
+        updateEntryLength,
         updateExitState,
         toggleInTransition,
         inTransition
@@ -26,7 +26,7 @@ const TransitionLink = ({ to, children, exit, entry }) => {
               entry,
               updateExitLength,
               updateDelayNext,
-              updateEntryFor,
+              updateEntryLength,
               updateExitState,
               updateEntryState,
               toggleInTransition,

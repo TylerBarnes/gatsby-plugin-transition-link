@@ -11,7 +11,7 @@ const triggerTransition = ({
   updateExitLength,
   updateEntryState,
   updateExitState,
-  updateEntryFor
+  updateEntryLength
 }) => {
   event.preventDefault();
 
@@ -25,13 +25,13 @@ const triggerTransition = ({
     trigger: exitTrigger = false
   } = exit;
   const {
-    length: entryFor = 0,
+    length: entryLength = 0,
     delay: entryIn = 0,
     state: entryState = {},
     trigger: entryTrigger = false
   } = entry;
 
-  updateEntryFor(entryFor);
+  updateEntryLength(entryLength);
   updateExitLength(exitFor);
   updateDelayNext(entryIn);
 
