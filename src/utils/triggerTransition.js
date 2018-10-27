@@ -37,14 +37,14 @@ const triggerTransition = ({
 
   exitTrigger && exitTrigger(exit);
 
-  // wait for exitIn to start navigating
+  // wait for exitIn before we start navigating
   setTimeout(() => {
     navigate(to);
 
     updateExitState(exitState);
     setTimeout(() => updateExitLength(0), exitFor);
 
-    // wait for entryIn to begin our entry animation
+    // wait for entryIn before we begin our entry animation
     setTimeout(() => {
       entryTrigger && entryTrigger(entry);
       updateEntryState(entryState);
