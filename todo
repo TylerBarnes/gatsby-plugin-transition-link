@@ -3,6 +3,8 @@
 ✔ prevent scroll jumping when transitioning @done(18-10-26 16:04)
 ✔ BUG: state is reseting before the page transitions from page 2 to page 1. Stopped working in 1c56134dd2dfe3ec3004b97174d34886776b1ac7 @done(18-10-26 18:53)
 ☐ refactor API
+    ☐ add the ability to delay exit (same as entry. on click the trigger should go but the state shouldn't change until the delay is up, navigation should also be paused.
+    ☐ pass entire enter prop object into enter trigger function (same for exit)
 ☐ clean up the internal variables and make them all consistent
 ☐ refactor to make things easier to understand and add comments where necessary
 ☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
