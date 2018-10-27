@@ -37,7 +37,9 @@ const TransitionHandler = props => {
 
                 return transitionStatus !== "entering" ? (
                   <div style={{ position: "absolute", width: "100%" }}>
-                    <PublicProvider value={passedStateWithStatus}>
+                    <PublicProvider
+                      value={{ transitionStatus, entryState, exitState }}
+                    >
                       {childWithTransitionState}
                     </PublicProvider>
                   </div>
