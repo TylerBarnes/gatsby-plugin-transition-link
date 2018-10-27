@@ -38,7 +38,7 @@ export default class TransitionHandler extends Component {
                     exit: {
                       state: exitState,
                       delay: exitDelay,
-                      exit: exitLength
+                      length: exitLength
                     }
                   };
 
