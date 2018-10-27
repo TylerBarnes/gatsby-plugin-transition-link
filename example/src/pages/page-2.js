@@ -57,7 +57,9 @@ export default class SecondPage extends Component {
   }
 
   render() {
-    const { entryState } = this.props
+    const {
+      entry: { state: entryState },
+    } = this.props
 
     return (
       <>
