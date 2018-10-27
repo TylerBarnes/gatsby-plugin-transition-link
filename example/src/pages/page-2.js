@@ -102,6 +102,35 @@ export default class SecondPage extends Component {
                 </span>
               </TransitionLink>
               <DisplayState />
+              <section
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '500px',
+                  flexDirection: 'column',
+                }}
+              >
+                <h1>
+                  This is a tall section to show what transitions look like when
+                  you're scrolled
+                </h1>
+                <TransitionLink
+                  to="/"
+                  exitFor={2000}
+                  entryIn={1000}
+                  exitFn={time => this.exitHorizontal(time, 'right')}
+                  entryState={{
+                    pass: 'Whatever you want',
+                    to: 'the next page',
+                  }}
+                >
+                  Go back to the homepage that way{' '}
+                  <span aria-label="pointing right" role="img">
+                    👉
+                  </span>
+                </TransitionLink>
+              </section>
             </div>
           </Layout>
         </section>
