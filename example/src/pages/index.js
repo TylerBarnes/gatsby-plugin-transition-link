@@ -41,13 +41,20 @@ class Index extends Component {
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
-
+          <TransitionLink
+            to="/page-2"
+            exitFor={1000}
+            entryIn={3000}
+            entryFor={5000}
+          >
+            test
+          </TransitionLink>
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
           <TransitionLink
             to="/page-2"
-            exitFor={1000}
-            entryIn={600}
+            exitFor={10000}
+            entryIn={10000}
             exitFn={time => this.verticalAnimation(time, 'down')}
             entryState={{ animation: 'fromBottom' }}
             exitState={{ test: 'exit state' }}

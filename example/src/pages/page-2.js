@@ -79,6 +79,16 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exitFor={2000}
+                // exitFn={time => this.exitHorizontal(time, 'left')}
+                entryIn={1000}
+                entryFor={5000}
+                // entryState={{ pass: 'Whatever you want', to: 'the next page' }}
+              >
+                test
+              </TransitionLink>
+              <TransitionLink
+                to="/"
+                exitFor={2000}
                 exitFn={time => this.exitHorizontal(time, 'left')}
                 entryIn={1000}
                 entryState={{ pass: 'Whatever you want', to: 'the next page' }}
