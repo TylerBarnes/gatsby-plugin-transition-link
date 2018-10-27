@@ -26,10 +26,10 @@ API scratchpad
 
 to="/"
 exit={{
-    in: "100ms", // default converts
-    for: "1s",  // both of these to be returned in ms
-    trigger: state => Fn(state), 
+    in: "1s", // default converts both of these to be returned in ms
+    for: "100ms",  // option can be set to return seconds
     state: {}
+    trigger: state => Fn(state), 
     }}
 entry={{
     in: 1, // default is in ms
