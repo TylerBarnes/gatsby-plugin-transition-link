@@ -33,8 +33,8 @@ export default class SecondPage extends Component {
       : null
   }
 
-  exitHorizontal = (time, direction) => {
-    const seconds = time / 1000
+  exitHorizontal = ({ length }, direction) => {
+    const seconds = length / 1000
 
     const directionTo = direction === 'left' ? '-100%' : '100%'
     const directionFrom = direction === 'left' ? '100%' : '-100%'
@@ -52,8 +52,14 @@ export default class SecondPage extends Component {
       })
   }
 
+  message = message => {
+    console.log(message)
+  }
+
   render() {
-    const { entryState } = this.props
+    const {
+      entry: { state: entryState },
+    } = this.props
 
     return (
       <>
@@ -74,14 +80,17 @@ export default class SecondPage extends Component {
               </h1>
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
-
               <br />
               <TransitionLink
                 to="/"
-                exitFor={2000}
-                exitFn={time => this.exitHorizontal(time, 'left')}
-                entryIn={1000}
-                entryState={{ pass: 'Whatever you want', to: 'the next page' }}
+                exit={{
+                  length: 2000,
+                  trigger: exit => this.exitHorizontal(exit, 'left'),
+                }}
+                entry={{
+                  delay: 1000,
+                  state: { pass: 'Whatever you want', to: 'the next page' },
+                }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing left" role="img">
@@ -91,10 +100,14 @@ export default class SecondPage extends Component {
               <br />
               <TransitionLink
                 to="/"
-                exitFor={2000}
-                entryIn={1000}
-                exitFn={time => this.exitHorizontal(time, 'right')}
-                entryState={{ pass: 'Whatever you want', to: 'the next page' }}
+                exit={{
+                  length: 2000,
+                  trigger: time => this.exitHorizontal(time, 'right'),
+                }}
+                entry={{
+                  delay: 1000,
+                  state: { pass: 'Whatever you want', to: 'the next page' },
+                }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
@@ -102,6 +115,36 @@ export default class SecondPage extends Component {
                 </span>
               </TransitionLink>
               <DisplayState />
+              <section
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '500px',
+                  flexDirection: 'column',
+                }}
+              >
+                <h1>
+                  This is a tall section to show what transitions look like when
+                  you're scrolled
+                </h1>
+                <TransitionLink
+                  to="/"
+                  exit={{
+                    length: 2000,
+                    trigger: time => this.exitHorizontal(time, 'right'),
+                  }}
+                  entry={{
+                    delay: 1000,
+                    state: { pass: 'Whatever you want', to: 'the next page' },
+                  }}
+                >
+                  Go back to the homepage that way{' '}
+                  <span aria-label="pointing right" role="img">
+                    👉
+                  </span>
+                </TransitionLink>
+              </section>
             </div>
           </Layout>
         </section>

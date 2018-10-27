@@ -5,41 +5,21 @@ import { Link } from "gatsby";
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
-const TransitionLink = ({
-  to,
-  children,
-  exitFor,
-  entryIn,
-  exitFn,
-  entryState,
-  exitState
-}) => {
+const TransitionLink = ({ to, children, exit, entry }) => {
   return (
     <Consumer>
-      {({
-        updateExitTimeout,
-        updateDelayNext,
-        updateEntryState,
-        updateExitState
-      }) => (
-        // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
+      {({ ...context }) => (
         <Link
           onClick={event =>
             triggerTransition({
               event,
-              updateExitTimeout,
-              updateDelayNext,
-              exitFor,
-              entryIn,
               to,
-              exitFn,
-              exitState,
-              updateExitState,
-              entryState,
-              updateEntryState
+              exit,
+              entry,
+              ...context
             })
           }
-          to={to}
+          to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
         >
           {children}
         </Link>
@@ -50,8 +30,8 @@ const TransitionLink = ({
 
 TransitionLink.propTypes = {
   to: PropTypes.string.isRequired,
-  exitFor: PropTypes.number,
-  entryIn: PropTypes.number,
+  exitLength: PropTypes.number,
+  entryDelay: PropTypes.number,
   exitFn: PropTypes.func,
   entryState: PropTypes.object
 };

@@ -4,14 +4,17 @@ import { Provider } from "./createTransitionContext";
 
 class InternalProvider extends Component {
   state = {
-    exitTimeout: 0,
-    delayNext: 0,
-    entryState: {},
+    inTransition: false,
+    // exit
+    exitDelay: 0,
+    exitLength: 0,
     exitState: {},
-    updateExitTimeout: ms => this.setState({ exitTimeout: ms }),
-    updateDelayNext: ms => this.setState({ delayNext: ms }),
-    updateEntryState: state => this.setState({ entryState: state }),
-    updateExitState: state => this.setState({ exitState: state })
+    // entry
+    entryDelay: 0,
+    entryLength: 0,
+    entryState: {},
+    // state updates
+    updateContext: obj => this.setState(obj)
   };
 
   render() {

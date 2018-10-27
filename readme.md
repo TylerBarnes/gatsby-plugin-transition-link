@@ -47,53 +47,71 @@ import TransitionLink from 'gatsby-plugin-transition-link`;
 ```jsx
 <TransitionLink
   to="/page-2"
-  exitFor={1000}
-  exitFn={time => this.verticalAnimation(time, "down")}
-  entryIn={600}
-  entryState={{ animation: "fromBottom" }}
+  exit={{
+    trigger: exit => this.verticalAnimation(exit, "up"),
+    delay: 100,
+    length: 1000
+  }}
+  entry={{ delay: 600, length: 1000, state: { animation: "fromBottom" } }}
 >
   Go to page 2
 </TransitionLink>
 ```
 
-## Props
+## API
 
 ### to
 
 Used exactly the same as in gatsby-link.
 
-### exitFor
+### exit and entry
 
-The time in milliseconds your animation will take to finish. The exiting page will unmount after this.
+each takes an object describing each animation
 
-### exitFn
+### exit.length / entry.length
 
-A function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the value from the `exitFor` prop.
+takes an integer describing how many milliseconds the transition should last.
+The exiting page will unmount after this and the entering page will have it's status transitioned to "entered".
+
+### exit.trigger
+
+A function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the entire exit prop.
 ex:
 
 ```jsx
-exitFn={time => this.verticalAnimation(time, 'down')}
+exitFn={exit => this.verticalAnimation(exit, 'down')}
+
+verticalAnimation = ({length, delay}, direction) {
+  // do something cool here
+}
 ```
 
-### exitState
+### entry.trigger
 
-Could be used in place of exitFn to change the state of the exiting page instead of triggering a function. Or use them both if you want!
+A function that will be called as soon as the entry delay has elapsed. You could use it to trigger your entry animation. It receives a property that returns the entire entry prop.
+ex:
 
-### entryIn
+```jsx
+entryFn={entry => this.verticalAnimation(exit, 'down')}
 
-The amount of time to delay displaying the next route.
+verticalAnimation = ({length, delay}, direction) {
+  // do something cool here
+}
+```
 
-### entryState
+### exit.state / entry.state
 
-An object that gets passed to the next page, useful for specifying entry animations on the next page or for changing page styles based on which animation or page the user is coming from.
+These can be used to set the state of your pages as they're exiting and entering. This state is passed to your pages and templates and it can also be accessed using the TransitionConsumer component (see below).
 
 ## Transition status
 
-Along with the state you pass to the exiting or entering pages, a property called "status" will be added to the state object with the values of "entered" or "exiting".
+Along with the state you pass to the exiting or entering pages, a property called "transitionStatus" will be added to the state object with the values of "entered", "entering", or "exiting".
 
 ```javascript
 {
-  status: "entered";
+  transitionStatus: "entered",
+  entry: {},
+  exit: {}
 }
 ```
 
@@ -123,13 +141,19 @@ I haven't tried it yet but theoretically you could wrap TransitionLink in your o
 
 ```jsx
 const Link = ({children, to}) => (
-  <TransitionLink to={to} exitFor={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
+  <TransitionLink
+    to={to}
+    exit={{ length: 100, trigger: fadeOut}}
+    entry={{delay: 150, state: { animation: fadeIn }}}
+    >
+      {children}
+  </TransitionLink>
  )
 
  <Link to="/page-2">Go to page 2</Link>
 ```
 
-or you could abstract away various animations.
+or you could abstract away various animations with your own logic.
 
 ```jsx
 <Link to="/page-2" transition="fade">
@@ -143,8 +167,8 @@ or you could abstract away various animations.
 
 ## Considerations
 
-If you use TransitionLink, you shouldn't also use gatsby-link. Currently I haven't set it up so entry and exit states can be reset by gatsby-link. This means your entry or exit animations will keep firing if you mix the normal gatsby-link with TransitionLink.
-You can still use TransitionLink the same way you use gatsby-link and you can even import it as Link if you want.
+If you use TransitionLink, you shouldn't also use gatsby-link. Currently I haven't set it up so entry and exit states can be reset by gatsby-link. This means your entry or exit animations will keep firing if you mix the normal gatsby-link with TransitionLink and navigate back and forth with the two. It wont be a problem in some cases but it's better not to mix them.
+You can still use TransitionLink the same way you use gatsby-link and you can even import it as "Link" if you want.
 
 ## Installation Conflicts
 

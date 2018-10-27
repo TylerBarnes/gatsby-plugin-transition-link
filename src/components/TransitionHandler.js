@@ -1,54 +1,69 @@
-import React from "react";
+import React, { Component } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 import { Consumer } from "../context/createTransitionContext";
 import { PublicProvider } from "../context/createTransitionContext";
 import InternalProvider from "../context/InternalProvider";
+import delayTransitionRender from "./delayTransitionRender";
 
-const TransitionHandler = props => {
-  return (
-    <InternalProvider>
-      <Consumer>
-        {({ delayNext, exitTimeout, entryState, exitState }) => (
-          <TransitionGroup>
-            <Transition
-              timeout={{ enter: delayNext, exit: exitTimeout }}
-              key={props.location.pathname}
-            >
-              {transitionStatus => {
-                const isExiting =
-                  transitionStatus !== "entered" &&
-                  transitionStatus !== "entering";
+const DelayedTransition = delayTransitionRender(Transition);
+export default class TransitionHandler extends Component {
+  render() {
+    const { props } = this;
+    const { children } = props;
+    return (
+      <InternalProvider>
+        <Consumer>
+          {({
+            exitDelay,
+            exitLength,
+            exitState,
+            entryDelay,
+            entryLength,
+            entryState
+          }) => (
+            <TransitionGroup>
+              <DelayedTransition
+                delay={entryDelay}
+                timeout={{ enter: entryLength, exit: exitLength }}
+                key={props.location.pathname}
+              >
+                {transitionStatus => {
+                  const transitionState = {
+                    transitionStatus,
+                    entry: {
+                      state: entryState,
+                      delay: entryDelay,
+                      length: entryLength
+                    },
+                    exit: {
+                      state: exitState,
+                      delay: exitDelay,
+                      length: exitLength
+                    }
+                  };
 
-                const passedState = isExiting ? exitState : entryState;
-                const passedStateWithStatus = Object.assign({}, passedState, {
-                  status: transitionStatus
-                });
+                  const childWithTransitionState = React.Children.map(
+                    children,
+                    child => {
+                      return React.cloneElement(child, {
+                        ...transitionState
+                      });
+                    }
+                  );
 
-                const childWithTransitionState = React.Children.map(
-                  props.children,
-                  child => {
-                    return React.cloneElement(child, {
-                      transitionStatus: transitionStatus,
-                      entryState: entryState,
-                      exitState: exitState
-                    });
-                  }
-                );
-
-                return transitionStatus !== "entering" ? (
-                  <div style={{ position: "absolute", width: "100%" }}>
-                    <PublicProvider value={passedStateWithStatus}>
-                      {childWithTransitionState}
-                    </PublicProvider>
-                  </div>
-                ) : null;
-              }}
-            </Transition>
-          </TransitionGroup>
-        )}
-      </Consumer>
-    </InternalProvider>
-  );
-};
-
-export default TransitionHandler;
+                  return (
+                    <div style={{ position: "absolute", width: "100%" }}>
+                      <PublicProvider value={{ ...transitionState }}>
+                        {childWithTransitionState}
+                      </PublicProvider>
+                    </div>
+                  );
+                }}
+              </DelayedTransition>
+            </TransitionGroup>
+          )}
+        </Consumer>
+      </InternalProvider>
+    );
+  }
+}

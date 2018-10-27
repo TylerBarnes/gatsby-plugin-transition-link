@@ -15,12 +15,12 @@ class Index extends Component {
     this.transitionCover = React.createRef()
   }
 
-  verticalAnimation = (time, direction) => {
+  verticalAnimation = ({ length }, direction) => {
     const directionTo = direction === 'up' ? '-100%' : '100%'
     const directionFrom = direction === 'up' ? '100%' : '-100%'
 
     // convert ms to s for gsap
-    const seconds = time / 1000
+    const seconds = length / 1000
 
     return new TimelineMax()
       .set(this.transitionCover, { y: directionFrom })
@@ -35,6 +35,10 @@ class Index extends Component {
       })
   }
 
+  message(message) {
+    console.log(message)
+  }
+
   render() {
     return (
       <Layout>
@@ -46,11 +50,12 @@ class Index extends Component {
           <br />
           <TransitionLink
             to="/page-2"
-            exitFor={1000}
-            entryIn={600}
-            exitFn={time => this.verticalAnimation(time, 'down')}
-            entryState={{ animation: 'fromBottom' }}
-            exitState={{ test: 'exit state' }}
+            exit={{
+              length: 1000,
+              trigger: exit => this.verticalAnimation(exit, 'down'),
+              state: { test: 'exit state' },
+            }}
+            entry={{ delay: 500, state: { animation: 'fromBottom' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -61,10 +66,11 @@ class Index extends Component {
           <br />
           <TransitionLink
             to="/page-2"
-            exitFor={1200}
-            exitFn={time => this.verticalAnimation(time, 'up')}
-            entryIn={500}
-            entryState={{ layoutTheme: 'dark' }}
+            exit={{
+              length: 1200,
+              trigger: exit => this.verticalAnimation(exit, 'up'),
+            }}
+            entry={{ delay: 500, length: 1000, state: { layoutTheme: 'dark' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -72,6 +78,24 @@ class Index extends Component {
             </span>
             and give us a dark theme when we get there.
           </TransitionLink>
+          <br />
+          {/* <TransitionLink
+            to="/page-2"
+            exit={{
+              delay: 3000,
+              length: 3000,
+              trigger: () => console.log('so triggered by this exit'),
+              state: { it: 'is happening' },
+            }}
+            entry={{
+              delay: 1000,
+              length: 4000,
+              trigger: () => console.log('and VERY triggered by this entry'),
+              state: { have: 'this' },
+            }}
+          >
+            slow delayed exit with overlap example. check your console.
+          </TransitionLink> */}
 
           <DisplayState />
         </section>

@@ -1,0 +1,52 @@
+✔ pass the same transitionState to pages / templates that's passed to the TransitionConsumer @done(18-10-26 10:49)
+✔ prevent transitionlinks from being clicked while a transition is in progress @done(18-10-26 15:23)
+✔ prevent scroll jumping when transitioning @done(18-10-26 16:04)
+✔ BUG: state is reseting before the page transitions from page 2 to page 1. Stopped working in 1c56134dd2dfe3ec3004b97174d34886776b1ac7 @done(18-10-26 18:53)
+✔ refactor API @done(18-10-27 12:38)
+    ✔ add the ability to delay exit (same as entry. on click the trigger should go but the state shouldn't change until the delay is up, navigation should also be paused. @done(18-10-27 12:15)
+    ✔ pass entire enter prop object into enter trigger function (same for exit) @done(18-10-27 12:37)
+✔ clean up the internal variables and make them all consistent @done(18-10-27 12:54)
+    ✔ for should be length @done(18-10-27 12:54)
+    ✔ in should be delay @done(18-10-27 12:54)
+✔ add exitdelay to state @done(18-10-27 13:28)
+✔ add entire exit and entry props to transition state consumer / page props @done(18-10-27 13:28)
+✔ refactor to make things easier to understand and add comments where necessary @done(18-10-27 13:55)
+✔ quick update readme @done(18-10-27 14:13)
+☐ release next version to fix build errors on example site
+☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
+☐ Add layer prop to transitionportal with the possible values of "bottom" "middle" and "above"
+✘ Consider an option to separate entry and exit portals @cancelled(18-10-26 10:56) // no need for this. Portals retain their react context so TransitionConsumer can be used in them.
+☐ Add some generic default transitions using transition portal
+    ☐ fade
+    ☐ cover swipe up, left, right, down
+    ☐ expanding bubble
+    ☐ wipe in
+☐ Add example of using triggerTransition() to transition using events other than click
+☐ update docs
+    ☐ new api
+    ☐ add a visual timeline of events in, for, trigger, state, and when they happen
+    ☐ idea / overview section should be rewritten and moved to blog post
+☐ release v1
+☐ Write blog post for gatsbyjs.org
+
+Future
+☐ hook into location state so that going back and forward in the browser still triggers animation (this should be optional with a plugin setting "reverse: bool" which can also be overridden by a prop.
+
+
+API scratchpad
+
+to="/"
+exit={{
+    for: "100ms",  // option can be set to return seconds
+    state: {}
+    trigger: state => Fn(state), 
+    }}
+entry={{
+    in: 1, // default is in ms
+    for: 2, // option can be set to return seconds
+    trigger: state => Fn(state)
+    state: {
+        theme: 'dark'
+        }
+    }}
+
