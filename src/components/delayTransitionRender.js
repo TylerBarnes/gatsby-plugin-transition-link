@@ -13,7 +13,7 @@ export default function delayTransitionRender(WrappedComponent) {
     componentDidMount() {
       this.timeout = setTimeout(
         () => this.setState({ shouldRender: true }),
-        this.props.defer
+        this.props.delay
       );
     }
 

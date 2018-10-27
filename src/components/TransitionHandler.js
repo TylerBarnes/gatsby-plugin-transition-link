@@ -16,7 +16,7 @@ export default class TransitionHandler extends Component {
           {({ delayNext, exitTimeout, entryState, exitState, entryFor }) => (
             <TransitionGroup>
               <DelayedTransition
-                defer={delayNext}
+                delay={delayNext}
                 timeout={{ enter: entryFor, exit: exitTimeout }}
                 key={props.location.pathname}
               >
