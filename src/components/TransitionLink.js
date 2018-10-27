@@ -1,56 +1,43 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
-const TransitionLink = ({
-  to,
-  children,
-  exitFor,
-  entryIn,
-  entryFor,
-  exitFn,
-  entryState,
-  exitState
-}) => {
+const TransitionLink = ({ to, children, ...props }) => {
   return (
     <Consumer>
-      {({
-        updateExitTimeout,
-        updateDelayNext,
-        updateEntryState,
-        updateEntryFor,
-        updateExitState,
-        toggleInTransition,
-        inTransition
-      }) => (
+      {({ state, updateState, toggleInTransition }) => (
         <Link
-          onClick={event =>
-            triggerTransition(
-              // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
-              {
-                event,
-                updateExitTimeout,
-                updateDelayNext,
-                updateEntryFor,
-                exitFor,
-                entryIn,
-                entryFor,
-                to,
-                exitFn,
-                exitState,
-                updateExitState,
-                entryState,
-                updateEntryState,
-                toggleInTransition,
-                inTransition
-              }
-            )
+          onClick={
+            event =>
+              triggerTransition(
+                // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
+                {
+                  event,
+                  props: { ...props, to },
+                  state,
+                  updateState,
+                  toggleInTransition
+                }
+              )
+            //
+            // updateExitTimeout,
+            // updateDelayNext,
+            // updateEntryFor,
+            // exitFor,
+            // entryIn,
+            // entryFor,
+            // exitFn,
+            // exitState,
+            // updateExitState,
+            // entryState,
+            // updateEntryState,
           }
           to={to}
         >
+          {/* {console.log(context)} */}
           {children}
         </Link>
       )}
@@ -58,12 +45,12 @@ const TransitionLink = ({
   );
 };
 
-TransitionLink.propTypes = {
-  to: PropTypes.string.isRequired,
-  exitFor: PropTypes.number,
-  entryIn: PropTypes.number,
-  exitFn: PropTypes.func,
-  entryState: PropTypes.object
-};
+// TransitionLink.propTypes = {
+//   to: PropTypes.string.isRequired,
+//   exitFor: PropTypes.number,
+//   entryIn: PropTypes.number,
+//   exitFn: PropTypes.func,
+//   entryState: PropTypes.object
+// };
 
 export { TransitionLink };

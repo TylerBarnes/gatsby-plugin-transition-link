@@ -16,15 +16,17 @@ export default class TransitionHandler extends Component {
           {({ delayNext, exitTimeout, entryState, exitState, entryFor }) => (
             <TransitionGroup>
               <DelayedTransition
-                defer={delayNext}
-                timeout={{ enter: entryFor, exit: exitTimeout }}
+                defer={0}
+                // defer={delayNext}
+                timeout={{ enter: 0, exit: 0 }}
+                // timeout={{ enter: entryFor, exit: exitTimeout }}
                 key={props.location.pathname}
               >
                 {transitionStatus => {
                   const transitionState = {
-                    transitionStatus,
-                    entryState,
-                    exitState
+                    transitionStatus
+                    // entryState,
+                    // exitState
                   };
 
                   const childWithTransitionState = React.Children.map(

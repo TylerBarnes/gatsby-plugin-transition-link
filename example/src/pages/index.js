@@ -35,20 +35,45 @@ class Index extends Component {
       })
   }
 
+  test(message) {
+    console.log(message)
+  }
+
   render() {
     return (
       <Layout>
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
-          <TransitionLink
+          {/* <TransitionLink
             to="/page-2"
             exitFor={1000}
             entryIn={3000}
             entryFor={5000}
           >
             test
+          </TransitionLink> */}
+          <TransitionLink
+            to="/page-2"
+            exit={{
+              trigger: exit => this.message(exit),
+              for: 1000,
+              state: {
+                leavingHome: true,
+              },
+            }}
+            entry={{
+              in: 3000,
+              trigger: entry => this.message(entry),
+              for: 5000,
+              state: {
+                theme: 'dark',
+              },
+            }}
+          >
+            new api
           </TransitionLink>
+          <br />
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
           <TransitionLink

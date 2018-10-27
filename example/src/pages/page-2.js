@@ -52,6 +52,10 @@ export default class SecondPage extends Component {
       })
   }
 
+  test(message) {
+    console.log(message)
+  }
+
   render() {
     const { entryState } = this.props
 
@@ -75,6 +79,27 @@ export default class SecondPage extends Component {
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
 
+              <br />
+              <TransitionLink
+                to="/"
+                exit={{
+                  trigger: exit => this.message(exit),
+                  for: 2000,
+                  state: {
+                    leaving: true,
+                  },
+                }}
+                entry={{
+                  in: 1000,
+                  trigger: entry => this.message(entry),
+                  for: 5000,
+                  state: {
+                    theme: 'dark',
+                  },
+                }}
+              >
+                new api
+              </TransitionLink>
               <br />
               <TransitionLink
                 to="/"

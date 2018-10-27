@@ -11,7 +11,14 @@ export default function delayTransitionRender(WrappedComponent) {
     }
 
     componentDidMount() {
-      setTimeout(() => this.setState({ shouldRender: true }), this.props.defer);
+      this.timeout = setTimeout(
+        () => this.setState({ shouldRender: true }),
+        this.props.defer
+      );
+    }
+
+    componentWillUnmount() {
+      clearTimeout(this.timeout);
     }
 
     render() {

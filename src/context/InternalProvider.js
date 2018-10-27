@@ -3,26 +3,40 @@ import PropTypes from "prop-types";
 import { Provider } from "./createTransitionContext";
 
 class InternalProvider extends Component {
-  state = {
-    exitTimeout: 0,
-    delayNext: 0,
-    entryFor: 0,
-    entryState: {},
-    exitState: {},
-    inTransition: false,
-    toggleInTransition: val =>
-      this.setState({
-        inTransition: val
-      }),
-    updateExitTimeout: ms => this.setState({ exitTimeout: ms }),
-    updateDelayNext: ms => this.setState({ delayNext: ms }),
-    updateEntryFor: ms => this.setState({ entryFor: ms }),
-    updateEntryState: state => this.setState({ entryState: state }),
-    updateExitState: state => this.setState({ exitState: state })
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inTransition: false,
+      status: false,
+      exit: {
+        for: 0,
+        state: {},
+        trigger: false
+      },
+      entry: {
+        for: 0,
+        in: 0,
+        state: {},
+        trigger: false
+      }
+    };
+
+    this.toggleInTransition = bool => this.setState({ inTransition: bool });
+    this.updateState = state => {
+      this.setState({ state });
+    };
+  }
 
   render() {
-    return <Provider value={this.state}>{this.props.children}</Provider>;
+    const state = this.state;
+    const updateState = this.updateState;
+    const toggleInTransition = this.toggleInTransition;
+    return (
+      <Provider value={{ state, updateState, toggleInTransition }}>
+        {this.props.children}
+      </Provider>
+    );
   }
 }
 
