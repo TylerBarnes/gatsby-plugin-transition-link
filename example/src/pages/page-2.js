@@ -33,8 +33,8 @@ export default class SecondPage extends Component {
       : null
   }
 
-  exitHorizontal = (time, direction) => {
-    const seconds = time / 1000
+  exitHorizontal = ({ length }, direction) => {
+    const seconds = length / 1000
 
     const directionTo = direction === 'left' ? '-100%' : '100%'
     const directionFrom = direction === 'left' ? '100%' : '-100%'
@@ -84,13 +84,13 @@ export default class SecondPage extends Component {
                 to="/"
                 exit={{
                   trigger: exit => this.message(exit),
-                  for: 2000,
+                  length: 2000,
                   state: { leaving: true },
                 }}
                 entry={{
-                  in: 1000,
+                  delay: 1000,
                   trigger: entry => this.message(entry),
-                  for: 5000,
+                  length: 5000,
                   state: { theme: 'dark' },
                 }}
               >
@@ -100,11 +100,11 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exit={{
-                  for: 2000,
-                  trigger: time => this.exitHorizontal(time, 'left'),
+                  length: 2000,
+                  trigger: exit => this.exitHorizontal(exit, 'left'),
                 }}
                 entry={{
-                  in: 1000,
+                  delay: 1000,
                   state: { pass: 'Whatever you want', to: 'the next page' },
                 }}
               >
@@ -116,11 +116,11 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exit={{
-                  for: 2000,
-                  trigger: time => this.exitHorizontal(time, 'right'),
+                  length: 2000,
+                  trigger: exit => this.exitHorizontal(exit, 'right'),
                   state: { test: 'exit state' },
                 }}
-                entry={{ in: 1000, state: { animation: 'fromBottom' } }}
+                entry={{ delay: 1000, state: { animation: 'fromBottom' } }}
               >
                 TEST Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
@@ -131,11 +131,11 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exit={{
-                  for: 2000,
+                  length: 2000,
                   trigger: time => this.exitHorizontal(time, 'right'),
                 }}
                 entry={{
-                  in: 1000,
+                  delay: 1000,
                   state: { pass: 'Whatever you want', to: 'the next page' },
                 }}
               >
@@ -161,12 +161,12 @@ export default class SecondPage extends Component {
                 <TransitionLink
                   to="/"
                   exit={{
-                    for: 2000,
+                    length: 2000,
                     trigger: time => this.exitHorizontal(time, 'right'),
                     state: { test: 'state' },
                   }}
                   entry={{
-                    in: 5000,
+                    delay: 5000,
                     state: { pass: 'Whatever you want', to: 'the next page' },
                   }}
                 >

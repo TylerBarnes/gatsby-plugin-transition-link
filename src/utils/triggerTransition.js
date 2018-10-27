@@ -19,14 +19,14 @@ const triggerTransition = ({
   toggleInTransition(true);
 
   const {
-    for: exitFor = 0,
-    in: exitIn = 0,
+    length: exitFor = 0,
+    delay: exitIn = 0,
     state: exitState = {},
     trigger: exitTrigger = false
   } = exit;
   const {
-    for: entryFor = 0,
-    in: entryIn = 0,
+    length: entryFor = 0,
+    delay: entryIn = 0,
     state: entryState = {},
     trigger: entryTrigger = false
   } = entry;
@@ -35,7 +35,7 @@ const triggerTransition = ({
   updateExitTimeout(exitFor);
   updateDelayNext(entryIn);
 
-  exitTrigger && exitTrigger(exitFor);
+  exitTrigger && exitTrigger(exit);
 
   // wait for exitIn to start navigating
   setTimeout(() => {
@@ -46,7 +46,7 @@ const triggerTransition = ({
 
     // wait for entryIn to begin our entry animation
     setTimeout(() => {
-      entryTrigger && entryTrigger(entryState);
+      entryTrigger && entryTrigger(entry);
       updateEntryState(entryState);
       updateDelayNext(0);
       toggleInTransition(false);

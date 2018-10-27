@@ -15,12 +15,12 @@ class Index extends Component {
     this.transitionCover = React.createRef()
   }
 
-  verticalAnimation = (time, direction) => {
+  verticalAnimation = ({ length }, direction) => {
     const directionTo = direction === 'up' ? '-100%' : '100%'
     const directionFrom = direction === 'up' ? '100%' : '-100%'
 
     // convert ms to s for gsap
-    const seconds = time / 1000
+    const seconds = length / 1000
 
     return new TimelineMax()
       .set(this.transitionCover, { y: directionFrom })
@@ -48,14 +48,14 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
-              in: 3000,
-              for: 3000,
+              delay: 3000,
+              length: 3000,
               trigger: () => console.log('so triggered by this exit'),
               state: { it: 'is happening' },
             }}
             entry={{
-              in: 1000,
-              for: 4000,
+              delay: 1000,
+              length: 4000,
               trigger: () => console.log('and VERY triggered by this entry'),
               state: { have: 'this' },
             }}
@@ -66,15 +66,14 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
-              // in: 2000,
-              for: 1000,
+              length: 1000,
               state: {
                 leavingHome: true,
               },
             }}
             entry={{
-              in: 3000,
-              for: 5000,
+              delay: 3000,
+              length: 5000,
               state: {
                 theme: 'dark',
               },
@@ -88,11 +87,11 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
-              for: 1000,
-              trigger: time => this.verticalAnimation(time, 'down'),
+              length: 1000,
+              trigger: exit => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
-            entry={{ in: 500, state: { animation: 'fromBottom' } }}
+            entry={{ delay: 500, state: { animation: 'fromBottom' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -104,10 +103,10 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
-              for: 1200,
-              trigger: time => this.verticalAnimation(time, 'up'),
+              length: 1200,
+              trigger: exit => this.verticalAnimation(exit, 'up'),
             }}
-            entry={{ in: 500, for: 1000, state: { layoutTheme: 'dark' } }}
+            entry={{ delay: 500, length: 1000, state: { layoutTheme: 'dark' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
