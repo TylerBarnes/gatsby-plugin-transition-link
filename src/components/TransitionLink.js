@@ -8,16 +8,7 @@ import { Consumer } from "../context/createTransitionContext";
 const TransitionLink = ({ to, children, exit, entry }) => {
   return (
     <Consumer>
-      {({
-        updateEntryDelay,
-        updateEntryState,
-        updateEntryLength,
-        updateExitDelay,
-        updateExitLength,
-        updateExitState,
-        toggleInTransition,
-        inTransition
-      }) => (
+      {({ ...context }) => (
         <Link
           onClick={event =>
             triggerTransition({
@@ -25,14 +16,7 @@ const TransitionLink = ({ to, children, exit, entry }) => {
               to,
               exit,
               entry,
-              updateExitDelay,
-              updateExitLength,
-              updateExitState,
-              updateEntryDelay,
-              updateEntryLength,
-              updateEntryState,
-              toggleInTransition,
-              inTransition
+              ...context
             })
           }
           to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
