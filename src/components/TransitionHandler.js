@@ -20,8 +20,6 @@ export default class TransitionHandler extends Component {
                 timeout={{ enter: 4000, exit: 5000 }}
                 timeout={{ enter: entryFor, exit: exitTimeout }}
                 key={props.location.pathname}
-                // mountOnEnter={true}
-                // unmountOnExit={false}
               >
                 {transitionStatus => {
                   const childWithTransitionState = React.Children.map(
