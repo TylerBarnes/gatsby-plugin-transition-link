@@ -3,18 +3,14 @@ import { navigate } from "gatsby";
 const triggerTransition = ({
   to,
   event = null,
-  exitFn = false,
-  exitFor = 0,
-  entryIn = 0,
-  entryFor = 0,
-  entryState = {},
-  exitState = {},
+  exit = {},
+  entry = {},
+  inTransition,
+  toggleInTransition,
   updateDelayNext,
   updateExitTimeout,
   updateEntryState,
   updateExitState,
-  toggleInTransition,
-  inTransition,
   updateEntryFor
 }) => {
   event.preventDefault();
@@ -22,11 +18,24 @@ const triggerTransition = ({
   if (inTransition) return false;
   toggleInTransition(true);
 
+  const {
+    for: exitFor = 0,
+    in: exitIn = 0,
+    state: exitState = {},
+    trigger: exitTrigger = false
+  } = exit;
+  const {
+    for: entryFor = 0,
+    in: entryIn = 0,
+    state: entryState = {},
+    trigger: entryTrigger = false
+  } = entry;
+
   updateEntryFor(entryFor);
   updateExitTimeout(exitFor);
   updateDelayNext(entryIn);
 
-  exitFn && exitFn(exitFor);
+  exitTrigger && exitTrigger(exitFor);
 
   navigate(to);
 

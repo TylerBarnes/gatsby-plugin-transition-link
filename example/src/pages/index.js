@@ -35,7 +35,7 @@ class Index extends Component {
       })
   }
 
-  test(message) {
+  message(message) {
     console.log(message)
   }
 
@@ -45,18 +45,10 @@ class Index extends Component {
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
-          {/* <TransitionLink
-            to="/page-2"
-            exitFor={1000}
-            entryIn={3000}
-            entryFor={5000}
-          >
-            test
-          </TransitionLink> */}
           <TransitionLink
             to="/page-2"
             exit={{
-              trigger: exit => this.message(exit),
+              // in: 2000,
               for: 1000,
               state: {
                 leavingHome: true,
@@ -64,25 +56,25 @@ class Index extends Component {
             }}
             entry={{
               in: 3000,
-              trigger: entry => this.message(entry),
               for: 5000,
               state: {
                 theme: 'dark',
               },
             }}
           >
-            new api
+            new api overlap and states
           </TransitionLink>
           <br />
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
           <TransitionLink
             to="/page-2"
-            exitFor={10000}
-            entryIn={10000}
-            exitFn={time => this.verticalAnimation(time, 'down')}
-            entryState={{ animation: 'fromBottom' }}
-            exitState={{ test: 'exit state' }}
+            exit={{
+              for: 1000,
+              trigger: time => this.verticalAnimation(time, 'down'),
+              state: { test: 'exit state' },
+            }}
+            entry={{ in: 500, state: { animation: 'fromBottom' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -93,10 +85,11 @@ class Index extends Component {
           <br />
           <TransitionLink
             to="/page-2"
-            exitFor={1200}
-            exitFn={time => this.verticalAnimation(time, 'up')}
-            entryIn={500}
-            entryState={{ layoutTheme: 'dark' }}
+            exit={{
+              for: 1200,
+              trigger: time => this.verticalAnimation(time, 'up'),
+            }}
+            entry={{ in: 500, for: 1000, state: { layoutTheme: 'dark' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">

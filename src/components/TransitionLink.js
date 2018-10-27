@@ -5,16 +5,7 @@ import { Link } from "gatsby";
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
-const TransitionLink = ({
-  to,
-  children,
-  exitFor,
-  entryIn,
-  entryFor,
-  exitFn,
-  entryState,
-  exitState
-}) => {
+const TransitionLink = ({ to, children, exit, entry }) => {
   return (
     <Consumer>
       {({
@@ -28,28 +19,21 @@ const TransitionLink = ({
       }) => (
         <Link
           onClick={event =>
-            triggerTransition(
-              // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
-              {
-                event,
-                updateExitTimeout,
-                updateDelayNext,
-                updateEntryFor,
-                exitFor,
-                entryIn,
-                entryFor,
-                to,
-                exitFn,
-                exitState,
-                updateExitState,
-                entryState,
-                updateEntryState,
-                toggleInTransition,
-                inTransition
-              }
-            )
+            triggerTransition({
+              event,
+              to,
+              exit,
+              entry,
+              updateExitTimeout,
+              updateDelayNext,
+              updateEntryFor,
+              updateExitState,
+              updateEntryState,
+              toggleInTransition,
+              inTransition
+            })
           }
-          to={to}
+          to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
         >
           {children}
         </Link>

@@ -52,7 +52,7 @@ export default class SecondPage extends Component {
       })
   }
 
-  test(message) {
+  message = message => {
     console.log(message)
   }
 
@@ -85,51 +85,59 @@ export default class SecondPage extends Component {
                 exit={{
                   trigger: exit => this.message(exit),
                   for: 2000,
-                  state: {
-                    leaving: true,
-                  },
+                  state: { leaving: true },
                 }}
                 entry={{
                   in: 1000,
                   trigger: entry => this.message(entry),
                   for: 5000,
-                  state: {
-                    theme: 'dark',
-                  },
+                  state: { theme: 'dark' },
                 }}
               >
-                new api
+                new api test overlap
               </TransitionLink>
               <br />
               <TransitionLink
                 to="/"
-                exitFor={2000}
-                // exitFn={time => this.exitHorizontal(time, 'left')}
-                entryIn={1000}
-                entryFor={5000}
-                // entryState={{ pass: 'Whatever you want', to: 'the next page' }}
-              >
-                test
-              </TransitionLink>
-              <TransitionLink
-                to="/"
-                exitFor={2000}
-                exitFn={time => this.exitHorizontal(time, 'left')}
-                entryIn={1000}
-                entryState={{ pass: 'Whatever you want', to: 'the next page' }}
+                exit={{
+                  for: 2000,
+                  trigger: time => this.exitHorizontal(time, 'left'),
+                }}
+                entry={{
+                  in: 1000,
+                  state: { pass: 'Whatever you want', to: 'the next page' },
+                }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing left" role="img">
                   👈
                 </span>
               </TransitionLink>
+              <TransitionLink
+                to="/"
+                exit={{
+                  for: 2000,
+                  trigger: time => this.exitHorizontal(time, 'right'),
+                  state: { test: 'exit state' },
+                }}
+                entry={{ in: 1000, state: { animation: 'fromBottom' } }}
+              >
+                TEST Go back to the homepage that way{' '}
+                <span aria-label="pointing right" role="img">
+                  👉
+                </span>
+              </TransitionLink>
               <br />
               <TransitionLink
                 to="/"
-                exitFor={2000}
-                entryIn={1000}
-                exitFn={time => this.exitHorizontal(time, 'right')}
-                entryState={{ pass: 'Whatever you want', to: 'the next page' }}
+                exit={{
+                  for: 2000,
+                  trigger: time => this.exitHorizontal(time, 'right'),
+                }}
+                entry={{
+                  in: 1000,
+                  state: { pass: 'Whatever you want', to: 'the next page' },
+                }}
               >
                 Go back to the homepage that way{' '}
                 <span aria-label="pointing right" role="img">
@@ -152,12 +160,14 @@ export default class SecondPage extends Component {
                 </h1>
                 <TransitionLink
                   to="/"
-                  exitFor={2000}
-                  entryIn={1000}
-                  exitFn={time => this.exitHorizontal(time, 'right')}
-                  entryState={{
-                    pass: 'Whatever you want',
-                    to: 'the next page',
+                  exit={{
+                    for: 2000,
+                    trigger: time => this.exitHorizontal(time, 'right'),
+                    state: { test: 'state' },
+                  }}
+                  entry={{
+                    in: 5000,
+                    state: { pass: 'Whatever you want', to: 'the next page' },
                   }}
                 >
                   Go back to the homepage that way{' '}
