@@ -163,10 +163,9 @@ export default class SecondPage extends Component {
                   exit={{
                     length: 2000,
                     trigger: time => this.exitHorizontal(time, 'right'),
-                    state: { test: 'state' },
                   }}
                   entry={{
-                    delay: 5000,
+                    delay: 1000,
                     state: { pass: 'Whatever you want', to: 'the next page' },
                   }}
                 >
