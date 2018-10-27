@@ -1,50 +1,45 @@
 import { navigate } from "gatsby";
 
 const triggerTransition = ({
+  to,
   event = null,
-  props,
-  // inTransition,
-  // exit,
-  // entry,
+  exitFn = false,
+  exitFor = 0,
+  entryIn = 0,
+  entryFor = 0,
+  entryState = {},
+  exitState = {},
+  updateDelayNext,
+  updateExitTimeout,
+  updateEntryState,
+  updateExitState,
   toggleInTransition,
-  // updateState,
-  state: { inTransition }
-  // readState
+  inTransition,
+  updateEntryFor
 }) => {
   event.preventDefault();
 
-  const { to } = props;
-
-  // if (inTransition) return false;
+  if (inTransition) return false;
   toggleInTransition(true);
-  console.log(inTransition);
-  toggleInTransition(false);
-  console.log(inTransition);
 
-  // updateEntryFor(entryFor);
-  // console.log(readState("status"));
-  // updateState({ status: "test" });
-  // console.log(readState("status"));
+  updateEntryFor(entryFor);
+  updateExitTimeout(exitFor);
+  updateDelayNext(entryIn);
 
-  // updateExitTimeout(exitFor);
-  // updateDelayNext(entryIn);
-
-  // exitFn && exitFn(exitFor);
+  exitFn && exitFn(exitFor);
 
   navigate(to);
 
-  // updateExitState(exitState);
-  // setTimeout(() => updateExitTimeout(0), exitFor);
+  updateExitState(exitState);
+  setTimeout(() => updateExitTimeout(0), exitFor);
 
-  // setTimeout(() => {
-  //   updateEntryState(entryState);
-  //   updateDelayNext(0);
-  // toggleInTransition(false);
+  setTimeout(() => {
+    updateEntryState(entryState);
+    updateDelayNext(0);
+    toggleInTransition(false);
 
-  // console.log(readState("entry"));
-
-  //   if (typeof window !== `undefined`) window.scrollTo(0, 0);
-  // }, entryIn);
+    if (typeof window !== `undefined`) window.scrollTo(0, 0);
+  }, entryIn);
 };
 
 export { triggerTransition };
