@@ -6,6 +6,7 @@ const triggerTransition = ({
   exitFn = false,
   exitFor = 0,
   entryIn = 0,
+  entryFor = 0,
   entryState = {},
   exitState = {},
   updateDelayNext,
@@ -13,13 +14,15 @@ const triggerTransition = ({
   updateEntryState,
   updateExitState,
   toggleInTransition,
-  inTransition
+  inTransition,
+  updateEntryFor
 }) => {
   event.preventDefault();
 
   if (inTransition) return false;
   toggleInTransition(true);
 
+  updateEntryFor(entryFor);
   updateExitTimeout(exitFor);
   updateDelayNext(entryIn);
 

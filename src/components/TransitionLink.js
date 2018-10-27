@@ -10,6 +10,7 @@ const TransitionLink = ({
   children,
   exitFor,
   entryIn,
+  entryFor,
   exitFn,
   entryState,
   exitState
@@ -20,6 +21,7 @@ const TransitionLink = ({
         updateExitTimeout,
         updateDelayNext,
         updateEntryState,
+        updateEntryFor,
         updateExitState,
         toggleInTransition,
         inTransition
@@ -32,8 +34,10 @@ const TransitionLink = ({
                 event,
                 updateExitTimeout,
                 updateDelayNext,
+                updateEntryFor,
                 exitFor,
                 entryIn,
+                entryFor,
                 to,
                 exitFn,
                 exitState,

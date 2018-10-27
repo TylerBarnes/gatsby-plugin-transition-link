@@ -6,6 +6,7 @@ class InternalProvider extends Component {
   state = {
     exitTimeout: 0,
     delayNext: 0,
+    entryFor: 0,
     entryState: {},
     exitState: {},
     inTransition: false,
@@ -15,6 +16,7 @@ class InternalProvider extends Component {
       }),
     updateExitTimeout: ms => this.setState({ exitTimeout: ms }),
     updateDelayNext: ms => this.setState({ delayNext: ms }),
+    updateEntryFor: ms => this.setState({ entryFor: ms }),
     updateEntryState: state => this.setState({ entryState: state }),
     updateExitState: state => this.setState({ exitState: state })
   };
