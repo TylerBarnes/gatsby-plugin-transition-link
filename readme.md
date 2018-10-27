@@ -45,9 +45,9 @@ import TransitionLink from 'gatsby-plugin-transition-link`;
 
 <TransitionLink
   to="/page-2"
-  exitFor={1000}
+  exitLength={1000}
   exitFn={time => this.verticalAnimation(time, 'down')}
-  entryIn={600}
+  entryDelay={600}
   entryState={{ animation: 'fromBottom' }}
 >
 Go to page 2
@@ -60,13 +60,13 @@ Go to page 2
 
 Used exactly the same as in gatsby-link.
 
-### exitFor
+### exitLength
 
 The time in milliseconds your animation will take to finish. The exiting page will unmount after this.
 
 ### exitFn
 
-A function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the value from the `exitFor` prop.
+A function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the value from the `exitLength` prop.
 ex:
 
 ```jsx
@@ -77,7 +77,7 @@ exitFn={time => this.verticalAnimation(time, 'down')}
 
 Could be used in place of exitFn to change the state of the exiting page instead of triggering a function. Or use them both if you want!
 
-### entryIn
+### entryDelay
 
 The amount of time to delay displaying the next route.
 
@@ -121,7 +121,7 @@ I haven't tried it yet but theoretically you could wrap TransitionLink in your o
 
 ```jsx
 const Link = ({children, to}) => (
-  <TransitionLink to={to} exitFor={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
+  <TransitionLink to={to} exitLength={100} enterIn={150} exitFn={fadeOut} enterState={{animation: fadeIn}}>{children}</TransitionLink>
  )
 
  <Link to="/page-2">Go to page 2</Link>

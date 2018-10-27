@@ -30,8 +30,8 @@ const TransitionLink = ({ to, children, exit, entry }) => {
 
 TransitionLink.propTypes = {
   to: PropTypes.string.isRequired,
-  exitFor: PropTypes.number,
-  entryIn: PropTypes.number,
+  exitLength: PropTypes.number,
+  entryDelay: PropTypes.number,
   exitFn: PropTypes.func,
   entryState: PropTypes.object
 };
