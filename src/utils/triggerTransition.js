@@ -6,54 +6,57 @@ const triggerTransition = ({
   exit = {},
   entry = {},
   inTransition,
-  toggleInTransition,
-  updateEntryDelay,
-  updateExitLength,
-  updateEntryState,
-  updateExitState,
-  updateEntryLength
+  updateContext
 }) => {
   event.preventDefault();
 
   if (inTransition) return false;
-  toggleInTransition(true);
+
+  updateContext({
+    inTransition: true,
+    exitDelay: 0,
+    exitLength: 0,
+    exitState: {}
+  });
 
   const {
-    length: exitFor = 0,
-    delay: exitIn = 0,
+    length: exitLength = 0,
+    delay: exitDelay = 0,
     state: exitState = {},
     trigger: exitTrigger = false
   } = exit;
   const {
     length: entryLength = 0,
-    delay: entryIn = 0,
+    delay: entryDelay = 0,
     state: entryState = {},
     trigger: entryTrigger = false
   } = entry;
 
-  updateEntryLength(entryLength);
-  updateExitLength(exitFor);
-  updateEntryDelay(entryIn);
+  updateContext({
+    entryLength: entryLength,
+    entryDelay: entryDelay,
+    exitLength: exitLength,
+    exitDelay: exitDelay
+  });
 
   exitTrigger && exitTrigger(exit);
 
-  // wait for exitIn before we start navigating
   setTimeout(() => {
+    // wait for exitDelay before we start navigating and adding exit state
     navigate(to);
+    updateContext({ exitState: exitState });
 
-    updateExitState(exitState);
-    setTimeout(() => updateExitLength(0), exitFor);
-
-    // wait for entryIn before we begin our entry animation
     setTimeout(() => {
+      // wait for entryDelay before we trigger our entry function and add entry state
       entryTrigger && entryTrigger(entry);
-      updateEntryState(entryState);
-      updateEntryDelay(0);
-      toggleInTransition(false);
-
+      updateContext({
+        entryState: entryState,
+        inTransition: false
+      });
+      // scrollto window top at the exact moment the next page comes in.
       if (typeof window !== `undefined`) window.scrollTo(0, 0);
-    }, entryIn);
-  }, exitIn);
+    }, entryDelay);
+  }, exitDelay);
 };
 
 export { triggerTransition };
