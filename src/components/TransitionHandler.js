@@ -17,27 +17,28 @@ export default class TransitionHandler extends Component {
             <TransitionGroup>
               <DelayedTransition
                 defer={delayNext}
-                timeout={{ enter: 4000, exit: 5000 }}
                 timeout={{ enter: entryFor, exit: exitTimeout }}
                 key={props.location.pathname}
               >
                 {transitionStatus => {
+                  const transitionState = {
+                    transitionStatus,
+                    entryState,
+                    exitState
+                  };
+
                   const childWithTransitionState = React.Children.map(
                     children,
                     child => {
                       return React.cloneElement(child, {
-                        transitionStatus: transitionStatus,
-                        entryState: entryState,
-                        exitState: exitState
+                        ...transitionState
                       });
                     }
                   );
 
                   return (
                     <div style={{ position: "absolute", width: "100%" }}>
-                      <PublicProvider
-                        value={{ transitionStatus, entryState, exitState }}
-                      >
+                      <PublicProvider value={{ ...transitionState }}>
                         {childWithTransitionState}
                       </PublicProvider>
                     </div>
