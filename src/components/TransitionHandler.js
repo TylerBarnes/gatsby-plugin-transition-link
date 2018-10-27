@@ -13,10 +13,10 @@ export default class TransitionHandler extends Component {
     return (
       <InternalProvider>
         <Consumer>
-          {({ delayNext, exitLength, entryState, exitState, entryLength }) => (
+          {({ entryDelay, exitLength, entryState, exitState, entryLength }) => (
             <TransitionGroup>
               <DelayedTransition
-                delay={delayNext}
+                delay={entryDelay}
                 timeout={{ enter: entryLength, exit: exitLength }}
                 key={props.location.pathname}
               >

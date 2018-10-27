@@ -5,7 +5,7 @@ import { Provider } from "./createTransitionContext";
 class InternalProvider extends Component {
   state = {
     exitLength: 0,
-    delayNext: 0,
+    entryDelay: 0,
     entryLength: 0,
     entryState: {},
     exitState: {},
@@ -15,7 +15,7 @@ class InternalProvider extends Component {
         inTransition: val
       }),
     updateExitLength: ms => this.setState({ exitLength: ms }),
-    updateDelayNext: ms => this.setState({ delayNext: ms }),
+    updateEntryDelay: ms => this.setState({ entryDelay: ms }),
     updateEntryLength: ms => this.setState({ entryLength: ms }),
     updateEntryState: state => this.setState({ entryState: state }),
     updateExitState: state => this.setState({ exitState: state })

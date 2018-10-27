@@ -7,7 +7,7 @@ const triggerTransition = ({
   entry = {},
   inTransition,
   toggleInTransition,
-  updateDelayNext,
+  updateEntryDelay,
   updateExitLength,
   updateEntryState,
   updateExitState,
@@ -33,7 +33,7 @@ const triggerTransition = ({
 
   updateEntryLength(entryLength);
   updateExitLength(exitFor);
-  updateDelayNext(entryIn);
+  updateEntryDelay(entryIn);
 
   exitTrigger && exitTrigger(exit);
 
@@ -48,7 +48,7 @@ const triggerTransition = ({
     setTimeout(() => {
       entryTrigger && entryTrigger(entry);
       updateEntryState(entryState);
-      updateDelayNext(0);
+      updateEntryDelay(0);
       toggleInTransition(false);
 
       if (typeof window !== `undefined`) window.scrollTo(0, 0);
