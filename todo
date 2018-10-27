@@ -2,6 +2,7 @@
 ✔ prevent transitionlinks from being clicked while a transition is in progress @done(18-10-26 15:23)
 ✔ prevent scroll jumping when transitioning @done(18-10-26 16:04)
 ✔ BUG: state is reseting before the page transitions from page 2 to page 1. Stopped working in 1c56134dd2dfe3ec3004b97174d34886776b1ac7 @done(18-10-26 18:53)
+☐ refactor API
 ☐ clean up the internal variables and make them all consistent
 ☐ refactor to make things easier to understand and add comments where necessary
 ☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
@@ -18,3 +19,24 @@
 
 Future
 ☐ hook into location state so that going back and forward in the browser still triggers animation
+
+
+
+API scratchpad
+
+to="/"
+exit={{
+    in: "100ms", // default converts
+    for: "1s",  // both of these to be returned in ms
+    trigger: state => Fn(state), 
+    state: {}
+    }}
+entry={{
+    in: 1, // default is in ms
+    for: 2, // option can be set to return seconds
+    trigger: state => Fn(state)
+    state: {
+        theme: 'dark'
+        }
+    }}
+
