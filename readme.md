@@ -79,7 +79,7 @@ A function that will be called as soon as the link is clicked. You should use it
 ex:
 
 ```jsx
-exitFn={exit => this.verticalAnimation(exit, 'down')}
+exit={{trigger: exit => this.verticalAnimation(exit, 'down')}}
 
 verticalAnimation = ({length, delay}, direction) {
   // do something cool here
@@ -92,7 +92,7 @@ A function that will be called as soon as the entry delay has elapsed. You could
 ex:
 
 ```jsx
-entryFn={entry => this.verticalAnimation(exit, 'down')}
+entry={{trigger: entry => this.verticalAnimation(entry, 'up')}}
 
 verticalAnimation = ({length, delay}, direction) {
   // do something cool here
