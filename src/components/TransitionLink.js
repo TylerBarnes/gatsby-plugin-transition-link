@@ -9,7 +9,7 @@ const TransitionLink = ({ to, children, exit, entry }) => {
   return (
     <Consumer>
       {({
-        updateExitTimeout,
+        updateExitLength,
         updateDelayNext,
         updateEntryState,
         updateEntryFor,
@@ -24,7 +24,7 @@ const TransitionLink = ({ to, children, exit, entry }) => {
               to,
               exit,
               entry,
-              updateExitTimeout,
+              updateExitLength,
               updateDelayNext,
               updateEntryFor,
               updateExitState,

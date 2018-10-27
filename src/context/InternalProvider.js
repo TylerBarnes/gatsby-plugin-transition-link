@@ -4,7 +4,7 @@ import { Provider } from "./createTransitionContext";
 
 class InternalProvider extends Component {
   state = {
-    exitTimeout: 0,
+    exitLength: 0,
     delayNext: 0,
     entryFor: 0,
     entryState: {},
@@ -14,7 +14,7 @@ class InternalProvider extends Component {
       this.setState({
         inTransition: val
       }),
-    updateExitTimeout: ms => this.setState({ exitTimeout: ms }),
+    updateExitLength: ms => this.setState({ exitLength: ms }),
     updateDelayNext: ms => this.setState({ delayNext: ms }),
     updateEntryFor: ms => this.setState({ entryFor: ms }),
     updateEntryState: state => this.setState({ entryState: state }),

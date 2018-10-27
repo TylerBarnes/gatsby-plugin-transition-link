@@ -8,7 +8,7 @@ const triggerTransition = ({
   inTransition,
   toggleInTransition,
   updateDelayNext,
-  updateExitTimeout,
+  updateExitLength,
   updateEntryState,
   updateExitState,
   updateEntryFor
@@ -32,7 +32,7 @@ const triggerTransition = ({
   } = entry;
 
   updateEntryFor(entryFor);
-  updateExitTimeout(exitFor);
+  updateExitLength(exitFor);
   updateDelayNext(entryIn);
 
   exitTrigger && exitTrigger(exit);
@@ -42,7 +42,7 @@ const triggerTransition = ({
     navigate(to);
 
     updateExitState(exitState);
-    setTimeout(() => updateExitTimeout(0), exitFor);
+    setTimeout(() => updateExitLength(0), exitFor);
 
     // wait for entryIn to begin our entry animation
     setTimeout(() => {
