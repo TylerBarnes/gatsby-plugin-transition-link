@@ -12,7 +12,7 @@
 ✔ add entire exit and entry props to transition state consumer / page props @done(18-10-27 13:28)
 ✔ refactor to make things easier to understand and add comments where necessary @done(18-10-27 13:55)
 ✔ quick update readme @done(18-10-27 14:13)
-☐ release next version to fix build errors on example site
+✔ release next version to fix build errors on example site @done(18-10-27 22:44)
 ☐ Add <TransitionPortal /> react portal to display content above the page while transitioning
 ☐ Add layer prop to transitionportal with the possible values of "bottom" "middle" and "above"
 ✘ Consider an option to separate entry and exit portals @cancelled(18-10-26 10:56) // no need for this. Portals retain their react context so TransitionConsumer can be used in them.
