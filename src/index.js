@@ -1,7 +1,7 @@
 import { TransitionLink } from "./components/TransitionLink";
 import TransitionHandler from "./components/TransitionHandler";
-import { PublicConsumer as TransitionConsumer } from "./context/createTransitionContext";
+import { PublicConsumer as TransitionState } from "./context/createTransitionContext";
 import TransitionPortal from "./components/TransitionPortal";
 
-export { TransitionHandler, TransitionConsumer, TransitionPortal };
+export { TransitionHandler, TransitionState, TransitionPortal };
 export default TransitionLink;

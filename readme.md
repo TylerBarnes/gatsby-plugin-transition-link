@@ -101,7 +101,7 @@ verticalAnimation = ({length, delay}, direction) {
 
 ### exit.state / entry.state
 
-These can be used to set the state of your pages as they're exiting and entering. This state is passed to your pages and templates and it can also be accessed using the TransitionConsumer component (see below).
+These can be used to set the state of your pages as they're exiting and entering. This state is passed to your pages and templates and it can also be accessed using the TransitionState component (see below).
 
 ## Transition status
 
@@ -117,14 +117,14 @@ Along with the state you pass to the exiting or entering pages, a property calle
 
 ## Accessing transition state
 
-You can use the TransitionConsumer component to access the transition state anywhere.
+You can use the TransitionState component to access the transition state anywhere.
 
 ```jsx
-import { TransitionConsumer } from "gatsby-plugin-transition-link";
+import { TransitionState } from "gatsby-plugin-transition-link";
 ```
 
 ```jsx
-<TransitionConsumer>{state => console.log(state)}</TransitionConsumer>
+<TransitionState>{state => console.log(state)}</TransitionState>
 ```
 
 Your pages and templates will also receive three props: transitionStatus, entryState, and exitState.

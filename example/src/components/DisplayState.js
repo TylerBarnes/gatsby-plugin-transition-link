@@ -1,5 +1,5 @@
 import React from 'react'
-import { TransitionConsumer } from 'gatsby-plugin-transition-link'
+import { TransitionState } from 'gatsby-plugin-transition-link'
 
 function print_r(o) {
   if (typeof window === `undefined`) return
@@ -11,7 +11,7 @@ function print_r(o) {
 
 function DisplayState() {
   return (
-    <TransitionConsumer>
+    <TransitionState>
       {context =>
         context ? (
           <section style={{ marginTop: '100px' }}>
@@ -21,7 +21,7 @@ function DisplayState() {
           </section>
         ) : null
       }
-    </TransitionConsumer>
+    </TransitionState>
   )
 }
 
