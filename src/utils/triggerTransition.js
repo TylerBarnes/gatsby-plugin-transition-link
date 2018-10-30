@@ -45,18 +45,18 @@ const triggerTransition = ({
     // wait for exitDelay before we start navigating and adding exit state
     navigate(to);
     updateContext({ exitState: exitState });
-
-    // reset animation times so they dont apply when using browser back/forward
-    //  this will be replaced with a better solution in the future
-    setTimeout(
-      () =>
-        updateContext({
-          exitDelay: 0,
-          exitLength: 0
-        }),
-      exitLength
-    );
   }, exitDelay);
+
+  // reset animation times so they dont apply when using browser back/forward
+  //  this will be replaced with a better solution in the future
+  setTimeout(
+    () =>
+      updateContext({
+        exitDelay: 0,
+        exitLength: 0
+      }),
+    exitDelay + exitLength
+  );
 
   setTimeout(() => {
     // wait for entryDelay before we trigger our entry function and add entry state
