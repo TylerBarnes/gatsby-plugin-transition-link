@@ -61,8 +61,7 @@ const triggerTransition = ({
       // wait for entryDelay before we trigger our entry function and add entry state
       entryTrigger && entryTrigger(entry);
       updateContext({
-        entryState: entryState,
-        inTransition: false
+        entryState: entryState
       });
       // scrollto window top at the exact moment the next page comes in.
       if (typeof window !== `undefined`) window.scrollTo(0, 0);
@@ -73,7 +72,8 @@ const triggerTransition = ({
         () =>
           updateContext({
             entryDelay: 0,
-            entryLength: 0
+            entryLength: 0,
+            inTransition: false
           }),
         entryLength
       );
