@@ -190,10 +190,10 @@ const HeadWithQuery = props => (
             siteDescription
             siteUrl
             themeColor
-            social {
-              twitter
-              fbAppId
-            }
+            # social {
+            #   twitter
+            #   fbAppId
+            # }
           }
         }
       }
