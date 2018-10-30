@@ -5,6 +5,7 @@ import { Provider } from "./createTransitionContext";
 class InternalProvider extends Component {
   state = {
     inTransition: false,
+    transitionIdHistory: [],
     // exit
     exitDelay: 0,
     exitLength: 0,

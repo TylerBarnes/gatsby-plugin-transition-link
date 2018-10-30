@@ -4,6 +4,7 @@ import { Consumer } from "../context/createTransitionContext";
 import { PublicProvider } from "../context/createTransitionContext";
 import InternalProvider from "../context/InternalProvider";
 import delayTransitionRender from "./delayTransitionRender";
+import { returnTransitionState } from "../utils/returnTransitionState";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
@@ -19,7 +20,9 @@ export default class TransitionHandler extends Component {
             exitState,
             entryDelay,
             entryLength,
-            entryState
+            entryState,
+            transitionIdHistory,
+            inTransition
           }) => (
             <TransitionGroup>
               <DelayedTransition
@@ -28,7 +31,10 @@ export default class TransitionHandler extends Component {
                 key={props.location.pathname}
               >
                 {transitionStatus => {
-                  const transitionState = {
+                  const transitionState = returnTransitionState({
+                    inTransition,
+                    location: props.location,
+                    transitionIdHistory,
                     transitionStatus,
                     entry: {
                       state: entryState,
@@ -40,7 +46,7 @@ export default class TransitionHandler extends Component {
                       delay: exitDelay,
                       length: exitLength
                     }
-                  };
+                  });
 
                   const childWithTransitionState = React.Children.map(
                     children,

@@ -1,4 +1,5 @@
 import { navigate } from "gatsby";
+import random from "lodash/random";
 
 const triggerTransition = ({
   to,
@@ -6,6 +7,7 @@ const triggerTransition = ({
   exit = {},
   entry = {},
   inTransition,
+  transitionIdHistory,
   updateContext
 }) => {
   event.preventDefault();
@@ -42,21 +44,16 @@ const triggerTransition = ({
   exitTrigger && exitTrigger(exit);
 
   setTimeout(() => {
-    // wait for exitDelay before we start navigating and adding exit state
-    navigate(to);
-    updateContext({ exitState: exitState });
+    // after exitDelay
+    const transitionId = random(10000, 99999, false);
+    navigate(to, {
+      state: { transitionId: transitionId }
+    });
+    updateContext({
+      exitState: exitState,
+      transitionIdHistory: [...transitionIdHistory, transitionId]
+    });
   }, exitDelay);
-
-  // reset animation times so they dont apply when using browser back/forward
-  //  this will be replaced with a better solution in the future
-  setTimeout(
-    () =>
-      updateContext({
-        exitDelay: 0,
-        exitLength: 0
-      }),
-    exitDelay + exitLength
-  );
 
   setTimeout(() => {
     // wait for entryDelay before we trigger our entry function and add entry state
@@ -76,6 +73,8 @@ const triggerTransition = ({
       updateContext({
         entryDelay: 0,
         entryLength: 0,
+        exitDelay: 0,
+        exitLength: 0,
         inTransition: false
       }),
     exitDelay + entryDelay + entryLength
