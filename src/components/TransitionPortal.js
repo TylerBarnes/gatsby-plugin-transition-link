@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-const portalRoot = document.body;
+const portalRoot = typeof document.body !== `undefined` ? document.body : false;
 
 const PortalContainer = props => {
   const zIndex = (function(level) {
@@ -40,19 +40,21 @@ export default class TransitionPortal extends Component {
   }
 
   componentDidMount = () => {
-    portalRoot.appendChild(this.el);
+    portalRoot && portalRoot.appendChild(this.el);
   };
 
   componentWillUnmount = () => {
-    portalRoot.removeChild(this.el);
+    portalRoot && portalRoot.removeChild(this.el);
   };
 
   render() {
     return ReactDOM.createPortal(
       <>
-        <PortalContainer styles={this.props.css} level={this.props.level}>
-          {this.props.children}
-        </PortalContainer>
+        {portalRoot && (
+          <PortalContainer styles={this.props.css} level={this.props.level}>
+            {this.props.children}
+          </PortalContainer>
+        )}
       </>,
       this.el
     );
