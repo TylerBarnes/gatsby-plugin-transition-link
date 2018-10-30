@@ -19,15 +19,15 @@
 ✘ add an option to make TransitionConsumer use the portal @cancelled(18-10-29 22:44) //kindof unnecessary
 ✘ Consider an option to separate entry and exit portals @cancelled(18-10-26 10:56) // no need for this. Portals retain their react context so TransitionConsumer can be used in them.
 ✔ rename TransitionConsumer to TransitionState @done(18-10-29 22:46)
+☐ update docs / create website
+    ☐ new api
+    ☐ add a visual timeline of events in, for, trigger, state, and when they happen
+    ☐ idea / overview section should be rewritten and moved to blog post
 ☐ Add some generic default transitions using transition portal
     ☐ fade
     ☐ cover swipe up, left, right, down
     ☐ expanding bubble
     ☐ wipe in
-☐ update docs / create website
-    ☐ new api
-    ☐ add a visual timeline of events in, for, trigger, state, and when they happen
-    ☐ idea / overview section should be rewritten and moved to blog post
 ☐ release v1
 ☐ Write blog post for gatsbyjs.org
 
