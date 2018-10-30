@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-const portalRoot = typeof document.body !== `undefined` ? document.body : false;
+const portalRoot = typeof document !== `undefined` ? document.body : false;
 
 const PortalContainer = props => {
   const zIndex = (function(level) {
