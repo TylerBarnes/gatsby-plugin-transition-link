@@ -10,9 +10,9 @@ const returnTransitionState = ({
     location.state && location.state.transitionId
       ? location.state.transitionId
       : false;
-  const transitionIdWithoutLastTransition = transitionIdHistory.slice(0, -1);
+  const historyWithoutLast = transitionIdHistory.slice(0, -1);
 
-  if (transitionIdWithoutLastTransition.includes(currentId)) {
+  if (currentId && historyWithoutLast.includes(currentId)) {
     return {
       transitionStatus: "POP",
       entry: {
