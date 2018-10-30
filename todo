@@ -33,6 +33,7 @@
 
 Future
 ☐ Add example of using triggerTransition() to transition using events other than click
+☐ consolidate internal and external context into a single context
 ☐ hook into location state so that going back and forward in the browser still triggers animation. This should be optional with a plugin setting "reverse: bool" which can also be overridden by a prop. Transition direction should also be added to transition state.
 
 
