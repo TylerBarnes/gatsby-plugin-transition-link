@@ -7,9 +7,8 @@ exports.shouldUpdateScroll = ({
   if (location.action !== "PUSH") {
     const savedPosition = getSavedScrollPosition(location);
 
-    setTimeout(() => {
-      window.scrollTo(...(savedPosition || [0, 0]));
-    }, 1);
+    return savedPosition || [0, 0];
+  } else {
+    return false;
   }
-  return false;
 };
