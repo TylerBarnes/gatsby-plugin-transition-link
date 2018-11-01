@@ -637,7 +637,7 @@ pre tt:after {
 }
 
 .white.layout-wrapper .layout-inner {
-  background: #421d63;
+  background: white;
 }
 
 .dark.layout-wrapper .layout-inner * {

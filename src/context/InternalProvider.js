@@ -10,10 +10,14 @@ class InternalProvider extends Component {
     exitDelay: 0,
     exitLength: 0,
     exitState: {},
+    exitProps: {},
+    exitTrigger: false,
     // entry
     entryDelay: 0,
     entryLength: 0,
     entryState: {},
+    entryProps: {},
+    entryTrigger: false,
     // state updates
     updateContext: obj => this.setState(obj)
   };
