@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TransitionLink from 'gatsby-plugin-transition-link'
+import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Layout from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
@@ -66,7 +66,7 @@ export default class SecondPage extends Component {
             theme={
               entryState && entryState.layoutTheme
                 ? entryState.layoutTheme
-                : null
+                : 'white'
             }
           >
             <div ref={n => (this.layoutContents = n)}>
@@ -146,18 +146,20 @@ export default class SecondPage extends Component {
             </div>
           </Layout>
         </section>
-        <div
-          ref={n => (this.transitionCover = n)}
-          style={{
-            position: 'fixed',
-            background: '#4b2571',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            display: 'none',
-          }}
-        />
+        <TransitionPortal>
+          <div
+            ref={n => (this.transitionCover = n)}
+            style={{
+              position: 'fixed',
+              background: '#4b2571',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              display: 'none',
+            }}
+          />
+        </TransitionPortal>
       </>
     )
   }

@@ -21,6 +21,10 @@ export default class TransitionHandler extends Component {
             entryDelay,
             entryLength,
             entryState,
+            entryTrigger,
+            entryProps,
+            exitTrigger,
+            exitProps,
             transitionIdHistory,
             inTransition
           }) => {
@@ -29,10 +33,16 @@ export default class TransitionHandler extends Component {
                 <DelayedTransition
                   delay={entryDelay}
                   timeout={{ enter: entryLength, exit: exitLength }}
-                  onEnter={() => {
+                  onEnter={node => {
+                    typeof entryTrigger === "function" &&
+                      entryTrigger(entryProps, node);
                     window.scrollTo(0, 0);
                   }}
                   key={props.location.pathname}
+                  onExit={node => {
+                    typeof exitTrigger === "function" &&
+                      exitTrigger(exitProps, node);
+                  }}
                 >
                   {transitionStatus => {
                     const transitionState = returnTransitionState({

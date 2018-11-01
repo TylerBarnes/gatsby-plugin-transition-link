@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import { TimelineMax, Power1 } from 'gsap'
+import { TweenMax, TimelineMax, Power1 } from 'gsap'
+import GSAP from 'react-gsap-enhancer'
 
-import TransitionLink from 'gatsby-plugin-transition-link'
+import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
+
+function moveAnimation(utils) {
+  return TweenMax.from(utils.target, 1, { x: '-=123' })
+}
 
 class Index extends Component {
   constructor(props) {
@@ -35,6 +40,16 @@ class Index extends Component {
       })
   }
 
+  test(exit, node) {
+    // console.log(exit, node.querySelectorAll('h1'))
+    return new TimelineMax().staggerFrom(
+      node.querySelectorAll('h2, p, a, pre'),
+      1,
+      { opacity: 0, y: '+=50' },
+      0.1
+    )
+  }
+
   message(message) {
     console.log(message)
   }
@@ -43,7 +58,7 @@ class Index extends Component {
     return (
       <Layout>
         <section ref={n => (this.layoutContents = n)}>
-          <h1>Hi people</h1>
+          <h1 onClick={() => this.addAnimation(moveAnimation)}>Hi people</h1>
           <p>Check out these sick transitions.</p>
 
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
@@ -55,7 +70,10 @@ class Index extends Component {
               trigger: exit => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
-            entry={{ delay: 500, state: { animation: 'fromBottom' } }}
+            entry={{
+              delay: 500,
+              trigger: (entry, node) => this.test(entry, node),
+            }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">
@@ -82,21 +100,23 @@ class Index extends Component {
 
           <DisplayState />
         </section>
-        <div
-          ref={n => (this.transitionCover = n)}
-          style={{
-            position: 'fixed',
-            background: '#4b2571',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            transform: 'translateY(100%)',
-          }}
-        />
+        <TransitionPortal>
+          <div
+            ref={n => (this.transitionCover = n)}
+            style={{
+              position: 'fixed',
+              background: '#4b2571',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              transform: 'translateY(100%)',
+            }}
+          />
+        </TransitionPortal>
       </Layout>
     )
   }
 }
 
-export default Index
+export default GSAP()(Index)
