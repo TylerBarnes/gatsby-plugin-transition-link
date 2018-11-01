@@ -61,9 +61,6 @@ const triggerTransition = ({
     updateContext({
       entryState: entryState
     });
-
-    // scrollto window top at the exact moment the next page comes in.
-    if (typeof window !== `undefined`) window.scrollTo(0, 0);
   }, exitDelay + entryDelay);
 
   // reset animation times so they dont apply when using browser back/forward.

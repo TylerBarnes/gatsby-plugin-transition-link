@@ -5,11 +5,12 @@ import { Link } from "gatsby";
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
-const TransitionLink = ({ to, children, exit, entry }) => {
+const TransitionLink = ({ to, children, exit, entry, ...props }) => {
   return (
     <Consumer>
       {({ ...context }) => (
         <Link
+          {...props}
           onClick={event =>
             triggerTransition({
               event,

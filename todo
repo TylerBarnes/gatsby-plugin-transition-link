@@ -23,6 +23,7 @@
     ☐ new api
     ☐ add a visual timeline of events in, for, trigger, state, and when they happen
     ☐ idea / overview section should be rewritten and moved to blog post
+☐ scrolling when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1
 ☐ Add some generic default transitions using transition portal
     ☐ fade
     ☐ cover swipe up, left, right, down
@@ -32,6 +33,7 @@
 ☐ Write blog post for gatsbyjs.org
 
 Future
+☐ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick
 ☐ Add example of using triggerTransition() to transition using events other than click
 ☐ consolidate internal and external context into a single context
 ☐ hook into location state so that going back and forward in the browser still triggers animation. This should be optional with a plugin setting "reverse: bool" which can also be overridden by a prop. Transition direction should also be added to transition state. Use location key instead of transitionId
