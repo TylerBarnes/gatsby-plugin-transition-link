@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TimelineMax, Power1 } from 'gsap'
 
-import TransitionLink from 'gatsby-plugin-transition-link'
+import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
 
@@ -99,18 +99,20 @@ class Index extends Component {
 
           <DisplayState />
         </section>
-        <div
-          ref={n => (this.transitionCover = n)}
-          style={{
-            position: 'fixed',
-            background: '#4b2571',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            transform: 'translateY(100%)',
-          }}
-        />
+        <TransitionPortal>
+          <div
+            ref={n => (this.transitionCover = n)}
+            style={{
+              position: 'fixed',
+              background: '#4b2571',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              transform: 'translateY(100%)',
+            }}
+          />
+        </TransitionPortal>
       </Layout>
     )
   }
