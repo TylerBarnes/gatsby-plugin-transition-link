@@ -79,23 +79,6 @@ class Index extends Component {
             and give us a dark theme when we get there.
           </TransitionLink>
           <br />
-          {/* <TransitionLink
-            to="/page-2"
-            exit={{
-              delay: 3000,
-              length: 3000,
-              trigger: () => console.log('so triggered by this exit'),
-              state: { it: 'is happening' },
-            }}
-            entry={{
-              delay: 1000,
-              length: 4000,
-              trigger: () => console.log('and VERY triggered by this entry'),
-              state: { have: 'this' },
-            }}
-          >
-            slow delayed exit with overlap example. check your console.
-          </TransitionLink> */}
 
           <DisplayState />
         </section>
