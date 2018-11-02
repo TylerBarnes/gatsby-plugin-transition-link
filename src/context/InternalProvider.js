@@ -6,6 +6,8 @@ class InternalProvider extends Component {
   state = {
     inTransition: false,
     transitionIdHistory: [],
+    // event
+    e: false,
     // exit
     exitDelay: 0,
     exitLength: 0,

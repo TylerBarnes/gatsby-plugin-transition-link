@@ -26,7 +26,8 @@ export default class TransitionHandler extends Component {
             exitTrigger,
             exitProps,
             transitionIdHistory,
-            inTransition
+            inTransition,
+            e
           }) => {
             return (
               <TransitionGroup>
@@ -36,14 +37,14 @@ export default class TransitionHandler extends Component {
                   onEnter={node => {
                     entryTrigger &&
                       typeof entryTrigger === "function" &&
-                      entryTrigger(entryProps, node);
+                      entryTrigger(entryProps, node, e);
                     window.scrollTo(0, 0);
                   }}
                   key={props.location.pathname}
                   onExit={node => {
                     exitTrigger &&
                       typeof exitTrigger === "function" &&
-                      exitTrigger(exitProps, node);
+                      exitTrigger(exitProps, node, e);
                   }}
                 >
                   {transitionStatus => {

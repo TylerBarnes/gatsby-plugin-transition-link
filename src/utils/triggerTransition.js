@@ -10,6 +10,7 @@ const triggerTransition = ({
   transitionIdHistory,
   updateContext
 }) => {
+  event.persist();
   event.preventDefault();
 
   if (inTransition) return false;
@@ -41,8 +42,9 @@ const triggerTransition = ({
     exitDelay: exitDelay,
     entryProps: entry,
     exitProps: exit,
-    exitTrigger: (exit, node) => exitTrigger(exit, node),
-    entryTrigger: (entry, node) => entryTrigger(entry, node)
+    exitTrigger: (exit, node, e) => exitTrigger(exit, node, e),
+    entryTrigger: (entry, node, e) => entryTrigger(entry, node, e),
+    e: event
   });
 
   setTimeout(() => {
