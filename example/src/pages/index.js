@@ -5,10 +5,6 @@ import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
 
-function moveAnimation(utils) {
-  return TweenMax.from(utils.target, 1, { x: '-=123' })
-}
-
 class Index extends Component {
   constructor(props) {
     super(props)
@@ -20,11 +16,8 @@ class Index extends Component {
   }
 
   verticalAnimation = ({ length }, direction) => {
-    console.log(direction)
     const directionTo = direction === 'up' ? '-100%' : '100%'
     const directionFrom = direction === 'up' ? '100%' : '-100%'
-
-    console.log(directionFrom)
 
     // convert ms to s for gsap
     const seconds = length / 1000
@@ -42,8 +35,8 @@ class Index extends Component {
       })
   }
 
-  test(exit, node) {
-    // console.log(exit, node.querySelectorAll('h1'))
+  test(entry, node) {
+    console.log(node)
     return new TimelineMax().staggerFrom(
       node.querySelectorAll('h2, p, a, pre'),
       1,
@@ -74,7 +67,7 @@ class Index extends Component {
             }}
             entry={{
               delay: 500,
-              // trigger: (entry, node) => this.test(entry, node),
+              trigger: (entry, node) => this.test(entry, node),
             }}
           >
             Go to page 2 that way{' '}

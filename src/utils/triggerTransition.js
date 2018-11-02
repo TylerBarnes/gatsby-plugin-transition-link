@@ -18,9 +18,7 @@ const triggerTransition = ({
     inTransition: true,
     exitDelay: 0,
     exitLength: 0,
-    exitState: {},
-    exitTrigger: (exit, node) => exitTrigger(exit, node),
-    entryTrigger: (entry, node) => entryTrigger(entry, node)
+    exitState: {}
   });
 
   const {
@@ -42,7 +40,9 @@ const triggerTransition = ({
     exitLength: exitLength,
     exitDelay: exitDelay,
     entryProps: entry,
-    exitProps: exit
+    exitProps: exit,
+    exitTrigger: (exit, node) => exitTrigger(exit, node),
+    entryTrigger: (entry, node) => entryTrigger(entry, node)
   });
 
   setTimeout(() => {
@@ -73,9 +73,7 @@ const triggerTransition = ({
         entryLength: 0,
         exitDelay: 0,
         exitLength: 0,
-        inTransition: false,
-        exitTrigger: () => {},
-        entryTrigger: () => {}
+        inTransition: false
       }),
     exitDelay + entryDelay + entryLength
   );
