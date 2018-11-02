@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { TweenMax, TimelineMax, Power1 } from 'gsap'
+import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
+
+import PaintDrip from 'gatsby-plugin-transition-link/default-transitions/PaintDrip'
+
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
 
@@ -55,6 +58,8 @@ class Index extends Component {
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
+
+          <PaintDrip to="/page-2">Go to page 2 with a paint drip</PaintDrip>
 
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
