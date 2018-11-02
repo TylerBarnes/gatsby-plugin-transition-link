@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { TweenMax, TimelineMax, Power1 } from 'gsap'
-import GSAP from 'react-gsap-enhancer'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Layout from '../components/layout'
@@ -21,8 +20,11 @@ class Index extends Component {
   }
 
   verticalAnimation = ({ length }, direction) => {
+    console.log(direction)
     const directionTo = direction === 'up' ? '-100%' : '100%'
     const directionFrom = direction === 'up' ? '100%' : '-100%'
+
+    console.log(directionFrom)
 
     // convert ms to s for gsap
     const seconds = length / 1000
@@ -58,7 +60,7 @@ class Index extends Component {
     return (
       <Layout>
         <section ref={n => (this.layoutContents = n)}>
-          <h1 onClick={() => this.addAnimation(moveAnimation)}>Hi people</h1>
+          <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
 
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
@@ -67,12 +69,12 @@ class Index extends Component {
             to="/page-2"
             exit={{
               length: 1000,
-              trigger: exit => this.verticalAnimation(exit, 'down'),
+              trigger: (exit, node) => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
             entry={{
               delay: 500,
-              trigger: (entry, node) => this.test(entry, node),
+              // trigger: (entry, node) => this.test(entry, node),
             }}
           >
             Go to page 2 that way{' '}
@@ -119,4 +121,4 @@ class Index extends Component {
   }
 }
 
-export default GSAP()(Index)
+export default Index
