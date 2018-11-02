@@ -12,8 +12,6 @@ const triggerTransition = ({
 }) => {
   event.preventDefault();
 
-  // console.log(entry);
-
   if (inTransition) return false;
 
   updateContext({
@@ -29,13 +27,13 @@ const triggerTransition = ({
     length: exitLength = 0,
     delay: exitDelay = 0,
     state: exitState = {},
-    trigger: exitTrigger = false
+    trigger: exitTrigger = () => {}
   } = exit;
   const {
     length: entryLength = 0,
     delay: entryDelay = 0,
     state: entryState = {},
-    trigger: entryTrigger = false
+    trigger: entryTrigger = () => {}
   } = entry;
 
   updateContext({
@@ -46,8 +44,6 @@ const triggerTransition = ({
     entryProps: entry,
     exitProps: exit
   });
-
-  // exitTrigger && exitTrigger(exit);
 
   setTimeout(() => {
     // after exitDelay
@@ -62,8 +58,7 @@ const triggerTransition = ({
   }, exitDelay);
 
   setTimeout(() => {
-    // wait for entryDelay before we trigger our entry function and add entry state
-    // entryTrigger && entryTrigger(entry);
+    // wait for entryDelay before we add entry state
     updateContext({
       entryState: entryState
     });
@@ -78,7 +73,9 @@ const triggerTransition = ({
         entryLength: 0,
         exitDelay: 0,
         exitLength: 0,
-        inTransition: false
+        inTransition: false,
+        exitTrigger: () => {},
+        entryTrigger: () => {}
       }),
     exitDelay + entryDelay + entryLength
   );
