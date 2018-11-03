@@ -41,7 +41,12 @@ export default class TransitionHandler extends Component {
                       onEnter={node => {
                         entryTrigger &&
                           typeof entryTrigger === "function" &&
-                          entryTrigger(entryProps, node, e);
+                          entryTrigger({
+                            entry: entryProps,
+                            exit: exitProps,
+                            node,
+                            e
+                          });
                         // fix scroll jumping when navigating with browser buttons
                         if (
                           typeof action !== `undefined` &&
@@ -59,7 +64,12 @@ export default class TransitionHandler extends Component {
                       onExit={node => {
                         exitTrigger &&
                           typeof exitTrigger === "function" &&
-                          exitTrigger(exitProps, node, e);
+                          exitTrigger({
+                            entry: entryProps,
+                            exit: exitProps,
+                            node,
+                            e
+                          });
                       }}
                     >
                       {transitionStatus => {

@@ -83,7 +83,7 @@ export default class SecondPage extends Component {
                 to="/"
                 exit={{
                   length: 2000,
-                  trigger: exit => this.exitHorizontal(exit, 'left'),
+                  trigger: ({ exit }) => this.exitHorizontal(exit, 'left'),
                 }}
                 entry={{
                   delay: 1000,
@@ -100,7 +100,7 @@ export default class SecondPage extends Component {
                 to="/"
                 exit={{
                   length: 2000,
-                  trigger: time => this.exitHorizontal(time, 'right'),
+                  trigger: ({ exit }) => this.exitHorizontal(exit, 'right'),
                 }}
                 entry={{
                   delay: 1000,
@@ -130,7 +130,7 @@ export default class SecondPage extends Component {
                   to="/"
                   exit={{
                     length: 2000,
-                    trigger: time => this.exitHorizontal(time, 'right'),
+                    trigger: ({ exit }) => this.exitHorizontal(exit, 'right'),
                   }}
                   entry={{
                     delay: 1000,

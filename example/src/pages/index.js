@@ -61,10 +61,7 @@ class Index extends Component {
 
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
-          <PaintDrip 
-            to="/page-2" 
-            hex="#4b2571"
-            >
+          <PaintDrip to="/page-2" hex="#4b2571">
             Go to page 2 with a paint drip
           </PaintDrip>
           <br />
@@ -72,12 +69,12 @@ class Index extends Component {
             to="/page-2"
             exit={{
               length: 1000,
-              trigger: (exit, node) => this.verticalAnimation(exit, 'down'),
+              trigger: ({ exit, node }) => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
             entry={{
               delay: 500,
-              trigger: (entry, node) => this.test(entry, node),
+              trigger: ({ entry, node }) => this.test(entry, node),
             }}
           >
             Go to page 2 that way{' '}
@@ -91,7 +88,7 @@ class Index extends Component {
             to="/page-2"
             exit={{
               length: 1200,
-              trigger: exit => this.verticalAnimation(exit, 'up'),
+              trigger: ({ exit }) => this.verticalAnimation(exit, 'up'),
             }}
             entry={{ delay: 500, length: 1000, state: { layoutTheme: 'dark' } }}
           >
