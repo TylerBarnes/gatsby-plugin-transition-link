@@ -36,37 +36,6 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
     document.body.scrollTop ||
     window.pageYOffset;
 
-  let from, to;
-
-  if (triggerName === "entry") {
-    from = swipeTopDirection(direction);
-    // top === "entry"
-    //   ? swipeTopDirection(direction)
-    //   : swipeTopDirection(direction);
-    to = swipeBottomDirection(direction);
-    // top === "entry"
-    //   ? swipeBottomDirection(direction)
-    //   : swipeTopDirection(direction);
-  } else if (triggerName === "exit") {
-    from = swipeTopDirection(direction);
-    // top === "exit"
-    //   ? swipeTopDirection(direction)
-    //   : swipeBottomDirection(direction);
-    to = swipeBottomDirection(direction);
-    // top === "exit"
-    //   ? swipeBottomDirection(direction)
-    //   : swipeTopDirection(direction);
-  }
-
-  return new TimelineMax()
-    .set(node, {
-      boxShadow: boxShadow,
-      overflowY: "hidden",
-      height: "100vh",
-      scrollTop: scrollTop
-    })
-    .fromTo(node, exit.length, to, from);
-
   if (triggerName === "entry" && top === "entry") {
     return new TimelineMax()
       .set(node, {
@@ -101,8 +70,9 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
 };
 
 export default function SwipeOver(props) {
-  const entryZ = props.top === "entry" ? 5 : 0;
-  const exitZ = props.top === "exit" ? 5 : 0;
+  const top = props.top || "exit";
+  const entryZ = top === "entry" ? 5 : 0;
+  const exitZ = top === "exit" ? 5 : 0;
 
   return (
     <TransitionLink
@@ -114,7 +84,7 @@ export default function SwipeOver(props) {
             node,
             exit,
             direction: props.direction,
-            top: props.top,
+            top: top,
             triggerName: "exit"
           }),
         zIndex: exitZ
@@ -126,7 +96,7 @@ export default function SwipeOver(props) {
             node,
             exit,
             direction: props.direction,
-            top: props.top,
+            top: top,
             triggerName: "entry"
           }),
         zIndex: entryZ
