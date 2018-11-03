@@ -59,9 +59,14 @@ class Index extends Component {
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
 
-          <PaintDrip to="/page-2">Go to page 2 with a paint drip</PaintDrip>
-
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
+          <br />
+          <PaintDrip 
+            to="/page-2" 
+            hex="#4b2571"
+            >
+            Go to page 2 with a paint drip
+          </PaintDrip>
           <br />
           <TransitionLink
             to="/page-2"
