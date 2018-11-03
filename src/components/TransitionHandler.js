@@ -94,12 +94,12 @@ export default class TransitionHandler extends Component {
                           <div
                             style={{
                               position: "absolute",
-                              width: "100%"
-                              // zIndex:
-                              //   transitionStatus === "entering" ||
-                              //   transitionStatus === "entered"
-                              //     ? 1
-                              //     : 0
+                              width: "100%",
+                              zIndex:
+                                transitionStatus === "entering" ||
+                                transitionStatus === "entered"
+                                  ? 1
+                                  : 0
                             }}
                           >
                             <PublicProvider value={{ ...transitionState }}>
