@@ -27,7 +27,7 @@
 ☐ Add some generic default transitions using transition portal
     ✔ fade @done(18-11-03 12:25)
     ✔ expanding bubble @done(18-11-03 12:01)
-    ☐ wipe in
+    ✔ wipe in @done(18-11-03 15:07)
     ☐ cover swipe up, left, right, down
     ☐ export component AniLink for default transitions from transition-link
 ☐ prevent browser history buttons from triggering trigger functions
