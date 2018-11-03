@@ -13,9 +13,9 @@
     "gsap": "^2.0.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
-    "react-gsap-enhancer": "^0.3.0",
     "react-helmet": "^5.2.0",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "requestanimationframe-timer": "^1.0.4"
   },
   "keywords": [
     "gatsby"
