@@ -59,7 +59,6 @@ export default class PaintDrip extends Component {
       ctx.beginPath();
       ctx.arc(ripple.x, ripple.y, ripple.radius, 0, piTwo, false);
       const fillStyle = `rgba(${rgb},${ripple.alpha})`;
-      console.log(fillStyle)
       ctx.fillStyle = fillStyle;
       ctx.fill();
     }
