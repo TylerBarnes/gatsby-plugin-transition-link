@@ -35,13 +35,13 @@ export default class TransitionHandler extends Component {
                 {({ location: { action, pathname } }) => (
                   <TransitionGroup>
                     <DelayedTransition
+                      key={props.location.pathname}
                       delay={entryDelay}
                       timeout={{ enter: entryLength, exit: exitLength }}
                       onEnter={node => {
                         entryTrigger &&
                           typeof entryTrigger === "function" &&
                           entryTrigger(entryProps, node, e);
-
                         // fix scroll jumping when navigating with browser buttons
                         if (
                           typeof action !== `undefined` &&
@@ -56,7 +56,6 @@ export default class TransitionHandler extends Component {
                           window.scrollTo(0, 0);
                         }
                       }}
-                      key={props.location.pathname}
                       onExit={node => {
                         exitTrigger &&
                           typeof exitTrigger === "function" &&
