@@ -43,12 +43,14 @@ export default class TransitionHandler extends Component {
                           entryTrigger(entryProps, node, e);
 
                         // fix scroll jumping when navigating with browser buttons
-                        if (action !== "PUSH") {
+                        if (
+                          typeof action !== `undefined` &&
+                          action !== "PUSH"
+                        ) {
                           const storageKey = `@@scroll|${pathname}`;
                           const savedPosition = sessionStorage.getItem(
                             storageKey
                           );
-
                           window.scrollTo(...JSON.parse(savedPosition));
                         } else {
                           window.scrollTo(0, 0);
