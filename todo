@@ -30,7 +30,7 @@
     ✔ wipe in @done(18-11-03 15:07)
     ☐ cover swipe up, left, right, down
     ☐ export component AniLink for default transitions from transition-link
-☐ prevent browser history buttons from triggering trigger functions
+✔ prevent browser history buttons from triggering trigger functions @done(18-11-03 15:27)
 ☐ rename gatsby-plugin-transition-link to transition-link
 ☐ update docs / create website
     ☐ new api
