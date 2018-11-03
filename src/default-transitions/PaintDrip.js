@@ -47,7 +47,6 @@ export default class PaintDrip extends Component {
     };
 
     const seconds = length / 1000;
-    const rippleEnterTime = seconds;
 
     new TimelineMax({
       onUpdate: drawRipple,
