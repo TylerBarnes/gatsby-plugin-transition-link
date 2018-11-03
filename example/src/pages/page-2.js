@@ -33,7 +33,7 @@ export default class SecondPage extends Component {
   }
 
   exitHorizontal = ({ length }, direction) => {
-    const seconds = length / 1000
+    const seconds = length
 
     const directionTo = direction === 'left' ? '-100%' : '100%'
     const directionFrom = direction === 'left' ? '100%' : '-100%'
@@ -85,11 +85,11 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exit={{
-                  length: 2000,
+                  length: 2,
                   trigger: ({ exit }) => this.exitHorizontal(exit, 'left'),
                 }}
                 entry={{
-                  delay: 1000,
+                  delay: 1,
                   state: { pass: 'Whatever you want', to: 'the next page' },
                 }}
               >
@@ -102,11 +102,11 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exit={{
-                  length: 2000,
+                  length: 2,
                   trigger: ({ exit }) => this.exitHorizontal(exit, 'right'),
                 }}
                 entry={{
-                  delay: 1000,
+                  delay: 1,
                   state: { pass: 'Whatever you want', to: 'the next page' },
                 }}
               >
@@ -132,11 +132,11 @@ export default class SecondPage extends Component {
                 <TransitionLink
                   to="/"
                   exit={{
-                    length: 2000,
+                    length: 2,
                     trigger: ({ exit }) => this.exitHorizontal(exit, 'right'),
                   }}
                   entry={{
-                    delay: 1000,
+                    delay: 1,
                     state: { pass: 'Whatever you want', to: 'the next page' },
                   }}
                 >

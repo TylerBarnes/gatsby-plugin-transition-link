@@ -24,7 +24,7 @@ class Index extends Component {
     const directionFrom = direction === 'up' ? '100%' : '-100%'
 
     // convert ms to s for gsap
-    const seconds = length / 1000
+    const seconds = length
 
     return new TimelineMax()
       .set(this.transitionCover, { y: directionFrom })
@@ -40,7 +40,6 @@ class Index extends Component {
   }
 
   test(entry, node) {
-    console.log(node)
     return new TimelineMax().staggerFrom(
       node.querySelectorAll('h2, p, a, pre'),
       1,
@@ -70,12 +69,12 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
-              length: 1000,
+              length: 1,
               trigger: ({ exit }) => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
             entry={{
-              delay: 500,
+              delay: 0.5,
               trigger: ({ entry, node }) => this.test(entry, node),
             }}
           >
@@ -89,10 +88,10 @@ class Index extends Component {
           <TransitionLink
             to="/page-2"
             exit={{
-              length: 1200,
+              length: 1.2,
               trigger: ({ exit }) => this.verticalAnimation(exit, 'up'),
             }}
-            entry={{ delay: 500, length: 1000, state: { layoutTheme: 'dark' } }}
+            entry={{ delay: 0.5, length: 1, state: { layoutTheme: 'dark' } }}
           >
             Go to page 2 that way{' '}
             <span aria-label="pointing up" role="img">

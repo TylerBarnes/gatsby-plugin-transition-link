@@ -46,7 +46,7 @@ export default class PaintDrip extends Component {
       y: y
     };
 
-    const seconds = length / 1000;
+    const seconds = length;
 
     new TimelineMax({
       onUpdate: drawRipple,
@@ -100,9 +100,7 @@ export default class PaintDrip extends Component {
   };
 
   slideIn = ({ length }, node, from) => {
-    const seconds = length / 1000;
-
-    new TimelineMax().from(node, seconds, {
+    new TimelineMax().from(node, length, {
       ...this.getDirection(from),
       ease: Power1.easeOut
     });
@@ -125,13 +123,13 @@ export default class PaintDrip extends Component {
         <TransitionLink
           to={props.to}
           exit={{
-            length: 1000,
+            length: 1,
             trigger: ({ exit, e }) =>
               this.createRipple(exit, e, props.hex, props.color)
           }}
           entry={{
-            delay: 800,
-            length: 600,
+            delay: 0.8,
+            length: 0.6,
             trigger: ({ entry, node }) => this.slideIn(entry, node, "left")
           }}
         >

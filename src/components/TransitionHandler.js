@@ -6,6 +6,7 @@ import InternalProvider from "../context/InternalProvider";
 import delayTransitionRender from "./delayTransitionRender";
 import { returnTransitionState } from "../utils/returnTransitionState";
 import { Location } from "@reach/router";
+import { getMs } from "../utils/secondsMs";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
@@ -36,8 +37,12 @@ export default class TransitionHandler extends Component {
                   <TransitionGroup>
                     <DelayedTransition
                       key={props.location.pathname}
-                      delay={entryDelay}
-                      timeout={{ enter: entryLength, exit: exitLength }}
+                      // we're using seconds but transitiongroup uses ms
+                      delay={getMs(entryDelay)}
+                      timeout={{
+                        enter: getMs(entryLength),
+                        exit: getMs(exitLength)
+                      }}
                       onEnter={node => {
                         entryTrigger &&
                           typeof entryTrigger === "function" &&

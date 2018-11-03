@@ -3,8 +3,7 @@ import TransitionLink from "gatsby-plugin-transition-link";
 import { TimelineMax } from "gsap";
 
 const fade = ({ exit: { length }, node, direction }) => {
-  const seconds = length / 1000;
-  const duration = direction == "out" ? seconds + seconds / 4 : seconds;
+  const duration = direction == "out" ? length + length / 4 : length;
   const opacity = direction === "in" ? 1 : 0;
 
   return new TimelineMax().fromTo(
@@ -16,7 +15,7 @@ const fade = ({ exit: { length }, node, direction }) => {
 };
 
 export default function Fade(props) {
-  const length = props.length || 400;
+  const length = props.length || 0.4;
 
   return (
     <TransitionLink
