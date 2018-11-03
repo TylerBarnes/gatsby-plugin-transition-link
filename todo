@@ -19,6 +19,7 @@
 ✘ add an option to make TransitionConsumer use the portal @cancelled(18-10-29 22:44) //kindof unnecessary
 ✘ Consider an option to separate entry and exit portals @cancelled(18-10-26 10:56) // no need for this. Portals retain their react context so TransitionConsumer can be used in them.
 ✔ rename TransitionConsumer to TransitionState @done(18-10-29 22:46)
+☐ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick
 ☐ add option to disable scroll to top
 ☐ pass entire animation props to the trigger functions
 ☐ test that animation "hooks" are still firing at the right time
@@ -36,10 +37,9 @@
 ☐ Write blog post for gatsbyjs.org
 
 Future
-☐ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick
-☐ Add example of using triggerTransition() to transition using events other than click
 ☐ consolidate internal and external context into a single context
 ☐ hook into location state so that going back and forward in the browser still triggers animation. This should be optional with a plugin setting "reverse: bool" which can also be overridden by a prop. Transition direction should also be added to transition state. Use location key instead of transitionId
+☐ Add example of using triggerTransition() to transition using events other than click
 
 
 API scratchpad
