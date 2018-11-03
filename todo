@@ -20,10 +20,10 @@
 ✘ Consider an option to separate entry and exit portals @cancelled(18-10-26 10:56) // no need for this. Portals retain their react context so TransitionConsumer can be used in them.
 ✔ rename TransitionConsumer to TransitionState @done(18-10-29 22:46)
 ✔ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick @done(18-11-03 11:26) used requestanimationframe-timer
+✔ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1 @done(18-11-03 11:27)
 ☐ add option to disable scroll to top
 ☐ pass entire animation props to the trigger functions
 ☐ test that animation "hooks" are still firing at the right time
-✔ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1 @done(18-11-03 11:27)
 ☐ Add some generic default transitions using transition portal
     ☐ fade
     ☐ cover swipe up, left, right, down
