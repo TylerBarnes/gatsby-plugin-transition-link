@@ -69,7 +69,7 @@ class Index extends Component {
             to="/page-2"
             exit={{
               length: 1000,
-              trigger: ({ exit, node }) => this.verticalAnimation(exit, 'down'),
+              trigger: ({ exit }) => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
             entry={{
