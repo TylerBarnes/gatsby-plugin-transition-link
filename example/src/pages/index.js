@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
-import FadeLink from 'gatsby-plugin-transition-link/default-transitions/Fade'
+import Swipe from 'gatsby-plugin-transition-link/default-transitions/Swipe'
 
 import PaintDrip from 'gatsby-plugin-transition-link/default-transitions/PaintDrip'
 
@@ -54,13 +54,29 @@ class Index extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout theme="white">
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
           <br />
-          <FadeLink to="/page-2">Go to page 2 with a fade</FadeLink>
+          <Swipe to="/page-2">Go to page 2 with a swipe default</Swipe>
+          <br />
+          <Swipe to="/page-2" direction="left" top="exit">
+            Go to page 2 with a swipe left
+          </Swipe>
+          <br />
+          <Swipe to="/page-2" direction="right" top="exit">
+            Go to page 2 with a swipe right
+          </Swipe>
+          <br />
+          <Swipe to="/page-2" direction="up" top="exit">
+            Go to page 2 with a swipe up
+          </Swipe>
+          <br />
+          <Swipe to="/page-2" direction="down" top="exit">
+            Go to page 2 with a swipe down
+          </Swipe>
           <br />
           <PaintDrip to="/page-2" hex="#4b2571">
             Go to page 2 with a paint drip
