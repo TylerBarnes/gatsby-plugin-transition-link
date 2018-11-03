@@ -23,6 +23,7 @@
 ✔ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1 @done(18-11-03 11:27)
 ✔ pass entire animation props to the trigger functions and pass args as an object for desctructuring. @done(18-11-03 11:59)
 ✔ test that animation "hooks" are still firing at the right time @done(18-11-03 12:01)
+☐ switch to using seconds instead of ms
 ☐ Add some generic default transitions using transition portal
     ☐ fade
     ☐ cover swipe up, left, right, down
