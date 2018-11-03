@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "react": "^16.6.0",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "requestanimationframe-timer": "^1.0.4"
   }
 }

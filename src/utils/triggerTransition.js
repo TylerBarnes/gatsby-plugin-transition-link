@@ -1,5 +1,6 @@
 import { navigate } from "gatsby";
 import random from "lodash/random";
+import { setTimeout } from "requestanimationframe-timer";
 
 const triggerTransition = ({
   to,
