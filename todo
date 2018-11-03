@@ -25,7 +25,7 @@
 ✔ test that animation "hooks" are still firing at the right time @done(18-11-03 12:01)
 ☐ switch to using seconds instead of ms
 ☐ Add some generic default transitions using transition portal
-    ☐ fade
+    ✔ fade @done(18-11-03 12:25)
     ☐ cover swipe up, left, right, down
     ✔ expanding bubble @done(18-11-03 12:01)
     ☐ wipe in
