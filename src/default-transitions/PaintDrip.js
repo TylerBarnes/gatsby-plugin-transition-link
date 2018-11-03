@@ -123,12 +123,12 @@ export default class PaintDrip extends Component {
         <TransitionLink
           to={props.to}
           exit={{
-            length: 1,
+            length: 0.6,
             trigger: ({ exit, e }) =>
               this.createRipple(exit, e, props.hex, props.color)
           }}
           entry={{
-            delay: 0.8,
+            delay: 0.4,
             length: 0.6,
             trigger: ({ entry, node }) => this.slideIn(entry, node, "left")
           }}
