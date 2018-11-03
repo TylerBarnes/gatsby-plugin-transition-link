@@ -61,11 +61,14 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
       })
       .to(node, exit.length, swipeTopDirection(direction));
   } else {
-    return new TimelineMax().to(
-      node,
-      exit.length,
-      swipeBottomDirection(direction)
-    );
+    return new TimelineMax()
+      .set(node, {
+        boxShadow: boxShadow,
+        overflowY: "hidden",
+        height: "100vh",
+        scrollTop: scrollTop
+      })
+      .to(node, exit.length, swipeBottomDirection(direction));
   }
 };
 
