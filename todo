@@ -23,7 +23,7 @@
 ☐ add option to disable scroll to top
 ☐ pass entire animation props to the trigger functions
 ☐ test that animation "hooks" are still firing at the right time
-☐ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1
+✔ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1 @done(18-11-03 11:27)
 ☐ Add some generic default transitions using transition portal
     ☐ fade
     ☐ cover swipe up, left, right, down
