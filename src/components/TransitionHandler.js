@@ -95,6 +95,9 @@ export default class TransitionHandler extends Component {
                           }
                         });
 
+                        const exitZindex = exitProps.zIndex || 0;
+                        const entryZindex = entryProps.zIndex || 1;
+
                         const childWithTransitionState = React.Children.map(
                           children,
                           child => {
@@ -106,14 +109,15 @@ export default class TransitionHandler extends Component {
 
                         return (
                           <div
+                            className="tl-wrapper"
                             style={{
                               position: "absolute",
                               width: "100%",
                               zIndex:
                                 transitionStatus === "entering" ||
                                 transitionStatus === "entered"
-                                  ? 1
-                                  : 0
+                                  ? entryZindex
+                                  : exitZindex
                             }}
                           >
                             <PublicProvider value={{ ...transitionState }}>
