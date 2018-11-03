@@ -21,7 +21,7 @@
 ✔ rename TransitionConsumer to TransitionState @done(18-10-29 22:46)
 ✔ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick @done(18-11-03 11:26) used requestanimationframe-timer
 ✔ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1 @done(18-11-03 11:27)
-☐ pass entire animation props to the trigger functions and pass args as an object for desctructuring.
+✔ pass entire animation props to the trigger functions and pass args as an object for desctructuring. @done(18-11-03 11:59)
 ☐ test that animation "hooks" are still firing at the right time
 ☐ Add some generic default transitions using transition portal
 ☐ fade
