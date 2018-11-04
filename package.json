@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A link component for page transitions in gatsby.",
   "homepage": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "main": "index.js",
