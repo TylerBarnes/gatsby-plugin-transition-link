@@ -133,7 +133,9 @@ entry={{
   zIndex: 0 || 1
 }}
 ```
-Below is an example of TransitionLink in use. Note that all time values are in seconds, not milliseconds.
+__Note__: the entering page will always be assigned a z-index of 1 while the exiting page will get 0. You can override this yourself if you want your exiting page to sit on top.
+
+Below is an example of TransitionLink in use.
 ```jsx
 <TransitionLink
   to="/page-2"
@@ -152,8 +154,7 @@ Below is an example of TransitionLink in use. Note that all time values are in s
   Go to page 2
 </TransitionLink>
 ```
-
-__Note__: the entering page will always be assigned a z-index of 1 while the exiting page will get 0. You can override this yourself if you want your exiting page to sit on top.
+__Note__: All time values are in seconds.
 
 ### The two main ways to use the TransitionLink component
 
