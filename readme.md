@@ -123,14 +123,14 @@ exit={{
   delay: 0,
   length: 0,
   state: {},
-  zIndex: 0 || 1
+  zIndex: 0
 }}
 entry={{
   trigger: () => {},
   delay: 0,
   length: 0,
   state: {},
-  zIndex: 0 || 1
+  zIndex: 1
 }}
 ```
 __Note__: the entering page will always be assigned a z-index of 1 while the exiting page will get 0. You can override this yourself if you want your exiting page to sit on top.
