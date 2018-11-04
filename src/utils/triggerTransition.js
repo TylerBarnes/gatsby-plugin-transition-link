@@ -75,7 +75,7 @@ const triggerTransition = ({
         exitLength: 0,
         inTransition: false
       }),
-    getMs(exitDelay + entryDelay + entryLength)
+    getMs(exitDelay + entryDelay + entryLength + exitLength)
   );
 };
 
