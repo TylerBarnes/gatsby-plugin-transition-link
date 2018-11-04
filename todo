@@ -32,11 +32,11 @@
     ✔ export component AniLink for default transitions from transition-link @done(18-11-03 21:21)
 ✔ prevent browser history buttons from triggering trigger functions @done(18-11-03 15:27)
 ☐ rename gatsby-plugin-transition-link to transition-link
+☐ release v1
 ☐ update docs / create website
     ☐ new api
     ☐ add a visual timeline of events in, for, trigger, state, and when they happen
     ☐ idea / overview section should be rewritten and moved to blog post
-☐ release v1
 ☐ Write blog post for gatsbyjs.org
 
 Future
