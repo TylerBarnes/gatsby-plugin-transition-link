@@ -1,4 +1,4 @@
-**_IMPORTANT:_** This plugin is pre-alpha. V1 is being worked on and there will be breaking changes very soon.
+**_NOTE:_** V1 Has just been released! There are a number of awesome improvements but this readme hasn't yet been updated. 
 
 # Gatsby Plugin Transition Link
 
