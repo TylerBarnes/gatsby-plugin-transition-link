@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
-import Swipe from 'gatsby-plugin-transition-link/default-transitions/Swipe'
-import Cover from 'gatsby-plugin-transition-link/default-transitions/Cover'
+import Swipe from 'gatsby-plugin-transition-link/components/AniLink/Swipe'
+import Cover from 'gatsby-plugin-transition-link/components/AniLink/Cover'
 
-import PaintDrip from 'gatsby-plugin-transition-link/default-transitions/PaintDrip'
+import PaintDrip from 'gatsby-plugin-transition-link/components/AniLink/PaintDrip'
+
+import { AniLink } from 'gatsby-plugin-transition-link'
 
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
@@ -59,7 +61,7 @@ class Index extends Component {
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
-          <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
+          <AniLink to="/page-2">Go to page 2 normally</AniLink>
           <br />
           <Cover to="/page-2" direction="right">
             Go to page 2 with a cover right
