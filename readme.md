@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/TylerBarnes/gatsby-plugin-transition-link/master/images/gatsby-plugin-transition-link.png "Gatsby Plugin Transition Link logo")
+
 **_NOTE:_** V1 Has just been released! There are a number of awesome improvements but this readme hasn't yet been updated. 
 
 # Gatsby Plugin Transition Link
