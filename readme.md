@@ -1,36 +1,29 @@
 ![alt text](https://raw.githubusercontent.com/TylerBarnes/gatsby-plugin-transition-link/master/images/gatsby-plugin-transition-link.png "Gatsby Plugin Transition Link logo")
 
-**_NOTE:_** V1 Has just been released! There are a number of awesome improvements but this readme hasn't yet been updated. 
-
 # Gatsby Plugin Transition Link
 
-A plugin for custom page animations in Gatsby.
+TransitionLink provides a simple api for describing expressive transitions between pages in [Gatsbyjs](https://www.gatsbyjs.org/).
 
-[Example site](https://gatsby-plugin-transition-link.netlify.com/)
+- trigger functions, access dom nodes, and set delays on page exit & entry using `<TransitionLink />`
+- set, access and manipulate page state using `<TransitionState />`
+- display animation content above your site with `<TransitionPortal />`
+- use default transitions with `<AniLink />`
+  - Fade
+  - Swipe
+  - Cover
+  - PaintDrip
+
+[Check out some examples.](https://gatsby-plugin-transition-link.netlify.com/)
 
 ## Installation
 
-`npm i gatsby-plugin-transition-link`
+```bash
+yarn add gatsby-plugin-transition-link
+# or
+npm i gatsby-plugin-transition-link
+```
 
-or
-
-`yarn add gatsby-plugin-transition-link`
-
-## Overview / Idea
-
-In the past I thought of page transitions in single instances with each page having it's own entry and exit animation. Because of this I always ended up using a fade transition everywhere due to the complexity of managing multiple animations to and from specific pages. Where would I cleanly describe the transition from page A to page B vs page A to page C?
-
-In trying to figure out an easy way to create and manage these more complex transitions it suddenly hit me: The Link is the link!
-
-Links are already the mediator between pages so it makes sense that they would also describe the transition between them.
-
-TransitionLink provides a simple api for using a link to trigger an animation, delay the current page from unmounting, delay when the next page will display, and send state to the next page to be used in it's own entry animation.
-
-Managing transitions using links means navigating from a home page to a blog post can easily have a different animation than going from the same home page to a contact page.
-
-## Usage
-
-Add `gatsby-plugin-transition-link` to your gatsby config.
+Add the plugin to your gatsby config.
 
 ```jsx
 module.exports = {
@@ -40,84 +33,168 @@ module.exports = {
 ];
 ```
 
-Use it in your project
+## AniLink
+
+The real magic is in making your own custom animations with TransitionLink but you can get started easily with default transitions using AniLink.
+
+Install [gsap](https://greensock.com/)
+
+```bash
+yarn add gsap
+# or
+npm i gsap
+```
 
 ```javascript
-import TransitionLink from 'gatsby-plugin-transition-link`;
+import { AniLink } from "gatsby-plugin-transition-link";
 ```
+
+Add a transition name as a blank prop
+
+```jsx
+<AniLink fade to="page-4">
+  Go to Page 4
+</AniLink>
+```
+
+Override the animation duration in seconds
+
+```jsx
+<AniLink paintDrip to="page-3" duration={1}>
+  Go to Page 3
+</AniLink>
+```
+
+For directional transitions use left, right, up, or down.
+
+```jsx
+<AniLink swipe direction="up" to="page-4">
+  Go to Page 4
+</AniLink>
+```
+
+**Available defaults:**
+
+- fade
+- swipe
+- cover
+- paintDrip
+
+## TransitionLink
+
+The real magic is in making your own transitions!
+
+```javascript
+import TransitionLink from "gatsby-plugin-transition-link";
+```
+
+There is a settings object for both entering and exiting pages.
+Following are all the props / settings that are available.
 
 ```jsx
 <TransitionLink
   to="/page-2"
   exit={{
-    trigger: exit => this.verticalAnimation(exit, "up"),
-    delay: 100,
-    length: 1000
+    trigger: ({ exit, entry, node, e }) =>
+      this.verticalAnimation(exit, entry, node, e),
+    delay: 0.1,
+    length: 1,
+    state: { exiting: true }
   }}
-  entry={{ delay: 600, length: 1000, state: { animation: "fromBottom" } }}
+  entry={{
+    delay: 0.6,
+    length: 1,
+    state: { theme: "dark" }
+  }}
 >
   Go to page 2
 </TransitionLink>
 ```
 
-## API
+#### All time based props are set in seconds.
 
-### to
+#### Delays are stacked.
 
-Used exactly the same as in gatsby-link.
+exit delay starts counting immediately on click and then entry delay starts counting after that.
 
-### exit and entry
+#### The timeline runs it's course like so:
 
-each takes an object describing each animation
+- on click the exit delay timer starts
+- then the exit function is triggered and the exit length timer starts
+- at the same time as the exit function, the entry delay timer starts
+- after the exit length timer is up, the exiting page unmounts
+- after the entry delay timer is up, the entry function is triggered, entry state is injected into the page, and the entry length timer starts
+- once all timers are finished, global entry and exit delays and lengths are reset to 0.
+- Exit state is reset once the exiting page has unmounted
+- Entry state will remain until the user leaves the page
 
-### exit.length / entry.length
+Here's a very primitive diagram!
 
-takes an integer describing how many milliseconds the transition should last.
-The exiting page will unmount after this and the entering page will have it's status transitioned to "entered".
+![alt text](https://raw.githubusercontent.com/TylerBarnes/gatsby-plugin-transition-link/master/images/gatsby-plugin-transition-link-timeline.png "Gatsby Plugin Transition Link animation timeline")
 
-### exit.trigger
+### trigger functions
 
-A function that will be called as soon as the link is clicked. You should use it to trigger your exit animation. It receives a property that returns the entire exit prop.
-ex:
+The exit and entry triggers get access to four pieces of data:
+
+- exit props
+- entry props
+- node
+- e
+
+**exit & entry** are both objects containing the entry and exit props.
+The following will log the entry props and then the exit props since both entry and exit triggers have access to each others props.
 
 ```jsx
-exit={{trigger: exit => this.verticalAnimation(exit, 'down')}}
-
-verticalAnimation = ({length, delay}, direction) {
-  // do something cool here
-}
+exit={{
+  length: 1,
+  trigger: ({exit, entry}) => console.log(entry)
+  }}
+entry={{
+  delay: 0.5,
+  length: 0.6,
+  trigger: ({exit, entry}) => console.log(exit)
+  }}
 ```
 
-### entry.trigger
+**node** is the DOM node of the page related to the trigger that's accessing it. exit and entry do not have access to each others DOM nodes.
 
-A function that will be called as soon as the entry delay has elapsed. You could use it to trigger your entry animation. It receives a property that returns the entire entry prop.
-ex:
+this will log the DOM node of the exiting page and then log the node of the entering page:
 
 ```jsx
-entry={{trigger: entry => this.verticalAnimation(entry, 'up')}}
-
-verticalAnimation = ({length, delay}, direction) {
-  // do something cool here
-}
+exit={{ trigger: ({node}) => console.log(node) }}
+entry={{ trigger: ({node}) => console.log(node) }}
 ```
 
-### exit.state / entry.state
+**e** is the event passed through from the users mouse click.
 
-These can be used to set the state of your pages as they're exiting and entering. This state is passed to your pages and templates and it can also be accessed using the TransitionState component (see below).
-
-## Transition status
-
-Along with the state you pass to the exiting or entering pages, a property called "transitionStatus" will be added to the state object with the values of "entered", "entering", or "exiting".
-
-```javascript
-{
-  transitionStatus: "entered",
-  entry: {},
-  exit: {}
-}
+```jsx
+exit={{ trigger: ({e}) => console.log(e) }}
 ```
 
-## Accessing transition state
+### A note on DOM nodes vs refs
+
+In react it's recommended to use refs to access DOM elements. Unfortunately there isn't a simple way to set refs on a component or multiple matching components from another component without a bunch of work. If you want to do things the React way you can use exit and entry states to do animation. I found this quite laborious and ended up resorting to using the DOM instead.
+
+For example, if I want to fade in all the headings on the next page in a staggered animation I would just write `node.querySelectorAll("h1,h2,h3,h4")` in my entry trigger function to access those elements and then easily animate them.
+Doing this with refs would require setting a ref on each of those elements manually. You would then need to pass state to your entering page, have the page listen for your state and start an animation based on that state. This isn't very portable as you would then need to manually add this to every page that you want to use the transition on.
+
+I recommend using gsap to manipulate the DOM directly. This is going to be the most flexible and powerful and the least amount of work. gsap is very performant and is an industry standard outside of react because it's so fast and excellent. If you want, you can still use refs with gsap!
+
+## TransitionPortal
+
+```jsx
+import { TransitionPortal } from "gatsby-plugin-transition-link";
+```
+
+```jsx
+<TransitionPortal>
+  <SomeAnimationComponent>
+    This component will sit on top of both pages.
+  </SomeAnimationComponent>
+</TransitionPortal>
+```
+
+## TransitionState
 
 You can use the TransitionState component to access the transition state anywhere.
 
@@ -137,51 +214,27 @@ const Page = ({ children, transitionStatus, entryState, exitState }) => (
 );
 ```
 
-## Default transitions
+## Conflicts
 
-I haven't tried it yet but theoretically you could wrap TransitionLink in your own component and use that as a link everywhere.
+TransitionLink uses the `wrapPageElement` hook to add the necessary components. If another plugin prevents transitions from working properly by using the same hook, you can wrap TransitionHandler around pages yourself. This may be a problem when using `gatsby-plugin-layout` and can be solved like so:
 
-```jsx
-const Link = ({children, to}) => (
-  <TransitionLink
-    to={to}
-    exit={{ length: 100, trigger: fadeOut}}
-    entry={{delay: 150, state: { animation: fadeIn }}}
-    >
-      {children}
-  </TransitionLink>
- )
-
- <Link to="/page-2">Go to page 2</Link>
-```
-
-or you could abstract away various animations with your own logic.
+Wrap TransitionHandler directly around the page element.
 
 ```jsx
-<Link to="/page-2" transition="fade">
-  Go to page 2
-</Link>
+import { TransitionHandler } from "gatsby-plugin-transition-link";
 
-<Link to="/page-3" transition="swipeLeft">
-  Go to page 3
-</Link>
-```
-
-## Considerations
-
-If you use TransitionLink, you shouldn't also use gatsby-link. Currently I haven't set it up so entry and exit states can be reset by gatsby-link. This means your entry or exit animations will keep firing if you mix the normal gatsby-link with TransitionLink and navigate back and forth with the two. It wont be a problem in some cases but it's better not to mix them.
-You can still use TransitionLink the same way you use gatsby-link and you can even import it as "Link" if you want.
-
-## Installation Conflicts
-
-TransitionLink uses the `wrapPageElement` hook to add the necessary components. If another plugin prevents transitions from working properly by using the same hook, you can wrap TransitionHandler around pages yourself.
-
-```jsx
-import { TransitionHandler } from 'gatsby-plugin-transition-link`;
-
-const Layout = ({element, location}) => (
+const Layout = ({ element, location }) => (
+  <LayoutRelatedComponents>
+    <Menu />
     <TransitionHandler location={props.location}>{element}</TransitionHandler>
-)
+  </LayoutRelatedComponents>
+);
 ```
 
 TransitionHandler needs to be outside the page component though, not inside it. If you're using v2 style layouts as components, that's not the place to put TransitionHandler. You can put it in the `wrapPageElement` or `wrapRootElement` hooks. For most projects adding it to gatsby-config.js should work.
+
+## Peace and Love!
+
+🌎🌏✌️❤️🐄
+
+Please let me know what you think. Feature requests and PR's are welcome!
