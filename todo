@@ -19,29 +19,32 @@
 ✘ add an option to make TransitionConsumer use the portal @cancelled(18-10-29 22:44) //kindof unnecessary
 ✘ Consider an option to separate entry and exit portals @cancelled(18-10-26 10:56) // no need for this. Portals retain their react context so TransitionConsumer can be used in them.
 ✔ rename TransitionConsumer to TransitionState @done(18-10-29 22:46)
-☐ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick
+✔ switch to something like tick to improve timer accuracy https://github.com/charlottegore/tick @done(18-11-03 11:26) used requestanimationframe-timer
+✔ saved position when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1 @done(18-11-03 11:27)
+✔ pass entire animation props to the trigger functions and pass args as an object for desctructuring. @done(18-11-03 11:59)
+✔ test that animation "hooks" are still firing at the right time @done(18-11-03 12:01)
+✔ switch to using seconds instead of ms @done(18-11-03 12:50)
+✔ Add some generic default transitions using transition portal @done(18-11-03 21:21)
+    ✔ fade @done(18-11-03 12:25)
+    ✔ expanding bubble @done(18-11-03 12:01)
+    ✔ wipe in @done(18-11-03 15:07)
+    ✔ cover swipe up, left, right, down @done(18-11-03 17:12)
+    ✔ export component AniLink for default transitions from transition-link @done(18-11-03 21:21)
+✔ prevent browser history buttons from triggering trigger functions @done(18-11-03 15:27)
+✘ rename gatsby-plugin-transition-link to transition-link @cancelled(18-11-03 22:27)
+✔ release v1 @done(18-11-03 22:27)
 ☐ update docs / create website
     ☐ new api
     ☐ add a visual timeline of events in, for, trigger, state, and when they happen
     ☐ idea / overview section should be rewritten and moved to blog post
-☐ scrolling when navigating with back button is inconsistent check https://github.com/ryanwiemer/rw/issues/1
-☐ Add some generic default transitions using transition portal
-    ☐ fade
-    ☐ cover swipe up, left, right, down
-    ☐ expanding bubble
-    ☐ wipe in
-☐ release v1
 ☐ Write blog post for gatsbyjs.org
 
 Future
-☐ Transition portal should only put elements in a portal while transitioning. 
-    ☐ use intersection observer to check if an element is on the screen. 
-    ☐ if it is then put calculate it's position relative to the window
-    ☐ make it fixed position and set it to be exactly in the same place it was before it was fixed.
-    ☐ switch portal layers to just passing in a zindex
-☐ Add example of using triggerTransition() to transition using events other than click
+☐ refactor and break big files into smaller files
 ☐ consolidate internal and external context into a single context
 ☐ hook into location state so that going back and forward in the browser still triggers animation. This should be optional with a plugin setting "reverse: bool" which can also be overridden by a prop. Transition direction should also be added to transition state. Use location key instead of transitionId
+☐ Add example of using triggerTransition() to transition using events other than click
+☐ add option to disable scroll to top
 
 
 API scratchpad

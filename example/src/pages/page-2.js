@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import TransitionLink from 'gatsby-plugin-transition-link'
+import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
+import Swipe from 'gatsby-plugin-transition-link/components/AniLink/Swipe'
+import Cover from 'gatsby-plugin-transition-link/components/AniLink/Cover'
 import Layout from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
@@ -32,7 +34,7 @@ export default class SecondPage extends Component {
   }
 
   exitHorizontal = ({ length }, direction) => {
-    const seconds = length / 1000
+    const seconds = length
 
     const directionTo = direction === 'left' ? '-100%' : '100%'
     const directionFrom = direction === 'left' ? '100%' : '-100%'
@@ -66,7 +68,7 @@ export default class SecondPage extends Component {
             theme={
               entryState && entryState.layoutTheme
                 ? entryState.layoutTheme
-                : null
+                : 'white'
             }
           >
             <div ref={n => (this.layoutContents = n)}>
@@ -79,14 +81,36 @@ export default class SecondPage extends Component {
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
               <br />
+              <Cover to="/" direction="left">
+                Go home with a cover left
+              </Cover>
+              <br />
+              <Swipe to="/">Go home with a swipe default</Swipe>
+              <br />
+              <Swipe to="/" direction="right" top="entry">
+                Go home with a swipe right
+              </Swipe>
+              <br />
+              <Swipe to="/" direction="left" top="entry">
+                Go home with a swipe left
+              </Swipe>
+              <br />
+              <Swipe to="/" direction="up" top="entry">
+                Go home with a swipe up
+              </Swipe>
+              <br />
+              <Swipe to="/" direction="down" top="entry">
+                Go home with a swipe down
+              </Swipe>
+              <br />
               <TransitionLink
                 to="/"
                 exit={{
-                  length: 2000,
-                  trigger: exit => this.exitHorizontal(exit, 'left'),
+                  length: 2,
+                  trigger: ({ exit }) => this.exitHorizontal(exit, 'left'),
                 }}
                 entry={{
-                  delay: 1000,
+                  delay: 1,
                   state: { pass: 'Whatever you want', to: 'the next page' },
                 }}
               >
@@ -99,11 +123,11 @@ export default class SecondPage extends Component {
               <TransitionLink
                 to="/"
                 exit={{
-                  length: 2000,
-                  trigger: time => this.exitHorizontal(time, 'right'),
+                  length: 2,
+                  trigger: ({ exit }) => this.exitHorizontal(exit, 'right'),
                 }}
                 entry={{
-                  delay: 1000,
+                  delay: 1,
                   state: { pass: 'Whatever you want', to: 'the next page' },
                 }}
               >
@@ -129,11 +153,11 @@ export default class SecondPage extends Component {
                 <TransitionLink
                   to="/"
                   exit={{
-                    length: 2000,
-                    trigger: time => this.exitHorizontal(time, 'right'),
+                    length: 2,
+                    trigger: ({ exit }) => this.exitHorizontal(exit, 'right'),
                   }}
                   entry={{
-                    delay: 1000,
+                    delay: 1,
                     state: { pass: 'Whatever you want', to: 'the next page' },
                   }}
                 >
@@ -146,18 +170,20 @@ export default class SecondPage extends Component {
             </div>
           </Layout>
         </section>
-        <div
-          ref={n => (this.transitionCover = n)}
-          style={{
-            position: 'fixed',
-            background: '#4b2571',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            display: 'none',
-          }}
-        />
+        <TransitionPortal>
+          <div
+            ref={n => (this.transitionCover = n)}
+            style={{
+              position: 'fixed',
+              background: '#4b2571',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              display: 'none',
+            }}
+          />
+        </TransitionPortal>
       </>
     )
   }

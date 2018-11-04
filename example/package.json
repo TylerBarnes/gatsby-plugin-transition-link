@@ -4,15 +4,15 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "color-convert": "^1.9.3",
     "gatsby": "^2.0.31",
     "gatsby-plugin-manifest": "^2.0.6",
     "gatsby-plugin-offline": "^2.0.9",
     "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-plugin-transition-link": "^0.2.0",
+    "gatsby-plugin-transition-link": "^1.0.0",
     "gsap": "^2.0.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
-    "react-gsap-enhancer": "^0.3.0",
     "react-helmet": "^5.2.0",
     "react-transition-group": "^2.5.0"
   },
