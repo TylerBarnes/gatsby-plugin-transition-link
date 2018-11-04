@@ -50,7 +50,8 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
         height: "100vh",
         scrollTop: scrollTop
       })
-      .from(node, exit.length, swipeTopDirection(direction, true));
+      .from(node, exit.length, swipeTopDirection(direction, true))
+      .set(node, { overflowY: "initial" });
   } else if (triggerName === "entry") {
     return new TimelineMax().from(
       node,
@@ -65,7 +66,8 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
         height: "100vh",
         scrollTop: scrollTop
       })
-      .to(node, exit.length, swipeTopDirection(direction));
+      .to(node, exit.length, swipeTopDirection(direction))
+      .set(node, { overflowY: "initial" });
   } else {
     return new TimelineMax()
       .set(node, {
@@ -74,7 +76,8 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
         height: "100vh",
         scrollTop: scrollTop
       })
-      .to(node, exit.length, swipeBottomDirection(direction, true));
+      .to(node, exit.length, swipeBottomDirection(direction, true))
+      .set(node, { overflowY: "initial" });
   }
 };
 
