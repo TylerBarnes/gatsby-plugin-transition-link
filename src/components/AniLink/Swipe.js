@@ -102,7 +102,7 @@ export default function SwipeOver(props) {
         zIndex: exitZ
       }}
       entry={{
-        length: 1,
+        length: .2,
         trigger: ({ node, exit }) =>
           swipe({
             node,
