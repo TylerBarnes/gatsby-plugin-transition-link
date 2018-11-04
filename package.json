@@ -1,11 +1,24 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A link component for page transitions in gatsby.",
-  "homepage": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
+  "repository": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
+  "homepage": "https://gatsby-plugin-transition-link.netlify.com/",
+  "bugs": {
+    "url": "https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "animation",
+    "page transitions",
+    "gsap",
+    "css",
+    "react animation",
+  ],
   "main": "index.js",
-  "author": "Tyler Barnes",
-  "license": "ISC",
+  "author": "Tyler Barnes <tyler@known.design>",
+  "license": "MIT",
   "scripts": {
     "develop": "cp -rf package.json src && cd example && gatsby develop",
     "copy-npm-files": "cp -rf package.json lib && cp -rf readme.md lib",
