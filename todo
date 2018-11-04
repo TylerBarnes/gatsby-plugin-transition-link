@@ -31,8 +31,8 @@
     ✔ cover swipe up, left, right, down @done(18-11-03 17:12)
     ✔ export component AniLink for default transitions from transition-link @done(18-11-03 21:21)
 ✔ prevent browser history buttons from triggering trigger functions @done(18-11-03 15:27)
-☐ rename gatsby-plugin-transition-link to transition-link
-☐ release v1
+✘ rename gatsby-plugin-transition-link to transition-link @cancelled(18-11-03 22:27)
+✔ release v1 @done(18-11-03 22:27)
 ☐ update docs / create website
     ☐ new api
     ☐ add a visual timeline of events in, for, trigger, state, and when they happen
