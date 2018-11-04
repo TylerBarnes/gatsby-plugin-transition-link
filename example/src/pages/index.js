@@ -3,6 +3,7 @@ import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Swipe from 'gatsby-plugin-transition-link/default-transitions/Swipe'
+import Cover from 'gatsby-plugin-transition-link/default-transitions/Cover'
 
 import PaintDrip from 'gatsby-plugin-transition-link/default-transitions/PaintDrip'
 
@@ -59,6 +60,10 @@ class Index extends Component {
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
           <TransitionLink to="/page-2">Go to page 2 normally</TransitionLink>
+          <br />
+          <Cover to="/page-2" direction="right">
+            Go to page 2 with a cover right
+          </Cover>
           <br />
           <Swipe to="/page-2">Go to page 2 with a swipe default</Swipe>
           <br />

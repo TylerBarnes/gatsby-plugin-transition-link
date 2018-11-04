@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TransitionLink, {
   TransitionPortal
 } from "gatsby-plugin-transition-link";
-import { TimelineMax } from "gsap";
+import { TimelineMax, Power1 } from "gsap";
 
 export default class Cover extends Component {
   constructor(props) {
@@ -14,66 +14,82 @@ export default class Cover extends Component {
     this.cover = React.createRef();
   }
 
-  horizontal = ({ props: { length: seconds } }, direction) => {
+  horizontal = ({ node, props: { length: seconds }, direction }) => {
     const directionTo = direction === "left" ? "-100%" : "100%";
     const directionFrom = direction === "left" ? "100%" : "-100%";
 
+    const wait = seconds / 6;
+    const half = (seconds - wait) / 2;
+
     return new TimelineMax()
-      .set(this.transitionCover, { x: directionFrom, display: "block" })
-      .to(this.transitionCover, seconds / 2, {
+      .set(this.cover, { y: 0, x: directionFrom, display: "block" })
+      .to(this.cover, half, {
         x: "0%",
         ease: Power1.easeInOut
       })
-      .set(this.layoutWrapper, { opacity: 0 })
-      .to(this.transitionCover, seconds / 2, {
-        x: directionTo,
-        ease: Power1.easeInOut
-      });
+      .set(node, { opacity: 0 })
+      .to(
+        this.cover,
+        half,
+        {
+          x: directionTo,
+          ease: Power1.easeInOut
+        },
+        `+=${wait}`
+      );
   };
 
-  vertical = ({ props: { length: seconds } }, direction) => {
+  vertical = ({ node, props: { length: seconds }, direction }) => {
     const directionTo = direction === "up" ? "-100%" : "100%";
     const directionFrom = direction === "up" ? "100%" : "-100%";
 
+    const wait = seconds / 6;
+    const half = (seconds - wait) / 2;
+
     return new TimelineMax()
-      .set(this.transitionCover, { y: directionFrom })
-      .to(this.transitionCover, seconds / 2, {
+      .set(this.cover, { y: directionFrom })
+      .to(this.cover, half, {
         y: "0%",
         ease: Power1.easeInOut
       })
-      .set(this.layoutContents, { opacity: 0 })
-      .to(this.transitionCover, seconds / 2, {
-        y: directionTo,
-        ease: Power1.easeIn
-      });
+      .set(node, { opacity: 0 })
+      .to(
+        this.cover,
+        half,
+        {
+          y: directionTo,
+          ease: Power1.easeIn
+        },
+        `+=${wait}`
+      );
   };
 
-  moveInDirection = ({ props, direction, reverse, node }) => {
-    if (direction === "horizontal")
-      return this.horizontal({ props, reverse, node });
+  moveInDirection = ({ props, direction, node }) => {
+    if (direction === "left" || direction === "right")
+      return this.horizontal({ props, direction, node });
 
-    return this.vertical({ props, reverse, node });
+    return this.vertical({ props, direction, node });
   };
 
   render() {
-    const reverse = this.props.reverse ? this.props.reverse : false;
-
+    const direction = this.props.direction || "left";
+    const length = this.props.length || 1;
     return (
       <>
         <TransitionLink
-          to={props.to}
+          to={this.props.to}
           exit={{
-            length: 0.4,
+            length: length,
             trigger: ({ exit, node }) =>
-              this.moveInDirection({ props: exit, node, reverse })
+              this.moveInDirection({ props: exit, node, direction })
           }}
           entry={{
-            delay: 0.2,
+            delay: length / 2,
             trigger: ({ entry, node }) =>
-              this.moveInDirection({ props: entry, node, reverse })
+              this.moveInDirection({ props: entry, node, direction })
           }}
         >
-          {props.children}
+          {this.props.children}
         </TransitionLink>
 
         <TransitionPortal>

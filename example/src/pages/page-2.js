@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import Swipe from 'gatsby-plugin-transition-link/default-transitions/Swipe'
+import Cover from 'gatsby-plugin-transition-link/default-transitions/Cover'
 import Layout from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
@@ -79,6 +80,10 @@ export default class SecondPage extends Component {
               </h1>
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
+              <br />
+              <Cover to="/" direction="up">
+                Go home with a cover left
+              </Cover>
               <br />
               <Swipe to="/">Go home with a swipe default</Swipe>
               <br />
