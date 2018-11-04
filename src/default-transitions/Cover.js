@@ -84,9 +84,7 @@ export default class Cover extends Component {
               this.moveInDirection({ props: exit, node, direction })
           }}
           entry={{
-            delay: length / 2,
-            trigger: ({ entry, node }) =>
-              this.moveInDirection({ props: entry, node, direction })
+            delay: length / 2
           }}
         >
           {this.props.children}
