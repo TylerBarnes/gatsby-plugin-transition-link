@@ -1,5 +1,7 @@
 import { navigate } from "gatsby";
 import random from "lodash/random";
+import { setTimeout } from "requestanimationframe-timer";
+import { getMs } from "./secondsMs";
 
 const triggerTransition = ({
   to,
@@ -10,6 +12,7 @@ const triggerTransition = ({
   transitionIdHistory,
   updateContext
 }) => {
+  event.persist();
   event.preventDefault();
 
   if (inTransition) return false;
@@ -25,43 +28,41 @@ const triggerTransition = ({
     length: exitLength = 0,
     delay: exitDelay = 0,
     state: exitState = {},
-    trigger: exitTrigger = false
+    trigger: exitTrigger = () => {}
   } = exit;
   const {
     length: entryLength = 0,
     delay: entryDelay = 0,
     state: entryState = {},
-    trigger: entryTrigger = false
+    trigger: entryTrigger = () => {}
   } = entry;
 
   updateContext({
     entryLength: entryLength,
     entryDelay: entryDelay,
     exitLength: exitLength,
-    exitDelay: exitDelay
+    exitDelay: exitDelay,
+    entryProps: entry,
+    exitProps: exit,
+    exitTrigger: (exit, node, e) => exitTrigger(exit, node, e),
+    entryTrigger: (entry, node, e) => entryTrigger(entry, node, e),
+    e: event
   });
-
-  exitTrigger && exitTrigger(exit);
 
   setTimeout(() => {
     // after exitDelay
     const transitionId = random(10000, 99999, false);
-    navigate(to, {
-      state: { transitionId: transitionId }
-    });
+    navigate(to, { state: { transitionId: transitionId } });
     updateContext({
       exitState: exitState,
       transitionIdHistory: [...transitionIdHistory, transitionId]
     });
-  }, exitDelay);
+  }, getMs(exitDelay));
 
   setTimeout(() => {
-    // wait for entryDelay before we trigger our entry function and add entry state
-    entryTrigger && entryTrigger(entry);
-    updateContext({
-      entryState: entryState
-    });
-  }, exitDelay + entryDelay);
+    // wait for entryDelay before we add entry state
+    updateContext({ entryState: entryState });
+  }, getMs(exitDelay + entryDelay));
 
   // reset animation times so they dont apply when using browser back/forward.
   //  this will be replaced with a better solution in the future
@@ -74,7 +75,7 @@ const triggerTransition = ({
         exitLength: 0,
         inTransition: false
       }),
-    exitDelay + entryDelay + entryLength
+    getMs(exitDelay + entryDelay + entryLength + exitLength)
   );
 };
 
