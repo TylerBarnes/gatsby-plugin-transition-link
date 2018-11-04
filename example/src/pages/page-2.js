@@ -81,7 +81,7 @@ export default class SecondPage extends Component {
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
               <br />
-              <Cover to="/" direction="up">
+              <Cover to="/" direction="left">
                 Go home with a cover left
               </Cover>
               <br />

@@ -4,29 +4,35 @@ import { TimelineMax, Power1 } from "gsap";
 
 const boxShadow = "0 0 100px 10px rgba(0, 0, 0, 0.12941176470588237)";
 
-const swipeTopDirection = direction => {
+const swipeTopDirection = (direction, reverse) => {
+  const polarityPos = reverse ? "-" : "+";
+  const polarityNeg = reverse ? "+" : "-";
+
   switch (direction) {
     case "down":
-      return { y: "+=100vh", ease: Power1.easeIn };
+      return { y: `${polarityPos}=100vh`, ease: Power1.easeIn };
     case "up":
-      return { y: "-=100vh", ease: Power1.easeIn };
+      return { y: `${polarityNeg}=100vh`, ease: Power1.easeIn };
     case "left":
-      return { x: "-=100%", ease: Power1.easeIn };
+      return { x: `${polarityNeg}=100%`, ease: Power1.easeIn };
     default:
-      return { x: "+=100%", ease: Power1.easeIn };
+      return { x: `${polarityPos}=100%`, ease: Power1.easeIn };
   }
 };
 
-const swipeBottomDirection = direction => {
+const swipeBottomDirection = (direction, reverse) => {
+  const polarityPos = reverse ? "-" : "";
+  const polarityNeg = reverse ? "" : "-";
+
   switch (direction) {
     case "down":
-      return { y: "-40vh", ease: Power1.easeIn };
+      return { y: `${polarityNeg}40vh`, ease: Power1.easeIn };
     case "up":
-      return { y: "40vh", ease: Power1.easeIn };
+      return { y: `${polarityPos}40vh`, ease: Power1.easeIn };
     case "left":
-      return { x: "40%", ease: Power1.easeIn };
+      return { x: `${polarityPos}40%`, ease: Power1.easeIn };
     default:
-      return { x: "-40%", ease: Power1.easeIn };
+      return { x: `${polarityNeg}40%`, ease: Power1.easeIn };
   }
 };
 
@@ -44,7 +50,7 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
         height: "100vh",
         scrollTop: scrollTop
       })
-      .from(node, exit.length, swipeTopDirection(direction));
+      .from(node, exit.length, swipeTopDirection(direction, true));
   } else if (triggerName === "entry") {
     return new TimelineMax().from(
       node,
@@ -68,7 +74,7 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
         height: "100vh",
         scrollTop: scrollTop
       })
-      .to(node, exit.length, swipeBottomDirection(direction));
+      .to(node, exit.length, swipeBottomDirection(direction, true));
   }
 };
 
