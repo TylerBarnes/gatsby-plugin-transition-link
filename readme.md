@@ -4,10 +4,10 @@
 
 TransitionLink provides a simple api for describing expressive transitions between pages in [Gatsbyjs](https://www.gatsbyjs.org/).
 
-- trigger functions, access dom nodes, set state, and set delays on page exit & entry using `<TransitionLink />`
-- Access transition state and status using `<TransitionState />` or directly from your page/template props
-- display animation content above your site with `<TransitionPortal />`
-- use default transitions with `<AniLink />`
+- Create function or state based transitions with `<TransitionLink />`
+- Access transition state and status with `<TransitionState />` or in your page/template props
+- Display animation content above your pages with `<TransitionPortal />`
+- Use default transitions with `<AniLink />`
   - Fade
   - Swipe
   - Cover
@@ -49,6 +49,12 @@ module.exports = {
 ## Default transitions with the AniLink component
 
 The real magic is in making your own custom animations with TransitionLink but you can get started easily with default transitions using AniLink.
+
+**Defaults:**
+- fade
+- swipe
+- cover
+- paintDrip
 
 Install [gsap](https://greensock.com/)
 
@@ -107,13 +113,6 @@ To set the background of the overlay in the Cover transition, use the `bg` prop.
 </AniLink>
 ```
 
-
-**Available defaults:**
-
-- fade
-- swipe
-- cover
-- paintDrip
 
 [Check out the default transitions here](http://gatsby-plugin-transition-link.netlify.com)
 
