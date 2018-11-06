@@ -2539,7 +2539,7 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-color-convert@^1.9.0, color-convert@^1.9.1, color-convert@^1.9.3:
+color-convert@^1.9.0, color-convert@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
@@ -4546,10 +4546,10 @@ gatsby-plugin-remove-serviceworker@^1.0.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-serviceworker/-/gatsby-plugin-remove-serviceworker-1.0.0.tgz#9fb433bc8bd766e14e1d3711c4ac6f051e1dff7c"
   integrity sha1-n7QzvIvXZuFOHTcRxKxvBR4d/3w=
 
-gatsby-plugin-transition-link@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-transition-link/-/gatsby-plugin-transition-link-1.0.1.tgz#bf40e8027aa6fef9a5adda4d8f5814a1bd26f45b"
-  integrity sha512-rf8cuH1nWhPTxWiglMDryJdlmiax1FdLhsbvsB+QIIqkmkPsDa7fby7NOQ9mJQYdEyG42kCqQvRysgzhB/bZ4Q==
+gatsby-plugin-transition-link@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-transition-link/-/gatsby-plugin-transition-link-1.0.4.tgz#dcc996d998c111b4ebf2a838e1fc5e4413d5e907"
+  integrity sha512-LkB3mTgIOhy62ayYHe3mM7/Y9fsvhoCG+jprb/rfPXmiCgFFpg8DwCiL86At3g59K9hBrGg300nRgEe8iQFOsg==
   dependencies:
     react "^16.6.0"
     react-transition-group "^2.5.0"
