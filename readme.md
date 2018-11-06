@@ -15,6 +15,19 @@ TransitionLink provides a simple api for describing expressive transitions betwe
 
 [Check out some examples.](https://gatsby-plugin-transition-link.netlify.com/)
 
+## Table of contents
+
+- [Installation](#installation)
+- [AniLink](#default-transitions-with-the-anilink-component)
+- [TransitionLink](#the-transitionlink-component)
+  - [Trigger function transitions](#trigger-functions)
+  - [State transitions](#state-transitions)
+- [TransitionPortal](#the-transitionportal-component)
+- [Timeline of events](#the-transitionlink-timeline-of-events)
+- [Usage with `gatsby-plugin-layout`](#usage-with-gatsby-plugin-layout)
+
+
+
 ## Installation
 
 ```bash
