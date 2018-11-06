@@ -317,27 +317,36 @@ Here's a very primitive diagram!
 
 ![alt text](https://raw.githubusercontent.com/TylerBarnes/gatsby-plugin-transition-link/master/images/gatsby-plugin-transition-link-timeline.png "Gatsby Plugin Transition Link animation timeline")
 
-## Conflicts
+## Usage with `gatsby-plugin-layout`
 
-TransitionLink uses the `wrapPageElement` hook to add the necessary components. If another plugin prevents transitions from working properly by using the same hook, you can wrap TransitionHandler around pages yourself. This may be a problem when using `gatsby-plugin-layout` and can be solved like so:
+The order of the two plugins makes a difference.
 
-Wrap TransitionHandler directly around the page element.
+### If you want transitions to apply to your layout 
+
+`gatsby-plugin-transition-link` should come after `gatsby-plugin-layout` in gatsby-config.js.
 
 ```jsx
-import { TransitionHandler } from "gatsby-plugin-transition-link";
-
-const Layout = ({ element, location }) => (
-  <LayoutRelatedComponents>
-    <Menu />
-    <TransitionHandler location={props.location}>{element}</TransitionHandler>
-  </LayoutRelatedComponents>
-);
+module.exports = {
+    plugins: [
+      `gatsby-plugin-layout`,
+      `gatsby-plugin-transition-link`
+    ]
+];
 ```
 
-TransitionHandler needs to be outside the page component though, not inside it. If you're using v2 style layouts as components, that's not the place to put TransitionHandler. You can put it in the `wrapPageElement` or `wrapRootElement` hooks. For most projects adding it to gatsby-config.js should work.
+### If you don't want transitions to apply to your layout 
 
-## Peace and Love!
+`gatsby-plugin-transition-link` should come before `gatsby-plugin-layout` in gatsby-config.js.
 
-🌎🌏✌️❤️🐄
+```jsx
+module.exports = {
+    plugins: [
+      `gatsby-plugin-transition-link`,
+      `gatsby-plugin-layout`
+    ]
+];
+```
 
-Please let me know what you think. Feature requests and PR's are welcome!
+## 🌎🌏✌️❤️🐄
+
+Feature requests and PR's are welcome! If you're having a problem please leave an issue and I'll help you out asap.
