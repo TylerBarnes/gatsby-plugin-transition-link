@@ -3,6 +3,7 @@ module.exports = {
     title: 'Transition Link example using gsap',
   },
   plugins: [
+    'gatsby-plugin-ngrok-tunneling',
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-manifest`,

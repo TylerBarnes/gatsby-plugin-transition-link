@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "A link component for page transitions in gatsby.",
   "repository": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "homepage": "https://gatsby-plugin-transition-link.netlify.com/",
@@ -34,9 +34,10 @@
     "rimraf": "^2.6.2"
   },
   "dependencies": {
+    "color-convert": "^1.9.3",
+    "polyfill-array-includes": "^1.0.0",
     "react": "^16.6.0",
     "react-transition-group": "^2.5.0",
-    "requestanimationframe-timer": "^1.0.4",
-    "color-convert": "^1.9.3"
+    "requestanimationframe-timer": "^1.0.4"
   }
 }
