@@ -22,7 +22,7 @@ export default function delayTransitionRender(WrappedComponent) {
     }
 
     render() {
-      return this.state.shouldRender ? (
+      return this.state.shouldRender || typeof window === `undefined` ? (
         <WrappedComponent {...this.props} />
       ) : null;
     }

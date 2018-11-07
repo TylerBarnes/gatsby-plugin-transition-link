@@ -33,7 +33,10 @@ const PortalContainer = props => {
 export default class TransitionPortal extends Component {
   constructor() {
     super();
-    this.el = document.createElement("section");
+    this.el =
+      typeof document !== `undefined`
+        ? document.createElement("section")
+        : false;
   }
 
   componentDidMount = () => {
@@ -45,15 +48,17 @@ export default class TransitionPortal extends Component {
   };
 
   render() {
-    return ReactDOM.createPortal(
-      <>
-        {portalRoot && (
-          <PortalContainer styles={this.props.css} level={this.props.level}>
-            {this.props.children}
-          </PortalContainer>
-        )}
-      </>,
-      this.el
-    );
+    return this.el && portalRoot
+      ? ReactDOM.createPortal(
+          <>
+            {portalRoot && (
+              <PortalContainer styles={this.props.css} level={this.props.level}>
+                {this.props.children}
+              </PortalContainer>
+            )}
+          </>,
+          this.el
+        )
+      : null;
   }
 }
