@@ -1,3 +1,5 @@
+import "polyfill-array-includes";
+
 const returnTransitionState = ({
   location,
   transitionIdHistory,
