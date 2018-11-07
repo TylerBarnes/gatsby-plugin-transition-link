@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "A link component for page transitions in gatsby.",
   "repository": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "homepage": "https://gatsby-plugin-transition-link.netlify.com/",
@@ -16,14 +16,14 @@
     "css",
     "react animation"
   ],
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "Tyler Barnes <tyler@known.design>",
   "license": "MIT",
   "scripts": {
     "develop": "cp -rf package.json src && cd example && gatsby develop",
     "copy-npm-files": "cp -rf package.json lib && cp -rf readme.md lib",
     "clean-lib": "node_modules/.bin/rimraf ./lib",
-    "build": "rm src/package.json || true && yarn clean-lib && babel src --out-dir lib --ignore __tests__ && yarn copy-npm-files"
+    "build": "rm src/package.json || true && yarn clean-lib && babel --preset preset-env src --out-dir lib --ignore __tests__ && yarn copy-npm-files"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
