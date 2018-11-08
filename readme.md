@@ -331,33 +331,19 @@ Here's a very primitive diagram!
 
 ## Usage with `gatsby-plugin-layout`
 
-The order of the two plugins makes a difference.
+Since it was finicky / hard getting layouts to work properly with this plugin (and even with no errors, transitions weren't working), I've integrated the code from gatsby-plugin-layout into this plugin.
 
-### If you want transitions to apply to your layout 
+Usage:
 
-`gatsby-plugin-transition-link` should come after `gatsby-plugin-layout` in gatsby-config.js.
-
-```jsx
-module.exports = {
-    plugins: [
-      `gatsby-plugin-layout`,
-      `gatsby-plugin-transition-link`
-    ]
-];
+```javascript
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+        layout: require.resolve(`./src/components/Layout.jsx`)
+      }
+    }
 ```
 
-### If you don't want transitions to apply to your layout 
-
-`gatsby-plugin-transition-link` should come before `gatsby-plugin-layout` in gatsby-config.js.
-
-```jsx
-module.exports = {
-    plugins: [
-      `gatsby-plugin-transition-link`,
-      `gatsby-plugin-layout`
-    ]
-];
-```
 
 ## 🌎🌏✌️❤️🐄
 
