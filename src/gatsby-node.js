@@ -3,7 +3,7 @@ const path = require(`path`);
 let didRunAlready = false;
 let absoluteComponentPath;
 
-exports.onPreInit = ({ store }, { layoutComponent: component }) => {
+exports.onPreInit = ({ store }, { layout: component }) => {
   if (!component) {
     component = false;
   }
