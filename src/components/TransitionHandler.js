@@ -6,6 +6,8 @@ import delayTransitionRender from "./delayTransitionRender";
 import { returnTransitionState } from "../utils/returnTransitionState";
 import { Location } from "@reach/router";
 import { getMs } from "../utils/secondsMs";
+import { onEnter } from "../functions/onEnter";
+import { onExit } from "../functions/onExit";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
@@ -41,41 +43,27 @@ export default class TransitionHandler extends Component {
                       enter: getMs(entryLength),
                       exit: getMs(exitLength)
                     }}
-                    onEnter={node => {
-                      // fix scroll jumping when navigating with browser buttons
-                      if (typeof action !== `undefined` && action !== "PUSH") {
-                        const storageKey = `@@scroll|${pathname}`;
-                        const savedPosition = sessionStorage.getItem(
-                          storageKey
-                        );
-                        window.scrollTo(...JSON.parse(savedPosition));
-                      } else {
-                        window.scrollTo(0, 0);
-                      }
-
-                      if (!inTransition) return;
-
-                      entryTrigger &&
-                        typeof entryTrigger === "function" &&
-                        entryTrigger({
-                          entry: entryProps,
-                          exit: exitProps,
-                          node,
-                          e
-                        });
-                    }}
-                    onExit={node => {
-                      if (!inTransition) return;
-
-                      exitTrigger &&
-                        typeof exitTrigger === "function" &&
-                        exitTrigger({
-                          entry: entryProps,
-                          exit: exitProps,
-                          node,
-                          e
-                        });
-                    }}
+                    onEnter={node =>
+                      onEnter({
+                        node,
+                        action,
+                        inTransition,
+                        entryTrigger,
+                        entryProps,
+                        exitProps,
+                        e
+                      })
+                    }
+                    onExit={node =>
+                      onExit({
+                        node,
+                        inTransition,
+                        exitTrigger,
+                        entryProps,
+                        exitProps,
+                        e
+                      })
+                    }
                   >
                     {transitionStatus => {
                       const transitionState = returnTransitionState({
