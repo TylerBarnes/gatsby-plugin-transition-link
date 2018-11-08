@@ -8,6 +8,7 @@ import { Location } from "@reach/router";
 import { getMs } from "../utils/secondsMs";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
+import { LayoutComponent as Layout } from "./Layout";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
@@ -31,12 +32,13 @@ export default class TransitionHandler extends Component {
           inTransition,
           e
         }) => {
+          // console.log(GATSBY_LAYOUT_COMPONENT_PATH);
           return (
             <Location>
               {({ location: { action, pathname } }) => (
                 <TransitionGroup>
                   <DelayedTransition
-                    key={props.location.pathname}
+                    key={pathname}
                     // we're using seconds but transitiongroup uses ms
                     delay={getMs(entryDelay)}
                     timeout={{
@@ -109,7 +111,9 @@ export default class TransitionHandler extends Component {
                           }}
                         >
                           <PublicProvider value={{ ...transitionState }}>
-                            {childWithTransitionState}
+                            <Layout {...props} {...transitionState}>
+                              {childWithTransitionState}
+                            </Layout>
                           </PublicProvider>
                         </div>
                       );
