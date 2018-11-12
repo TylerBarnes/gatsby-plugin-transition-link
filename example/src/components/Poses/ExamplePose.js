@@ -19,7 +19,7 @@ export default class Example extends React.Component {
               <TransitionLink
                 to={props.to}
                 exit={{ length: 0.5 }}
-                entry={{ length: 0.5, delay: 0.5 }}
+                entry={{ delay: 0.5 }}
               >
                 <Box
                   className="box"
