@@ -19,6 +19,12 @@ module.exports = {
     },
     // 'gatsby-plugin-offline',
     'gatsby-plugin-remove-serviceworker',
-    'gatsby-plugin-transition-link',
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: false,
+      },
+    },
+    // 'gatsby-plugin-transition-link',
   ],
 }
