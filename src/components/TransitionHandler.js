@@ -52,6 +52,7 @@ export default class TransitionHandler extends Component {
                           entryTrigger,
                           entryProps,
                           exitProps,
+                          pathname,
                           e
                         })
                       }
