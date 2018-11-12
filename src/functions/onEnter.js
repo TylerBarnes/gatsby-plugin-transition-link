@@ -5,6 +5,7 @@ const onEnter = ({
   entryTrigger,
   entryProps,
   exitProps,
+  pathname,
   e
 }) => {
   // fix scroll jumping when navigating with browser buttons
