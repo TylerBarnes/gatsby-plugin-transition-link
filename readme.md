@@ -26,8 +26,6 @@ TransitionLink provides a simple api for describing expressive transitions betwe
 - [Timeline of events](#the-transitionlink-timeline-of-events)
 - [Usage with `gatsby-plugin-layout`](#usage-with-gatsby-plugin-layout)
 
-
-
 ## Installation
 
 ```bash
@@ -51,6 +49,7 @@ module.exports = {
 The real magic is in making your own custom animations with TransitionLink but you can get started easily with default transitions using AniLink.
 
 **Defaults:**
+
 - fade
 - swipe
 - cover
@@ -65,7 +64,7 @@ npm i gsap
 ```
 
 ```javascript
-import { AniLink } from "gatsby-plugin-transition-link";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 ```
 
 Add a transition name as a blank prop
@@ -94,7 +93,6 @@ For directional transitions use left, right, up, or down.
 
 To set the colour of the overlay with PaintDrip, use either the hex or color props. `hex` takes a hex colour value and `color` takes a colour keyword such as black.
 
-
 ```jsx
 <AniLink paintDrip to="page-3" color="rebeccapurple">
   Go to Page 3
@@ -106,13 +104,11 @@ To set the colour of the overlay with PaintDrip, use either the hex or color pro
 
 To set the background of the overlay in the Cover transition, use the `bg` prop. bg forwards through an assignment for the css background property. This allows you to set a colour or use a background image if you'd like.
 
-
 ```jsx
 <AniLink cover to="page-3" bg="#663399">
   Go to Page 3
 </AniLink>
 ```
-
 
 [Check out the default transitions here](http://gatsby-plugin-transition-link.netlify.com)
 
@@ -126,7 +122,7 @@ import TransitionLink from "gatsby-plugin-transition-link";
 
 There are props for controlling the exiting page `exit={{}}` and props for controlling the entering page `entry={{}}`.
 
-Each can optionally take a delay, length, transition state, and a trigger function. 
+Each can optionally take a delay, length, transition state, and a trigger function.
 Below is an example of the defaults.
 
 ```jsx
@@ -145,15 +141,16 @@ entry={{
   zIndex: 1
 }}
 ```
-__Note__: the entering page will always be assigned a z-index of 1 while the exiting page will get 0. You can override this yourself if you want your exiting page to sit on top.
+
+**Note**: the entering page will always be assigned a z-index of 1 while the exiting page will get 0. You can override this yourself if you want your exiting page to sit on top.
 
 Below is an example of TransitionLink in use.
+
 ```jsx
 <TransitionLink
   to="/page-2"
   exit={{
-    trigger: ({ exit, node }) =>
-      this.verticalAnimation(exit, node),
+    trigger: ({ exit, node }) => this.verticalAnimation(exit, node),
     length: 1,
     zIndex: 2
   }}
@@ -166,7 +163,8 @@ Below is an example of TransitionLink in use.
   Go to page 2
 </TransitionLink>
 ```
-__Note__: All time values are in seconds.
+
+**Note**: All time values are in seconds.
 
 ### The two main ways to use the TransitionLink component
 
@@ -202,30 +200,30 @@ entry={{
 this will log the DOM node of the exiting page and then log the node of the entering page 1 second later:
 
 ```jsx
-exit={{ 
-  trigger: ({node}) => console.log(node, "this is the exiting page's DOM node") 
+exit={{
+  trigger: ({node}) => console.log(node, "this is the exiting page's DOM node")
 }}
-entry={{ 
-  delay: 1, 
-  trigger: ({node}) => console.log(node, "this is the entering page's DOM node") 
+entry={{
+  delay: 1,
+  trigger: ({node}) => console.log(node, "this is the entering page's DOM node")
 }}
 ```
 
 **e** is the event passed through from the users mouse click.
 
 ```jsx
-exit={{ 
-  trigger: ({e}) => console.log(e) 
+exit={{
+  trigger: ({e}) => console.log(e)
 }}
-entry={{ 
-  trigger: ({e}) => console.log(e) 
+entry={{
+  trigger: ({e}) => console.log(e)
 }}
 ```
 
 If you dont need to pass any more arguments to your trigger functions, you can pass them in with no arguments and all of the built in arguments will be passed through.
 
 ```jsx
-exit={{ 
+exit={{
   trigger: this.exitAnimation
 }}
 
@@ -264,26 +262,32 @@ import { TransitionState } from "gatsby-plugin-transition-link";
 In addition to exposing the exit and entry state, TransitionState also exposes the current transition status of the page the component is a child of.
 
 The transition statuses are:
+
 - Entering
 - Entered
 - Exiting
 - Exited
 
 ### Accessing state and status from pages / templates
-Your pages and templates will receive three props: 
+
+Your pages and templates will receive three props:
+
 - transitionStatus
 - entryState
 - exitState
 
 ```jsx
-const PageOrTemplate = ({ children, transitionStatus, entryState, exitState }) => (
-  <div className={transitionStatus}>{children}</div>
-);
+const PageOrTemplate = ({
+  children,
+  transitionStatus,
+  entryState,
+  exitState
+}) => <div className={transitionStatus}>{children}</div>;
 ```
 
 ## The TransitionPortal component
 
-If you have some animation elements which need to sit ontop of both pages, you can use TransitionPortal which is a standard React portal. 
+If you have some animation elements which need to sit ontop of both pages, you can use TransitionPortal which is a standard React portal.
 
 ```jsx
 import { TransitionPortal } from "gatsby-plugin-transition-link";
@@ -343,7 +347,6 @@ Usage:
       }
     }
 ```
-
 
 ## 🌎🌏✌️❤️🐄
 
