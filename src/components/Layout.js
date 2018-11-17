@@ -3,7 +3,10 @@ const React = require("react");
 const preferDefault = m => (m && m.default) || m;
 let Layout;
 
-if (!!GATSBY_LAYOUT_COMPONENT_PATH) {
+if (
+  typeof GATSBY_LAYOUT_COMPONENT_PATH !== `undefined` &&
+  !!GATSBY_LAYOUT_COMPONENT_PATH
+) {
   try {
     Layout = preferDefault(require(GATSBY_LAYOUT_COMPONENT_PATH));
   } catch (e) {
