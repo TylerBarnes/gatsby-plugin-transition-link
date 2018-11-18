@@ -24,7 +24,7 @@ TransitionLink provides a simple api for describing expressive transitions betwe
   - [State based transitions](#state-transitions)
 - [TransitionPortal](#the-transitionportal-component)
 - [Timeline of events](#the-transitionlink-timeline-of-events)
-- [Usage with `gatsby-plugin-layout`](#usage-with-gatsby-plugin-layout)
+- [Usage with persistent layouts](#usage-with-persistent-layouts)
 
 ## Installation
 
@@ -333,9 +333,9 @@ Here's a very primitive diagram!
 
 ![alt text](https://raw.githubusercontent.com/TylerBarnes/gatsby-plugin-transition-link/master/images/gatsby-plugin-transition-link-timeline.png "Gatsby Plugin Transition Link animation timeline")
 
-## Usage with `gatsby-plugin-layout`
+## Usage with persistent layouts
 
-Since it was finicky / hard getting layouts to work properly with this plugin (and even with no errors, transitions weren't working), I've integrated the code from gatsby-plugin-layout into this plugin.
+Since it was finicky / hard getting layouts to work properly using `gatsby-plugin-layout` or Gatsby browser apis, I've integrated the code from gatsby-plugin-layout into this plugin.
 
 Usage:
 
