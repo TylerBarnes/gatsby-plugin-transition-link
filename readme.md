@@ -335,7 +335,7 @@ Here's a very primitive diagram!
 
 ## Usage with persistent layouts
 
-Since it was finicky / hard getting layouts to work properly using `gatsby-plugin-layout` or Gatsby browser apis, I've integrated the code from gatsby-plugin-layout into this plugin.
+Since it was finicky / hard getting layouts to work properly using `gatsby-plugin-layout` or Gatsby browser apis, I've integrated the code from gatsby-plugin-layout into this plugin. If you're trying to use TransitionLink in your layout and you're getting an error about missing context, using this option will solve your problem.
 
 Usage:
 
