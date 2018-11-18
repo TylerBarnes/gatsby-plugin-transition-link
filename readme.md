@@ -2,7 +2,7 @@
 
 # Gatsby Plugin Transition Link
 
-TransitionLink provides a simple api for describing expressive transitions between pages in [Gatsbyjs](https://www.gatsbyjs.org/).
+TransitionLink provides a simple api for describing expressive transitions between pages in [Gatsbyjs](https://www.gatsbyjs.org/). Page links are used to determine which transition should fire, making page transitions flexible and easy to use.
 
 - Create function or state based transitions with `<TransitionLink />`
 - Access transition state and status with `<TransitionState />` or in your page/template props
