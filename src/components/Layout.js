@@ -1,7 +1,7 @@
 const React = require("react");
 
 const preferDefault = m => (m && m.default) || m;
-let Layout;
+let Layout = false;
 
 if (
   typeof GATSBY_LAYOUT_COMPONENT_PATH !== `undefined` &&
@@ -25,7 +25,7 @@ if (
 }
 
 const LayoutComponent = ({ children, ...props }) => {
-  if (GATSBY_LAYOUT_COMPONENT_PATH) {
+  if (Layout) {
     return <Layout {...props}>{children}</Layout>;
   } else {
     return children;
