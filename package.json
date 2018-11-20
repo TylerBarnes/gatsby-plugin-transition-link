@@ -20,10 +20,14 @@
   "author": "Tyler Barnes <tyler@known.design>",
   "license": "MIT",
   "scripts": {
-    "copy-files": "cp .eslintrc.json lib",
+    "copy-files": "mkdir lib || true && cp .eslintrc.json package.json lib",
     "build": "yarn copy-files && babel src --out-dir lib --ignore **/__tests__",
     "watch": "yarn copy-files && babel -w src --out-dir lib --ignore **/__tests__",
-    "prepare": "cross-env NODE_ENV=production npm run build"
+    "prepare": "cross-env NODE_ENV=production yarn build",
+    "publish": "yarn copy-files && cd lib && npm publish && cd ../",
+    "publish-patch": "prepare && npx json-bump --patch=1 && publish",
+    "publish-minor": "prepare && npx json-bump --minor=1 && publish",
+    "publish-major": "prepare && npx json-bump --major=1 && publish"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -37,6 +41,7 @@
     "babel-preset-gatsby-package": "^0.1.2",
     "color-convert": "^1.9.3",
     "cross-env": "^5.2.0",
+    "json-bump": "^0.1.3",
     "polyfill-array-includes": "^1.0.0",
     "react": "^16.6.0",
     "react-transition-group": "^2.5.0",
