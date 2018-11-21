@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "A link component for page transitions in gatsby.",
   "repository": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "homepage": "https://gatsby-plugin-transition-link.netlify.com/",
@@ -16,18 +16,18 @@
     "css",
     "react animation"
   ],
-  "main": "src/index.js",
+  "main": "index.js",
   "author": "Tyler Barnes <tyler@known.design>",
   "license": "MIT",
   "scripts": {
     "copy-files": "mkdir lib || true && cp .eslintrc.json package.json lib",
     "build": "yarn copy-files && babel src --out-dir lib --ignore **/__tests__",
     "watch": "yarn copy-files && babel -w src --out-dir lib --ignore **/__tests__",
-    "prepare": "cross-env NODE_ENV=production yarn build",
-    "publish": "yarn copy-files && cd lib && npm publish && cd ../",
-    "publish-patch": "prepare && npx json-bump --patch=1 && publish",
-    "publish-minor": "prepare && npx json-bump --minor=1 && publish",
-    "publish-major": "prepare && npx json-bump --major=1 && publish"
+    "prepare-files": "cross-env NODE_ENV=production yarn build",
+    "publish-repo": "yarn copy-files && cd lib && npm publish && cd ../",
+    "publish-patch": "yarn prepare-files && npx json-bump --patch=1 package.json && yarn publish-repo",
+    "publish-minor": "yarn prepare-files && npx json-bump --minor=1 package.json && yarn publish-repo",
+    "publish-major": "yarn prepare-files && npx json-bump --major=1 package.json && yarn publish-repo"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
