@@ -1,10 +1,9 @@
 {
   "presets": [
-    "@babel/preset-react",
     [
-      "@babel/preset-env",
+      "babel-preset-gatsby-package",
       {
-        "useBuiltIns": "entry"
+        "browser": true
       }
     ]
   ],

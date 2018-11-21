@@ -5,3 +5,4 @@ yarn-error.log
 src/package.json
 src/package-lock.json
 src/yarn-lock.json
+/*.js
