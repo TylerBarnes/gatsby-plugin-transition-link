@@ -22,6 +22,7 @@ export default class PaintDrip extends Component {
     rgb = color ? convert.keyword.rgb(color) : rgb;
 
     canvas.style.zIndex = 10000;
+    canvas.style.top = 0;
     canvas.style.position = "fixed";
 
     let vw = (canvas.width = window.innerWidth);

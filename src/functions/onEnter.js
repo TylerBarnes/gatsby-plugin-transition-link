@@ -5,8 +5,12 @@ const onEnter = ({
   entryProps,
   exitProps,
   pathname,
+  pageMinHeight,
+  updateContext,
   e
 }) => {
+  pageMinHeight({ node, updateContext });
+
   if (inTransition) {
     window.scrollTo(0, 0);
   } else {
