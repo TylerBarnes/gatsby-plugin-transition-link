@@ -5,7 +5,10 @@ const Consumer = require("./context/createTransitionContext").Consumer;
 
 // eslint-disable-next-line react/prop-types,react/display-name
 module.exports = ({ element, props }) => {
-  const minHeight = sessionStorage.getItem("wrapperMinHeight");
+  const sessionMinHeight =
+    typeof sessionStorage !== "undefined"
+      ? sessionStorage.getItem("wrapperMinHeight")
+      : false;
   return (
     <InternalProvider>
       <Consumer>
@@ -16,7 +19,7 @@ module.exports = ({ element, props }) => {
               zIndex: 0,
               minHeight: wrapperMinHeight
                 ? `${wrapperMinHeight}px`
-                : `${minHeight}px`
+                : `${!!sessionMinHeight ? sessionMinHeight + "px" : false}`
             }}
           >
             <TransitionHandler {...props}>{element}</TransitionHandler>
