@@ -73,8 +73,13 @@ export default class Cover extends Component {
 
   render() {
     const direction = this.props.direction || "left";
-    const length = this.props.length || 1;
-    const { exit: removedExit, entry: removedEntry, ...props } = this.props;
+    const length = this.props.duration || 1;
+    const {
+      exit: removedExit,
+      entry: removedEntry,
+      cover: removedProp,
+      ...props
+    } = this.props;
     return (
       <>
         <TransitionLink
