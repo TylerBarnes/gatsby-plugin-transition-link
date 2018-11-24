@@ -14,7 +14,13 @@ const fade = ({ exit: { length }, node, direction }) => {
   );
 };
 
-export default function Fade({ exit, entry, fade, duration, ...props }) {
+export default function Fade({
+  exit,
+  entry,
+  fade: removedProp,
+  duration,
+  ...props
+}) {
   const length = duration || 0.4;
 
   return (
