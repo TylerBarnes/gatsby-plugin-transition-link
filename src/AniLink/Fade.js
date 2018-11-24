@@ -14,12 +14,8 @@ const fade = ({ exit: { length }, node, direction }) => {
   );
 };
 
-export default function Fade({
-  exit: removedExit,
-  entry: removedEntry,
-  ...props
-}) {
-  const length = props.duration || 0.4;
+export default function Fade({ exit, entry, fade, duration, ...props }) {
+  const length = duration || 0.4;
 
   return (
     <TransitionLink
