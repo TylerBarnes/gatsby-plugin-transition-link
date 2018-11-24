@@ -12,7 +12,7 @@ export default class PaintDrip extends Component {
     this.createRipple = this.createRipple.bind(this);
   }
 
-  createRipple = ({ length }, event, hex, color) => {
+  createRipple = ({ length }, event, hex, color, node) => {
     const body = document.body;
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -54,6 +54,7 @@ export default class PaintDrip extends Component {
       onComplete: () => removeCanvas(seconds / 3)
     })
       .to(ripple, seconds / 4, { alpha: 1 })
+      .set(node, { visibility: "hidden" }, seconds / 1.75)
       .to(
         ripple,
         seconds - seconds / 3,
@@ -117,19 +118,27 @@ export default class PaintDrip extends Component {
   };
 
   render() {
-    const { exit: removedExit, entry: removedEntry, ...props } = this.props;
+    const {
+      exit: removedExit,
+      entry: removedEntry,
+      paintDrip: removedProp,
+      duration,
+      ...props
+    } = this.props;
+    const aniLength = duration || 1;
+    const aniDelay = aniLength / 1.75;
 
     return (
       <>
         <TransitionLink
           exit={{
-            length: 0.6,
-            trigger: ({ exit, e }) =>
-              this.createRipple(exit, e, props.hex, props.color)
+            length: aniLength,
+            trigger: ({ exit, e, node }) =>
+              this.createRipple(exit, e, props.hex, props.color, node)
           }}
           entry={{
-            delay: 0.4,
-            length: 0.6,
+            delay: aniDelay,
+            length: aniLength,
             trigger: ({ entry, node }) => this.slideIn(entry, node, "left")
           }}
           {...props}
