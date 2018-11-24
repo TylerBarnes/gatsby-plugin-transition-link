@@ -14,12 +14,11 @@ const fade = ({ exit: { length }, node, direction }) => {
   );
 };
 
-export default function Fade(props) {
-  const length = props.length || 0.4;
+export default function Fade({ exit, entry, fade, duration, ...props }) {
+  const length = duration || 0.4;
 
   return (
     <TransitionLink
-      to={props.to}
       exit={{
         length: length,
         trigger: ({ exit, node }) => fade({ exit, node, direction: "out" })
@@ -28,6 +27,7 @@ export default function Fade(props) {
         length: length,
         trigger: ({ exit, node }) => fade({ exit, node, direction: "in" })
       }}
+      {...props}
     >
       {props.children}
     </TransitionLink>

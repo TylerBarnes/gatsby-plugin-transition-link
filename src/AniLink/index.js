@@ -13,12 +13,9 @@ export default function DefaultTransition(props) {
       {props.paintDrip && <PaintDrip {...props}>{props.children}</PaintDrip>}
       {props.swipe && <SwipeOver {...props}>{props.children}</SwipeOver>}
 
-      {!props.cover &&
-        !props.fade &&
-        !props.paintDrip &&
-        !props.swipe && (
-          <TransitionLink to={props.to}>{props.children}</TransitionLink>
-        )}
+      {!props.cover && !props.fade && !props.paintDrip && !props.swipe && (
+        <TransitionLink {...props}>{props.children}</TransitionLink>
+      )}
     </>
   );
 }

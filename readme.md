@@ -48,13 +48,6 @@ module.exports = {
 
 The real magic is in making your own custom animations with TransitionLink but you can get started easily with default transitions using AniLink.
 
-**Defaults:**
-
-- fade
-- swipe
-- cover
-- paintDrip
-
 Install [gsap](https://greensock.com/)
 
 ```bash
@@ -67,7 +60,12 @@ npm i gsap
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 ```
 
-Add a transition name as a blank prop
+Add a transition from the defaults as a blank prop
+
+- fade
+- swipe
+- cover
+- paintDrip
 
 ```jsx
 <AniLink fade to="page-4">
@@ -90,6 +88,22 @@ For directional transitions use left, right, up, or down.
   Go to Page 4
 </AniLink>
 ```
+
+For the swipe transition, you can assign wether the entering or exiting page should be on top
+
+```jsx
+<AniLink swipe top="exit" to="page-4">
+  Go to Page 4
+</AniLink>
+```
+
+```jsx
+<AniLink swipe top="entry" to="page-5">
+  Go to Page 5
+</AniLink>
+```
+
+**Note**: for the swipe transition you'll likely need to assign a background color to your pages.
 
 To set the colour of the overlay with PaintDrip, use either the hex or color props. `hex` takes a hex colour value and `color` takes a colour keyword such as black.
 
