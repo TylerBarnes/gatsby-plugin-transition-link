@@ -117,12 +117,11 @@ export default class PaintDrip extends Component {
   };
 
   render() {
-    const { props } = this;
+    const { exit: removedExit, entry: removedEntry, ...props } = this.props;
 
     return (
       <>
         <TransitionLink
-          to={props.to}
           exit={{
             length: 0.6,
             trigger: ({ exit, e }) =>
@@ -133,6 +132,7 @@ export default class PaintDrip extends Component {
             length: 0.6,
             trigger: ({ entry, node }) => this.slideIn(entry, node, "left")
           }}
+          {...props}
         >
           {props.children}
         </TransitionLink>

@@ -74,10 +74,10 @@ export default class Cover extends Component {
   render() {
     const direction = this.props.direction || "left";
     const length = this.props.length || 1;
+    const { exit: removedExit, entry: removedEntry, ...props } = this.props;
     return (
       <>
         <TransitionLink
-          to={this.props.to}
           exit={{
             length: length,
             trigger: ({ exit, node }) =>
@@ -86,6 +86,7 @@ export default class Cover extends Component {
           entry={{
             delay: length / 2
           }}
+          {...props}
         >
           {this.props.children}
         </TransitionLink>

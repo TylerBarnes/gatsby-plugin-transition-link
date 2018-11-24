@@ -81,14 +81,17 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
   }
 };
 
-export default function SwipeOver(props) {
+export default function SwipeOver({
+  exit: removedExit,
+  entry: removedEntry,
+  ...props
+}) {
   const top = props.top || "exit";
   const entryZ = top === "entry" ? 5 : 0;
   const exitZ = top === "exit" ? 5 : 0;
 
   return (
     <TransitionLink
-      to={props.to}
       exit={{
         length: 0.7,
         trigger: ({ node, exit }) =>
@@ -102,7 +105,7 @@ export default function SwipeOver(props) {
         zIndex: exitZ
       }}
       entry={{
-        length: .2,
+        length: 0.2,
         trigger: ({ node, exit }) =>
           swipe({
             node,
@@ -113,6 +116,7 @@ export default function SwipeOver(props) {
           }),
         zIndex: entryZ
       }}
+      {...props}
     >
       {props.children}
     </TransitionLink>
