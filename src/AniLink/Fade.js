@@ -4,7 +4,6 @@ import { TimelineMax } from "gsap";
 
 const fade = ({ exit: { length }, node, direction }) => {
   const duration = direction === "out" ? length + length / 4 : length;
-  console.log(duration);
   const opacity = direction === "in" ? 1 : 0;
   const scrollTop =
     document.scrollingElement.scrollTop ||
