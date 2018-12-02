@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
-const TransitionLink = ({
+export const TransitionLink = ({
   to,
   children,
   exit,
@@ -44,5 +44,3 @@ TransitionLink.propTypes = {
   exitFn: PropTypes.func,
   entryState: PropTypes.object
 };
-
-export { TransitionLink };

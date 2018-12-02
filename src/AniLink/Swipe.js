@@ -1,5 +1,5 @@
 import React from "react";
-import TransitionLink from "gatsby-plugin-transition-link";
+import { TransitionLink } from "../components/TransitionLink";
 import { TimelineMax, Power1 } from "gsap";
 
 const boxShadow = "0 0 100px 10px rgba(0, 0, 0, 0.12941176470588237)";
@@ -81,7 +81,7 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
   }
 };
 
-export default function SwipeOver({
+export function Swipe({
   exit,
   entry,
   swipe: removedProp,

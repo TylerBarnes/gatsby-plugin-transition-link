@@ -30,9 +30,9 @@ const PortalContainer = props => {
   );
 };
 
-export default class TransitionPortal extends Component {
-  constructor() {
-    super();
+export class TransitionPortal extends Component {
+  constructor(props) {
+    super(props);
     this.el =
       typeof document !== `undefined`
         ? document.createElement("section")

@@ -1,3 +1,5 @@
-exports.wrapPageElement = require(`./wrap-page`);
+import wrapPage from "./wrap-page";
+
+exports.wrapPageElement = wrapPage;
 
 exports.shouldUpdateScroll = () => false;

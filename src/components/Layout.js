@@ -1,4 +1,4 @@
-const React = require("react");
+import React from "react";
 
 const preferDefault = m => (m && m.default) || m;
 let Layout = false;

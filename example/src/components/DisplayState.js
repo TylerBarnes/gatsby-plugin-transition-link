@@ -9,7 +9,7 @@ function print_r(o) {
     .replace(/\t/g, '&nbsp;&nbsp;&nbsp;')
 }
 
-function DisplayState() {
+export function DisplayState() {
   return (
     <TransitionState>
       {context =>
@@ -24,5 +24,3 @@ function DisplayState() {
     </TransitionState>
   )
 }
-
-export default DisplayState

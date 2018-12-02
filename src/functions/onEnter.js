@@ -1,4 +1,4 @@
-const onEnter = ({
+export const onEnter = ({
   node,
   inTransition,
   entryTrigger,
@@ -30,5 +30,3 @@ const onEnter = ({
       e
     });
 };
-
-export { onEnter };

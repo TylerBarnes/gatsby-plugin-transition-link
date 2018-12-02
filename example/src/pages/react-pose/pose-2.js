@@ -1,12 +1,8 @@
-import React, { Component } from 'react'
-import Layout from '../../components/layout'
-import Example from '../../components/Poses/ExamplePose'
+import React from 'react'
+import { Layout } from '../../components/layout'
+import { Example } from '../../components/Poses/ExamplePose'
 
-class Index extends Component {
-  constructor(props) {
-    super(props)
-  }
-
+export default class PoseTwo extends React.Component {
   render() {
     return (
       <Layout theme="white">
@@ -16,5 +12,3 @@ class Index extends Component {
     )
   }
 }
-
-export default Index

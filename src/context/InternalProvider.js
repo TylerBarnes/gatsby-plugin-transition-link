@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Provider } from "./createTransitionContext";
 
-class InternalProvider extends Component {
+export class InternalProvider extends Component {
   state = {
     inTransition: false,
     transitionIdHistory: [],
@@ -33,5 +33,3 @@ class InternalProvider extends Component {
 InternalProvider.propTypes = {
   children: PropTypes.node.isRequired
 };
-
-export default InternalProvider;

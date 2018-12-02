@@ -1,6 +1,6 @@
 import "polyfill-array-includes";
 
-const returnTransitionState = ({
+export const returnTransitionState = ({
   location,
   transitionIdHistory,
   inTransition,
@@ -32,5 +32,3 @@ const returnTransitionState = ({
 
   return transitionState;
 };
-
-export { returnTransitionState };

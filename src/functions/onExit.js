@@ -1,4 +1,4 @@
-const onExit = ({
+export const onExit = ({
   node,
   inTransition,
   exitTrigger,
@@ -19,5 +19,3 @@ const onExit = ({
     })
   );
 };
-
-export { onExit };

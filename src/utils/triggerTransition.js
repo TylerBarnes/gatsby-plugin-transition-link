@@ -3,7 +3,7 @@ import random from "lodash/random";
 import { setTimeout } from "requestanimationframe-timer";
 import { getMs } from "./secondsMs";
 
-const triggerTransition = ({
+export const triggerTransition = ({
   to,
   event = null,
   exit = {},
@@ -78,5 +78,3 @@ const triggerTransition = ({
     getMs(exitDelay + entryDelay + entryLength + exitLength)
   );
 };
-
-export { triggerTransition };

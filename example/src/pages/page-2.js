@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
-import Swipe from 'gatsby-plugin-transition-link/components/AniLink/Swipe'
-import Cover from 'gatsby-plugin-transition-link/components/AniLink/Cover'
-import Layout from '../components/layout'
+import { TransitionLink, TransitionPortal, Swipe, Cover } from 'gatsby-plugin-transition-link'
+import { Layout } from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
-import DisplayState from '../components/DisplayState'
+import { DisplayState } from '../components/DisplayState'
 
 export default class SecondPage extends Component {
   constructor(props) {

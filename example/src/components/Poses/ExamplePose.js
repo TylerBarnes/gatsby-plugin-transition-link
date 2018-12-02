@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import posed from 'react-pose'
-import TransitionLink, { TransitionState } from 'gatsby-plugin-transition-link'
+import { TransitionLink, TransitionState } from 'gatsby-plugin-transition-link'
 
 const Box = posed.div({
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 })
 
-export default class Example extends React.Component {
+export class Example extends React.Component {
   render() {
     const { props } = this
 
@@ -42,7 +42,6 @@ export default class Example extends React.Component {
                 background: ${props.bg ? props.bg : '#ff1c68'};
                 transform-origin: 50% 50%;
             }
-
         `,
           }}
         />

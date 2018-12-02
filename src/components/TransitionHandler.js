@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 import { Consumer } from "../context/createTransitionContext";
 import { PublicProvider } from "../context/createTransitionContext";
-import delayTransitionRender from "./delayTransitionRender";
+import { delayTransitionRender } from "./delayTransitionRender";
 import { returnTransitionState } from "../utils/returnTransitionState";
 import { Location } from "@reach/router";
 import { getMs } from "../utils/secondsMs";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
 import { LayoutComponent as Layout } from "./Layout";
-import pageMinHeight from "../functions/pageMinHeight";
+import { pageMinHeight } from "../functions/pageMinHeight";
 
 const DelayedTransition = delayTransitionRender(Transition);
-export default class TransitionHandler extends Component {
+export class TransitionHandler extends Component {
   constructor(props) {
     super(props);
 

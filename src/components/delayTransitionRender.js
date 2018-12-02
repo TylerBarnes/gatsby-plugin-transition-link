@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default function delayTransitionRender(WrappedComponent) {
+export function delayTransitionRender(WrappedComponent) {
   class DelayedTransitionWrapper extends Component {
     constructor(props) {
       super(props);
