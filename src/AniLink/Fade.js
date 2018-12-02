@@ -5,13 +5,23 @@ import { TimelineMax } from "gsap";
 const fade = ({ exit: { length }, node, direction }) => {
   const duration = direction === "out" ? length + length / 4 : length;
   const opacity = direction === "in" ? 1 : 0;
+  const scrollTop =
+    document.scrollingElement.scrollTop ||
+    document.body.scrollTop ||
+    window.pageYOffset;
 
-  return new TimelineMax().fromTo(
-    node,
-    duration,
-    { opacity: !opacity },
-    { opacity: opacity }
-  );
+  const holdPosition =
+    direction === "out"
+      ? {
+          overflowY: "hidden",
+          height: "100vh",
+          scrollTop: scrollTop
+        }
+      : {};
+
+  return new TimelineMax()
+    .set(node, holdPosition)
+    .fromTo(node, duration, { opacity: !opacity }, { opacity: opacity });
 };
 
 export default function Fade({
@@ -21,7 +31,7 @@ export default function Fade({
   duration,
   ...props
 }) {
-  const length = duration || 0.4;
+  const length = duration || 0.8;
 
   return (
     <TransitionLink
@@ -30,7 +40,7 @@ export default function Fade({
         trigger: ({ exit, node }) => fade({ exit, node, direction: "out" })
       }}
       entry={{
-        length: length,
+        length: 0,
         trigger: ({ exit, node }) => fade({ exit, node, direction: "in" })
       }}
       {...props}
