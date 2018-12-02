@@ -12,19 +12,22 @@ module.exports = ({ element, props }) => {
   return (
     <InternalProvider>
       <Consumer>
-        {({ wrapperMinHeight }) => (
-          <div
-            style={{
-              position: "relative",
-              zIndex: 0,
-              minHeight: wrapperMinHeight
-                ? `${wrapperMinHeight}px`
-                : `${!!sessionMinHeight ? sessionMinHeight + "px" : false}`
-            }}
-          >
-            <TransitionHandler {...props}>{element}</TransitionHandler>
-          </div>
-        )}
+        {({ wrapperMinHeight, inTransition }) => {
+          const minHeight = wrapperMinHeight
+            ? `${wrapperMinHeight}px`
+            : `${!!sessionMinHeight ? sessionMinHeight + "px" : false}`;
+          return (
+            <div
+              style={{
+                position: "relative",
+                zIndex: 0,
+                minHeight: inTransition ? false : minHeight
+              }}
+            >
+              <TransitionHandler {...props}>{element}</TransitionHandler>
+            </div>
+          );
+        }}
       </Consumer>
     </InternalProvider>
   );
