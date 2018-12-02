@@ -90,8 +90,8 @@ export default function SwipeOver({
   const top = props.top || "exit";
   const exitLength = props.duration || 0.7;
   const entryLength = exitLength / 3.5;
-  const entryZ = top === "entry" ? 5 : 0;
-  const exitZ = top === "exit" ? 5 : 0;
+  const entryZ = top === "entry" ? 1 : 0;
+  const exitZ = top === "exit" ? 1 : 0;
 
   return (
     <TransitionLink
