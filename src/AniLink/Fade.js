@@ -21,7 +21,7 @@ export default function Fade({
   duration,
   ...props
 }) {
-  const length = duration || 0.4;
+  const length = duration || 0.8;
 
   return (
     <TransitionLink
