@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
+import { Header } from './header'
 import './layout.css'
 
-export const Layout = ({ children, theme, style }) => (
+const Layout = ({ children, theme, style }) => (
   <div className={`layout-wrapper ${theme}`} style={style}>
     <StaticQuery
       query={graphql`
@@ -28,6 +29,7 @@ export const Layout = ({ children, theme, style }) => (
           >
             <html lang="en" />
           </Helmet>
+          <Header siteTitle={data.site.siteMetadata.title} />
           <div
             style={{
               margin: '0 auto',
@@ -47,3 +49,5 @@ export const Layout = ({ children, theme, style }) => (
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
+
+export default Layout;

@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'gatsby-plugin-transition-link'
+import { TransitionLink } from 'gatsby-plugin-transition-link'
 
 import { GithubLink } from './GithubLink'
 
@@ -24,7 +24,7 @@ export const Header = ({ siteTitle, locationState }) => {
         }}
       >
         <h1 style={{ margin: 0 }}>
-          <Link
+          <TransitionLink
             to="/"
             style={{
               color: 'white',
@@ -32,7 +32,7 @@ export const Header = ({ siteTitle, locationState }) => {
             }}
           >
             {siteTitle}
-          </Link>
+          </TransitionLink>
         </h1>
       </div>
 

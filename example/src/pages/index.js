@@ -10,15 +10,37 @@ import {
   AniLink,
 } from 'gatsby-plugin-transition-link'
 
-import { Layout } from '../components/layout'
-import { DisplayState } from '../components/DisplayState'
+import Layout from '../components/layout'
+import DisplayState from '../components/DisplayState'
 
-export default class Index extends Component {
+class Index extends Component {
   constructor(props) {
     super(props)
 
+    this.verticalAnimation.bind(this)
+
     this.layoutContents = React.createRef()
     this.transitionCover = React.createRef()
+  }
+
+  verticalAnimation = ({ length }, direction) => {
+    const directionTo = direction === 'up' ? '-100%' : '100%'
+    const directionFrom = direction === 'up' ? '100%' : '-100%'
+
+    // convert ms to s for gsap
+    const seconds = length
+
+    return new TimelineMax()
+      .set(this.transitionCover, { y: directionFrom })
+      .to(this.transitionCover, seconds / 2, {
+        y: '0%',
+        ease: Power1.easeInOut,
+      })
+      .set(this.layoutContents, { opacity: 0 })
+      .to(this.transitionCover, seconds / 2, {
+        y: directionTo,
+        ease: Power1.easeIn,
+      })
   }
 
   test(entry, node) {
@@ -35,26 +57,6 @@ export default class Index extends Component {
   }
 
   render() {
-	  const verticalAnimation = ({ length }, direction) => {
-		  const directionTo = direction === 'up' ? '-100%' : '100%'
-		  const directionFrom = direction === 'up' ? '100%' : '-100%'
-
-		  // convert ms to s for gsap
-		  const seconds = length
-
-		  return new TimelineMax()
-			  .set(this.transitionCover, { y: directionFrom })
-			  .to(this.transitionCover, seconds / 2, {
-				  y: '0%',
-				  ease: Power1.easeInOut,
-			  })
-			  .set(this.layoutContents, { opacity: 0 })
-			  .to(this.transitionCover, seconds / 2, {
-				  y: directionTo,
-				  ease: Power1.easeIn,
-			  })
-	  }
-
     return (
       <Layout theme="white">
         <section ref={n => (this.layoutContents = n)}>
@@ -92,7 +94,7 @@ export default class Index extends Component {
             to="/page-2"
             exit={{
               length: 1,
-              trigger: ({ exit }) => verticalAnimation(exit, 'down'),
+              trigger: ({ exit }) => this.verticalAnimation(exit, 'down'),
               state: { test: 'exit state' },
             }}
             entry={{
@@ -111,7 +113,7 @@ export default class Index extends Component {
             to="/page-2"
             exit={{
               length: 1.2,
-              trigger: ({ exit }) => verticalAnimation(exit, 'up'),
+              trigger: ({ exit }) => this.verticalAnimation(exit, 'up'),
             }}
             entry={{ delay: 0.5, length: 1, state: { layoutTheme: 'dark' } }}
           >
@@ -142,3 +144,5 @@ export default class Index extends Component {
     )
   }
 }
+
+export default Index

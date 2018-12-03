@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import posed from 'react-pose'
 import { TransitionLink, TransitionState } from 'gatsby-plugin-transition-link'
 
@@ -7,7 +7,7 @@ const Box = posed.div({
   visible: { opacity: 1 },
 })
 
-export class Example extends React.Component {
+export default class Example extends Component {
   render() {
     const { props } = this
 

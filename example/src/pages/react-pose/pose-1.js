@@ -1,8 +1,8 @@
-import React from 'react'
-import { Layout } from '../../components/layout'
-import { Example } from '../../components/Poses/ExamplePose'
+import React, { Component } from 'react'
+import Layout from '../../components/layout'
+import Example from '../../components/Poses/ExamplePose'
 
-export default class PoseOne extends React.Component {
+export default class Index extends Component {
   render() {
     return (
       <Layout theme="white">
