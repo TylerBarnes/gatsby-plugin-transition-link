@@ -17,7 +17,7 @@ class Index extends Component {
   constructor(props) {
     super(props)
 
-    this.verticalAnimation.bind(this)
+	this.verticalAnimation = this.verticalAnimation.bind(this)
 
     this.layoutContents = React.createRef()
     this.transitionCover = React.createRef()

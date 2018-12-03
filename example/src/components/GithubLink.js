@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const GithubLink = () => {
+export default function GithubLink() {
   return (
     <a
       target="_blank"

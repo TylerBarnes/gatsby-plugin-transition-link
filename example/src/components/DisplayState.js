@@ -25,4 +25,4 @@ function DisplayState() {
   )
 }
 
-export default DisplayState;
+export default DisplayState

@@ -7,7 +7,7 @@ const Box = posed.div({
   visible: { opacity: 1 },
 })
 
-export default class Example extends Component {
+export default class Example extends React.Component {
   render() {
     const { props } = this
 
@@ -42,6 +42,7 @@ export default class Example extends Component {
                 background: ${props.bg ? props.bg : '#ff1c68'};
                 transform-origin: 50% 50%;
             }
+
         `,
           }}
         />

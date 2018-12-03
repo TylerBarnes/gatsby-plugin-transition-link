@@ -1,9 +1,9 @@
 import React from 'react'
 import { TransitionLink } from 'gatsby-plugin-transition-link'
 
-import { GithubLink } from './GithubLink'
+import GithubLink from './GithubLink'
 
-export const Header = ({ siteTitle, locationState }) => {
+const Header = ({ siteTitle, locationState }) => {
   const headerColor =
     locationState && locationState.headerBgColor
       ? locationState.headerBgColor
@@ -40,3 +40,5 @@ export const Header = ({ siteTitle, locationState }) => {
     </div>
   )
 }
+
+export default Header;
