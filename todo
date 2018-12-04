@@ -33,11 +33,11 @@
 ✔ prevent browser history buttons from triggering trigger functions @done(18-11-03 15:27)
 ✘ rename gatsby-plugin-transition-link to transition-link @cancelled(18-11-03 22:27)
 ✔ release v1 @done(18-11-03 22:27)
-☐ update docs / create website
-    ☐ new api
-    ☐ add a visual timeline of events in, for, trigger, state, and when they happen
-    ☐ idea / overview section should be rewritten and moved to blog post
-☐ Write blog post for gatsbyjs.org
+✔ update docs / create website @done(18-12-03 20:03)
+    ✔ new api @done(18-12-03 20:04)
+    ✔ add a visual timeline of events in, for, trigger, state, and when they happen @done(18-12-03 20:04)
+    ✔ idea / overview section should be rewritten and moved to blog post @done(18-12-03 20:04)
+✔ Write blog post for gatsbyjs.org @done(18-12-03 20:04)
 
 Future
 ☐ refactor and break big files into smaller files
