@@ -6,9 +6,11 @@ TransitionLink provides a simple api for describing expressive transitions betwe
 
 TransitionLink is compatible with declarative react animation libraries like [react-pose](https://popmotion.io/pose/) and [react-spring](https://react-spring.surge.sh/). It's also compatible with imperative animation libraries like [gsap](https://greensock.com) and [anime.js](http://animejs.com/)
 
-## Demos
+## Sites using TransitionLink
 
-Check it out [in use](https://gatsby-plugin-transition-link.netlify.com/).
+[Demo site](https://gatsby-plugin-transition-link.netlify.com/)
+[bare.ca](https://bare.ca/)
+[TransitionLink docs](https://transitionlink.tylerbarnes.ca/)
 
 ## Features
 
