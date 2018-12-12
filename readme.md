@@ -28,7 +28,7 @@ For info on using TransitionLink refer to [the docs](https://transitionlink.tyle
 
 ## Contributing
 
-1. Clone this repo
+1. Fork this repo
 2. Run `yarn && yarn watch` from the root directory.
 3. In another terminal window `cd` into the lib directory and run `yarn link`.
 4. `cd` to the project directory you want to test it out on and run `yarn link gatsby-plugin-transition-link`.
