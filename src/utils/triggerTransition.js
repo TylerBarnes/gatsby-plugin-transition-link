@@ -31,7 +31,7 @@ const triggerTransition = ({
     trigger: exitTrigger = () => {}
   } = exit;
   const {
-    length: entryLength = 0,
+    length: entryLength = 1, // this allows scrollposition to be reset when there is no transition.
     delay: entryDelay = 0,
     state: entryState = {},
     trigger: entryTrigger = () => {}
