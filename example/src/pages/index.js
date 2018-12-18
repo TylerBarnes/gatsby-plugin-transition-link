@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
-import Swipe from 'gatsby-plugin-transition-link/components/AniLink/Swipe'
-import Cover from 'gatsby-plugin-transition-link/components/AniLink/Cover'
-
-import PaintDrip from 'gatsby-plugin-transition-link/components/AniLink/PaintDrip'
-
-import { AniLink } from 'gatsby-plugin-transition-link'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
@@ -63,31 +58,33 @@ class Index extends Component {
           <p>Check out these sick transitions.</p>
           <AniLink to="/page-2">Go to page 2 normally</AniLink>
           <br />
-          <Cover to="/page-2" direction="right">
+          <AniLink cover to="/page-2" direction="right">
             Go to page 2 with a cover right
-          </Cover>
+          </AniLink>
           <br />
-          <Swipe to="/page-2">Go to page 2 with a swipe default</Swipe>
+          <AniLink swipe to="/page-2">
+            Go to page 2 with a swipe default
+          </AniLink>
           <br />
-          <Swipe to="/page-2" direction="left" top="exit">
+          <AniLink swipe to="/page-2" direction="left" top="exit">
             Go to page 2 with a swipe left
-          </Swipe>
+          </AniLink>
           <br />
-          <Swipe to="/page-2" direction="right" top="exit">
+          <AniLink swipe to="/page-2" direction="right" top="exit">
             Go to page 2 with a swipe right
-          </Swipe>
+          </AniLink>
           <br />
-          <Swipe to="/page-2" direction="up" top="exit">
+          <AniLink swipe to="/page-2" direction="up" top="exit">
             Go to page 2 with a swipe up
-          </Swipe>
+          </AniLink>
           <br />
-          <Swipe to="/page-2" direction="down" top="exit">
+          <AniLink swipe to="/page-2" direction="down" top="exit">
             Go to page 2 with a swipe down
-          </Swipe>
+          </AniLink>
           <br />
-          <PaintDrip to="/page-2" hex="#4b2571">
+          <AniLink paintDrip to="/page-2" hex="#4b2571">
             Go to page 2 with a paint drip
-          </PaintDrip>
+          </AniLink>
           <br />
           <TransitionLink
             to="/page-2"
