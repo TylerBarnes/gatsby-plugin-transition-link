@@ -64,18 +64,31 @@ const triggerTransition = ({
     updateContext({ entryState: entryState });
   }, getMs(exitDelay + entryDelay));
 
-  // reset animation times so they dont apply when using browser back/forward.
+  // reset entry animation times so they dont apply when using browser back/forward.
   //  this will be replaced with a better solution in the future
   setTimeout(
     () =>
       updateContext({
         entryDelay: 0,
-        entryLength: 0,
+        entryLength: 0
+      }),
+    getMs(exitDelay + entryDelay + entryLength)
+  );
+
+  const finalResetSeconds =
+    exitDelay + Math.max(exitLength, entryDelay + entryLength);
+
+  // reset exit animation times so they dont apply when using browser back/forward.
+  //  this will be replaced with a better solution in the future
+  setTimeout(
+    () =>
+      updateContext({
         exitDelay: 0,
         exitLength: 0,
+        // Once all animation is finished, it's safe to start a new animation since we're no longer inTransition.
         inTransition: false
       }),
-    getMs(exitDelay + entryDelay + entryLength + exitLength)
+    getMs(finalResetSeconds) + 1
   );
 };
 

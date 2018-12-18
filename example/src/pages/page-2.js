@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
-import Swipe from 'gatsby-plugin-transition-link/components/AniLink/Swipe'
-import Cover from 'gatsby-plugin-transition-link/components/AniLink/Cover'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import Layout from '../components/layout'
 import { TimelineMax, Power1 } from 'gsap'
 
@@ -81,27 +80,29 @@ export default class SecondPage extends Component {
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
               <br />
-              <Cover to="/" direction="left">
+              <AniLink cover to="/" direction="left">
                 Go home with a cover left
-              </Cover>
+              </AniLink>
               <br />
-              <Swipe to="/">Go home with a swipe default</Swipe>
+              <AniLink swipe to="/">
+                Go home with a swipe default
+              </AniLink>
               <br />
-              <Swipe to="/" direction="right" top="entry">
+              <AniLink swipe to="/" direction="right" top="entry">
                 Go home with a swipe right
-              </Swipe>
+              </AniLink>
               <br />
-              <Swipe to="/" direction="left" top="entry">
+              <AniLink swipe to="/" direction="left" top="entry">
                 Go home with a swipe left
-              </Swipe>
+              </AniLink>
               <br />
-              <Swipe to="/" direction="up" top="entry">
+              <AniLink swipe to="/" direction="up" top="entry">
                 Go home with a swipe up
-              </Swipe>
+              </AniLink>
               <br />
-              <Swipe to="/" direction="down" top="entry">
+              <AniLink swipe to="/" direction="down" top="entry">
                 Go home with a swipe down
-              </Swipe>
+              </AniLink>
               <br />
               <TransitionLink
                 to="/"
