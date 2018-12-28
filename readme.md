@@ -10,7 +10,7 @@ TransitionLink is compatible with declarative react animation libraries like [re
 
 - [Demo site](https://gatsby-plugin-transition-link.netlify.com/)
 - [bare.ca](https://bare.ca/)
-- [TransitionLink docs](https://transitionlink.tylerbarnes.ca/)
+- [TransitionLink docs](https://transitionlink.tylerbarnes.ca/) [[source]](https://github.com/TylerBarnes/TransitionLinkDocs/)
 - [Edit this file to add yours!](https://github.com/TylerBarnes/gatsby-plugin-transition-link/blob/master/readme.md)
 
 ## Features
@@ -24,7 +24,7 @@ TransitionLink is compatible with declarative react animation libraries like [re
 
 ## Usage
 
-For info on using TransitionLink refer to [the docs](https://transitionlink.tylerbarnes.ca/).
+For info on using TransitionLink refer to [the docs](https://transitionlink.tylerbarnes.ca/). The source for the docs site is available [here](https://github.com/TylerBarnes/TransitionLinkDocs/).
 
 ## Contributing
 
