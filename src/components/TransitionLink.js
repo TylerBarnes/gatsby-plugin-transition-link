@@ -11,6 +11,7 @@ const TransitionLink = ({
   exit,
   entry,
   activeStyle,
+  style,
   className
 }) => {
   return (
@@ -18,6 +19,7 @@ const TransitionLink = ({
       {({ ...context }) => (
         <Link
           activeStyle={activeStyle}
+          style={style}
           className={className}
           onClick={event =>
             triggerTransition({
