@@ -12,7 +12,7 @@ const TransitionLink = ({
   entry,
   activeStyle,
   style,
-  className
+  className,
   ...rest
 }) => {
   return (
