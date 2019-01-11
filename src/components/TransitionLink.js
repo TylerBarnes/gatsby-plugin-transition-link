@@ -12,7 +12,8 @@ const TransitionLink = ({
   entry,
   activeStyle,
   style,
-  className
+  className,
+  ...rest
 }) => {
   return (
     <Consumer>
@@ -31,6 +32,7 @@ const TransitionLink = ({
             })
           }
           to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
+          {...rest}
         >
           {children}
         </Link>
