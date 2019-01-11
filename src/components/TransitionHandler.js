@@ -37,7 +37,6 @@ export default class TransitionHandler extends Component {
       1
     );
   }
-
   render() {
     const { props } = this;
     const { children } = props;
@@ -72,6 +71,7 @@ export default class TransitionHandler extends Component {
                         exit: getMs(exitLength)
                       }}
                       onEnter={node =>
+                        !!node &&
                         onEnter({
                           node,
                           action,
@@ -86,6 +86,7 @@ export default class TransitionHandler extends Component {
                         })
                       }
                       onExit={node =>
+                        !!node &&
                         onExit({
                           node,
                           inTransition,
