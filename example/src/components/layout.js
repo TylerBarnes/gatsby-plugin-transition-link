@@ -39,6 +39,7 @@ const Layout = ({ children, theme, style }) => (
             }}
           >
             {children}
+            <h1>persistent footer!</h1>
           </div>
         </div>
       )}
