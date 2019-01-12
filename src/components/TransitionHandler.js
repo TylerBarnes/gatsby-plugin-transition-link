@@ -62,93 +62,108 @@ export default class TransitionHandler extends Component {
             <Location>
               {({ location: { action, pathname } }) => (
                 <Layout {...props}>
-                  <TransitionGroup>
-                    <DelayedTransition
-                      key={pathname} // we're using seconds but transitiongroup uses ms
-                      delay={getMs(entryDelay)}
-                      timeout={{
-                        enter: getMs(entryLength),
-                        exit: getMs(exitLength)
-                      }}
-                      onEnter={node =>
-                        !!node &&
-                        onEnter({
-                          node,
-                          action,
-                          inTransition,
-                          entryTrigger,
-                          entryProps,
-                          exitProps,
-                          pathname,
-                          updateContext,
-                          pageMinHeight,
-                          e
-                        })
-                      }
-                      onExit={node =>
-                        !!node &&
-                        onExit({
-                          node,
-                          inTransition,
-                          exitTrigger,
-                          entryProps,
-                          exitProps,
-                          e
-                        })
-                      }
-                    >
-                      {transitionStatus => {
-                        const transitionState = returnTransitionState({
-                          inTransition,
-                          location: props.location,
-                          transitionIdHistory,
-                          transitionStatus,
-                          entry: {
-                            state: entryState,
-                            delay: entryDelay,
-                            length: entryLength
-                          },
-                          exit: {
-                            state: exitState,
-                            delay: exitDelay,
-                            length: exitLength
-                          }
-                        });
+                  <div
+                    className="tl-wrapper-outer"
+                    style={{ maxWidth: "100%", overflowX: "hidden" }}
+                  >
+                    <TransitionGroup component={null}>
+                      <DelayedTransition
+                        key={pathname} // we're using seconds but transitiongroup uses ms
+                        delay={getMs(entryDelay)}
+                        timeout={{
+                          enter: getMs(entryLength),
+                          exit: getMs(exitLength)
+                        }}
+                        onEnter={node =>
+                          !!node &&
+                          onEnter({
+                            node,
+                            action,
+                            inTransition,
+                            entryTrigger,
+                            entryProps,
+                            exitProps,
+                            pathname,
+                            updateContext,
+                            pageMinHeight,
+                            e
+                          })
+                        }
+                        onExit={node =>
+                          !!node &&
+                          onExit({
+                            node,
+                            inTransition,
+                            exitTrigger,
+                            entryProps,
+                            exitProps,
+                            e
+                          })
+                        }
+                      >
+                        {transitionStatus => {
+                          const transitionState = returnTransitionState({
+                            inTransition,
+                            location: props.location,
+                            transitionIdHistory,
+                            transitionStatus,
+                            entry: {
+                              state: entryState,
+                              delay: entryDelay,
+                              length: entryLength
+                            },
+                            exit: {
+                              state: exitState,
+                              delay: exitDelay,
+                              length: exitLength
+                            }
+                          });
 
-                        const exitZindex = exitProps.zIndex || 0;
-                        const entryZindex = entryProps.zIndex || 1;
+                          const exitZindex = exitProps.zIndex || 0;
+                          const entryZindex = entryProps.zIndex || 1;
 
-                        const childWithTransitionState = React.Children.map(
-                          children,
-                          child => {
-                            return React.cloneElement(child, {
-                              ...transitionState
-                            });
-                          }
-                        );
+                          const childWithTransitionState = React.Children.map(
+                            children,
+                            child => {
+                              return React.cloneElement(child, {
+                                ...transitionState
+                              });
+                            }
+                          );
 
-                        return (
-                          <div
-                            ref={n => (this.wrapper = n)}
-                            className="tl-wrapper"
-                            style={{
-                              position: "absolute",
-                              width: "100%",
-                              zIndex:
-                                transitionStatus === "entering" ||
-                                transitionStatus === "entered"
-                                  ? entryZindex
-                                  : exitZindex
-                            }}
-                          >
-                            <PublicProvider value={{ ...transitionState }}>
-                              {childWithTransitionState}
-                            </PublicProvider>
-                          </div>
-                        );
-                      }}
-                    </DelayedTransition>
-                  </TransitionGroup>
+                          return (
+                            <div
+                              ref={n => (this.wrapper = n)}
+                              className="tl-wrapper"
+                              style={{
+                                width: "100%",
+                                float: "left",
+                                zIndex:
+                                  transitionStatus === "entering" ||
+                                  transitionStatus === "entered"
+                                    ? entryZindex
+                                    : exitZindex
+                              }}
+                            >
+                              <PublicProvider value={{ ...transitionState }}>
+                                {childWithTransitionState}
+                              </PublicProvider>
+                              <style
+                                dangerouslySetInnerHTML={{
+                                  __html: `
+                                  .tl-wrapper + .tl-wrapper {
+                                    margin-left: -100%;
+                                  }
+                                `
+                                }}
+                              />
+                            </div>
+                          );
+                        }}
+                      </DelayedTransition>
+                    </TransitionGroup>
+                  </div>
+                  <div className="tl-clearfix" style={{ clear: "both" }} />
                 </Layout>
               )}
             </Location>
