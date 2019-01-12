@@ -17,26 +17,8 @@ export default class TransitionHandler extends Component {
     super(props);
 
     this.wrapper = React.createRef();
-    this.updatePageMinHeight = this.updatePageMinHeight.bind(this);
-  }
-  componentDidMount() {
-    this.updatePageMinHeight();
-    window.addEventListener("resize", this.updatePageMinHeight);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updatePageMinHeight);
-  }
-
-  updatePageMinHeight() {
-    setTimeout(
-      () =>
-        pageMinHeight({
-          node: this.wrapper
-        }),
-      1
-    );
-  }
   render() {
     const { props } = this;
     const { children } = props;
