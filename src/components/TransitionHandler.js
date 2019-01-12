@@ -163,7 +163,6 @@ export default class TransitionHandler extends Component {
                       </DelayedTransition>
                     </TransitionGroup>
                   </div>
-                  <div className="tl-clearfix" style={{ clear: "both" }} />
                 </Layout>
               )}
             </Location>
