@@ -58,6 +58,10 @@ class Index extends Component {
           <p>Check out these sick transitions.</p>
           <AniLink to="/page-2">Go to page 2 normally</AniLink>
           <br />
+          <AniLink fade to="/page-2">
+            Go to page 2 with a fade
+          </AniLink>
+          <br />
           <AniLink cover to="/page-2" direction="right">
             Go to page 2 with a cover right
           </AniLink>
