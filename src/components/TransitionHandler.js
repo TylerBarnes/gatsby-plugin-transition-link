@@ -9,7 +9,6 @@ import { getMs } from "../utils/secondsMs";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
 import { LayoutComponent as Layout } from "./Layout";
-import pageMinHeight from "../functions/pageMinHeight";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
@@ -67,7 +66,6 @@ export default class TransitionHandler extends Component {
                             exitProps,
                             pathname,
                             updateContext,
-                            pageMinHeight,
                             e
                           })
                         }
