@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../../components/layout'
-import { MySpring, SpringLink } from './animation'
+import { MySpring, SpringLink } from '../../components/react-spring-animation'
 
 const B = () => (
   <Layout>
