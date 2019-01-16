@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Transition Link example using gsap',
+    title: 'Transition Link examples',
   },
   plugins: [
     'gatsby-plugin-ngrok-tunneling',
