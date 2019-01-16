@@ -6,7 +6,7 @@ const MySpring = ({ text }) => (
   <TransitionState>
     {({ transitionStatus, exit, entry }) => {
       const mount = ['entering', 'entered'].includes(transitionStatus)
-      const duration = mount ? entry.length : exit.length
+      const seconds = mount ? entry.length : exit.length
 
       return (
         <Spring
@@ -15,7 +15,7 @@ const MySpring = ({ text }) => (
             opacity: mount ? 1 : 0,
           }}
           config={{
-            duration: duration,
+            duration: seconds * 1000,
           }}
         >
           {props => <div style={props}>{text}</div>}
