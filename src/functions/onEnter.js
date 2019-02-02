@@ -1,3 +1,5 @@
+import handleScroll from "../utils/handleScroll";
+
 const onEnter = ({
   node,
   inTransition,
@@ -5,18 +7,12 @@ const onEnter = ({
   entryProps,
   exitProps,
   pathname,
-  navigation,
+  navigationType,
   e
 }) => {
-  if (navigation.type === "trigger") {
-    window.scrollTo(0, 0);
-  } else {
-    const storageKey = `@@scroll|${pathname}`;
-    const savedPosition = sessionStorage.getItem(storageKey);
-    window.scrollTo(...JSON.parse(savedPosition));
-  }
+  handleScroll({ navigationType, pathname });
 
-  if (!inTransition) return;
+  if (!inTransition || !node) return;
 
   entryTrigger &&
     typeof entryTrigger === "function" &&

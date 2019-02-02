@@ -98,19 +98,14 @@ class TransitionHandler extends Component {
                 exit: getMs(exitLength)
               }}
               onEnter={node =>
-                !!node &&
                 onEnter({
-                  navigation: {
-                    direction: this.state.browseDirection,
-                    type: this.state.navigationType
-                  },
+                  navigationType: this.state.navigationType,
                   node,
                   pathname,
                   ...context
                 })
               }
               onExit={node =>
-                !!node &&
                 onExit({
                   node,
                   ...context

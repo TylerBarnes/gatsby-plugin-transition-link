@@ -6,7 +6,7 @@ const onExit = ({
   exitProps,
   e
 }) => {
-  if (!inTransition) return;
+  if (!inTransition || !node) return;
 
   return (
     exitTrigger &&
