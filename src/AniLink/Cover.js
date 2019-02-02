@@ -13,6 +13,9 @@ export default class Cover extends Component {
   }
 
   horizontal = ({ node, props: { length: seconds }, direction }) => {
+    // if the user hits the back button mid transition bail & make sure the page is visible.
+    if (!this.cover) return (node.style.opacity = 1);
+
     const directionTo = direction === "left" ? "-100%" : "100%";
     const directionFrom = direction === "left" ? "100%" : "-100%";
 
@@ -38,6 +41,9 @@ export default class Cover extends Component {
   };
 
   vertical = ({ node, props: { length: seconds }, direction }) => {
+    // if the user hits the back button mid transition bail & make sure the page is visible.
+    if (!this.cover) return (node.style.opacity = 1);
+
     const directionTo = direction === "up" ? "-100%" : "100%";
     const directionFrom = direction === "up" ? "100%" : "-100%";
 
@@ -45,12 +51,16 @@ export default class Cover extends Component {
     const half = (seconds - wait) / 2;
 
     return new TimelineMax()
-      .set(this.cover, { y: directionFrom })
+      .set(this.cover, {
+        y: directionFrom
+      })
       .to(this.cover, half, {
         y: "0%",
         ease: Power1.easeInOut
       })
-      .set(node, { opacity: 0 })
+      .set(node, {
+        opacity: 0
+      })
       .to(
         this.cover,
         half,
