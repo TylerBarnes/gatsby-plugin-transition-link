@@ -4,7 +4,7 @@ import { TimelineMax, Power1 } from 'gsap'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
-import Layout from '../components/layout'
+// import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
 
 class Index extends Component {
@@ -46,13 +46,9 @@ class Index extends Component {
     )
   }
 
-  message(message) {
-    console.log(message)
-  }
-
   render() {
     return (
-      <Layout theme="white">
+      <>
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi people</h1>
           <p>Check out these sick transitions.</p>
@@ -140,7 +136,7 @@ class Index extends Component {
             }}
           />
         </TransitionPortal>
-      </Layout>
+      </>
     )
   }
 }

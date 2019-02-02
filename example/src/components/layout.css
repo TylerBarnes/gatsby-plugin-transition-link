@@ -647,3 +647,7 @@ pre tt:after {
 br {
   line-height: 3;
 }
+
+.tl-wrapper {
+  background: white;
+}
