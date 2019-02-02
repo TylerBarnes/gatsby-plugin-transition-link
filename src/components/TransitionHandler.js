@@ -17,22 +17,20 @@ export default class TransitionHandler extends Component {
     const { children } = props;
     return (
       <Consumer>
-        {({
-          exitDelay,
-          exitLength,
-          exitState,
-          entryDelay,
-          entryLength,
-          entryState,
-          entryTrigger,
-          entryProps,
-          exitTrigger,
-          exitProps,
-          transitionIdHistory,
-          inTransition,
-          updateContext,
-          e
-        }) => {
+        {context => {
+          const {
+            exitDelay,
+            exitLength,
+            exitState,
+            entryDelay,
+            entryLength,
+            entryState,
+            entryProps,
+            exitProps,
+            transitionIdHistory,
+            inTransition
+          } = context;
+
           return (
             <Location>
               {({ location: { action, pathname } }) => (
@@ -54,24 +52,15 @@ export default class TransitionHandler extends Component {
                           onEnter({
                             node,
                             action,
-                            inTransition,
-                            entryTrigger,
-                            entryProps,
-                            exitProps,
                             pathname,
-                            updateContext,
-                            e
+                            ...context
                           })
                         }
                         onExit={node =>
                           !!node &&
                           onExit({
                             node,
-                            inTransition,
-                            exitTrigger,
-                            entryProps,
-                            exitProps,
-                            e
+                            ...context
                           })
                         }
                       >
