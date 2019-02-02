@@ -82,12 +82,10 @@ export default class TransitionHandler extends Component {
                             }
                           });
 
-                          const childWithTransitionState = React.Children.map(
+                          const childWithTransitionState = React.cloneElement(
                             children,
-                            child => {
-                              return React.cloneElement(child, {
-                                ...transitionState
-                              });
+                            {
+                              ...transitionState
                             }
                           );
 
