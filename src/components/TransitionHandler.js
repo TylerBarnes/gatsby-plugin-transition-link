@@ -118,6 +118,7 @@ export default class TransitionHandler extends Component {
                               style={{
                                 width: "100%",
                                 float: "left",
+                                position: "relative",
                                 zIndex:
                                   transitionStatus === "entering" ||
                                   transitionStatus === "entered"
