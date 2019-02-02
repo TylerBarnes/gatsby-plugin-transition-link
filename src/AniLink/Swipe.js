@@ -36,7 +36,9 @@ const swipeBottomDirection = (direction, reverse) => {
   }
 };
 
-const swipe = ({ node, exit, direction, top, triggerName }) => {
+const swipe = ({ node, exit, direction, top, triggerName, navigation }) => {
+  // if (navigation.type !== "trigger") return;
+
   const scrollTop =
     document.scrollingElement.scrollTop ||
     document.body.scrollTop ||
@@ -97,10 +99,11 @@ export default function SwipeOver({
     <TransitionLink
       exit={{
         length: exitLength,
-        trigger: ({ node, exit }) =>
+        trigger: ({ node, exit, navigation }) =>
           swipe({
             node,
             exit,
+            navigation,
             direction: props.direction,
             top: top,
             triggerName: "exit"
@@ -109,10 +112,11 @@ export default function SwipeOver({
       }}
       entry={{
         length: entryLength,
-        trigger: ({ node, exit }) =>
+        trigger: ({ node, exit, navigation }) =>
           swipe({
             node,
             exit,
+            navigation,
             direction: props.direction,
             top: top,
             triggerName: "entry"

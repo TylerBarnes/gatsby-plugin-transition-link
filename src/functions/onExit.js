@@ -5,12 +5,11 @@ const onExit = ({
   exitTrigger,
   entryProps,
   exitProps,
-  navigationType,
-  browseDirection,
+  navigation,
   e
 }) => {
   // only fire function if the user clicked a link
-  if (!e) return;
+  // if (!e) return;
 
   // bail if the node doesn't exist anymore
   if (!node) return;
@@ -26,8 +25,7 @@ const onExit = ({
     exitTrigger &&
     typeof exitTrigger === "function" &&
     exitTrigger({
-      navigationType,
-      browseDirection,
+      navigation,
       entry: entryProps,
       exit: exitProps,
       node,

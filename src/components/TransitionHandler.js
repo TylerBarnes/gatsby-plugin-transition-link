@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
-import { setTimeout } from "requestanimationframe-timer";
 
-// import { returnTransitionState } from "../utils/returnTransitionState";
 import delayTransitionRender from "./delayTransitionRender";
 import { Consumer } from "../context/createTransitionContext";
 import { getMs } from "../utils/secondsMs";
@@ -25,15 +23,18 @@ export default class TransitionHandlerWrapper extends Component {
   }
 }
 
+let navigation = {
+  type: "initial",
+  direction: false
+};
+
 class TransitionHandler extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       locationHistory: [this.props.location.key],
-      browseDirection: false,
-      navigationType: false,
-      lastKey: false,
+      lastKey: this.props.location.key,
       inTransition: {
         entry: false,
         exit: false
@@ -47,41 +48,13 @@ class TransitionHandler extends Component {
     });
   }
 
-  // getSnapshotBeforeUpdate(prevProps, prevState) {
-
-  // }
-
   componentDidUpdate(prevProps) {
     // only update our state when navigation has occurred
     if (prevProps.location.key === this.props.location.key) return;
 
-    this.setState({ lastKey: this.props.location.key });
-
-    // check if we've been here before.
-    // if the location key is in our history
-    // and there was no mouse event
-    if (
-      this.state.locationHistory.includes(this.props.location.key) &&
-      !this.props.context.e
-    ) {
-      const currentIndex =
-        this.state.locationHistory.indexOf(this.props.location.key) + 1;
-      const lastIndex =
-        this.state.locationHistory.indexOf(prevProps.location.key) + 1;
-
-      // if the last index of our location key is greater than the current index, we're moving backwards.
-      // because our key exists we know this is a historical page
-      return this.setState({
-        browseDirection: lastIndex > currentIndex ? "back" : "forward",
-        navigationType: "history"
-      });
-    }
-
-    // not a historical page, the user definitely triggered forward navigation
     this.setState({
       locationHistory: [...this.state.locationHistory, this.props.location.key],
-      browseDirection: "forward",
-      navigationType: "trigger"
+      lastKey: this.props.location.key
     });
   }
 
@@ -92,13 +65,13 @@ class TransitionHandler extends Component {
     const { location } = props;
     let { pathname, state: locationState } = location;
 
-    // let exit, entry, transitionId;
+    let exit, entry, transitionId;
 
-    // if (!!locationState) {
-    //   exit = locationState.exit;
-    //   entry = locationState.entry;
-    //   transitionId = locationState.transitionId;
-    // }
+    if (!!locationState) {
+      exit = locationState.exit;
+      entry = locationState.entry;
+      transitionId = locationState.transitionId;
+    }
 
     let {
       exitDelay,
@@ -110,37 +83,31 @@ class TransitionHandler extends Component {
       entryProps,
       exitProps,
       inTransition,
-      exitTrigger,
-      entryTrigger
+      entryTrigger,
+      exitTrigger
     } = context;
 
-    const navigation = {
-      navigationType: this.state.navigationType,
-      browseDirection: this.state.browseDirection
-    };
+    const currentIndex =
+      this.state.locationHistory.indexOf(this.props.location.key) + 1;
+    const lastIndex =
+      this.state.locationHistory.indexOf(this.state.lastKey) + 1;
 
-    // check if we've been here before.
-    // if the location key is in our history
-    // and there was no mouse event
-    if (
-      this.state.locationHistory.includes(this.props.location.key) &&
-      this.props.location.key !== this.state.lastKey &&
-      !this.props.context.e &&
-      this.state.lastKey
-    ) {
-      const currentIndex =
-        this.state.locationHistory.indexOf(this.props.location.key) + 1;
-      const lastIndex =
-        this.state.locationHistory.indexOf(this.state.lastKey) + 1;
-
-      if (currentIndex < lastIndex) {
-        console.log("back");
-      } else {
-        console.log("forward");
+    if (currentIndex && lastIndex) {
+      if (currentIndex !== lastIndex && !this.props.context.e) {
+        navigation.direction = currentIndex > lastIndex ? "forward" : "back";
+        navigation.type = "history";
+      } else if (this.props.context.e) {
+        navigation.direction = "forward";
+        navigation.type = "trigger";
       }
+
+      // console.log(navigation);
     }
 
-    // if (navigation.navigationType === "history" && !!exit && !!entry) {
+    // console.log(currentIndex > lastIndex ? "forward" : "back");
+    // }
+
+    // if (navigation.type === "history" && !!exit && !!entry) {
     //   // if the user didn't trigger a new animation and we have exit and entry transition info from location history.
 
     //   // functions can't be stored on location history state so we keep track of our own
@@ -169,6 +136,8 @@ class TransitionHandler extends Component {
     //   entryState = entry.state;
     // }
 
+    // console.log(navigation);
+
     return (
       <Layout {...props}>
         <div
@@ -190,8 +159,7 @@ class TransitionHandler extends Component {
                   pathname,
                   updateHandlerState: state => this.setState(state),
                   handlerInTransition: this.state.inTransition,
-                  navigationType: this.state.navigationType,
-                  ...navigation,
+                  navigation,
                   ...context,
                   entryTrigger
                 })
@@ -201,8 +169,7 @@ class TransitionHandler extends Component {
                   node,
                   updateHandlerState: state => this.setState(state),
                   handlerInTransition: this.state.inTransition,
-                  navigationType: this.state.navigationType,
-                  ...navigation,
+                  navigation,
                   ...context,
                   exitTrigger
                 })

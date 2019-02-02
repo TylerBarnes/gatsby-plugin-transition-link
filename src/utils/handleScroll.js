@@ -1,5 +1,5 @@
-export default function handleScroll({ navigationType, pathname }) {
-  if (navigationType === "trigger") {
+export default function handleScroll({ navigation, pathname }) {
+  if (navigation.type === "trigger") {
     window.scrollTo(0, 0);
   } else {
     const storageKey = `@@scroll|${pathname}`;
