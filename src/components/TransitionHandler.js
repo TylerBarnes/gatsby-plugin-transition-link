@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 import { Consumer } from "../context/createTransitionContext";
-import { PublicProvider } from "../context/createTransitionContext";
 import delayTransitionRender from "./delayTransitionRender";
 import { returnTransitionState } from "../utils/returnTransitionState";
 import { Location } from "@reach/router";
@@ -9,15 +8,10 @@ import { getMs } from "../utils/secondsMs";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
 import { LayoutComponent as Layout } from "./Layout";
+import { PageWrapper } from "./PageWrapper/index.js";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
-  constructor(props) {
-    super(props);
-
-    this.wrapper = React.createRef();
-  }
-
   render() {
     const { props } = this;
     const { children } = props;
@@ -99,9 +93,6 @@ export default class TransitionHandler extends Component {
                             }
                           });
 
-                          const exitZindex = exitProps.zIndex || 0;
-                          const entryZindex = entryProps.zIndex || 1;
-
                           const childWithTransitionState = React.Children.map(
                             children,
                             child => {
@@ -112,33 +103,14 @@ export default class TransitionHandler extends Component {
                           );
 
                           return (
-                            <div
-                              ref={n => (this.wrapper = n)}
-                              className="tl-wrapper"
-                              style={{
-                                width: "100%",
-                                float: "left",
-                                position: "relative",
-                                zIndex:
-                                  transitionStatus === "entering" ||
-                                  transitionStatus === "entered"
-                                    ? entryZindex
-                                    : exitZindex
-                              }}
+                            <PageWrapper
+                              exitProps={exitProps}
+                              entryProps={entryProps}
+                              transitionState={transitionState}
+                              transitionStatus={transitionStatus}
                             >
-                              <PublicProvider value={{ ...transitionState }}>
-                                {childWithTransitionState}
-                              </PublicProvider>
-                              <style
-                                dangerouslySetInnerHTML={{
-                                  __html: `
-                                  .tl-wrapper + .tl-wrapper {
-                                    margin-left: -100%;
-                                  }
-                                `
-                                }}
-                              />
-                            </div>
+                              {childWithTransitionState}
+                            </PageWrapper>
                           );
                         }}
                       </DelayedTransition>
