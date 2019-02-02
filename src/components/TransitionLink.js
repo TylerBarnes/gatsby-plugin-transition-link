@@ -17,21 +17,25 @@ const TransitionLink = ({
 }) => {
   return (
     <Consumer>
-      {({ ...context }) => (
+      {({ inTransition, ...context }) => (
         <Link
           activeStyle={activeStyle}
           style={style}
           className={className}
-          onClick={event =>
-            triggerTransition({
-              event,
-              to,
-              exit,
-              entry,
-              ...context
-            })
-          }
-          to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
+          to={to} // use gatsby link so prefetching still happens.
+          onClick={event => {
+            event.preventDefault();
+            if (!inTransition) {
+              event.persist();
+              triggerTransition({
+                event,
+                to,
+                exit,
+                entry,
+                ...context
+              });
+            }
+          }}
           {...rest}
         >
           {children}
