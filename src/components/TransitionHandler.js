@@ -65,12 +65,11 @@ class TransitionHandler extends Component {
     const { location } = props;
     let { pathname, state: locationState } = location;
 
-    let exit, entry, transitionId;
+    let exit, entry;
 
     if (!!locationState) {
       exit = locationState.exit;
       entry = locationState.entry;
-      transitionId = locationState.transitionId;
     }
 
     let {
@@ -100,43 +99,45 @@ class TransitionHandler extends Component {
         navigation.direction = "forward";
         navigation.type = "trigger";
       }
-
-      // console.log(navigation);
     }
 
-    // console.log(currentIndex > lastIndex ? "forward" : "back");
-    // }
+    if (navigation.type === "history") {
+      // if the user didn't trigger a new animation and we have exit and entry transition info from location history.
 
-    // if (navigation.type === "history" && !!exit && !!entry) {
-    //   // if the user didn't trigger a new animation and we have exit and entry transition info from location history.
+      // functions can't be stored on location history state so we keep track of our own
+      const functionHistory = this.props.context.triggerFunctionHistory;
 
-    //   // functions can't be stored on location history state so we keep track of our own
-    //   const functionHistory = this.props.context.triggerFunctionHistory;
-    //   const functions = functionHistory.find(
-    //     item => item.transitionId === transitionId
-    //   );
+      const functions = functionHistory.find(
+        item => item.locationKey === this.props.location.key
+      );
 
-    //   if (functions) {
-    //     entryTrigger = functions.entry;
-    //     exitTrigger = functions.exit;
-    //   }
+      if (functions) {
+        entryTrigger = functions.entry;
+        exitTrigger = functions.exit;
+      }
 
-    //   if (navigation.browseDirection === "back") {
-    //     // if we're going backwards, swap the exit and entry animations
-    //     [exit, entry] = [entry, exit];
-    //     [entryTrigger, exitTrigger] = [exitTrigger, entryTrigger];
-    //   }
+      if (navigation.direction === "back") {
+        // if we're going backwards, swap the exit and entry animations
+        // [exit, entry] = [entry, exit];
+        // [entryTrigger, exitTrigger] = [exitTrigger, entryTrigger];
 
-    //   exitDelay = exit.delay;
-    //   exitLength = exit.length;
-    //   exitState = exit.state;
+        exitDelay = entry.delay;
+        exitLength = entry.length;
+        exitState = entry.state;
 
-    //   entryDelay = entry.delay;
-    //   entryLength = entry.length;
-    //   entryState = entry.state;
-    // }
+        entryDelay = exit.delay;
+        entryLength = exit.length;
+        entryState = exit.state;
+      } else {
+        exitDelay = exit.delay;
+        exitLength = exit.length;
+        exitState = exit.state;
 
-    // console.log(navigation);
+        entryDelay = entry.delay;
+        entryLength = entry.length;
+        entryState = entry.state;
+      }
+    }
 
     return (
       <Layout {...props}>

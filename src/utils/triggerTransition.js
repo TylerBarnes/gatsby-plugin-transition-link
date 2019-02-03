@@ -10,7 +10,8 @@ const triggerTransition = ({
   transitionIdHistory,
   triggerFunctionHistory,
   updateContext,
-  updateHandlerState
+  updateHandlerState,
+  locationKey
 }) => {
   const {
     length: exitLength = 0,
@@ -25,11 +26,11 @@ const triggerTransition = ({
     trigger: entryTrigger = () => {}
   } = entry;
 
-  const transitionId = random(10000, 99999, false);
+  // const transitionId = random(10000, 99999, false);
 
   navigate(to, {
     state: {
-      transitionId: transitionId,
+      transitionId: locationKey,
       entry: {
         state: entryState,
         delay: entryDelay,
@@ -46,10 +47,10 @@ const triggerTransition = ({
   updateContext({
     inTransition: true,
     exitState: exitState,
-    transitionIdHistory: [...transitionIdHistory, transitionId],
+    transitionIdHistory: [...transitionIdHistory, locationKey],
     triggerFunctionHistory: [
       ...triggerFunctionHistory,
-      { transitionId, entry: entryTrigger, exit: exitTrigger }
+      { locationKey, entry: entryTrigger, exit: exitTrigger }
     ],
     entryLength: entryLength,
     entryDelay: entryDelay,
@@ -57,8 +58,8 @@ const triggerTransition = ({
     exitDelay: exitDelay,
     entryProps: entry,
     exitProps: exit,
-    exitTrigger: (exit, node, e) => exitTrigger(exit, node, e),
-    entryTrigger: (entry, node, e) => entryTrigger(entry, node, e),
+    exitTrigger: exitTrigger,
+    entryTrigger: entryTrigger,
     e: event
   });
 
@@ -81,7 +82,9 @@ const triggerTransition = ({
 
     updateContext({
       inTransition: false,
-      e: false
+      e: false,
+      entryTrigger: () => {},
+      exitTrigger: () => {}
     });
   }, getMs(finalResetSeconds) + 1);
 };

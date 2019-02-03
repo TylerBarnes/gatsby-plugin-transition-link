@@ -14,20 +14,23 @@ class PageWrapper extends Component {
       transitionState,
       transitionStatus,
       exitProps,
-      entryProps
+      entryProps,
+      forwardedRef
     } = this.props;
+
+    const mount =
+      transitionStatus === "entering" || transitionStatus === "entered";
 
     const exitZindex = exitProps.zIndex || 0;
     const entryZindex = entryProps.zIndex || 1;
 
     return (
       <div
-        className="tl-wrapper"
+        className={`tl-wrapper ${
+          mount ? "tl-wrapper--mount" : "tl-wrapper--unmount"
+        } tl-wrapper-status--${transitionStatus}`}
         style={{
-          zIndex:
-            transitionStatus === "entering" || transitionStatus === "entered"
-              ? entryZindex
-              : exitZindex
+          zIndex: mount ? entryZindex : exitZindex
         }}
       >
         <PublicProvider value={{ ...transitionState }}>

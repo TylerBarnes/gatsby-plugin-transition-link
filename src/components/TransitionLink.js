@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
+import { Location } from "@reach/router";
 
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
@@ -16,32 +17,37 @@ const TransitionLink = ({
   ...rest
 }) => {
   return (
-    <Consumer>
-      {({ inTransition, ...context }) => (
-        <Link
-          activeStyle={activeStyle}
-          style={style}
-          className={className}
-          to={to} // use gatsby link so prefetching still happens.
-          onClick={event => {
-            event.preventDefault();
-            if (!inTransition) {
-              event.persist();
-              triggerTransition({
-                event,
-                to,
-                exit,
-                entry,
-                ...context
-              });
-            }
-          }}
-          {...rest}
-        >
-          {children}
-        </Link>
+    <Location>
+      {({ location: { key } }) => (
+        <Consumer>
+          {({ inTransition, ...context }) => (
+            <Link
+              activeStyle={activeStyle}
+              style={style}
+              className={className}
+              to={to} // use gatsby link so prefetching still happens.
+              onClick={event => {
+                event.preventDefault();
+                if (!inTransition) {
+                  event.persist();
+                  triggerTransition({
+                    event,
+                    to,
+                    exit,
+                    entry,
+                    locationKey: key,
+                    ...context
+                  });
+                }
+              }}
+              {...rest}
+            >
+              {children}
+            </Link>
+          )}
+        </Consumer>
       )}
-    </Consumer>
+    </Location>
   );
 };
 
