@@ -39,95 +39,97 @@ export default class TransitionHandler extends Component {
             <Location>
               {({ location: { action, pathname } }) => (
                 <Layout {...props}>
-                  <TransitionGroup>
-                    <DelayedTransition
-                      key={pathname} // we're using seconds but transitiongroup uses ms
-                      delay={getMs(entryDelay)}
-                      timeout={{
-                        enter: getMs(entryLength),
-                        exit: getMs(exitLength)
-                      }}
-                      onEnter={node =>
-                        !!node &&
-                        onEnter({
-                          node,
-                          action,
-                          inTransition,
-                          entryTrigger,
-                          entryProps,
-                          exitProps,
-                          pathname,
-                          updateContext,
-                          e
-                        })
-                      }
-                      onExit={node =>
-                        !!node &&
-                        onExit({
-                          node,
-                          inTransition,
-                          exitTrigger,
-                          entryProps,
-                          exitProps,
-                          e
-                        })
-                      }
-                    >
-                      {transitionStatus => {
-                        const mount =
-                          transitionStatus === "entering" ||
-                          transitionStatus === "entered";
+                  <div className="tl-edges">
+                    <TransitionGroup component={null}>
+                      <DelayedTransition
+                        key={pathname} // we're using seconds but transitiongroup uses ms
+                        delay={getMs(entryDelay)}
+                        timeout={{
+                          enter: getMs(entryLength),
+                          exit: getMs(exitLength)
+                        }}
+                        onEnter={node =>
+                          !!node &&
+                          onEnter({
+                            node,
+                            action,
+                            inTransition,
+                            entryTrigger,
+                            entryProps,
+                            exitProps,
+                            pathname,
+                            updateContext,
+                            e
+                          })
+                        }
+                        onExit={node =>
+                          !!node &&
+                          onExit({
+                            node,
+                            inTransition,
+                            exitTrigger,
+                            entryProps,
+                            exitProps,
+                            e
+                          })
+                        }
+                      >
+                        {transitionStatus => {
+                          const mount =
+                            transitionStatus === "entering" ||
+                            transitionStatus === "entered";
 
-                        const states = {
-                          entry: {
-                            state: entryState,
-                            delay: entryDelay,
-                            length: entryLength
-                          },
-                          exit: {
-                            state: exitState,
-                            delay: exitDelay,
-                            length: exitLength
-                          }
-                        };
+                          const states = {
+                            entry: {
+                              state: entryState,
+                              delay: entryDelay,
+                              length: entryLength
+                            },
+                            exit: {
+                              state: exitState,
+                              delay: exitDelay,
+                              length: exitLength
+                            }
+                          };
 
-                        const current = mount ? states.entry : states.exit;
+                          const current = mount ? states.entry : states.exit;
 
-                        const transitionState = returnTransitionState({
-                          inTransition,
-                          location: props.location,
-                          transitionIdHistory,
-                          transitionStatus,
-                          current,
-                          mount,
-                          ...states
-                        });
+                          const transitionState = returnTransitionState({
+                            inTransition,
+                            location: props.location,
+                            transitionIdHistory,
+                            transitionStatus,
+                            current,
+                            mount,
+                            ...states
+                          });
 
-                        const exitZindex = exitProps.zIndex || 0;
-                        const entryZindex = entryProps.zIndex || 1;
+                          const exitZindex = exitProps.zIndex || 0;
+                          const entryZindex = entryProps.zIndex || 1;
 
-                        return (
-                          <div
-                            className={`tl-wrapper ${
-                              mount
-                                ? "tl-wrapper--mount"
-                                : "tl-wrapper--unmount"
-                            } tl-wrapper-status--${transitionStatus}`}
-                            style={{
-                              zIndex: mount ? entryZindex : exitZindex
-                            }}
-                          >
-                            <PublicProvider value={{ ...transitionState }}>
-                              {/* pass transition state to page/template */}
-                              {React.cloneElement(children, {
-                                ...transitionState
-                              })}
-                            </PublicProvider>
-                          </div>
-                        );
-                      }}
-                    </DelayedTransition>
-                  </TransitionGroup>
+                          return (
+                            <div
+                              className={`tl-wrapper ${
+                                mount
+                                  ? "tl-wrapper--mount"
+                                  : "tl-wrapper--unmount"
+                              } tl-wrapper-status--${transitionStatus}`}
+                              style={{
+                                zIndex: mount ? entryZindex : exitZindex
+                              }}
+                            >
+                              <PublicProvider value={{ ...transitionState }}>
+                                {/* pass transition state to page/template */}
+                                {React.cloneElement(children, {
+                                  ...transitionState
+                                })}
+                              </PublicProvider>
+                            </div>
+                          );
+                        }}
+                      </DelayedTransition>
+                    </TransitionGroup>
+                  </div>
                 </Layout>
               )}
             </Location>
