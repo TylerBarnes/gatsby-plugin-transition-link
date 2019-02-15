@@ -1,5 +1,5 @@
 import React from "react";
-import TransitionLink from "gatsby-plugin-transition-link";
+import TransitionLink from "../";
 import { TimelineMax } from "gsap";
 
 const fade = ({ exit: { length }, node, direction }) => {

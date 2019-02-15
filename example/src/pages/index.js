@@ -73,10 +73,10 @@ class Index extends Component {
           <AniLink swipe to="/page-2" direction="right" top="exit">
             Go to page 2 with a swipe right
           </AniLink>
-          <br />
+          {/* <br />
           <AniLink swipe to="/page-2" direction="up" top="exit">
             Go to page 2 with a swipe up
-          </AniLink>
+          </AniLink> */}
           <br />
           <AniLink swipe to="/page-2" direction="down" top="exit">
             Go to page 2 with a swipe down

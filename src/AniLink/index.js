@@ -3,7 +3,7 @@ import Cover from "./Cover";
 import Fade from "./Fade";
 import PaintDrip from "./PaintDrip";
 import SwipeOver from "./Swipe";
-import TransitionLink from "gatsby-plugin-transition-link";
+import TransitionLink from "../";
 
 export default function DefaultTransition(props) {
   return (

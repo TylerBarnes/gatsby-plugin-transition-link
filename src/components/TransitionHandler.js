@@ -9,34 +9,11 @@ import { getMs } from "../utils/secondsMs";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
 import { LayoutComponent as Layout } from "./Layout";
-import pageMinHeight from "../functions/pageMinHeight";
+
+import "../style.css";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
-  constructor(props) {
-    super(props);
-
-    this.wrapper = React.createRef();
-    this.updatePageMinHeight = this.updatePageMinHeight.bind(this);
-  }
-  componentDidMount() {
-    this.updatePageMinHeight();
-    window.addEventListener("resize", this.updatePageMinHeight);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updatePageMinHeight);
-  }
-
-  updatePageMinHeight() {
-    setTimeout(
-      () =>
-        pageMinHeight({
-          node: this.wrapper
-        }),
-      1
-    );
-  }
   render() {
     const { props } = this;
     const { children } = props;
@@ -81,7 +58,6 @@ export default class TransitionHandler extends Component {
                           exitProps,
                           pathname,
                           updateContext,
-                          pageMinHeight,
                           e
                         })
                       }
@@ -98,11 +74,11 @@ export default class TransitionHandler extends Component {
                       }
                     >
                       {transitionStatus => {
-                        const transitionState = returnTransitionState({
-                          inTransition,
-                          location: props.location,
-                          transitionIdHistory,
-                          transitionStatus,
+                        const mount =
+                          transitionStatus === "entering" ||
+                          transitionStatus === "entered";
+
+                        const states = {
                           entry: {
                             state: entryState,
                             delay: entryDelay,
@@ -113,36 +89,39 @@ export default class TransitionHandler extends Component {
                             delay: exitDelay,
                             length: exitLength
                           }
+                        };
+
+                        const current = mount ? states.entry : states.exit;
+
+                        const transitionState = returnTransitionState({
+                          inTransition,
+                          location: props.location,
+                          transitionIdHistory,
+                          transitionStatus,
+                          current,
+                          mount,
+                          ...states
                         });
 
                         const exitZindex = exitProps.zIndex || 0;
                         const entryZindex = entryProps.zIndex || 1;
 
-                        const childWithTransitionState = React.Children.map(
-                          children,
-                          child => {
-                            return React.cloneElement(child, {
-                              ...transitionState
-                            });
-                          }
-                        );
-
                         return (
                           <div
-                            ref={n => (this.wrapper = n)}
-                            className="tl-wrapper"
+                            className={`tl-wrapper ${
+                              mount
+                                ? "tl-wrapper--mount"
+                                : "tl-wrapper--unmount"
+                            } tl-wrapper-status--${transitionStatus}`}
                             style={{
-                              position: "absolute",
-                              width: "100%",
-                              zIndex:
-                                transitionStatus === "entering" ||
-                                transitionStatus === "entered"
-                                  ? entryZindex
-                                  : exitZindex
+                              zIndex: mount ? entryZindex : exitZindex
                             }}
                           >
                             <PublicProvider value={{ ...transitionState }}>
-                              {childWithTransitionState}
+                              {/* pass transition state to page/template */}
+                              {React.cloneElement(children, {
+                                ...transitionState
+                              })}
                             </PublicProvider>
                           </div>
                         );

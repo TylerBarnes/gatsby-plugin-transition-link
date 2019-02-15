@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.4.7",
+  "version": "1.5.0",
   "description": "A link component for page transitions in gatsby.",
   "repository": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "homepage": "https://gatsby-plugin-transition-link.netlify.com/",
@@ -21,8 +21,8 @@
   "license": "MIT",
   "scripts": {
     "copy-files": "mkdir lib || true && cp .eslintrc.json readme.md package.json lib",
-    "build": "yarn copy-files && babel src --out-dir lib --ignore **/__tests__",
-    "watch": "yarn copy-files && babel -w src --out-dir lib --ignore **/__tests__",
+    "build": "yarn copy-files && babel src --out-dir lib --copy-files --ignore **/__tests__",
+    "watch": "yarn copy-files && babel -w src --out-dir lib --copy-files --ignore **/__tests__",
     "prepare-files": "cross-env NODE_ENV=production yarn build",
     "publish-repo": "yarn copy-files && cd lib && npm publish && cd ../",
     "publish-patch": "yarn prepare-files && npx json-bump --patch=1 package.json && yarn publish-repo",

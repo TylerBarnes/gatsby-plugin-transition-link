@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import TransitionLink, {
-  TransitionPortal
-} from "gatsby-plugin-transition-link";
+import TransitionLink, { TransitionPortal } from "../";
 import { TimelineMax, Power1 } from "gsap";
 
 export default class Cover extends Component {
