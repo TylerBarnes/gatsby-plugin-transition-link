@@ -58,7 +58,7 @@ class Index extends Component {
             Go to page 2 with a fade
           </AniLink>
           <br />
-          <AniLink cover to="/page-2" direction="right">
+          <AniLink cover duration={10} to="/page-2" direction="right">
             Go to page 2 with a cover right
           </AniLink>
           <br />

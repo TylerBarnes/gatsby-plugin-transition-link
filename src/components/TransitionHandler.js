@@ -145,7 +145,17 @@ class TransitionHandler extends Component {
           className="tl-wrapper-outer"
           style={{ maxWidth: "100%", overflowX: "hidden" }}
         >
-          <TransitionGroup component={null}>
+          <TransitionGroup
+            component={null}
+            childFactory={(child, i) => {
+              console.log(child.props);
+              return (
+                <div className="test" key={i}>
+                  {child}
+                </div>
+              );
+            }}
+          >
             <DelayedTransition
               key={pathname}
               // we're using seconds but transitiongroup uses ms, hence getMs()
