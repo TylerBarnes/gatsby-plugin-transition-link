@@ -9,34 +9,9 @@ import { getMs } from "../utils/secondsMs";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
 import { LayoutComponent as Layout } from "./Layout";
-import pageMinHeight from "../functions/pageMinHeight";
 
 const DelayedTransition = delayTransitionRender(Transition);
 export default class TransitionHandler extends Component {
-  constructor(props) {
-    super(props);
-
-    this.wrapper = React.createRef();
-    this.updatePageMinHeight = this.updatePageMinHeight.bind(this);
-  }
-  componentDidMount() {
-    this.updatePageMinHeight();
-    window.addEventListener("resize", this.updatePageMinHeight);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updatePageMinHeight);
-  }
-
-  updatePageMinHeight() {
-    setTimeout(
-      () =>
-        pageMinHeight({
-          node: this.wrapper
-        }),
-      1
-    );
-  }
   render() {
     const { props } = this;
     const { children } = props;
@@ -81,7 +56,6 @@ export default class TransitionHandler extends Component {
                           exitProps,
                           pathname,
                           updateContext,
-                          pageMinHeight,
                           e
                         })
                       }
@@ -129,7 +103,6 @@ export default class TransitionHandler extends Component {
 
                         return (
                           <div
-                            ref={n => (this.wrapper = n)}
                             className="tl-wrapper"
                             style={{
                               position: "absolute",
