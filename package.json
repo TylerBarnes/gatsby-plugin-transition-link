@@ -21,8 +21,8 @@
   "license": "MIT",
   "scripts": {
     "copy-files": "mkdir lib || true && cp .eslintrc.json readme.md package.json lib",
-    "build": "yarn copy-files && babel src --out-dir lib --ignore **/__tests__",
-    "watch": "yarn copy-files && babel -w src --out-dir lib --ignore **/__tests__",
+    "build": "yarn copy-files && babel src --out-dir lib --copy-files --ignore **/__tests__",
+    "watch": "yarn copy-files && babel -w src --out-dir lib --copy-files --ignore **/__tests__",
     "prepare-files": "cross-env NODE_ENV=production yarn build",
     "publish-repo": "yarn copy-files && cd lib && npm publish && cd ../",
     "publish-patch": "yarn prepare-files && npx json-bump --patch=1 package.json && yarn publish-repo",
