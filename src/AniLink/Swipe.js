@@ -1,5 +1,5 @@
 import React from "react";
-import TransitionLink from "gatsby-plugin-transition-link";
+import TransitionLink from "../";
 import { TimelineMax, Power1 } from "gsap";
 
 const boxShadow = "0 0 100px 10px rgba(0, 0, 0, 0.12941176470588237)";

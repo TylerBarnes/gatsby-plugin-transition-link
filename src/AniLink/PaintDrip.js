@@ -1,7 +1,7 @@
 // This was made using the code borrowed from this beautiful codepen!
 // https://codepen.io/osublake/pen/eNrQqV?editors=0010
 import React, { Component } from "react";
-import TransitionLink from "gatsby-plugin-transition-link";
+import TransitionLink from "../";
 import { TimelineMax, Power1 } from "gsap";
 import convert from "color-convert";
 
