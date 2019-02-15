@@ -22,7 +22,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-transition-link',
       options: {
-        layout: false,
+        layout: require.resolve(`./src/layout`),
       },
     },
     // 'gatsby-plugin-transition-link',
