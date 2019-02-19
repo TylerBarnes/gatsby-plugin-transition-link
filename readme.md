@@ -8,6 +8,7 @@ TransitionLink is compatible with declarative react animation libraries like [re
 
 ## Sites that use TransitionLink
 
+- [strandrover.com](https://strandrover.com/)
 - [Demo site](https://gatsby-plugin-transition-link.netlify.com/)
 - [bare.ca](https://bare.ca/)
 - [TransitionLink docs](https://transitionlink.tylerbarnes.ca/) [[source]](https://github.com/TylerBarnes/TransitionLinkDocs/)
