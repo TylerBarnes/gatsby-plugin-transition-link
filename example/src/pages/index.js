@@ -120,6 +120,13 @@ class Index extends Component {
             and give us a dark theme when we get there.
           </TransitionLink>
           <br />
+          <AniLink
+            to="/page-2"
+            onClick={() => console.log('Link clicked')}
+          >
+            Go to page 2 normally (with an `onClick`)
+          </AniLink>
+          <br />
           <DisplayState />
         </section>
         <TransitionPortal>

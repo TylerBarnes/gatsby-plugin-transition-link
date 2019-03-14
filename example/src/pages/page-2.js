@@ -137,6 +137,13 @@ export default class SecondPage extends Component {
                   👉
                 </span>
               </TransitionLink>
+              <br />
+              <TransitionLink
+                to="/"
+                onClick={() => console.log('Link clicked')}
+              >
+                Go home normally (with an `onClick`)
+              </TransitionLink>
               <DisplayState />
               <section
                 style={{
