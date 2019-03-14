@@ -95,7 +95,7 @@ export default class SecondPage extends Component {
                   white                     /* color */
                   "
               >
-                Go home with a cover left
+                Go home with a cover left background image
               </AniLink>
               <br />
               <AniLink swipe to="/">
