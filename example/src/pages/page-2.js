@@ -80,7 +80,21 @@ export default class SecondPage extends Component {
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
               <br />
-              <AniLink cover to="/" direction="left">
+              <AniLink
+                cover
+                to="/"
+                direction="left"
+                duration={3}
+                bg="
+                  url(https://source.unsplash.com/random)
+                  center / cover /* position / size */
+                  no-repeat                /* repeat */
+                  fixed                    /* attachment */
+                  padding-box              /* origin */
+                  content-box              /* clip */
+                  white                     /* color */
+                  "
+              >
                 Go home with a cover left
               </AniLink>
               <br />
