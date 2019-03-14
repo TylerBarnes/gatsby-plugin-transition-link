@@ -38,4 +38,6 @@ For info on using TransitionLink refer to [the docs](https://transitionlink.tyle
 
 Now when you make changes to the TransitionLink src folder, they will reflect in your project.
 
+Please use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.3/) specification for your commit messages.
+
 Feature requests and PR's are welcome! If you're having a problem please leave an issue and I'll help you out asap.
