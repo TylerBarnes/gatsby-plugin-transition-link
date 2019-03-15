@@ -29,12 +29,24 @@ For info on using TransitionLink refer to [the docs](https://transitionlink.tyle
 
 ## Contributing
 
-1. Fork this repo
-2. Run `yarn && yarn watch` from the root directory.
-3. In another terminal window `cd` into the lib directory and run `yarn link`.
-4. `cd` to the project directory you want to test it out on and run `yarn link gatsby-plugin-transition-link`.
-5. copy `.eslintrc.json` to the root of your project.
-6. `gatsby develop`
+0. Make sure you have `yarn` installed on your computer.
+1. Create a new folder on your computer to be used as your yarn workspace.
+1. In your workspace folder, clone this repo.
+1. `cd` into this repo and run `yarn && yarn watch`. Leave this terminal window open.
+1. Beside this repo in your workspace folder, add a gatsby site that uses transition link for testing purposes (you can copy/paste the example site from this repo if needed).
+1. In your workspace folder create a package.json and add the following:
+
+```
+{
+	"private": true,
+	"workspaces": [
+		"example", <-- the name of your test site folder
+		"gatsby-plugin-transition-link/lib"
+	]
+}
+```
+
+6. In a new terminal window, `cd` to your workspace folder and run `yarn && yarn workspace example run develop`.
 
 Now when you make changes to the TransitionLink src folder, they will reflect in your project.
 
