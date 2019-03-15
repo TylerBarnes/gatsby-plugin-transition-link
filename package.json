@@ -21,10 +21,9 @@
   "license": "MIT",
   "scripts": {
     "release": "standard-version",
-    "copy-files": "mkdir lib || true && cp .eslintrc.json readme.md package.json lib",
-    "build": "yarn copy-files && babel src --out-dir lib --copy-files --ignore **/__tests__",
-    "watch": "yarn copy-files && babel -w src --out-dir lib --copy-files --ignore **/__tests__",
-    "publish": "git push --follow-tags origin master && yarn copy-files && cd lib && npm publish && cd ../"
+    "build": "babel src --out-dir . --copy-files --ignore **/__tests__",
+    "develop": "babel -w src --out-dir . --copy-files --ignore **/__tests__",
+    "publish": "git push --follow-tags origin master && npm publish"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
