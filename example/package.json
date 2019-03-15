@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "example",
   "description": "Gatsby default starter",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>, Tyler Barnes <tyler@known.design>",
   "dependencies": {
     "gatsby": "^2.0.31",
     "gatsby-plugin-manifest": "^2.0.6",
