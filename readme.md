@@ -29,9 +29,9 @@ For info on using TransitionLink refer to [the docs](https://transitionlink.tyle
 
 ## Contributing
 
-0. Make sure you have `yarn` installed on your computer.
-1. Create a new folder on your computer to be used as your yarn workspace.
-1. In your workspace folder, clone this repo.
+0. Make sure you have `yarn` installed.
+1. Create a new folder to be used as your yarn workspace. `mkdir transitionlink-workspace`
+1. Inside your workspace folder, clone this repo.
 1. `cd` into this repo and run `yarn && yarn watch`. Leave this terminal window open.
 1. Beside this repo in your workspace folder, add a gatsby site that uses transition link for testing purposes (you can copy/paste the example site from this repo if needed).
 1. In your workspace folder create a package.json and add the following:
