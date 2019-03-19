@@ -6,7 +6,7 @@ const fade = ({ exit: { length }, node, direction }) => {
   const duration = direction === "out" ? length + length / 4 : length;
   const opacity = direction === "in" ? 1 : 0;
   const scrollTop =
-    document.scrollingElement.scrollTop ||
+    (document.scrollingElement && document.scrollingElement.scrollTop) ||
     document.body.scrollTop ||
     window.pageYOffset;
 
