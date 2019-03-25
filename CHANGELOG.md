@@ -2,6 +2,94 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# 1.6.0 (2019-03-25)
+
+
+### Bug Fixes
+
+* 56: fixed missing scrollingElement in some browsers; ([b3aad7b](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/b3aad7b))
+* Add missing parenthesis on link ([f19dfc5](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/f19dfc5))
+* Update example site name for yarn workspaces ([2c58795](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/2c58795))
+
+
+### Features
+
+* added property to configure swipe offset; ([ac95547](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/ac95547))
+
+
+
+## 1.5.2 (2019-03-14)
+
+
+
+## 1.4.4 (2018-12-18)
+
+
+
+## 1.4.1 (2018-12-02)
+
+
+
+## 1.3.4 (2018-11-24)
+
+
+
+## 1.3.1 (2018-11-23)
+
+
+
+# 1.3.0 (2018-11-22)
+
+
+
+## 1.2.5 (2018-11-21)
+
+
+
+## 1.2.3 (2018-11-17)
+
+
+
+## 1.2.2 (2018-11-15)
+
+
+
+## 1.1.2 (2018-11-12)
+
+
+
+## 1.1.1 (2018-11-08)
+
+
+
+# 1.1.0 (2018-11-08)
+
+
+
+## 1.0.11 (2018-11-07)
+
+
+
+## 1.0.10 (2018-11-07)
+
+
+
+## 1.0.7 (2018-11-07)
+
+
+
+## 1.0.1 (2018-11-04)
+
+
+
+# 1.0.0 (2018-11-04)
+
+
+
+# 0.1.0 (2018-10-26)
+
+
+
 ## 1.5.2 (2019-03-14)
 
 Pass onClick handlers through to TransitionLink
