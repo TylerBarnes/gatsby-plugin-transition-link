@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.6.0...v1.6.2) (2019-03-25)
+
+
+### Bug Fixes
+
+* make publishing workflow easier & bump version to fix incorrect publish ([b5e3e14](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/b5e3e14))
+
+
+
 # 1.6.0 (2019-03-25)
 
 
