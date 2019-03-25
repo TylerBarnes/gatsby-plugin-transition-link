@@ -20,23 +20,23 @@ const swipeTopDirection = (direction, reverse) => {
   }
 };
 
-const swipeBottomDirection = (direction, reverse) => {
+const swipeBottomDirection = (direction, reverse = false, offset = 40) => {
   const polarityPos = reverse ? "-" : "";
   const polarityNeg = reverse ? "" : "-";
 
   switch (direction) {
     case "down":
-      return { y: `${polarityNeg}40vh`, ease: Power1.easeIn };
+      return { y: `${polarityNeg}${offset}vh`, ease: Power1.easeIn };
     case "up":
-      return { y: `${polarityPos}40vh`, ease: Power1.easeIn };
+      return { y: `${polarityPos}${offset}vh`, ease: Power1.easeIn };
     case "left":
-      return { x: `${polarityPos}40%`, ease: Power1.easeIn };
+      return { x: `${polarityPos}${offset}%`, ease: Power1.easeIn };
     default:
-      return { x: `${polarityNeg}40%`, ease: Power1.easeIn };
+      return { x: `${polarityNeg}${offset}%`, ease: Power1.easeIn };
   }
 };
 
-const swipe = ({ node, exit, direction, top, triggerName }) => {
+const swipe = ({ node, exit, direction, top, triggerName, entryOffset }) => {
   const scrollTop =
     document.scrollingElement.scrollTop ||
     document.body.scrollTop ||
@@ -56,7 +56,7 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
     return new TimelineMax().from(
       node,
       exit.length,
-      swipeBottomDirection(direction)
+      swipeBottomDirection(direction, false, entryOffset)
     );
   } else if (triggerName === "exit" && top === "exit") {
     return new TimelineMax()
@@ -76,7 +76,7 @@ const swipe = ({ node, exit, direction, top, triggerName }) => {
         height: "100vh",
         scrollTop: scrollTop
       })
-      .to(node, exit.length, swipeBottomDirection(direction, true))
+      .to(node, exit.length, swipeBottomDirection(direction, true, entryOffset))
       .set(node, { overflowY: "initial" });
   }
 };
@@ -85,6 +85,7 @@ export default function SwipeOver({
   exit,
   entry,
   swipe: removedProp,
+  entryOffset = 40,
   ...props
 }) {
   const top = props.top || "exit";
@@ -103,6 +104,7 @@ export default function SwipeOver({
             exit,
             direction: props.direction,
             top: top,
+            entryOffset,
             triggerName: "exit"
           }),
         zIndex: exitZ
@@ -115,6 +117,7 @@ export default function SwipeOver({
             exit,
             direction: props.direction,
             top: top,
+            entryOffset,
             triggerName: "entry"
           }),
         zIndex: entryZ
