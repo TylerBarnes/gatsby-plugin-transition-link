@@ -38,7 +38,7 @@ const swipeBottomDirection = (direction, reverse = false, offset = 40) => {
 
 const swipe = ({ node, exit, direction, top, triggerName, entryOffset }) => {
   const scrollTop =
-    document.scrollingElement.scrollTop ||
+    (document.scrollingElement && document.scrollingElement.scrollTop) ||
     document.body.scrollTop ||
     window.pageYOffset;
 
