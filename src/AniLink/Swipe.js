@@ -36,7 +36,14 @@ const swipeBottomDirection = (direction, reverse = false, offset = 40) => {
   }
 };
 
-const swipe = ({ node, exit, direction, top, triggerName, swipeBottomOffset }) => {
+const swipe = ({
+  node,
+  exit,
+  direction,
+  top,
+  triggerName,
+  swipeBottomOffset
+}) => {
   const scrollTop =
     document.scrollingElement.scrollTop ||
     document.body.scrollTop ||
@@ -76,7 +83,11 @@ const swipe = ({ node, exit, direction, top, triggerName, swipeBottomOffset }) =
         height: "100vh",
         scrollTop: scrollTop
       })
-      .to(node, exit.length, swipeBottomDirection(direction, true, swipeBottomOffset))
+      .to(
+        node,
+        exit.length,
+        swipeBottomDirection(direction, true, swipeBottomOffset)
+      )
       .set(node, { overflowY: "initial" });
   }
 };
