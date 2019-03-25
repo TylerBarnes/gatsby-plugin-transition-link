@@ -36,14 +36,7 @@ const swipeBottomDirection = (direction, reverse = false, offset = 40) => {
   }
 };
 
-const swipe = ({
-  node,
-  exit,
-  direction,
-  top,
-  triggerName,
-  swipeBottomOffset
-}) => {
+const swipe = ({ node, exit, direction, top, triggerName, entryOffset }) => {
   const scrollTop =
     document.scrollingElement.scrollTop ||
     document.body.scrollTop ||
@@ -63,7 +56,7 @@ const swipe = ({
     return new TimelineMax().from(
       node,
       exit.length,
-      swipeBottomDirection(direction, false, swipeBottomOffset)
+      swipeBottomDirection(direction, false, entryOffset)
     );
   } else if (triggerName === "exit" && top === "exit") {
     return new TimelineMax()
@@ -83,11 +76,7 @@ const swipe = ({
         height: "100vh",
         scrollTop: scrollTop
       })
-      .to(
-        node,
-        exit.length,
-        swipeBottomDirection(direction, true, swipeBottomOffset)
-      )
+      .to(node, exit.length, swipeBottomDirection(direction, true, entryOffset))
       .set(node, { overflowY: "initial" });
   }
 };
@@ -96,7 +85,7 @@ export default function SwipeOver({
   exit,
   entry,
   swipe: removedProp,
-  swipeBottomOffset = 40,
+  entryOffset = 40,
   ...props
 }) {
   const top = props.top || "exit";
@@ -115,7 +104,7 @@ export default function SwipeOver({
             exit,
             direction: props.direction,
             top: top,
-            swipeBottomOffset,
+            entryOffset,
             triggerName: "exit"
           }),
         zIndex: exitZ
@@ -128,7 +117,7 @@ export default function SwipeOver({
             exit,
             direction: props.direction,
             top: top,
-            swipeBottomOffset,
+            entryOffset,
             triggerName: "entry"
           }),
         zIndex: entryZ
