@@ -50,6 +50,7 @@ export default class TransitionHandler extends Component {
                         }}
                         onEnter={node =>
                           !!node &&
+                          !window.__tl_back_button_pressed &&
                           onEnter({
                             node,
                             action,
@@ -64,6 +65,7 @@ export default class TransitionHandler extends Component {
                         }
                         onExit={node =>
                           !!node &&
+                          !window.__tl_back_button_pressed &&
                           onExit({
                             node,
                             inTransition,

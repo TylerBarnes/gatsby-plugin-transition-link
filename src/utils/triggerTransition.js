@@ -17,6 +17,10 @@ const triggerTransition = ({
 
   if (inTransition) return false;
 
+  // these globals prevent the back button from being pressed during a transition as that can have unexpected results
+  window.__tl_inTransition = true;
+  window.__tl_desiredPathname = to;
+
   updateContext({
     inTransition: true,
     exitDelay: 0,
@@ -80,16 +84,19 @@ const triggerTransition = ({
 
   // reset exit animation times so they dont apply when using browser back/forward.
   //  this will be replaced with a better solution in the future
-  setTimeout(
-    () =>
-      updateContext({
-        exitDelay: 0,
-        exitLength: 0,
-        // Once all animation is finished, it's safe to start a new animation since we're no longer inTransition.
-        inTransition: false
-      }),
-    getMs(finalResetSeconds) + 1
-  );
+  setTimeout(() => {
+    // these globals prevent the back button from being pressed during a transition as that can have unexpected results
+    window.__tl_inTransition = false;
+    window.__tl_desiredPathname = false;
+    window.__tl_back_button_pressed = false;
+
+    updateContext({
+      exitDelay: 0,
+      exitLength: 0,
+      // Once all animation is finished, it's safe to start a new animation since we're no longer inTransition.
+      inTransition: false
+    });
+  }, getMs(finalResetSeconds) + 1);
 };
 
 export { triggerTransition };
