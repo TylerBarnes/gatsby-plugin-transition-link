@@ -10,6 +10,8 @@ const triggerTransition = ({
   entry = {},
   inTransition,
   transitionIdHistory,
+  pages,
+  trigger,
   updateContext
 }) => {
   event.persist();
@@ -27,6 +29,8 @@ const triggerTransition = ({
     exitLength: 0,
     exitState: {}
   });
+
+  trigger(pages);
 
   const {
     length: exitLength = 0,

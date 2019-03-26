@@ -34,6 +34,7 @@ export default class TransitionHandler extends Component {
           transitionIdHistory,
           inTransition,
           updateContext,
+          triggerResolve,
           e
         }) => {
           return (
@@ -61,6 +62,7 @@ export default class TransitionHandler extends Component {
                             exitProps,
                             pathname,
                             updateContext,
+                            triggerResolve,
                             e
                           })
                         }
@@ -73,6 +75,7 @@ export default class TransitionHandler extends Component {
                             exitTrigger,
                             entryProps,
                             exitProps,
+                            triggerResolve,
                             e
                           })
                         }

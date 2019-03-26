@@ -24,6 +24,29 @@ class InternalProvider extends Component {
     updateContext: obj => this.setState(obj)
   };
 
+  componentDidMount() {
+    let exitResolve;
+    const exitPromise = new Promise(resolve => {
+      exitResolve = resolve;
+    });
+
+    let entryResolve;
+    const entryPromise = new Promise(resolve => {
+      entryResolve = resolve;
+    });
+
+    this.state.updateContext({
+      triggerResolve: {
+        entry: entryResolve,
+        exit: exitResolve
+      },
+      pages: {
+        exit: exitPromise,
+        entry: entryPromise
+      }
+    });
+  }
+
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
   }

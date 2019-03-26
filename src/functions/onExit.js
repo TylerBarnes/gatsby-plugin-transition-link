@@ -4,9 +4,17 @@ const onExit = ({
   exitTrigger,
   entryProps,
   exitProps,
+  triggerResolve,
   e
 }) => {
   if (!inTransition) return;
+
+  const { trigger: removed, ...exitPropsTrimmed } = exitProps;
+
+  triggerResolve.exit({
+    ...exitPropsTrimmed,
+    node
+  });
 
   return (
     exitTrigger &&

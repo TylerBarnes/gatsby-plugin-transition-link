@@ -4,6 +4,7 @@ const onEnter = ({
   entryTrigger,
   entryProps,
   exitProps,
+  triggerResolve,
   pathname,
   e
 }) => {
@@ -16,6 +17,13 @@ const onEnter = ({
   }
 
   if (!inTransition) return;
+
+  const { trigger: removed, ...entryPropsTrimmed } = entryProps;
+
+  triggerResolve.entry({
+    ...entryPropsTrimmed,
+    node
+  });
 
   entryTrigger &&
     typeof entryTrigger === "function" &&
