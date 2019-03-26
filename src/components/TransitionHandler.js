@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
-import { Consumer } from "../context/createTransitionContext";
-import { PublicProvider } from "../context/createTransitionContext";
-import delayTransitionRender from "./delayTransitionRender";
-import { returnTransitionState } from "../utils/returnTransitionState";
 import { Location } from "@reach/router";
-import { getMs } from "../utils/secondsMs";
+
+import TransitionRenderer from "./TransitionRenderer";
+import { LayoutComponent as Layout } from "./Layout";
+import delayTransitionRender from "./delayTransitionRender";
+import { Consumer } from "../context/createTransitionContext";
+import { returnTransitionState } from "../utils/returnTransitionState";
 import { onEnter } from "../functions/onEnter";
 import { onExit } from "../functions/onExit";
-import { LayoutComponent as Layout } from "./Layout";
+import { getMs } from "../utils/secondsMs";
 
 import "../style.css";
 
@@ -110,23 +111,14 @@ export default class TransitionHandler extends Component {
                           const entryZindex = entryProps.zIndex || 1;
 
                           return (
-                            <div
-                              className={`tl-wrapper ${
-                                mount
-                                  ? "tl-wrapper--mount"
-                                  : "tl-wrapper--unmount"
-                              } tl-wrapper-status--${transitionStatus}`}
-                              style={{
-                                zIndex: mount ? entryZindex : exitZindex
-                              }}
-                            >
-                              <PublicProvider value={{ ...transitionState }}>
-                                {/* pass transition state to page/template */}
-                                {React.cloneElement(children, {
-                                  ...transitionState
-                                })}
-                              </PublicProvider>
-                            </div>
+                            <TransitionRenderer
+                              mount={mount}
+                              entryZindex={entryZindex}
+                              exitZindex={exitZindex}
+                              transitionStatus={transitionStatus}
+                              transitionState={transitionState}
+                              children={children}
+                            />
                           );
                         }}
                       </DelayedTransition>
