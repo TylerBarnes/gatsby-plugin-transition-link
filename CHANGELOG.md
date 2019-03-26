@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.0...v1.9.1) (2019-03-26)
+
+
+### Bug Fixes
+
+* only call trigger function if it exists! ([6ec1b08](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/6ec1b08))
+
+
+
 # [1.9.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.7.2...v1.9.0) (2019-03-26)
 
 
