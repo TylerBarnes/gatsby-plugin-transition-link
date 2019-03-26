@@ -30,7 +30,9 @@ const triggerTransition = ({
     exitState: {}
   });
 
-  trigger(pages);
+  if (trigger && typeof trigger === "function") {
+    trigger(pages);
+  }
 
   const {
     length: exitLength = 0,
