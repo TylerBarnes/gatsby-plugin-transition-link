@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.9.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.7.2...v1.9.0) (2019-03-26)
+
+
+### Features
+
+* add trigger prop to TransitionLink. ([08d303b](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/08d303b))
+* improve performance by preventing extra renders ([af3a2bc](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/af3a2bc))
+
+
+
 # [1.8.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.7.2...v1.8.0) (2019-03-26)
 
 
