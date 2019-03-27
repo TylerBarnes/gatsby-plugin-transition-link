@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.5](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.4...v1.9.5) (2019-03-27)
+
+
+### Bug Fixes
+
+* update scroll position after the new page is visible ([36e5000](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/36e5000))
+* update the transition renderer after the appear after delay ([8640edf](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/8640edf))
+
+
+
 ## [1.9.4](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.3...v1.9.4) (2019-03-27)
 
 
