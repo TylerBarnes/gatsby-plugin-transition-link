@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { setTimeout } from "requestanimationframe-timer";
 
 export default function delayTransitionRender(WrappedComponent) {
   class DelayedTransitionWrapper extends Component {
@@ -6,7 +7,10 @@ export default function delayTransitionRender(WrappedComponent) {
       super(props);
 
       this.state = {
-        shouldRender: false
+        // if there is a delay, set shouldRender to false
+        // then in componentdid mount shouldRender becomes true
+        // after the delay.
+        shouldRender: !!!this.props.delay
       };
     }
 
