@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.4](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.3...v1.9.4) (2019-03-27)
+
+
+### Bug Fixes
+
+* move appearAfter logic to transition renderer ([561d843](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/561d843))
+
+
+
 ## [1.9.3](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.2...v1.9.3) (2019-03-27)
 
 
