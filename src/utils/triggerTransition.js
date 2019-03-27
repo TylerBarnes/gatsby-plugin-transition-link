@@ -28,6 +28,7 @@ const triggerTransition = ({
     inTransition: true,
     exitDelay: 0,
     exitLength: 0,
+    appearAfter: 0,
     exitState: {}
   });
 
@@ -45,7 +46,8 @@ const triggerTransition = ({
     length: entryLength = 1, // this allows scrollposition to be reset when there is no transition.
     delay: entryDelay = 0,
     state: entryState = {},
-    trigger: entryTrigger = () => {}
+    trigger: entryTrigger = () => {},
+    appearAfter = 0
   } = entry;
 
   updateContext({
@@ -55,6 +57,7 @@ const triggerTransition = ({
     exitDelay: exitDelay,
     entryProps: entry,
     exitProps: exit,
+    appearAfter,
     exitTrigger: (exit, node, e) => exitTrigger(exit, node, e),
     entryTrigger: (entry, node, e) => entryTrigger(entry, node, e),
     e: event
@@ -81,6 +84,7 @@ const triggerTransition = ({
     () =>
       updateContext({
         entryDelay: 0,
+        appearAfter: 0,
         entryLength: 0
       }),
     getMs(exitDelay + entryDelay + entryLength)

@@ -10,24 +10,37 @@ export default function delayTransitionRender(WrappedComponent) {
         // if there is a delay, set shouldRender to false
         // then in componentdid mount shouldRender becomes true
         // after the delay.
-        shouldRender: !!!this.props.delay
+        shouldRender: !!!this.props.delay,
+        shouldBeVisible: !!!this.props.appearAfter
       };
     }
 
     componentDidMount() {
-      this.timeout = setTimeout(
+      this.renderTimeout = setTimeout(
         () => this.setState({ shouldRender: true }),
         this.props.delay
+      );
+
+      this.appearTimeout = setTimeout(
+        () => this.setState({ shouldBeVisible: true }),
+        this.props.delay + this.props.appearAfter
       );
     }
 
     componentWillUnmount() {
-      clearTimeout(this.timeout);
+      clearTimeout(this.renderTimeout);
+      clearTimeout(this.appearTimeout);
     }
 
     render() {
       return this.state.shouldRender || typeof window === `undefined` ? (
-        <WrappedComponent {...this.props} />
+        <span
+          style={{
+            opacity: this.state.shouldBeVisible ? 1 : 0
+          }}
+        >
+          <WrappedComponent {...this.props} />
+        </span>
       ) : null;
     }
   }
