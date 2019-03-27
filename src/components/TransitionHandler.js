@@ -64,6 +64,7 @@ export default class TransitionHandler extends Component {
                             pathname,
                             updateContext,
                             triggerResolve,
+                            appearAfter: getMs(appearAfter),
                             e
                           })
                         }

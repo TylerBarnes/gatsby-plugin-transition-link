@@ -1,3 +1,5 @@
+import { setTimeout } from "requestanimationframe-timer";
+
 const onEnter = ({
   node,
   inTransition,
@@ -6,10 +8,14 @@ const onEnter = ({
   exitProps,
   triggerResolve,
   pathname,
+  entryProps: { delay = 0 },
+  appearAfter = 0,
   e
 }) => {
   if (inTransition) {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, appearAfter);
   } else {
     const storageKey = `@@scroll|${pathname}`;
     const savedPosition = sessionStorage.getItem(storageKey);
@@ -20,8 +26,15 @@ const onEnter = ({
 
   const { trigger: removed, ...entryPropsTrimmed } = entryProps;
 
+  const timeout = appearAfter + delay;
+
+  const visiblePromise = new Promise(resolve => {
+    setTimeout(() => resolve(), timeout);
+  });
+
   triggerResolve.entry({
     ...entryPropsTrimmed,
+    visible: visiblePromise,
     node
   });
 
