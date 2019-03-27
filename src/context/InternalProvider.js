@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Provider } from "./createTransitionContext";
+import getPagesPromises from "../utils/getPagesPromises";
 
 class InternalProvider extends Component {
   state = {
@@ -25,26 +26,7 @@ class InternalProvider extends Component {
   };
 
   componentDidMount() {
-    let exitResolve;
-    const exitPromise = new Promise(resolve => {
-      exitResolve = resolve;
-    });
-
-    let entryResolve;
-    const entryPromise = new Promise(resolve => {
-      entryResolve = resolve;
-    });
-
-    this.state.updateContext({
-      triggerResolve: {
-        entry: entryResolve,
-        exit: exitResolve
-      },
-      pages: {
-        exit: exitPromise,
-        entry: entryPromise
-      }
-    });
+    this.state.updateContext(getPagesPromises());
   }
 
   render() {

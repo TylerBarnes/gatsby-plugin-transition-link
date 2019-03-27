@@ -2,6 +2,7 @@ import { navigate } from "gatsby";
 import random from "lodash/random";
 import { setTimeout } from "requestanimationframe-timer";
 import { getMs } from "./secondsMs";
+import getPagesPromises from "./getPagesPromises";
 
 const triggerTransition = ({
   to,
@@ -100,7 +101,9 @@ const triggerTransition = ({
       exitDelay: 0,
       exitLength: 0,
       // Once all animation is finished, it's safe to start a new animation since we're no longer inTransition.
-      inTransition: false
+      inTransition: false,
+      // create new page promises for the trigger prop
+      ...getPagesPromises()
     });
   }, getMs(finalResetSeconds) + 1);
 };
