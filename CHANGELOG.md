@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.1...v1.9.2) (2019-03-27)
+
+
+### Bug Fixes
+
+* don't change page opacity to hide ([9d69a8e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/9d69a8e))
+* reset pages promises after transitions when using the new trigger prop ([6654337](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/6654337))
+
+
+
 ## [1.9.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.0...v1.9.1) (2019-03-26)
 
 
