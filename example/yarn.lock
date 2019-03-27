@@ -4634,10 +4634,10 @@ gatsby-plugin-remove-serviceworker@^1.0.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-remove-serviceworker/-/gatsby-plugin-remove-serviceworker-1.0.0.tgz#9fb433bc8bd766e14e1d3711c4ac6f051e1dff7c"
   integrity sha1-n7QzvIvXZuFOHTcRxKxvBR4d/3w=
 
-gatsby-plugin-transition-link@1.9.4:
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-transition-link/-/gatsby-plugin-transition-link-1.9.4.tgz#d03664f4d077068d25786d3e470c3d6e91fae3dc"
-  integrity sha512-Pqo8RUihW1fPqcFAlOj+XgquA2CkgSBAtiOg/TZltxHGV0vtCF/yhC7XTCyaTCGMt1k6loNW23zuH9A/ykEsUw==
+gatsby-plugin-transition-link@1.9.5:
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-transition-link/-/gatsby-plugin-transition-link-1.9.5.tgz#92387a3ea26dff2d318d8960a74ab1dd29e5d811"
+  integrity sha512-7pEGoNhDYPhOrHl16V6ovtNINDoop9SRSgGyVtqFiVzruMKHe1t8OQsMrZAHkDeKitMMM/hHAPdIUah7JGyi4g==
   dependencies:
     babel-preset-gatsby-package "^0.1.2"
     color-convert "^1.9.3"
