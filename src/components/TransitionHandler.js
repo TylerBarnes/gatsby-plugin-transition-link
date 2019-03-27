@@ -47,7 +47,6 @@ export default class TransitionHandler extends Component {
                       <DelayedTransition
                         key={pathname} // we're using seconds but transitiongroup uses ms
                         delay={getMs(entryDelay)}
-                        appearAfter={getMs(appearAfter)}
                         timeout={{
                           enter: getMs(entryLength),
                           exit: getMs(exitLength)
@@ -123,6 +122,7 @@ export default class TransitionHandler extends Component {
                               transitionStatus={transitionStatus}
                               transitionState={transitionState}
                               children={children}
+                              appearAfter={getMs(appearAfter)}
                             />
                           );
                         }}
