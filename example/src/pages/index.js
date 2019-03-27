@@ -54,7 +54,7 @@ class Index extends Component {
     return (
       <Layout theme="white">
         <section ref={n => (this.layoutContents = n)}>
-          <h1>Hi people</h1>
+          <h1>Hi peoples</h1>
           <p>Check out these sick transitions.</p>
           <AniLink to="/page-2">Go to page 2 normally</AniLink>
           <br />
@@ -120,10 +120,7 @@ class Index extends Component {
             and give us a dark theme when we get there.
           </TransitionLink>
           <br />
-          <AniLink
-            to="/page-2"
-            onClick={() => console.log('Link clicked')}
-          >
+          <AniLink to="/page-2" onClick={() => console.log('Link clicked')}>
             Go to page 2 normally (with an `onClick`)
           </AniLink>
           <br />
