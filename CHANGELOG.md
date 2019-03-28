@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.11.0...v1.11.1) (2019-03-28)
+
+
+### Bug Fixes
+
+* reinstate position relative so that z-index works!! ([12f0e51](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/12f0e51))
+
+
+
 # [1.11.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.5...v1.11.0) (2019-03-28)
 
 
