@@ -23,7 +23,7 @@ const MorphTo = ({ children, to, duration, morph }) => (
         width: morphToEl.offsetWidth
       };
 
-      new TimelineMax().to(morphFromEl, 1, {
+      new TimelineMax().to(morphFromEl, duration, {
         width: finalMeasurements.width,
         height: finalMeasurements.height
       });
