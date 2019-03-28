@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.11.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.5...v1.11.0) (2019-03-28)
+
+
+### Bug Fixes
+
+* move react to peerdependencies to prevent it being loaded twice. ([cf0bc7a](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/cf0bc7a))
+* remove unneeded position relative on tl-wrapper element ([747124b](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/747124b))
+
+
+### Features
+
+* add direction prop to paintDrip ([6161190](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/6161190))
+* add useTransitionState hook ([5b16766](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/5b16766))
+
+
+
 # [1.10.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.9.5...v1.10.0) (2019-03-28)
 
 
