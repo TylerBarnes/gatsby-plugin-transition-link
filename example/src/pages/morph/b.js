@@ -9,6 +9,8 @@ export default () => (
     <AniLink
       morph
       to="/morph"
+      duration={2}
+      morph={{
         from: '#js-big-box',
         to: '#js-small-box',
       }}
