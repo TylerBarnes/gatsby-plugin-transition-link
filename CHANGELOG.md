@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.12.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.11.1...v1.12.0) (2019-03-28)
+
+
+### Features
+
+* Add anilink morph animation ([86c24ce](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/86c24ce))
+
+
+
 ## [1.11.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.11.0...v1.11.1) (2019-03-28)
 
 
