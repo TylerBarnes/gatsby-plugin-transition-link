@@ -6,7 +6,6 @@ import Layout from '../../components/layout'
 export default () => (
   <Layout>
     <AniLink
-      morph
       to="/morph"
       duration={2}
       morph={{

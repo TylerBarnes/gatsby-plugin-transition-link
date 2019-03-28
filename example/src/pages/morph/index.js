@@ -5,7 +5,6 @@ import Layout from '../../components/layout'
 const MorphPage = () => (
   <Layout>
     <AniLink
-      morph
       to="/morph/b"
       duration={1}
       morph={{
