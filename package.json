@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-transition-link",
-  "version": "1.9.5",
+  "version": "1.10.0",
   "description": "A link component for page transitions in gatsby.",
   "repository": "https://github.com/TylerBarnes/gatsby-plugin-transition-link",
   "homepage": "https://gatsby-plugin-transition-link.netlify.com/",
