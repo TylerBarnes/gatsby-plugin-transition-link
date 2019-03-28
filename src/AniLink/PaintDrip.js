@@ -123,6 +123,7 @@ export default class PaintDrip extends Component {
       entry: removedEntry,
       paintDrip: removedProp,
       duration,
+      direction = "left",
       ...props
     } = this.props;
     const aniLength = duration || 1;
@@ -139,7 +140,7 @@ export default class PaintDrip extends Component {
           entry={{
             delay: aniDelay,
             length: aniLength,
-            trigger: ({ entry, node }) => this.slideIn(entry, node, "left")
+            trigger: ({ entry, node }) => this.slideIn(entry, node, direction)
           }}
           {...props}
         >
