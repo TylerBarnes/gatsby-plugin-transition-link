@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.0...v1.12.1) (2019-03-28)
+
+
+### Bug Fixes
+
+* remove hardcoded morph duration ([e139199](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/e139199))
+
+
+
 # [1.12.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.11.1...v1.12.0) (2019-03-28)
 
 
