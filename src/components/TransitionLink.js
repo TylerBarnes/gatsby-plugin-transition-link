@@ -11,19 +11,25 @@ const TransitionLink = ({
   exit,
   entry,
   activeStyle,
+  partiallyActive,
   style,
   className,
+  activeClassName,
+  state,
   onClick,
   trigger,
+  replace,
   ...rest
 }) => {
   return (
     <Consumer>
       {({ ...context }) => (
         <Link
-          activeStyle={activeStyle}
           style={style}
+          activeStyle={activeStyle}
           className={className}
+          activeClassName={activeClassName}
+          partiallyActive={partiallyActive}
           onClick={event => {
             triggerTransition({
               event,
@@ -31,6 +37,8 @@ const TransitionLink = ({
               exit,
               entry,
               trigger,
+              replace,
+              linkState: state,
               ...context
             });
 
