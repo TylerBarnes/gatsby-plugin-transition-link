@@ -13,7 +13,9 @@ const triggerTransition = ({
   transitionIdHistory,
   pages,
   trigger,
-  updateContext
+  updateContext,
+  linkState,
+  replace
 }) => {
   event.persist();
   event.preventDefault();
@@ -63,10 +65,18 @@ const triggerTransition = ({
     e: event
   });
 
+  // after exitDelay
   setTimeout(() => {
-    // after exitDelay
     const transitionId = random(10000, 99999, false);
-    navigate(to, { state: { transitionId: transitionId } });
+
+    navigate(to, {
+      state: {
+        transitionId,
+        ...linkState
+      },
+      replace
+    });
+
     updateContext({
       exitState: exitState,
       transitionIdHistory: [...transitionIdHistory, transitionId]
