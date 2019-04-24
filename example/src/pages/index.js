@@ -57,6 +57,10 @@ class Index extends Component {
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi peoples</h1>
           <p>Check out these sick transitions.</p>
+          <AniLink fade to="/page-2">
+            Fade to page 2
+          </AniLink>
+          <br />
           <AniLink state={{ to: 'page2' }} to="/page-2">
             Go to page 2 normally
           </AniLink>
