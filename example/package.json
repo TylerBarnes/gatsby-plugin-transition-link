@@ -10,7 +10,7 @@
     "gatsby-plugin-offline": "^2.0.9",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
-    "gatsby-plugin-transition-link": "^1.12.1",
+    "gatsby-plugin-transition-link": "^1.12.3",
     "gsap": "^2.0.2",
     "ngrok": "^3.1.0",
     "react": "^16.8.5",
