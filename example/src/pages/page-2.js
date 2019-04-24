@@ -60,6 +60,8 @@ export default class SecondPage extends Component {
       entry: { state: entryState },
     } = this.props
 
+    console.log(this.props.location.state)
+
     return (
       <>
         <section ref={n => (this.layoutWrapper = n)}>
@@ -96,26 +98,6 @@ export default class SecondPage extends Component {
                   "
               >
                 Go home with a cover left background image
-              </AniLink>
-              <br />
-              <AniLink swipe to="/">
-                Go home with a swipe default
-              </AniLink>
-              <br />
-              <AniLink swipe to="/" direction="right" top="entry">
-                Go home with a swipe right
-              </AniLink>
-              <br />
-              <AniLink swipe to="/" direction="left" top="entry">
-                Go home with a swipe left
-              </AniLink>
-              <br />
-              <AniLink swipe to="/" direction="up" top="entry">
-                Go home with a swipe up
-              </AniLink>
-              <br />
-              <AniLink swipe to="/" direction="down" top="entry">
-                Go home with a swipe down
               </AniLink>
               <br />
               <TransitionLink

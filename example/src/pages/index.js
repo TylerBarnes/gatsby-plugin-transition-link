@@ -3,6 +3,7 @@ import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import {Link} from 'gatsby'
 
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'
@@ -56,30 +57,12 @@ class Index extends Component {
         <section ref={n => (this.layoutContents = n)}>
           <h1>Hi peoples</h1>
           <p>Check out these sick transitions.</p>
-          <AniLink to="/page-2">Go to page 2 normally</AniLink>
+          <AniLink state={{ to: 'page2' }} to="/page-2">
+            Go to page 2 normally
+          </AniLink>
           <br />
           <AniLink cover to="/page-2" direction="right">
             Go to page 2 with a cover right
-          </AniLink>
-          <br />
-          <AniLink swipe to="/page-2">
-            Go to page 2 with a swipe default
-          </AniLink>
-          <br />
-          <AniLink swipe to="/page-2" direction="left" top="exit">
-            Go to page 2 with a swipe left
-          </AniLink>
-          <br />
-          <AniLink swipe to="/page-2" direction="right" top="exit">
-            Go to page 2 with a swipe right
-          </AniLink>
-          {/* <br />
-          <AniLink swipe to="/page-2" direction="up" top="exit">
-            Go to page 2 with a swipe up
-          </AniLink> */}
-          <br />
-          <AniLink swipe to="/page-2" direction="down" top="exit">
-            Go to page 2 with a swipe down
           </AniLink>
           <br />
           <AniLink paintDrip to="/page-2" hex="#4b2571">
@@ -124,6 +107,7 @@ class Index extends Component {
             Go to page 2 normally (with an `onClick`)
           </AniLink>
           <br />
+          <Link to="/page-2">Go to page 2 with gatsby-link</Link>
           <DisplayState />
         </section>
         <TransitionPortal>
