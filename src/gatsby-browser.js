@@ -2,7 +2,7 @@ const { navigate } = require("gatsby");
 
 exports.wrapPageElement = require(`./wrap-page`);
 
-exports.shouldUpdateScroll = () => false;
+exports.shouldUpdateScroll = () => !window.__tl_inTransition;
 
 exports.onPreRouteUpdate = ({ location }) => {
   // prevent the back button during transitions as it breaks pages
