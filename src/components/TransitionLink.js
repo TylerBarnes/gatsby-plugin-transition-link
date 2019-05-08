@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
+import { shouldNavigate } from "../utils/shouldNavigate";
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
@@ -31,20 +32,21 @@ const TransitionLink = ({
           activeClassName={activeClassName}
           partiallyActive={partiallyActive}
           onClick={event => {
-            triggerTransition({
-              event,
-              to,
-              exit,
-              entry,
-              trigger,
-              replace,
-              linkState: state,
-              ...context
-            });
-
+            if (shouldNavigate(event)) {
+              triggerTransition({
+                event,
+                to,
+                exit,
+                entry,
+                trigger,
+                replace,
+                linkState: state,
+                ...context
+              });
+            };
             if (typeof onClick === "function") {
               onClick(event);
-            }
+            };
           }}
           to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
           {...rest}
