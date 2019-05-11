@@ -32,7 +32,9 @@ const TransitionLink = ({
           activeClassName={activeClassName}
           partiallyActive={partiallyActive}
           onClick={event => {
-            if (shouldNavigate(event)) {
+            const weShouldNavigate = shouldNavigate(event);
+
+            if (weShouldNavigate) {
               triggerTransition({
                 event,
                 to,
@@ -43,10 +45,11 @@ const TransitionLink = ({
                 linkState: state,
                 ...context
               });
-            };
+            }
+            
             if (typeof onClick === "function") {
-              onClick(event);
-            };
+              onClick(event, weShouldNavigate);
+            }
           }}
           to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
           {...rest}
