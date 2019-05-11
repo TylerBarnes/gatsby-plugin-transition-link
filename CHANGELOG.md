@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.4](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.3...v1.12.4) (2019-05-11)
+
+
+### Bug Fixes
+
+* enable 'open in new tab' functionality when clicking link with ctrl/cmd ([95f7bb2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/95f7bb2))
+
+
+
 ## [1.12.3](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.2...v1.12.3) (2019-04-24)
 
 
