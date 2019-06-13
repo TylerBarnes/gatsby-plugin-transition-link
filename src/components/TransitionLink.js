@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
@@ -6,27 +6,24 @@ import { shouldNavigate } from "../utils/shouldNavigate";
 import { triggerTransition } from "../utils/triggerTransition";
 import { Consumer } from "../context/createTransitionContext";
 
-if (typeof forwardRef === "undefined") {
-  forwardRef = C => C;
-}
+const TransitionLink = ({
+    to,
+    children,
+    exit,
+    entry,
+    activeStyle,
+    partiallyActive,
+    style,
+    className,
+    activeClassName,
+    state,
+    onClick,
+    trigger,
+    replace,
+    innerRef,
+    ...rest
+  }) => {
 
-const TransitionLink = forwardRef(({
-  to,
-  children,
-  exit,
-  entry,
-  activeStyle,
-  partiallyActive,
-  style,
-  className,
-  activeClassName,
-  state,
-  onClick,
-  trigger,
-  replace,
-  innerRef,
-  ...rest
-}, ref) => {
   return (
     <Consumer>
       {({ ...context }) => (
@@ -57,7 +54,7 @@ const TransitionLink = forwardRef(({
             }
           }}
           to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
-          ref={ref || innerRef}
+          ref={innerRef}
           {...rest}
         >
           {children}
@@ -65,7 +62,7 @@ const TransitionLink = forwardRef(({
       )}
     </Consumer>
   );
-});
+}
 
 TransitionLink.propTypes = {
   to: PropTypes.string.isRequired,
