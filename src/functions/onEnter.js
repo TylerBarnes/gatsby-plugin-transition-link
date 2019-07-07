@@ -18,8 +18,10 @@ const onEnter = ({
     }, appearAfter);
   } else {
     const storageKey = `@@scroll|${pathname}`;
-    const savedPosition = sessionStorage.getItem(storageKey);
-    window.scrollTo(...JSON.parse(savedPosition));
+    try {
+      const savedPosition = sessionStorage.getItem(storageKey);
+      window.scrollTo(...JSON.parse(savedPosition));
+    } catch (e) {}
   }
 
   if (!inTransition) return;
