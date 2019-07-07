@@ -17,11 +17,13 @@ const onEnter = ({
       window.scrollTo(0, 0);
     }, appearAfter);
   } else {
-    const storageKey = `@@scroll|${pathname}`;
+    let position = [0, 0];
     try {
-      const savedPosition = sessionStorage.getItem(storageKey);
-      window.scrollTo(...JSON.parse(savedPosition));
-    } catch (e) {}
+      const storageKey = `@@scroll|${pathname}`;
+      position = JSON.parse(sessionStorage.getItem(storageKey));
+    } finally {
+      window.scrollTo(...position);
+    }
   }
 
   if (!inTransition) return;
