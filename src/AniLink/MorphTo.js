@@ -2,7 +2,7 @@ import React from "react";
 import TransitionLink from "gatsby-plugin-transition-link";
 import { TimelineMax } from "gsap";
 
-const MorphTo = ({ children, to, duration, morph, ...props }) => (
+const MorphTo = ({ children, to, duration, morph }) => (
   <TransitionLink
     to={to}
     exit={{
@@ -28,7 +28,6 @@ const MorphTo = ({ children, to, duration, morph, ...props }) => (
         height: finalMeasurements.height
       });
     }}
-    {...props}
   >
     {children}
   </TransitionLink>
