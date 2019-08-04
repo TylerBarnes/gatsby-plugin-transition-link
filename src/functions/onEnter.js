@@ -17,9 +17,18 @@ const onEnter = ({
       window.scrollTo(0, 0);
     }, appearAfter);
   } else {
-    const storageKey = `@@scroll|${pathname}`;
-    const savedPosition = sessionStorage.getItem(storageKey);
-    window.scrollTo(...JSON.parse(savedPosition));
+    // If session storage fails due to cookies being disabled, 
+    // scroll to the top after every navigation
+    let position = [0, 0];
+    try {
+      const storageKey = `@@scroll|${pathname}`;
+      position = JSON.parse(sessionStorage.getItem(storageKey));
+    }
+    catch(e) {
+      console.warn(`[gatsby-plugin-transition-link] Unable to save state in sessionStorage; sessionStorage is not available.`)
+    } finally {
+      window.scrollTo(...position);
+    }
   }
 
   if (!inTransition) return;
