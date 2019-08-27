@@ -139,11 +139,12 @@ export default class TransitionHandler extends Component {
 														transitionState={
 															transitionState
 														}
-														children={children}
 														appearAfter={getMs(
 															appearAfter,
 														)}
-													/>
+													>
+														{children}
+													</TransitionRenderer>
 												)
 											}}
 										</DelayedTransition>
