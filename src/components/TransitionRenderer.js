@@ -1,19 +1,11 @@
-import React, { Component, cloneElement } from "react";
+import React, { PureComponent, cloneElement } from "react";
 import { setTimeout, clearTimeout } from "requestanimationframe-timer";
 import { PublicProvider } from "../context/createTransitionContext";
 
-export default class TransitionRenderer extends Component {
+export default class TransitionRenderer extends PureComponent {
   state = {
     shouldBeVisible: !!!this.props.appearAfter
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // only rerender if the transition status changes.
-    return (
-      this.props.transitionStatus !== nextProps.transitionStatus ||
-      this.state.shouldBeVisible !== nextState.shouldBeVisible
-    );
-  }
 
   componentDidMount = () => {
     const delay = typeof this.props.delay === "number" ? this.props.delay : 0;
@@ -52,10 +44,7 @@ export default class TransitionRenderer extends Component {
         }}
       >
         <PublicProvider value={{ ...transitionState }}>
-          {/* pass transition state to page/template */}
-          {cloneElement(children, {
-            ...transitionState
-          })}
+          {children}
         </PublicProvider>
       </div>
     );
