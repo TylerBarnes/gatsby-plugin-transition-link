@@ -1,15 +1,12 @@
 .tl-edges {
   max-width: 100%;
-  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 .tl-wrapper {
   width: 100%;
-  float: left;
-  position: relative;
-}
-
-.tl-wrapper + .tl-wrapper {
-  margin-left: -100%;
-  margin-right: 0;
+  max-width: 100%;
+  position: absolute;
+  overflow-x: hidden;
 }
