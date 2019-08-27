@@ -1,3 +1,18 @@
+TODO:
+- add scroll jump timing api
+- add option to smooth scroll with timing
+- add ability to set a global default for all links
+- move anilink to it's own package
+- move example site to it's own package
+- update all anilinks to work with V2
+- merge security fix PR
+- fix all open tickets
+
+TO Document:
+- usage with gatsby-plugin-layout
+- persistent footers (inner layout component)
+
+
 ✔ pass the same transitionState to pages / templates that's passed to the TransitionConsumer @done(18-10-26 10:49)
 ✔ prevent transitionlinks from being clicked while a transition is in progress @done(18-10-26 15:23)
 ✔ prevent scroll jumping when transitioning @done(18-10-26 16:04)
