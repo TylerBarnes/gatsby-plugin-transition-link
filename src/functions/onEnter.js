@@ -23,7 +23,7 @@ const onEnter = ({
 			// scroll to the top after every navigation
 			let position = [0, 0]
 			try {
-				const storageKey = `@@scroll|${pathname}`
+				const storageKey = `@@tlscroll|${pathname}`
 				position = JSON.parse(sessionStorage.getItem(storageKey))
 			} catch (e) {
 				console.warn(
