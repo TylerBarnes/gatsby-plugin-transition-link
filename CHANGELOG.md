@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.13.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.4...v1.13.0) (2019-09-09)
+
+
+### Features
+
+* add forwardRef to TransitionLink  ([785c328](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/785c328)), closes [/github.com/reach/router/blob/master/src/index.js#L368](https://github.com//github.com/reach/router/blob/master/src/index.js/issues/L368)
+
+
+
 ## [1.12.4](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.3...v1.12.4) (2019-05-11)
 
 
