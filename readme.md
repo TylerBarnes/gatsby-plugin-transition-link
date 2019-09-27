@@ -8,6 +8,7 @@ TransitionLink is compatible with declarative react animation libraries like [re
 
 ## Sites that use TransitionLink
 
+- [principlesofwealth.net](http://principlesofwealth.net)
 - [incentro.com](https://www.incentro.com/en/)
 - [peintagone.be](https://www.peintagone.be/)
 - [strandrover.com](https://strandrover.com/)
