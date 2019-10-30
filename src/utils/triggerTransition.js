@@ -1,4 +1,4 @@
-import { navigate } from "gatsby";
+import { navigate, withPrefix } from "gatsby";
 import random from "lodash/random";
 import { setTimeout } from "requestanimationframe-timer";
 import { getMs } from "./secondsMs";
@@ -24,7 +24,7 @@ const triggerTransition = ({
 
   // these globals prevent the back button from being pressed during a transition as that can have unexpected results
   window.__tl_inTransition = true;
-  window.__tl_desiredPathname = to;
+  window.__tl_desiredPathname = withPrefix(to);
 
   updateContext({
     inTransition: true,
