@@ -32,9 +32,11 @@ class InternalProvider extends Component {
       updateContext: obj => this.setState(obj)
     };
 
-    prefersReducedMotion.addEventListener('change', () => {
-      this.setState({ disableAnimation: prefersReducedMotion.matches });
-    });
+    if (typeof window !== `undefined`) {
+      	prefersReducedMotion.addEventListener("change", () => {
+          this.setState({ disableAnimation: prefersReducedMotion.matches })
+        })
+    }
   }
 
   componentDidMount() {
