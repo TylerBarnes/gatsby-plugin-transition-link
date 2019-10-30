@@ -29,7 +29,7 @@ const TransitionLink = forwardRef(({
 }, ref) => {
   return (
     <Consumer>
-      {({ ...context }) => (
+      {({ disableAnimation, ...context }) => (
         <Link
           style={style}
           activeStyle={activeStyle}
@@ -37,6 +37,12 @@ const TransitionLink = forwardRef(({
           activeClassName={activeClassName}
           partiallyActive={partiallyActive}
           onClick={event => {
+            // If the user has set their browser or OS to prefers-reduced-motion
+            // we should respect that.
+            if (disableAnimation) {
+              return;
+            }
+
             const weShouldNavigate = shouldNavigate(event);
 
             if (weShouldNavigate) {
