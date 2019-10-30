@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.14.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.3...v1.14.0) (2019-10-30)
+
+
+### Bug Fixes
+
+* enable 'open in new tab' functionality when clicking link with ctrl/cmd ([95f7bb2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/95f7bb2))
+
+
+### Features
+
+* add forwardRef to TransitionLink  ([785c328](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/785c328)), closes [/github.com/reach/router/blob/master/src/index.js#L368](https://github.com//github.com/reach/router/blob/master/src/index.js/issues/L368)
+* respect prefers-reduced-motion ([#146](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/146)) ([e9a248a](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/e9a248a))
+
+
+
 # [1.13.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.12.4...v1.13.0) (2019-09-09)
 
 
