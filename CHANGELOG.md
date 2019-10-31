@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.14.1...v1.14.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* hotfix for safari where matchMedia.addEventListener is not a function ([0c5d845](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/0c5d845))
+
+
+
 ## [1.14.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.14.0...v1.14.1) (2019-10-30)
 
 
