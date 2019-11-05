@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.3](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.14.2...v1.14.3) (2019-11-05)
+
+
+### Bug Fixes
+
+* remove cross-env ([a222f6e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/a222f6e)), closes [#127](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/127)
+* remove cross-env ([#147](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/147)) ([ecf6a38](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/ecf6a38))
+
+
+
 ## [1.14.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.14.1...v1.14.2) (2019-10-31)
 
 
