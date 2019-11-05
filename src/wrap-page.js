@@ -1,12 +1,14 @@
-const React = require("react");
-const TransitionHandler = require("./components/TransitionHandler").default;
-const InternalProvider = require("./context/InternalProvider").default;
+const React = require("react")
+const TransitionHandler = require("./components/TransitionHandler").default
+const InternalProvider = require("./context/InternalProvider").default
 
 // eslint-disable-next-line react/prop-types,react/display-name
-module.exports = ({ element, props }) => {
-  return (
-    <InternalProvider>
-      <TransitionHandler {...props}>{element}</TransitionHandler>
-    </InternalProvider>
-  );
-};
+module.exports = ({ element, props }, pluginOptions = { injectPageProps: true }) => {
+	return (
+		<InternalProvider>
+			<TransitionHandler {...props} {...pluginOptions}>
+				{element}
+			</TransitionHandler>
+		</InternalProvider>
+	)
+}
