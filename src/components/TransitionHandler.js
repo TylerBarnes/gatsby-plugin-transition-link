@@ -17,7 +17,7 @@ const DelayedTransition = delayTransitionRender(Transition)
 export default class TransitionHandler extends Component {
 	render() {
 		const { props } = this
-		const { children, injectPageProps } = props
+		const { children, injectPageProps = true } = props
 
 		return (
 			<Consumer>
