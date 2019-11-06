@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.0...v1.16.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* move default injectPageProps option so it gets applied properly ([#151](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/151)) ([a08d61d](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/a08d61d))
+
+
+
 # [1.16.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.14.2...v1.16.0) (2019-11-05)
 
 
