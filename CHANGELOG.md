@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.1...v1.16.2) (2019-11-07)
+
+
+### Bug Fixes
+
+* paintdrip timing ([#153](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/153)) ([71c0a7e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/71c0a7e))
+
+
+
 ## [1.16.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.0...v1.16.1) (2019-11-06)
 
 
