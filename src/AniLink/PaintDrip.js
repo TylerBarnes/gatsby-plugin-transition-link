@@ -61,7 +61,12 @@ export default class PaintDrip extends Component {
         { radius: radius, ease: Power1.easeIn },
         0
       )
-      .to(canvas, seconds / 3, { x: "100%", ease: Power1.easeIn }, `+=.2`);
+      .to(
+        canvas,
+        seconds / 3,
+        { x: "100%", ease: Power1.easeIn },
+        `+=${seconds * 0.4}`
+      )
 
     function drawRipple() {
       ctx.clearRect(0, 0, vw, vh);
