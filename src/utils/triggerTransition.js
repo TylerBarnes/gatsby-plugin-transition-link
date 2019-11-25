@@ -17,8 +17,10 @@ const triggerTransition = ({
   linkState,
   replace
 }) => {
-  event.persist();
-  event.preventDefault();
+  if (event !== null) {
+    event.persist();
+    event.preventDefault();
+  }
 
   if (inTransition) return false;
 
