@@ -23,10 +23,10 @@ const B = () => {
   }
   return (
     <Layout>
-      <h1>Hello programamtic people</h1>
+      <h1>Hello programmatic people</h1>
       <a href="/programmatic/a" onMouseEnter={progrToA} onClick={e => e.preventDefault()}>Hover over me and go to page A programmatically in 500ms</a>
     </Layout>
-);
+  );
 }
 
 export default B

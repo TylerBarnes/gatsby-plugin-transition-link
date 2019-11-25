@@ -22,10 +22,10 @@ const A = () => {
   }
   return (
     <Layout>
-      <h1>Hello programamtic people</h1>
+      <h1>Hello programmatic people</h1>
       <a href="/programmatic/b" onClick={progrToB}>Go to page B programmatically onClick</a>
     </Layout>
-);
+  );
 }
 
 export default A
