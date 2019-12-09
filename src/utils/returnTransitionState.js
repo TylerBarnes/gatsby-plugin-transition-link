@@ -1,36 +1,36 @@
-import "polyfill-array-includes";
+import 'polyfill-array-includes'
 
 const returnTransitionState = ({
-  location,
-  transitionIdHistory,
-  inTransition,
-  ...transitionState
+	location,
+	transitionIdHistory,
+	inTransition,
+	...transitionState
 }) => {
-  if (inTransition) return transitionState;
+	if (inTransition) return transitionState
 
-  const currentId =
-    location.state && location.state.transitionId
-      ? location.state.transitionId
-      : false;
-  const historyWithoutLast = transitionIdHistory.slice(0, -1);
+	const currentId =
+		location.state && location.state.transitionId
+			? location.state.transitionId
+			: false
+	const historyWithoutLast = transitionIdHistory.slice(0, -1)
 
-  if (currentId && historyWithoutLast.includes(currentId)) {
-    return {
-      transitionStatus: "POP",
-      entry: {
-        state: {},
-        delay: 0,
-        length: 0
-      },
-      exit: {
-        state: {},
-        delay: 0,
-        length: 0
-      }
-    };
-  }
+	if (currentId && historyWithoutLast.includes(currentId)) {
+		return {
+			transitionStatus: 'POP',
+			entry: {
+				state: {},
+				delay: 0,
+				length: 0,
+			},
+			exit: {
+				state: {},
+				delay: 0,
+				length: 0,
+			},
+		}
+	}
 
-  return transitionState;
-};
+	return transitionState
+}
 
-export { returnTransitionState };
+export { returnTransitionState }

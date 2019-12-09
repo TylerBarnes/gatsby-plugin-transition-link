@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { publicContext } from "../context/createTransitionContext";
+import { useContext } from 'react'
+import { publicContext } from '../context/createTransitionContext'
 
-const useTransitionState = () => useContext(publicContext);
+const useTransitionState = () => useContext(publicContext)
 
-export { useTransitionState };
+export { useTransitionState }

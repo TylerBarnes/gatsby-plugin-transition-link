@@ -1,17 +1,17 @@
-import React, { Component } from "react"
-import { Transition, TransitionGroup } from "react-transition-group"
-import { Location } from "@reach/router"
+import React, { Component } from 'react'
+import { Transition, TransitionGroup } from 'react-transition-group'
+import { Location } from '@reach/router'
 
-import TransitionRenderer from "./TransitionRenderer"
-import { LayoutComponent as Layout } from "./Layout"
-import delayTransitionRender from "./delayTransitionRender"
-import { Consumer } from "../context/createTransitionContext"
-import { returnTransitionState } from "../utils/returnTransitionState"
-import { onEnter } from "../functions/onEnter"
-import { onExit } from "../functions/onExit"
-import { getMs } from "../utils/secondsMs"
+import TransitionRenderer from './TransitionRenderer'
+import { LayoutComponent as Layout } from './Layout'
+import delayTransitionRender from './delayTransitionRender'
+import { Consumer } from '../context/createTransitionContext'
+import { returnTransitionState } from '../utils/returnTransitionState'
+import { onEnter } from '../functions/onEnter'
+import { onExit } from '../functions/onExit'
+import { getMs } from '../utils/secondsMs'
 
-import "../style.css"
+import '../style.css'
 
 const DelayedTransition = delayTransitionRender(Transition)
 export default class TransitionHandler extends Component {
@@ -66,7 +66,7 @@ export default class TransitionHandler extends Component {
 														updateContext,
 														triggerResolve,
 														appearAfter: getMs(
-															appearAfter,
+															appearAfter
 														),
 														e,
 													})
@@ -83,14 +83,13 @@ export default class TransitionHandler extends Component {
 														triggerResolve,
 														e,
 													})
-												}
-											>
+												}>
 												{transitionStatus => {
 													const mount =
 														transitionStatus ===
-															"entering" ||
+															'entering' ||
 														transitionStatus ===
-															"entered"
+															'entered'
 
 													const states = {
 														entry: {
@@ -112,13 +111,14 @@ export default class TransitionHandler extends Component {
 													const transitionState = returnTransitionState(
 														{
 															inTransition,
-															location: props.location,
+															location:
+																props.location,
 															transitionIdHistory,
 															transitionStatus,
 															current,
 															mount,
 															...states,
-														},
+														}
 													)
 
 													const exitZindex =
@@ -129,8 +129,12 @@ export default class TransitionHandler extends Component {
 													return (
 														<TransitionRenderer
 															mount={mount}
-															entryZindex={entryZindex}
-															exitZindex={exitZindex}
+															entryZindex={
+																entryZindex
+															}
+															exitZindex={
+																exitZindex
+															}
 															transitionStatus={
 																transitionStatus
 															}
@@ -142,7 +146,7 @@ export default class TransitionHandler extends Component {
 																injectPageProps
 															}
 															appearAfter={getMs(
-																appearAfter,
+																appearAfter
 															)}
 														/>
 													)
