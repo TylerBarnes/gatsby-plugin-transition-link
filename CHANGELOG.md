@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.17.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.2...v1.17.0) (2019-12-09)
+
+
+### Features
+
+* add option to prevent automatically scrolling to the top o… ([#162](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/162)) ([16d2059](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/16d2059))
+
+
+
 ## [1.16.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.1...v1.16.2) (2019-11-07)
 
 
