@@ -71,6 +71,15 @@ const triggerTransition = ({
 	setTimeout(() => {
 		const transitionId = random(10000, 99999, false)
 
+		let hash
+
+		if (to.includes('#')) {
+			const toSplit = to.split('#')
+			console.log(toSplit)
+			to = toSplit[0]
+			hash = toSplit[1]
+		}
+
 		navigate(to, {
 			state: {
 				transitionId,
@@ -82,6 +91,7 @@ const triggerTransition = ({
 		updateContext({
 			exitState: exitState,
 			transitionIdHistory: [...transitionIdHistory, transitionId],
+			hash,
 		})
 	}, getMs(exitDelay))
 

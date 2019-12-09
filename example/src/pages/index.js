@@ -3,7 +3,7 @@ import { TimelineMax, Power1 } from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
-import {Link} from 'gatsby'
+import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import DisplayState from '../components/DisplayState'

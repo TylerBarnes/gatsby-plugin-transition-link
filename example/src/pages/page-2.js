@@ -82,7 +82,9 @@ export default class SecondPage extends Component {
               <p>There are only 2 pages here but there are 4 transitions!</p>
               <TransitionLink to="/">Go home normally</TransitionLink>
               <br />
-              <AniLink fade to="/">Fade home</AniLink>
+              <AniLink fade to="/">
+                Fade home
+              </AniLink>
               <br />
               <AniLink
                 cover
@@ -152,7 +154,7 @@ export default class SecondPage extends Component {
                   flexDirection: 'column',
                 }}
               >
-                <h1>
+                <h1 id="hash">
                   This is a tall section to show what transitions look like when
                   you're scrolled
                 </h1>
