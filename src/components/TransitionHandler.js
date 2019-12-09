@@ -37,6 +37,7 @@ export default class TransitionHandler extends Component {
 					updateContext,
 					triggerResolve,
 					appearAfter,
+					preventScrollJump,
 					e,
 				}) => {
 					return (
@@ -65,6 +66,7 @@ export default class TransitionHandler extends Component {
 														pathname,
 														updateContext,
 														triggerResolve,
+														preventScrollJump,
 														appearAfter: getMs(
 															appearAfter
 														),

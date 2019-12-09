@@ -27,6 +27,7 @@ const TransitionLink = forwardRef(
 			trigger,
 			replace,
 			innerRef,
+			preventScrollJump,
 			...rest
 		},
 		ref
@@ -57,6 +58,7 @@ const TransitionLink = forwardRef(
 									entry,
 									trigger,
 									replace,
+									preventScrollJump,
 									linkState: state,
 									...context,
 								})

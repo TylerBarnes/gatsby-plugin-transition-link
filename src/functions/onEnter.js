@@ -8,15 +8,16 @@ const onEnter = ({
 	exitProps,
 	triggerResolve,
 	pathname,
+	preventScrollJump,
 	entryProps: { delay = 0 },
 	appearAfter = 0,
 	e,
 }) => {
-	if (inTransition) {
+	if (inTransition && !preventScrollJump) {
 		setTimeout(() => {
 			window.scrollTo(0, 0)
 		}, appearAfter)
-	} else {
+	} else if (!inTransition) {
 		// If session storage fails due to cookies being disabled,
 		// scroll to the top after every navigation
 		let position = [0, 0]
