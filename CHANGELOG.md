@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.3](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.2...v1.17.3) (2019-12-09)
+
+
+### Bug Fixes
+
+* move provider to root ([#165](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/165)) ([b16a91e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/b16a91e))
+
+
+
 ## [1.17.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.1...v1.17.2) (2019-12-09)
 
 
