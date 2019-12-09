@@ -54,13 +54,13 @@ export default class PaintDrip extends Component {
 			onComplete: () => removeCanvas(seconds / 3),
 		})
 			.to(ripple, seconds / 4, { alpha: 1 })
-			.set(node, { visibility: 'hidden' })
 			.to(
 				ripple,
 				seconds - seconds / 3,
 				{ radius: radius, ease: Power1.easeIn },
 				0
 			)
+			.set(node, { visibility: 'hidden' })
 			.to(
 				canvas,
 				seconds / 3,
