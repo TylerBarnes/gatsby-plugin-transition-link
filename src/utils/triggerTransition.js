@@ -16,6 +16,7 @@ const triggerTransition = ({
 	updateContext,
 	linkState,
 	replace,
+	preventScrollJump,
 }) => {
 	event.persist()
 	event.preventDefault()
@@ -60,6 +61,7 @@ const triggerTransition = ({
 		entryProps: entry,
 		exitProps: exit,
 		appearAfter,
+		preventScrollJump,
 		exitTrigger: (exit, node, e) => exitTrigger(exit, node, e),
 		entryTrigger: (entry, node, e) => entryTrigger(entry, node, e),
 		e: event,
