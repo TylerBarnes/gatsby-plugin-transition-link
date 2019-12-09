@@ -154,7 +154,7 @@ export default class SecondPage extends Component {
                   flexDirection: 'column',
                 }}
               >
-                <h1 id="hash">
+                <h1 id="test">
                   This is a tall section to show what transitions look like when
                   you're scrolled
                 </h1>

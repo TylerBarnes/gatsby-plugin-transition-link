@@ -69,7 +69,7 @@ class Index extends Component {
             Go to page 2 with a cover right
           </AniLink>
           <br />
-          <AniLink paintDrip to="/page-2" hex="#4b2571">
+          <AniLink paintDrip to="/page-2#test" hex="#4b2571">
             Go to page 2 with a paint drip
           </AniLink>
           <br />
