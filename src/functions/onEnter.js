@@ -9,13 +9,27 @@ const onEnter = ({
 	triggerResolve,
 	pathname,
 	preventScrollJump,
+	hash,
 	entryProps: { delay = 0 },
 	appearAfter = 0,
 	e,
 }) => {
 	if (inTransition && !preventScrollJump) {
 		setTimeout(() => {
-			window.scrollTo(0, 0)
+			let scrollTo = [0, 0]
+
+			// handle hashes that link to ID's
+			// for ex /page-2#heading-section
+			if (hash) {
+				const hashElement = document.getElementById(hash)
+
+				if (hashElement) {
+					const clientRect = hashElement.getBoundingClientRect()
+					scrollTo = [0, clientRect.top]
+				}
+			}
+
+			window.scrollTo(...scrollTo)
 		}, appearAfter)
 	} else if (!inTransition) {
 		// If session storage fails due to cookies being disabled,

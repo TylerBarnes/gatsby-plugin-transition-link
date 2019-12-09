@@ -23,6 +23,15 @@ const triggerTransition = ({
 
 	if (inTransition) return false
 
+	let hash
+
+	// handle anchor links to ID's
+	if (to.includes('#')) {
+		const toSplit = to.split('#')
+		to = toSplit[0]
+		hash = toSplit[1]
+	}
+
 	// these globals prevent the back button from being pressed during a transition as that can have unexpected results
 	window.__tl_inTransition = true
 	window.__tl_desiredPathname = withPrefix(to)
@@ -82,6 +91,7 @@ const triggerTransition = ({
 		updateContext({
 			exitState: exitState,
 			transitionIdHistory: [...transitionIdHistory, transitionId],
+			hash,
 		})
 	}, getMs(exitDelay))
 
