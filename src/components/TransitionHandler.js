@@ -3,7 +3,6 @@ import { Transition, TransitionGroup } from 'react-transition-group'
 import { Location } from '@reach/router'
 
 import TransitionRenderer from './TransitionRenderer'
-import { LayoutComponent as Layout } from './Layout'
 import delayTransitionRender from './delayTransitionRender'
 import { Consumer } from '../context/createTransitionContext'
 import { returnTransitionState } from '../utils/returnTransitionState'
@@ -44,121 +43,117 @@ export default class TransitionHandler extends Component {
 					return (
 						<Location>
 							{({ location: { action, pathname } }) => (
-								<Layout {...props}>
-									<div className="tl-edges">
-										<TransitionGroup component={null}>
-											<DelayedTransition
-												key={pathname} // we're using seconds but transitiongroup uses ms
-												delay={getMs(entryDelay)}
-												timeout={{
-													enter: getMs(entryLength),
-													exit: getMs(exitLength),
-												}}
-												onEnter={node =>
-													!!node &&
-													!window.__tl_back_button_pressed &&
-													onEnter({
-														node,
-														action,
-														inTransition,
-														entryTrigger,
-														entryProps,
-														exitProps,
-														pathname,
-														updateContext,
-														triggerResolve,
-														preventScrollJump,
-														hash,
-														appearAfter: getMs(
-															appearAfter
-														),
-														e,
-													})
+								<div className="tl-edges">
+									<TransitionGroup component={null}>
+										<DelayedTransition
+											key={pathname} // we're using seconds but transitiongroup uses ms
+											delay={getMs(entryDelay)}
+											timeout={{
+												enter: getMs(entryLength),
+												exit: getMs(exitLength),
+											}}
+											onEnter={node =>
+												!!node &&
+												!window.__tl_back_button_pressed &&
+												onEnter({
+													node,
+													action,
+													inTransition,
+													entryTrigger,
+													entryProps,
+													exitProps,
+													pathname,
+													updateContext,
+													triggerResolve,
+													preventScrollJump,
+													hash,
+													appearAfter: getMs(
+														appearAfter
+													),
+													e,
+												})
+											}
+											onExit={node =>
+												!!node &&
+												!window.__tl_back_button_pressed &&
+												onExit({
+													node,
+													inTransition,
+													exitTrigger,
+													entryProps,
+													exitProps,
+													triggerResolve,
+													e,
+												})
+											}>
+											{transitionStatus => {
+												const mount =
+													transitionStatus ===
+														'entering' ||
+													transitionStatus ===
+														'entered'
+
+												const states = {
+													entry: {
+														state: entryState,
+														delay: entryDelay,
+														length: entryLength,
+													},
+													exit: {
+														state: exitState,
+														delay: exitDelay,
+														length: exitLength,
+													},
 												}
-												onExit={node =>
-													!!node &&
-													!window.__tl_back_button_pressed &&
-													onExit({
-														node,
+
+												const current = mount
+													? states.entry
+													: states.exit
+
+												const transitionState = returnTransitionState(
+													{
 														inTransition,
-														exitTrigger,
-														entryProps,
-														exitProps,
-														triggerResolve,
-														e,
-													})
-												}>
-												{transitionStatus => {
-													const mount =
-														transitionStatus ===
-															'entering' ||
-														transitionStatus ===
-															'entered'
-
-													const states = {
-														entry: {
-															state: entryState,
-															delay: entryDelay,
-															length: entryLength,
-														},
-														exit: {
-															state: exitState,
-															delay: exitDelay,
-															length: exitLength,
-														},
+														location:
+															props.location,
+														transitionIdHistory,
+														transitionStatus,
+														current,
+														mount,
+														...states,
 													}
+												)
 
-													const current = mount
-														? states.entry
-														: states.exit
+												const exitZindex =
+													exitProps.zIndex || 0
+												const entryZindex =
+													entryProps.zIndex || 1
 
-													const transitionState = returnTransitionState(
-														{
-															inTransition,
-															location:
-																props.location,
-															transitionIdHistory,
-															transitionStatus,
-															current,
-															mount,
-															...states,
+												return (
+													<TransitionRenderer
+														mount={mount}
+														entryZindex={
+															entryZindex
 														}
-													)
-
-													const exitZindex =
-														exitProps.zIndex || 0
-													const entryZindex =
-														entryProps.zIndex || 1
-
-													return (
-														<TransitionRenderer
-															mount={mount}
-															entryZindex={
-																entryZindex
-															}
-															exitZindex={
-																exitZindex
-															}
-															transitionStatus={
-																transitionStatus
-															}
-															transitionState={
-																transitionState
-															}
-															children={children}
-															injectPageProps={
-																injectPageProps
-															}
-															appearAfter={getMs(
-																appearAfter
-															)}
-														/>
-													)
-												}}
-											</DelayedTransition>
-										</TransitionGroup>
-									</div>
-								</Layout>
+														exitZindex={exitZindex}
+														transitionStatus={
+															transitionStatus
+														}
+														transitionState={
+															transitionState
+														}
+														children={children}
+														injectPageProps={
+															injectPageProps
+														}
+														appearAfter={getMs(
+															appearAfter
+														)}
+													/>
+												)
+											}}
+										</DelayedTransition>
+									</TransitionGroup>
+								</div>
 							)}
 						</Location>
 					)
