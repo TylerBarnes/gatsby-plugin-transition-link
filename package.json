@@ -22,6 +22,7 @@
 	"scripts": {
 		"release": "standard-version",
 		"copy-files": "mkdir lib || true && cp .eslintrc.json readme.md package.json lib",
+		"copy-files-src": "mkdir src || true && cp .eslintrc.json readme.md package.json src",
 		"build": "yarn copy-files && babel src --out-dir lib --copy-files --ignore **/__tests__",
 		"watch": "yarn copy-files && babel -w src --out-dir lib --copy-files --ignore **/__tests__ --verbose",
 		"npm-publish": "git push --follow-tags origin master && yarn build && cd lib && npm publish && cd ../"
