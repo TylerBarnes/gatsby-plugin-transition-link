@@ -22,7 +22,7 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
 	actions.setWebpackConfig({
 		plugins: [
 			plugins.define({
-				GATSBY_LAYOUT_COMPONENT_PATH: JSON.stringify(
+				TL__GATSBY_LAYOUT_COMPONENT_PATH: JSON.stringify(
 					absoluteComponentPath
 				),
 			}),
