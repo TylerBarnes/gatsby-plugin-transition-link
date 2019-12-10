@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.5](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.4...v1.17.5) (2019-12-10)
+
+
+### Bug Fixes
+
+* namespace layout global and move layout to wrap page to pre… ([#167](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/167)) ([9387dcd](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/9387dcd))
+
+
+
 ## [1.17.4](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.3...v1.17.4) (2019-12-10)
 
 
