@@ -1,5 +1,4 @@
 import { navigate, withPrefix } from 'gatsby'
-import random from 'lodash/random'
 import { setTimeout } from 'requestanimationframe-timer'
 import { getMs } from './secondsMs'
 import getPagesPromises from './getPagesPromises'
@@ -10,7 +9,6 @@ const triggerTransition = ({
 	exit = {},
 	entry = {},
 	inTransition,
-	transitionIdHistory,
 	pages,
 	trigger,
 	updateContext,
@@ -78,11 +76,8 @@ const triggerTransition = ({
 
 	// after exitDelay
 	setTimeout(() => {
-		const transitionId = random(10000, 99999, false)
-
 		navigate(to, {
 			state: {
-				transitionId,
 				...linkState,
 			},
 			replace,
@@ -90,7 +85,6 @@ const triggerTransition = ({
 
 		updateContext({
 			exitState: exitState,
-			transitionIdHistory: [...transitionIdHistory, transitionId],
 			hash,
 		})
 	}, getMs(exitDelay))

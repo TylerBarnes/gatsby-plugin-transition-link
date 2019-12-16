@@ -12,7 +12,6 @@ class InternalProvider extends Component {
 
 		this.state = {
 			inTransition: false,
-			transitionIdHistory: [],
 			disableAnimation: prefersReducedMotion.matches,
 			// event
 			e: false,
