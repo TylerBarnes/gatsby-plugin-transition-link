@@ -25,6 +25,7 @@ export default class Cover extends Component {
 				x: '0%',
 				ease: Power1.easeInOut,
 			})
+			.set(node, { opacity: 0 })
 			.to(
 				this.cover,
 				half,
