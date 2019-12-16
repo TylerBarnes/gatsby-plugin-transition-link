@@ -5,7 +5,6 @@ import { Location } from '@reach/router'
 import TransitionRenderer from './TransitionRenderer'
 import delayTransitionRender from './delayTransitionRender'
 import { Consumer } from '../context/createTransitionContext'
-import { returnTransitionState } from '../utils/returnTransitionState'
 import { onEnter } from '../functions/onEnter'
 import { onExit } from '../functions/onExit'
 import { getMs } from '../utils/secondsMs'
@@ -31,7 +30,6 @@ export default class TransitionHandler extends Component {
 					entryProps,
 					exitTrigger,
 					exitProps,
-					transitionIdHistory,
 					inTransition,
 					updateContext,
 					triggerResolve,
@@ -110,18 +108,12 @@ export default class TransitionHandler extends Component {
 													? states.entry
 													: states.exit
 
-												const transitionState = returnTransitionState(
-													{
-														inTransition,
-														location:
-															props.location,
-														transitionIdHistory,
-														transitionStatus,
-														current,
-														mount,
-														...states,
-													}
-												)
+												const transitionState = {
+													transitionStatus,
+													current,
+													mount,
+													...states,
+												}
 
 												const exitZindex =
 													exitProps.zIndex || 0
