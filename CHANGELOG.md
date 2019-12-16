@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.6](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.5...v1.17.6) (2019-12-16)
+
+
+### Bug Fixes
+
+* hide the exiting page contents once the cover div is coveri… ([#168](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/168)) ([add955e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/add955e))
+
+
+
 ## [1.17.5](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.4...v1.17.5) (2019-12-10)
 
 
