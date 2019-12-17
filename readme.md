@@ -19,6 +19,8 @@ TransitionLink is compatible with declarative react animation libraries like [re
 - [featurist.co.uk](https://featurist.co.uk)
 - [TransitionLink docs](https://transitionlink.tylerbarnes.ca/) [[source]](https://github.com/TylerBarnes/TransitionLinkDocs/)
 - [Edit this file to add yours!](https://github.com/TylerBarnes/gatsby-plugin-transition-link/edit/master/readme.md)
+- [christianibarguen.com](https://christianibarguen.com)
+- [gatsby-theme-byfolio](https://github.com/christiandavid/gatsby-theme-byfolio)
 
 ## Features
 
