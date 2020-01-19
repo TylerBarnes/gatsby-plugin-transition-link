@@ -17,7 +17,7 @@ const triggerTransition = ({
   linkState,
   replace
 }) => {
-  if (event !== null) {
+  if (event) {
     event.persist();
     event.preventDefault();
   }

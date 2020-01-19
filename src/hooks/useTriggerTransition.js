@@ -4,7 +4,7 @@ import { triggerTransition } from "../utils/triggerTransition";
 
 const useTriggerTransition = () => {
   const context = useContext(Context);
-  const progrTriggerTransition = options => {
+  const programmaticallyTriggerTransition = options => {
     triggerTransition({
       ...context,
       ...options
