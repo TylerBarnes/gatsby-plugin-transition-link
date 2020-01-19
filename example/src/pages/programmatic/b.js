@@ -4,20 +4,20 @@ import Layout from '../../components/layout'
 import { fade } from '../../components/programmatic'
 
 const B = () => {
-  const triggerTransition = useTriggerTransition();
+  const triggerTransition = useTriggerTransition({
+    exit: {
+      length: 1,
+      trigger: ({ exit, node }) => fade({ exit, node, direction: "out" }),
+    },
+    entry: {
+      length: 0.5,
+      delay: 0.5,
+      trigger: ({ exit, node }) => fade({ exit, node, direction: "in" }),
+    }});
   const progrToA = () => {
     setTimeout(() => {
       triggerTransition({
         to: '/programmatic/a',
-        exit: {
-          length: 1,
-          trigger: ({ exit, node }) => fade({ exit, node, direction: "out" }),
-        },
-        entry: {
-          length: 0.5,
-          delay: 0.5,
-          trigger: ({ exit, node }) => fade({ exit, node, direction: "in" }),
-        }
       });
     }, 500);
   }

@@ -2,15 +2,26 @@ import { useContext } from "react";
 import { Context } from "../context/createTransitionContext";
 import { triggerTransition } from "../utils/triggerTransition";
 
-const useTriggerTransition = () => {
+const useTriggerTransition = defaultOptions => {
   const context = useContext(Context);
-  const programmaticallyTriggerTransition = options => {
+  const programmaticallyTriggerTransition = calledOptions => {
+    // allow passing an event directly instead of options
+    if (
+      calledOptions instanceof Event ||
+      (calledOptions.nativeEvent && calledOptions.nativeEvent instanceof Event)
+    ) {
+      calledOptions = {
+        event: calledOptions
+      };
+    }
+
     triggerTransition({
       ...context,
-      ...options
+      ...defaultOptions,
+      ...calledOptions
     });
   };
-  return progrTriggerTransition;
+  return programmaticallyTriggerTransition;
 };
 
 export { useTriggerTransition };
