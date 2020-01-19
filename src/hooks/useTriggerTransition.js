@@ -7,8 +7,16 @@ const useTriggerTransition = defaultOptions => {
   const programmaticallyTriggerTransition = calledOptions => {
     // If the user has set their browser or OS to prefers-reduced-motion
     // we should respect that.
+    const forceZeroMotion = {};
     if (context.disableAnimation) {
-      return;
+      forceZeroMotion.exit = {
+        length: 0,
+        delay: 0
+      };
+      forceZeroMotion.entry = {
+        length: 0,
+        delay: 0
+      };
     }
 
     // allow passing an event directly instead of options
@@ -24,7 +32,8 @@ const useTriggerTransition = defaultOptions => {
     triggerTransition({
       ...context,
       ...defaultOptions,
-      ...calledOptions
+      ...calledOptions,
+      ...forceZeroMotion
     });
   };
   return programmaticallyTriggerTransition;
