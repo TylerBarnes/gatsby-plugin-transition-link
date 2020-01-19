@@ -5,6 +5,12 @@ import { triggerTransition } from "../utils/triggerTransition";
 const useTriggerTransition = defaultOptions => {
   const context = useContext(Context);
   const programmaticallyTriggerTransition = calledOptions => {
+    // If the user has set their browser or OS to prefers-reduced-motion
+    // we should respect that.
+    if (context.disableAnimation) {
+      return;
+    }
+
     // allow passing an event directly instead of options
     if (
       calledOptions instanceof Event ||
