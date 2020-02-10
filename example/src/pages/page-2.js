@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import Layout from '../components/layout'
-import { TimelineMax, Power1 } from 'gsap'
+import gsap from 'gsap'
 
 import DisplayState from '../components/DisplayState'
 
@@ -23,11 +23,13 @@ export default class SecondPage extends Component {
     } = this.props
 
     return state.animation === 'fromBottom'
-      ? new TimelineMax().fromTo(
+      ? gsap.fromTo(
           this.layoutContents,
-          1,
           { y: '10%' },
-          { y: '0%' }
+          { 
+            y: '0%',
+            duration: 1,
+          }
         )
       : null
   }
@@ -38,16 +40,18 @@ export default class SecondPage extends Component {
     const directionTo = direction === 'left' ? '-100%' : '100%'
     const directionFrom = direction === 'left' ? '100%' : '-100%'
 
-    return new TimelineMax()
+    return gsap.timeline()
       .set(this.transitionCover, { x: directionFrom, display: 'block' })
-      .to(this.transitionCover, seconds / 2, {
+      .to(this.transitionCover, {
         x: '0%',
-        ease: Power1.easeInOut,
+        ease: "power1.easeInOut",
+        duration: seconds / 2,
       })
       .set(this.layoutWrapper, { opacity: 0 })
-      .to(this.transitionCover, seconds / 2, {
+      .to(this.transitionCover, {
         x: directionTo,
-        ease: Power1.easeInOut,
+        ease: "power1.easeInOut",
+        duration: seconds / 2,
       })
   }
 

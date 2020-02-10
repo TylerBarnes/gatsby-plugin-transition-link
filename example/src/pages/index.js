@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TimelineMax, Power1 } from 'gsap'
+import gsap from 'gsap'
 
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
@@ -25,25 +25,30 @@ class Index extends Component {
     // convert ms to s for gsap
     const seconds = length
 
-    return new TimelineMax()
+    return gsap.timeline()
       .set(this.transitionCover, { y: directionFrom })
-      .to(this.transitionCover, seconds / 2, {
+      .to(this.transitionCover, {
         y: '0%',
-        ease: Power1.easeInOut,
+        ease: "power1.easeInOut",
+        duration: seconds / 2,
       })
       .set(this.layoutContents, { opacity: 0 })
-      .to(this.transitionCover, seconds / 2, {
+      .to(this.transitionCover, {
         y: directionTo,
-        ease: Power1.easeIn,
+        ease: "power1.easeIn",
+        duration: seconds / 2,
       })
   }
 
   test(entry, node) {
-    return new TimelineMax().staggerFrom(
+    return gsap.to(
       node.querySelectorAll('h2, p, a, pre'),
-      1,
-      { opacity: 0, y: '+=50' },
-      0.1
+      { 
+        opacity: 0, 
+        y: '+=50',
+        duration: 1,
+        stagger: 0.1,
+      },
     )
   }
 
