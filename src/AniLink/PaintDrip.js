@@ -2,7 +2,7 @@
 // https://codepen.io/osublake/pen/eNrQqV?editors=0010
 import React, { Component } from 'react'
 import TransitionLink from '../'
-import { TimelineMax, Power1 } from 'gsap'
+import gsap from 'gsap'
 import convert from 'color-convert'
 
 export default class PaintDrip extends Component {
@@ -49,22 +49,28 @@ export default class PaintDrip extends Component {
 
 		const seconds = length
 
-		new TimelineMax({
+		gsap.timeline({
 			onUpdate: drawRipple,
 			onComplete: () => removeCanvas(seconds / 3),
 		})
-			.to(ripple, seconds / 4, { alpha: 1 })
+			.to(ripple, { alpha: 1, duration: seconds / 4 })
 			.to(
 				ripple,
-				seconds - seconds / 3,
-				{ radius: radius, ease: Power1.easeIn },
+				{ 
+					radius: radius,
+					ease: "power1.easeIn",
+					duration: seconds - seconds / 3,
+				},
 				0
 			)
 			.set(node, { visibility: 'hidden' })
 			.to(
 				canvas,
-				seconds / 3,
-				{ x: '100%', ease: Power1.easeIn },
+				{ 
+					x: '100%',
+					ease: "power1.easeIn",
+					duration: seconds / 3,
+				},
 				`+=${seconds * 0.4}`
 			)
 
@@ -107,9 +113,9 @@ export default class PaintDrip extends Component {
 	}
 
 	slideIn = ({ length }, node, from) => {
-		new TimelineMax().from(node, length, {
+		gsap.timeline().from(node, length, {
 			...this.getDirection(from),
-			ease: Power1.easeOut,
+			ease: 'power1.easeOut',
 		})
 	}
 

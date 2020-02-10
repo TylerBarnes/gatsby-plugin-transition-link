@@ -1,6 +1,6 @@
 import React from 'react'
 import TransitionLink from 'gatsby-plugin-transition-link'
-import { TimelineMax } from 'gsap'
+import gsap from 'gsap'
 
 const MorphTo = ({ children, to, duration, morph }) => (
 	<TransitionLink
@@ -23,9 +23,10 @@ const MorphTo = ({ children, to, duration, morph }) => (
 				width: morphToEl.offsetWidth,
 			}
 
-			new TimelineMax().to(morphFromEl, duration, {
+			gsap.to(morphFromEl, {
 				width: finalMeasurements.width,
 				height: finalMeasurements.height,
+				duration,
 			})
 		}}>
 		{children}

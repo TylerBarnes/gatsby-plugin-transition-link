@@ -1,6 +1,6 @@
 import React from 'react'
 import TransitionLink from '../'
-import { TimelineMax, Power1 } from 'gsap'
+import gsap from 'gsap'
 
 const boxShadow = '0 0 100px 10px rgba(0, 0, 0, 0.12941176470588237)'
 
@@ -10,13 +10,13 @@ const swipeTopDirection = (direction, reverse) => {
 
 	switch (direction) {
 		case 'down':
-			return { y: `${polarityPos}=100vh`, ease: Power1.easeIn }
+			return { y: `${polarityPos}=100vh`, ease: "power1.easeIn" }
 		case 'up':
-			return { y: `${polarityNeg}=100vh`, ease: Power1.easeIn }
+			return { y: `${polarityNeg}=100vh`, ease: "power1.easeIn" }
 		case 'left':
-			return { x: `${polarityNeg}=100%`, ease: Power1.easeIn }
+			return { x: `${polarityNeg}=100%`, ease: "power1.easeIn" }
 		default:
-			return { x: `${polarityPos}=100%`, ease: Power1.easeIn }
+			return { x: `${polarityPos}=100%`, ease: "power1.easeIn" }
 	}
 }
 
@@ -26,13 +26,13 @@ const swipeBottomDirection = (direction, reverse = false, offset = 40) => {
 
 	switch (direction) {
 		case 'down':
-			return { y: `${polarityNeg}${offset}vh`, ease: Power1.easeIn }
+			return { y: `${polarityNeg}${offset}vh`, ease: "power1.easeIn" }
 		case 'up':
-			return { y: `${polarityPos}${offset}vh`, ease: Power1.easeIn }
+			return { y: `${polarityPos}${offset}vh`, ease: "power1.easeIn" }
 		case 'left':
-			return { x: `${polarityPos}${offset}%`, ease: Power1.easeIn }
+			return { x: `${polarityPos}${offset}%`, ease: "power1.easeIn" }
 		default:
-			return { x: `${polarityNeg}${offset}%`, ease: Power1.easeIn }
+			return { x: `${polarityNeg}${offset}%`, ease: "power1.easeIn" }
 	}
 }
 
@@ -43,33 +43,35 @@ const swipe = ({ node, exit, direction, top, triggerName, entryOffset }) => {
 		window.pageYOffset
 
 	if (triggerName === 'entry' && top === 'entry') {
-		return new TimelineMax()
+		return gsap.timeline()
 			.set(node, {
 				boxShadow: boxShadow,
 				overflowY: 'hidden',
 				height: '100vh',
 				scrollTop: scrollTop,
 			})
-			.from(node, exit.length, swipeTopDirection(direction, true))
+			.from(node, { ...swipeTopDirection(direction, true), duration: exit.length })
 			.set(node, { overflowY: 'initial' })
 	} else if (triggerName === 'entry') {
-		return new TimelineMax().from(
+		return gsap.timeline().from(
 			node,
-			exit.length,
-			swipeBottomDirection(direction, false, entryOffset)
+			{ 
+				...swipeBottomDirection(direction, false, entryOffset),
+				duration: exit.length,
+			}
 		)
 	} else if (triggerName === 'exit' && top === 'exit') {
-		return new TimelineMax()
+		return gsap.timeline()
 			.set(node, {
 				boxShadow: boxShadow,
 				overflowY: 'hidden',
 				height: '100vh',
 				scrollTop: scrollTop,
 			})
-			.to(node, exit.length, swipeTopDirection(direction))
+			.to(node, { ...swipeTopDirection(direction), duration: exit.length })
 			.set(node, { overflowY: 'initial' })
 	} else {
-		return new TimelineMax()
+		return gsap.timeline()
 			.set(node, {
 				boxShadow: boxShadow,
 				overflowY: 'hidden',
@@ -78,8 +80,10 @@ const swipe = ({ node, exit, direction, top, triggerName, entryOffset }) => {
 			})
 			.to(
 				node,
-				exit.length,
-				swipeBottomDirection(direction, true, entryOffset)
+				{ 
+					...swipeBottomDirection(direction, true, entryOffset),
+					duration: exit.length,
+				},
 			)
 			.set(node, { overflowY: 'initial' })
 	}

@@ -1,6 +1,6 @@
 import React from 'react'
 import TransitionLink from '../'
-import { TimelineMax } from 'gsap'
+import gsap from 'gsap'
 
 const fade = ({ exit: { length }, node, direction }) => {
 	const duration = direction === 'out' ? length + length / 4 : length
@@ -19,9 +19,8 @@ const fade = ({ exit: { length }, node, direction }) => {
 			  }
 			: {}
 
-	return new TimelineMax()
-		.set(node, holdPosition)
-		.fromTo(node, duration, { opacity: !opacity }, { opacity: opacity })
+	return gsap.set(node, holdPosition)
+		.fromTo(node, { opacity: !opacity }, { opacity: opacity, duration })
 }
 
 export default function Fade({
