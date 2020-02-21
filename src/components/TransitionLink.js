@@ -28,54 +28,70 @@ const TransitionLink = forwardRef(
 			replace,
 			innerRef,
 			preventScrollJump,
+			samePageScroll,
 			...rest
 		},
 		ref
 	) => {
 		return (
-			<Consumer>
-				{({ disableAnimation, ...context }) => (
-					<Link
-						style={style}
-						activeStyle={activeStyle}
-						className={className}
-						activeClassName={activeClassName}
-						partiallyActive={partiallyActive}
-						onClick={event => {
-							// If the user has set their browser or OS to prefers-reduced-motion
-							// we should respect that.
-							if (disableAnimation) {
-								return
-							}
+      <Consumer>
+        {({ disableAnimation, ...context }) =>
+          // If the user want to scroll to hash and from the same page, emulate scroll using <a> tag
+          samePageScroll ? (
+            <a
+              href={to}
+              style={style}
+              className={className}
+              activeClassName={activeClassName}
+              ref={ref || innerRef}
+              {...rest}
+            >
+              {children}
+            </a>
+          ) : (
+            <Link
+              style={style}
+              activeStyle={activeStyle}
+              className={className}
+              activeClassName={activeClassName}
+              partiallyActive={partiallyActive}
+              onClick={event => {
+                // If the user has set their browser or OS to prefers-reduced-motion
+                // we should respect that.
+                if (disableAnimation) {
+                  return
+                }
 
-							const weShouldNavigate = shouldNavigate(event)
+                const weShouldNavigate = shouldNavigate(event)
 
-							if (weShouldNavigate) {
-								triggerTransition({
-									event,
-									to,
-									exit,
-									entry,
-									trigger,
-									replace,
-									preventScrollJump,
-									linkState: state,
-									...context,
-								})
-							}
+                if (weShouldNavigate) {
+                  triggerTransition({
+                    event,
+                    to,
+                    exit,
+                    entry,
+                    trigger,
+                    replace,
+                    preventScrollJump,
+                    linkState: state,
+                    ...context,
+                  })
+                }
 
-							if (typeof onClick === 'function') {
-								onClick(event, weShouldNavigate)
-							}
-						}}
-						to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
-						ref={ref || innerRef}
-						{...rest}>
-						{children}
-					</Link>
-				)}
-			</Consumer>
-		)
+                if (typeof onClick === 'function') {
+                  onClick(event, weShouldNavigate)
+                }
+              }}
+              to={to} // use gatsby link so prefetching still happens. this is prevent defaulted in triggertransition
+              ref={ref || innerRef}
+              {...rest}
+            >
+              {children}
+            </Link>
+          )
+        }
+      </Consumer>
+    )
 	}
 )
 
@@ -84,7 +100,12 @@ TransitionLink.propTypes = {
 	exitLength: PropTypes.number,
 	entryDelay: PropTypes.number,
 	exitFn: PropTypes.func,
-	entryState: PropTypes.object,
+  entryState: PropTypes.object,
+  samePageScroll: PropTypes.boolean,
+}
+
+TransitionLink.defaultProps = {
+  samePageScroll: false,
 }
 
 export { TransitionLink }
