@@ -24,8 +24,8 @@ const onEnter = ({
 				const hashElement = document.getElementById(hash)
 
 				if (hashElement) {
-					const clientRect = hashElement.getBoundingClientRect()
-					scrollTo = [0, clientRect.top]
+					const clientOffsetTop = hashElement.offsetTop;
+					scrollTo = [0, clientOffsetTop]
 				}
 			}
 
