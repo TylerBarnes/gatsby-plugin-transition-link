@@ -1,14 +1,14 @@
-const React = require("react")
-const TransitionHandler = require("./components/TransitionHandler").default
-const InternalProvider = require("./context/InternalProvider").default
+const React = require('react')
+const TransitionHandler = require('./components/TransitionHandler').default
+const Layout = require('./components/Layout').LayoutComponent
 
 // eslint-disable-next-line react/prop-types,react/display-name
 module.exports = ({ element, props }, pluginOptions) => {
 	return (
-		<InternalProvider>
+		<Layout {...props}>
 			<TransitionHandler {...props} {...pluginOptions}>
 				{element}
 			</TransitionHandler>
-		</InternalProvider>
+		</Layout>
 	)
 }

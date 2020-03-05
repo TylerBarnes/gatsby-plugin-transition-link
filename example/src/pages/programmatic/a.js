@@ -8,20 +8,22 @@ const A = () => {
     to: '/programmatic/b',
     exit: {
       length: 1,
-      trigger: ({ exit, node }) => fade({ exit, node, direction: "out" }),
+      trigger: ({ exit, node }) => fade({ exit, node, direction: 'out' }),
     },
     entry: {
       length: 0.5,
       delay: 0.5,
-      trigger: ({ exit, node }) => fade({ exit, node, direction: "in" }),
+      trigger: ({ exit, node }) => fade({ exit, node, direction: 'in' }),
     },
-  });
+  })
   return (
     <Layout>
       <h1>Hello programmatic people</h1>
-      <a href="/programmatic/b" onClick={triggerTransition}>Go to page B programmatically onClick</a>
+      <a href="/programmatic/b" onClick={triggerTransition}>
+        Go to page B programmatically onClick
+      </a>
     </Layout>
-  );
+  )
 }
 
 export default A

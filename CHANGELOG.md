@@ -2,6 +2,68 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.7](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.6...v1.17.7) (2019-12-16)
+
+
+### Bug Fixes
+
+* remove manual tracking of transition history and addition o… ([#169](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/169)) ([30632a9](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/30632a9))
+
+
+
+## [1.17.6](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.5...v1.17.6) (2019-12-16)
+
+
+### Bug Fixes
+
+* hide the exiting page contents once the cover div is coveri… ([#168](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/168)) ([add955e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/add955e))
+
+
+
+## [1.17.5](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.4...v1.17.5) (2019-12-10)
+
+
+### Bug Fixes
+
+* namespace layout global and move layout to wrap page to pre… ([#167](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/167)) ([9387dcd](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/9387dcd))
+
+
+
+## [1.17.4](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.3...v1.17.4) (2019-12-10)
+
+
+
+## [1.17.3](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.2...v1.17.3) (2019-12-09)
+
+
+### Bug Fixes
+
+* move provider to root ([#165](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/165)) ([b16a91e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/b16a91e))
+
+
+
+## [1.17.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.1...v1.17.2) (2019-12-09)
+
+
+
+## [1.17.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.0...v1.17.1) (2019-12-09)
+
+
+### Bug Fixes
+
+* broken paintdrip ([#163](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/163)) ([08a8e9b](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/08a8e9b))
+
+
+
+# [1.17.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.2...v1.17.0) (2019-12-09)
+
+
+### Features
+
+* add option to prevent automatically scrolling to the top o… ([#162](https://github.com/TylerBarnes/gatsby-plugin-transition-link/issues/162)) ([16d2059](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/16d2059))
+
+
+
 ## [1.16.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.16.1...v1.16.2) (2019-11-07)
 
 

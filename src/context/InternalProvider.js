@@ -1,18 +1,17 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { Provider } from "./createTransitionContext"
-import getPagesPromises from "../utils/getPagesPromises"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Provider } from './createTransitionContext'
+import getPagesPromises from '../utils/getPagesPromises'
 
 class InternalProvider extends Component {
 	constructor(props) {
 		super(props)
 		const prefersReducedMotion =
 			typeof window !== `undefined` &&
-			window.matchMedia("(prefers-reduced-motion: reduce)")
+			window.matchMedia('(prefers-reduced-motion: reduce)')
 
 		this.state = {
 			inTransition: false,
-			transitionIdHistory: [],
 			disableAnimation: prefersReducedMotion.matches,
 			// event
 			e: false,
@@ -36,15 +35,19 @@ class InternalProvider extends Component {
 			prefersReducedMotion &&
 			typeof prefersReducedMotion.addEventListener === `function`
 		) {
-			prefersReducedMotion.addEventListener("change", () => {
-				this.setState({ disableAnimation: prefersReducedMotion.matches })
+			prefersReducedMotion.addEventListener('change', () => {
+				this.setState({
+					disableAnimation: prefersReducedMotion.matches,
+				})
 			})
 		} else if (
 			prefersReducedMotion &&
 			typeof prefersReducedMotion.addListener === `function`
 		) {
 			prefersReducedMotion.addListener(() => {
-				this.setState({ disableAnimation: prefersReducedMotion.matches })
+				this.setState({
+					disableAnimation: prefersReducedMotion.matches,
+				})
 			})
 		}
 	}

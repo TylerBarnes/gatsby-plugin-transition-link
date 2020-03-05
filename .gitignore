@@ -4,3 +4,7 @@ node_modules/
 yarn-error.log
 package-lock.json
 /*.js
+!babel.config.js
+src/.eslintrc.json
+src/package.json
+src/readme.md

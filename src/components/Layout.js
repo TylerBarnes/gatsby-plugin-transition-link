@@ -1,35 +1,36 @@
-const React = require("react");
+/* eslint-disable no-undef */
+const React = require('react')
 
-const preferDefault = m => (m && m.default) || m;
-let Layout = false;
+const preferDefault = m => (m && m.default) || m
+let Layout = false
 
 if (
-  typeof GATSBY_LAYOUT_COMPONENT_PATH !== `undefined` &&
-  !!GATSBY_LAYOUT_COMPONENT_PATH
+	typeof TL__GATSBY_LAYOUT_COMPONENT_PATH !== `undefined` &&
+	!!TL__GATSBY_LAYOUT_COMPONENT_PATH
 ) {
-  try {
-    Layout = preferDefault(require(GATSBY_LAYOUT_COMPONENT_PATH));
-  } catch (e) {
-    if (e.toString().indexOf(`Error: Cannot find module`) !== -1) {
-      throw new Error(
-        `Couldn't find layout component at "${GATSBY_LAYOUT_COMPONENT_PATH}.\n\n` +
-          `Please create layout component in that location or specify path to layout component in gatsby-config.js`
-      );
-    } else {
-      // Logging the error for debugging older browsers as there is no way
-      // to wrap the thrown error in a try/catch.
-      console.error(e);
-      throw e;
-    }
-  }
+	try {
+		Layout = preferDefault(require(TL__GATSBY_LAYOUT_COMPONENT_PATH))
+	} catch (e) {
+		if (e.toString().indexOf(`Error: Cannot find module`) !== -1) {
+			throw new Error(
+				`Couldn't find layout component at "${TL__GATSBY_LAYOUT_COMPONENT_PATH}.\n\n` +
+					`Please create layout component in that location or specify path to layout component in gatsby-config.js`
+			)
+		} else {
+			// Logging the error for debugging older browsers as there is no way
+			// to wrap the thrown error in a try/catch.
+			console.error(e)
+			throw e
+		}
+	}
 }
 
 const LayoutComponent = ({ children, ...props }) => {
-  if (Layout) {
-    return <Layout {...props}>{children}</Layout>;
-  } else {
-    return children;
-  }
-};
+	if (Layout) {
+		return <Layout {...props}>{children}</Layout>
+	} else {
+		return children
+	}
+}
 
-export { LayoutComponent };
+export { LayoutComponent }
