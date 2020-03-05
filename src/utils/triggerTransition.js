@@ -16,8 +16,10 @@ const triggerTransition = ({
 	replace,
 	preventScrollJump,
 }) => {
-	event.persist()
-	event.preventDefault()
+	if (event) {
+		event.persist()
+		event.preventDefault()
+	}
 
 	if (inTransition) return false
 
