@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.18.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.8...v1.18.0) (2020-03-06)
+
+
+### Features
+
+* add useTriggerTransition hook w/ examples ([8754f38](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/8754f38))
+
+
+
 ## [1.17.8](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.7...v1.17.8) (2020-03-05)
 
 
