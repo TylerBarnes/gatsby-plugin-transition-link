@@ -19,7 +19,7 @@ const fade = ({ exit: { length }, node, direction }) => {
 			  }
 			: {}
 
-	return gsap.set(node, holdPosition)
+	return gsap.timeline().set(node, holdPosition)
 		.fromTo(node, { opacity: !opacity }, { opacity: opacity, duration })
 }
 
@@ -36,6 +36,7 @@ export default function Fade({
 		<TransitionLink
 			exit={{
 				length: length,
+				zIndex: 1,
 				trigger: ({ exit, node }) =>
 					fade({ exit, node, direction: 'out' }),
 			}}

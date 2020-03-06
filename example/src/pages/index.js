@@ -41,7 +41,7 @@ class Index extends Component {
   }
 
   test(entry, node) {
-    return gsap.to(
+    return gsap.from(
       node.querySelectorAll('h2, p, a, pre'),
       { 
         opacity: 0, 

@@ -113,7 +113,7 @@ export default class PaintDrip extends Component {
 	}
 
 	slideIn = ({ length }, node, from) => {
-		gsap.timeline().from(node, length, {
+		gsap.from(node, length, {
 			...this.getDirection(from),
 			ease: 'power1.easeOut',
 		})
