@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {GatsbyLinkProps as GatsbyLinkPropsGeneric} from "gatsby";
 import {NavigateOptions} from "@reach/router";
+import {RefObject} from "react";
 
 type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>;
 
@@ -20,7 +21,12 @@ interface TransitionPortalProps {
 }
 declare const TransitionPortal: React.Component<TransitionPortalProps>;
 
-declare const TransitionObserver;
+interface TransitionObserverProps {
+    forceRender?: boolean;
+    children: (contextState: unknown, innerRef: RefObject<unknown>) => React.ReactNode;
+}
+
+declare const TransitionObserver: React.Component<TransitionObserverProps>;
 
 // Unknown
 type TriggerFn = ({exit, node}: any) => void;
