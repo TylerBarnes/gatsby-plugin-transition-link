@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {Link, GatsbyLinkProps as GatsbyLinkPropsGeneric} from "gatsby";
+import {GatsbyLinkProps as GatsbyLinkPropsGeneric} from "gatsby";
+import {NavigateOptions} from "@reach/router";
 
 type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>;
 
@@ -20,7 +21,9 @@ interface TransitionPortalProps {
 declare const TransitionPortal: React.Component<TransitionPortalProps>;
 
 declare const TransitionObserver;
-declare const useTriggerTransition;
+
+// Unknown
+type TriggerFn = ({exit, node}: any) => void;
 
 interface EntryExit {
     state?: object;
@@ -30,9 +33,26 @@ interface EntryExit {
     delay?: number;
     activeClass?: string;
     className?: string;
-    // Unknown
-    trigger: ({exit, node}: any) => void;
+    trigger: TriggerFn
 }
+
+interface UseTriggerTransitionOptions {
+    event: Event;
+    to: string;
+    disableAnimation?: boolean;
+    replace?: NavigateOptions<any>['replace'];
+    linkState?: NavigateOptions<any>['state'];
+    exit?: EntryExit;
+    entry?: EntryExit;
+    inTransition?: boolean;
+    pages?: unknown;
+    trigger?: TriggerFn;
+    updateContext?: unknown;
+    preventScrollJump?: unknown;
+}
+type programmaticallyTriggerTransition = (calledOptions?: Event | UseTriggerTransitionOptions) => void;
+declare const useTriggerTransition: (defaultOptions: UseTriggerTransitionOptions) => programmaticallyTriggerTransition;
+
 interface TransitionLinkProps extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef' | 'replace'> {
     exit: EntryExit,
     entry: EntryExit,
