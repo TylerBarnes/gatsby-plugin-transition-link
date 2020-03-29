@@ -5,7 +5,11 @@ import {RefObject} from "react";
 
 type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>;
 
-declare const TransitionHandler;
+interface TransitionHandlerProps {
+    injectPageProps?: boolean;
+    children?: unknown;
+}
+declare const TransitionHandler: React.Component<TransitionHandlerProps>;
 
 type TransitionStatuses = 'entering' | 'entered' | 'exiting' | 'exited';
 
