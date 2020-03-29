@@ -4,8 +4,21 @@ import {Link, GatsbyLinkProps as GatsbyLinkPropsGeneric} from "gatsby";
 type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>;
 
 declare const TransitionHandler;
-declare const TransitionState;
-declare const TransitionPortal;
+
+type TransitionStatuses = 'entering' | 'entered' | 'exiting' | 'exited';
+
+interface TransitionStateProps {
+    children: ({mount, transitionStatus}: { mount: boolean, transitionStatus: TransitionStatuses }) => React.ReactNode;
+}
+declare const TransitionState: React.Component<TransitionStateProps>;
+
+type TransitionPortalLevels = 'top' | 'bottom' | 'middle';
+
+interface TransitionPortalProps {
+    level?: TransitionPortalLevels
+}
+declare const TransitionPortal: React.Component<TransitionPortalProps>;
+
 declare const TransitionObserver;
 declare const useTriggerTransition;
 
