@@ -11,7 +11,7 @@ interface TransitionHandlerProps {
 }
 declare const TransitionHandler: React.Component<TransitionHandlerProps>;
 
-type TransitionStatuses = 'entering' | 'entered' | 'exiting' | 'exited';
+export type TransitionStatuses = 'entering' | 'entered' | 'exiting' | 'exited';
 
 interface TransitionStateProps {
     children: ({mount, transitionStatus}: { mount: boolean, transitionStatus: TransitionStatuses }) => React.ReactNode;
@@ -33,44 +33,55 @@ interface TransitionObserverProps {
 declare const TransitionObserver: React.Component<TransitionObserverProps>;
 
 // Unknown
-type TriggerFn = ({exit, node}: any) => void;
+interface TriggerFnProps<State> {
+    node: HTMLElement;
+    e: Event;
+    entry: EntryExit<State>;
+    exit: EntryExit<State>;
+}
+type ExitEntryTriggerFn<State = object> = ({exit, node}: TriggerFnProps<State>) => void;
 
-interface EntryExit {
-    state?: object;
+interface EntryExit<State = object> {
+    state?: State;
     appearAfter?: number;
     length?: number;
     zIndex?: number;
     delay?: number;
     activeClass?: string;
     className?: string;
-    trigger: TriggerFn
+    trigger: ExitEntryTriggerFn<State>
 }
 
-interface UseTriggerTransitionOptions {
+interface UseTriggerTransitionOptions<State = any, LinkState = any> {
     event: Event;
     to: string;
     disableAnimation?: boolean;
-    replace?: NavigateOptions<any>['replace'];
-    linkState?: NavigateOptions<any>['state'];
-    exit?: EntryExit;
-    entry?: EntryExit;
+    replace?: NavigateOptions<LinkState>['replace'];
+    linkState?: NavigateOptions<LinkState>['state'];
+    exit?: EntryExit<State>;
+    entry?: EntryExit<State>;
     inTransition?: boolean;
     pages?: unknown;
-    trigger?: TriggerFn;
+    trigger?: ExitEntryTriggerFn<State>;
     updateContext?: unknown;
     preventScrollJump?: unknown;
 }
-type programmaticallyTriggerTransition = (calledOptions?: Event | UseTriggerTransitionOptions) => void;
-declare const useTriggerTransition: (defaultOptions: UseTriggerTransitionOptions) => programmaticallyTriggerTransition;
+type programmaticallyTriggerTransition<State, LinkState> = (calledOptions?: Event | UseTriggerTransitionOptions<State, LinkState>) => void;
+declare const useTriggerTransition: <State, LinkState>(defaultOptions: UseTriggerTransitionOptions<State, LinkState>) => programmaticallyTriggerTransition<State, LinkState>;
 
-interface TransitionLinkProps extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef' | 'replace'> {
-    exit: EntryExit,
-    entry: EntryExit,
-    state?: unknown,
+interface TriggerPages<State> {
+    entry: Promise<EntryExit<State>>
+    exit:Promise<EntryExit<State>>;
+}
+
+interface TransitionLinkProps<State = any> extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef' | 'replace'> {
+    exit: EntryExit<State>,
+    entry: EntryExit<State>,
+    state?: State,
     replace?: unknown,
     preventScrollJump?: unknown,
     // Unknown
-    trigger?: ({ node, e, exit, entry }: any) => void;
+    trigger?: (pages: TriggerPages<State>) => void;
     exitLength?: number;
     entryDelay?: number;
     exitFn?: Function;
