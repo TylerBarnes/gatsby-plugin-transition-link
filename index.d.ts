@@ -41,7 +41,6 @@ declare module "gatsby-plygin-transition-link" {
 
     interface TransitionHandlerProps {
         injectPageProps?: boolean;
-        children?: unknown;
     }
 
     const TransitionHandler: React.Component<TransitionHandlerProps>;
@@ -62,9 +61,26 @@ declare module "gatsby-plygin-transition-link" {
 
     const TransitionPortal: React.Component<TransitionPortalProps>;
 
+    interface InternalContext<State = any> {
+        inTransition: boolean;
+        disableAnimation: boolean;
+        e: false | Event;
+        exitDelay: number;
+        exitLength: number;
+        exitState: State;
+        exitTrigger: false | ExitEntryTriggerFn<State>;
+        exitProps: any;
+        entryDelay: number;
+        entryLength: number;
+        entryState: State;
+        entryProps: any;
+        entryTrigger: false | ExitEntryTriggerFn<State>;
+        updateContext: (obj: Partial<InternalContext<State>>) => void;
+    }
+
     interface TransitionObserverProps {
         forceRender?: boolean;
-        children: (contextState: unknown, innerRef: RefObject<unknown>) => React.ReactNode;
+        children: (contextState: InternalContext, innerRef: RefObject<unknown>) => React.ReactNode;
     }
 
     const TransitionObserver: React.Component<TransitionObserverProps>;
