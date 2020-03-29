@@ -89,36 +89,34 @@ declare module "gatsby-plygin-transition-link" {
         trigger: ExitEntryTriggerFn<State>
     }
 
+    interface TriggerPages<State> {
+        entry: Promise<EntryExit<State>>
+        exit: Promise<EntryExit<State>>;
+    }
+
     interface UseTriggerTransitionOptions<State = any, LinkState = any> {
-        event: Event;
-        to: string;
+        event?: Event;
+        to?: string;
         disableAnimation?: boolean;
         replace?: NavigateOptions<LinkState>['replace'];
         linkState?: NavigateOptions<LinkState>['state'];
         exit?: EntryExit<State>;
         entry?: EntryExit<State>;
         inTransition?: boolean;
-        pages?: unknown;
+        pages?: TriggerPages<State>;
         trigger?: ExitEntryTriggerFn<State>;
-        updateContext?: unknown;
-        preventScrollJump?: unknown;
+        preventScrollJump?: boolean;
     }
 
     type programmaticallyTriggerTransition<State, LinkState> = (calledOptions?: Event | UseTriggerTransitionOptions<State, LinkState>) => void;
     const useTriggerTransition: <State, LinkState>(defaultOptions: UseTriggerTransitionOptions<State, LinkState>) => programmaticallyTriggerTransition<State, LinkState>;
 
-    interface TriggerPages<State> {
-        entry: Promise<EntryExit<State>>
-        exit: Promise<EntryExit<State>>;
-    }
-
-    interface TransitionLinkProps<State = any> extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef' | 'replace'> {
+    interface TransitionLinkProps<State = any> extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef'> {
         exit: EntryExit<State>,
         entry: EntryExit<State>,
         state?: State,
-        replace?: unknown,
-        preventScrollJump?: unknown,
-        // Unknown
+        replace?: NavigateOptions<any>['replace'],
+        preventScrollJump?: boolean,
         trigger?: (pages: TriggerPages<State>) => void;
         exitLength?: number;
         entryDelay?: number;
