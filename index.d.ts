@@ -1,163 +1,198 @@
-import * as React from 'react';
-import {GatsbyLinkProps as GatsbyLinkPropsGeneric} from "gatsby";
-import {NavigateOptions} from "@reach/router";
-import {RefObject} from "react";
+/**
+ * This should be removed once added upstream:
+ * https://github.com/TylerBarnes/gatsby-plugin-transition-link/pull/202
+ */
 
 declare module "gatsby-plygin-transition-link/AniLink" {
+	import { Component } from "react";
 
-    interface AniLinkFade {
-        fade: boolean;
-    }
-    type AniLinkPaintDripColors = {
-        color?: string
-    } | {
-        hex?: string
-    }
-    type AniLinkPaintDrip = AniLinkPaintDripColors & {
-        paintDrip: boolean;
-    }
-    interface AniLinkSwipe {
-        swipe: boolean;
-    }
-    interface AniLinkCover {
-        cover: boolean;
-        bg?: string;
-    }
-    type AniLinkTypes = AniLinkFade | AniLinkPaintDrip | AniLinkSwipe | AniLinkCover;
+	interface AniLinkFade {
+		fade: boolean;
+	}
+	type AniLinkPaintDripColors =
+		| {
+				color?: string;
+		  }
+		| {
+				hex?: string;
+		  };
+	type AniLinkPaintDrip = AniLinkPaintDripColors & {
+		paintDrip: boolean;
+	};
+	interface AniLinkSwipe {
+		swipe: boolean;
+	}
+	interface AniLinkCover {
+		cover: boolean;
+		bg?: string;
+	}
+	type AniLinkTypes =
+		| AniLinkFade
+		| AniLinkPaintDrip
+		| AniLinkSwipe
+		| AniLinkCover;
 
-    interface AniLinkProps {
-        to: string;
-        direction?: string;
-        duration?: number;
-        top?: 'exit' | 'entry';
-        entryOffset?: number;
-    }
-    const AniLink: React.Component<AniLinkProps & AniLinkTypes>;
-    export default AniLink;
+	interface AniLinkProps {
+		to: string;
+		direction?: string;
+		duration?: number;
+		top?: "exit" | "entry";
+		entryOffset?: number;
+	}
+	const AniLink: Component<AniLinkProps & AniLinkTypes>;
+	export default AniLink;
 }
 
-declare module "gatsby-plygin-transition-link" {
-    type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>;
+declare module "gatsby-plugin-transition-link" {
+	import { GatsbyLinkProps as GatsbyLinkPropsGeneric } from "gatsby";
+	import { NavigateOptions } from "@reach/router";
+	import { RefObject } from "react";
 
-    interface TransitionHandlerProps {
-        injectPageProps?: boolean;
-    }
+	type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>;
 
-    const TransitionHandler: React.Component<TransitionHandlerProps>;
+	interface TransitionHandlerProps {
+		injectPageProps?: boolean;
+	}
 
-    export type TransitionStatuses = 'entering' | 'entered' | 'exiting' | 'exited';
+	const TransitionHandler: React.Component<TransitionHandlerProps>;
 
-    interface TransitionStateProps {
-        children: ({mount, transitionStatus}: { mount: boolean, transitionStatus: TransitionStatuses }) => React.ReactNode;
-    }
+	export type TransitionStatuses =
+		| "entering"
+		| "entered"
+		| "exiting"
+		| "exited";
 
-    const TransitionState: React.Component<TransitionStateProps>;
+	interface TransitionStateProps {
+		children: ({
+			mount,
+			transitionStatus
+		}: {
+			mount: boolean;
+			transitionStatus: TransitionStatuses;
+		}) => React.ReactNode;
+	}
 
-    type TransitionPortalLevels = 'top' | 'bottom' | 'middle';
+	const TransitionState: React.Component<TransitionStateProps>;
 
-    interface TransitionPortalProps {
-        level?: TransitionPortalLevels
-    }
+	type TransitionPortalLevels = "top" | "bottom" | "middle";
 
-    const TransitionPortal: React.Component<TransitionPortalProps>;
+	interface TransitionPortalProps {
+		level?: TransitionPortalLevels;
+	}
 
-    interface InternalContext<State = any> {
-        inTransition: boolean;
-        disableAnimation: boolean;
-        e: false | Event;
-        exitDelay: number;
-        exitLength: number;
-        exitState: State;
-        exitTrigger: false | ExitEntryTriggerFn<State>;
-        exitProps: any;
-        entryDelay: number;
-        entryLength: number;
-        entryState: State;
-        entryProps: any;
-        entryTrigger: false | ExitEntryTriggerFn<State>;
-        updateContext: (obj: Partial<InternalContext<State>>) => void;
-    }
+	const TransitionPortal: React.Component<TransitionPortalProps>;
 
-    interface TransitionObserverProps {
-        forceRender?: boolean;
-        children: (contextState: InternalContext, innerRef: RefObject<unknown>) => React.ReactNode;
-    }
+	interface InternalContext<State = any> {
+		inTransition: boolean;
+		disableAnimation: boolean;
+		e: false | Event;
+		exitDelay: number;
+		exitLength: number;
+		exitState: State;
+		exitTrigger: false | ExitEntryTriggerFn<State>;
+		exitProps: any;
+		entryDelay: number;
+		entryLength: number;
+		entryState: State;
+		entryProps: any;
+		entryTrigger: false | ExitEntryTriggerFn<State>;
+		updateContext: (obj: Partial<InternalContext<State>>) => void;
+	}
 
-    const TransitionObserver: React.Component<TransitionObserverProps>;
+	interface TransitionObserverProps {
+		forceRender?: boolean;
+		children: (
+			contextState: InternalContext,
+			innerRef: RefObject<unknown>
+		) => React.ReactNode;
+	}
 
-    interface TriggerFnProps<State> {
-        node: HTMLElement;
-        e: Event;
-        entry: EntryExit<State>;
-        exit: EntryExit<State>;
-    }
+	const TransitionObserver: React.Component<TransitionObserverProps>;
 
-    type ExitEntryTriggerFn<State = object> = ({exit, node}: TriggerFnProps<State>) => void;
+	interface TriggerFnProps<State> {
+		node: HTMLElement;
+		e: Event;
+		entry: EntryExit<State>;
+		exit: EntryExit<State>;
+	}
 
-    interface EntryExit<State = object> {
-        state?: State;
-        appearAfter?: number;
-        length?: number;
-        zIndex?: number;
-        delay?: number;
-        activeClass?: string;
-        className?: string;
-        trigger: ExitEntryTriggerFn<State>
-    }
+	type ExitEntryTriggerFn<State = object> = ({
+		exit,
+		node
+	}: TriggerFnProps<State>) => void;
 
-    interface TriggerPages<State> {
-        entry: Promise<EntryExit<State>>
-        exit: Promise<EntryExit<State>>;
-    }
+	interface EntryExit<State = object> {
+		state?: State;
+		appearAfter?: number;
+		length?: number;
+		zIndex?: number;
+		delay?: number;
+		activeClass?: string;
+		className?: string;
+		trigger: ExitEntryTriggerFn<State>;
+	}
 
-    interface UseTriggerTransitionOptions<State = any, LinkState = any> {
-        event?: Event;
-        to?: string;
-        disableAnimation?: boolean;
-        replace?: NavigateOptions<LinkState>['replace'];
-        linkState?: NavigateOptions<LinkState>['state'];
-        exit?: EntryExit<State>;
-        entry?: EntryExit<State>;
-        inTransition?: boolean;
-        pages?: TriggerPages<State>;
-        trigger?: ExitEntryTriggerFn<State>;
-        preventScrollJump?: boolean;
-    }
+	interface TriggerPages<State> {
+		entry: Promise<EntryExit<State>>;
+		exit: Promise<EntryExit<State>>;
+	}
 
-    type programmaticallyTriggerTransition<State, LinkState> = (calledOptions?: Event | UseTriggerTransitionOptions<State, LinkState>) => void;
-    const useTriggerTransition: <State, LinkState>(defaultOptions: UseTriggerTransitionOptions<State, LinkState>) => programmaticallyTriggerTransition<State, LinkState>;
+	interface UseTriggerTransitionOptions<State = any, LinkState = any> {
+		event?: Event;
+		to?: string;
+		disableAnimation?: boolean;
+		replace?: NavigateOptions<LinkState>["replace"];
+		linkState?: NavigateOptions<LinkState>["state"];
+		exit?: EntryExit<State>;
+		entry?: EntryExit<State>;
+		inTransition?: boolean;
+		pages?: TriggerPages<State>;
+		trigger?: ExitEntryTriggerFn<State>;
+		preventScrollJump?: boolean;
+	}
 
-    interface TransitionLinkProps<State = any> extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef'> {
-        exit: EntryExit<State>,
-        entry: EntryExit<State>,
-        state?: State,
-        replace?: NavigateOptions<any>['replace'],
-        preventScrollJump?: boolean,
-        trigger?: (pages: TriggerPages<State>) => void;
-        exitLength?: number;
-        entryDelay?: number;
-        exitFn?: Function;
-        entryState?: object;
-        to: GatsbyLinkProps['to'];
-        className?: GatsbyLinkProps['className'];
-        activeStyle?: GatsbyLinkProps['activeStyle'];
-        style?: GatsbyLinkProps['style'];
-        activeClassName?: GatsbyLinkProps['activeClassName'];
-        partiallyActive?: GatsbyLinkProps['partiallyActive'];
-        onClick?: (event: Parameters<GatsbyLinkProps['onClick']>[0], weShouldNavigate: boolean) => void;
-        innerRef?: GatsbyLinkProps['ref'],
-        ref?: GatsbyLinkProps['ref']
-    }
+	type programmaticallyTriggerTransition<State, LinkState> = (
+		calledOptions?: Event | UseTriggerTransitionOptions<State, LinkState>
+	) => void;
+	const useTriggerTransition: <State, LinkState>(
+		defaultOptions: UseTriggerTransitionOptions<State, LinkState>
+	) => programmaticallyTriggerTransition<State, LinkState>;
 
-    const TransitionLink: React.Component<TransitionLinkProps>;
+	interface TransitionLinkProps<State = any>
+		extends Omit<GatsbyLinkProps, "onClick" | "innerRef"> {
+		exit: EntryExit<State>;
+		entry: EntryExit<State>;
+		state?: State;
+		replace?: NavigateOptions<any>["replace"];
+		preventScrollJump?: boolean;
+		trigger?: (pages: TriggerPages<State>) => void;
+		exitLength?: number;
+		entryDelay?: number;
+		exitFn?: Function;
+		entryState?: object;
+		to: GatsbyLinkProps["to"];
+		className?: GatsbyLinkProps["className"];
+		activeStyle?: GatsbyLinkProps["activeStyle"];
+		style?: GatsbyLinkProps["style"];
+		activeClassName?: GatsbyLinkProps["activeClassName"];
+		partiallyActive?: GatsbyLinkProps["partiallyActive"];
+		onClick?: (
+			event: Parameters<GatsbyLinkProps["onClick"]>[0],
+			weShouldNavigate: boolean
+		) => void;
+		innerRef?: GatsbyLinkProps["ref"];
+		ref?: GatsbyLinkProps["ref"];
+	}
 
-    export {
-        TransitionHandler,
-        TransitionState,
-        TransitionPortal,
-        TransitionObserver,
-        useTriggerTransition,
-    }
+	const TransitionLink: React.Component<TransitionLinkProps>;
 
-    export default TransitionLink;
+	export {
+		TransitionHandler,
+		TransitionState,
+		TransitionPortal,
+		TransitionObserver,
+		useTriggerTransition
+	};
+
+	export default TransitionLink;
 }
