@@ -11,7 +11,8 @@ export default class TransitionRenderer extends Component {
 		// only rerender if the transition status changes.
 		return (
 			this.props.transitionStatus !== nextProps.transitionStatus ||
-			this.state.shouldBeVisible !== nextState.shouldBeVisible
+			this.state.shouldBeVisible !== nextState.shouldBeVisible ||
+			this.props.children !== nextProps.children
 		)
 	}
 
