@@ -10,6 +10,10 @@ class InternalProvider extends Component {
 			typeof window !== `undefined` &&
 			window.matchMedia('(prefers-reduced-motion: reduce)')
 
+		if (prefersReducedMotion && process.env.NODE_ENV === `development`)  {
+			console.warn(`[gatsby-plugin-transition-link] Warning! prefers-reduced-motion is activated via your OS settings. This means TransitionLink animations will not run.`)
+		}
+
 		this.state = {
 			inTransition: false,
 			disableAnimation: prefersReducedMotion.matches,
