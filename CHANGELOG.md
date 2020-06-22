@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.18.1...v1.18.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* change hash offset from getBoundingClientRect() to offsetTop ([d3c000d](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/d3c000d))
+
+
+
 # [1.18.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.17.8...v1.18.0) (2020-03-06)
 
 
