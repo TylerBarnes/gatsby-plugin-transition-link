@@ -8,9 +8,9 @@ export default class Cover extends Component {
 
 		this.horizontal = this.horizontal.bind(this)
 		this.vertical = this.vertical.bind(this)
-
-		this.cover = React.createRef()
 	}
+
+	getCoverEl = () => document.querySelector(`.tl-cover-el`)
 
 	horizontal = ({ node, props: { length: seconds }, direction }) => {
 		const directionTo = direction === 'left' ? '-100%' : '100%'
@@ -19,16 +19,20 @@ export default class Cover extends Component {
 		const wait = seconds / 6
 		const half = (seconds - wait) / 2
 
-		return gsap.timeline()
-			.set(this.cover, { y: 0, x: directionFrom, display: 'block' })
-			.to(this.cover, {
-				x: '0%',
+		const cover = this.getCoverEl()
+
+		return gsap
+			.timeline()
+			.set(cover, { y: 0, x: directionFrom, display: "block" })
+			.to(cover, {
+				x: "0%",
 				ease: "power1.easeInOut",
 				duration: half,
 			})
 			.set(node, { opacity: 0 })
 			.to(
-				this.cover, {
+				cover,
+				{
 					x: directionTo,
 					ease: "power1.easeInOut",
 					duration: half,
@@ -44,16 +48,20 @@ export default class Cover extends Component {
 		const wait = seconds / 6
 		const half = (seconds - wait) / 2
 
-		return gsap.timeline()
-			.set(this.cover, { y: directionFrom })
-			.to(this.cover, {
-				y: '0%',
+		const cover = this.getCoverEl()
+
+		return gsap
+			.timeline()
+			.set(cover, { y: directionFrom })
+			.to(cover, {
+				y: "0%",
 				ease: "power1.easeInOut",
 				duration: half,
 			})
 			.set(node, { opacity: 0 })
 			.to(
-				this.cover, {
+				cover,
+				{
 					y: directionTo,
 					ease: "power1.easeIn",
 					duration: half,
@@ -63,8 +71,9 @@ export default class Cover extends Component {
 	}
 
 	moveInDirection = ({ props, direction, node }) => {
-		if (direction === 'left' || direction === 'right')
+		if (direction === 'left' || direction === 'right') {
 			return this.horizontal({ props, direction, node })
+		}
 
 		return this.vertical({ props, direction, node })
 	}
@@ -93,21 +102,24 @@ export default class Cover extends Component {
 					entry={{
 						delay: length / 2,
 					}}
-					{...props}>
+					{...props}
+				>
 					{this.props.children}
 				</TransitionLink>
 
 				<TransitionPortal>
 					<div
-						ref={n => (this.cover = n)}
+						className="tl-cover-el"
 						style={{
-							position: 'fixed',
-							background: this.props.bg || '#4b2571',
+							position: "fixed",
+							background: this.props.bg || "#4b2571",
 							top: 0,
 							left: 0,
-							width: '100vw',
-							height: '100vh',
-							transform: 'translateY(100%)',
+							right: 0,
+							zIndex: 1000,
+							width: "100vw",
+							height: "100vh",
+							transform: "translateY(100%)",
 						}}
 					/>
 				</TransitionPortal>
