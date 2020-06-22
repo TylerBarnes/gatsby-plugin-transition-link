@@ -6,12 +6,15 @@ import getPagesPromises from '../utils/getPagesPromises'
 class InternalProvider extends Component {
 	constructor(props) {
 		super(props)
-		const prefersReducedMotion =
-			typeof window !== `undefined` &&
-			window.matchMedia('(prefers-reduced-motion: reduce)')
+		const prefersReducedMotionSetting = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-		if (prefersReducedMotion && process.env.NODE_ENV === `development`)  {
-			console.warn(`[gatsby-plugin-transition-link] Warning! prefers-reduced-motion is activated via your OS settings. This means TransitionLink animations will not run.`)
+		const prefersReducedMotion =
+			typeof window !== `undefined` && prefersReducedMotionSetting
+			
+		if (prefersReducedMotionSetting.matches && process.env.NODE_ENV === `development`) {
+			console.warn(
+				`[gatsby-plugin-transition-link] Warning! prefers-reduced-motion is activated via your OS settings. This means TransitionLink animations will not run.`,
+			)
 		}
 
 		this.state = {
