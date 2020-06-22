@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.19.1...v1.19.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* remove buggy createRef usage and use querySelector instead as it's more reliable here.. ([545068f](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/545068f))
+
+
+
 ## [1.19.1](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.19.0...v1.19.1) (2020-06-22)
 
 
