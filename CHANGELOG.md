@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.19.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.18.3...v1.19.0) (2020-06-22)
+
+
+### Features
+
+* add a warning in console during development if prefers-reduced-motion is enabled ([82e9c16](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/82e9c16))
+
+
+
 ## [1.18.3](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.18.2...v1.18.3) (2020-06-22)
 
 
