@@ -6,7 +6,7 @@ export const fade = ({ exit: { length }, node, direction }) => {
   const scrollTop =
     (document.scrollingElement && document.scrollingElement.scrollTop) ||
     document.body.scrollTop ||
-    window.pageYOffset
+    (typeof window !== `undefined` && window.pageYOffset)
 
   const holdPosition =
     direction === 'out'
