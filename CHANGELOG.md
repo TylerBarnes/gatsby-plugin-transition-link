@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.20.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.18.1...v1.20.0) (2020-06-23)
+
+
+### Bug Fixes
+
+* change hash offset from getBoundingClientRect() to offsetTop ([d3c000d](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/d3c000d))
+* only show prefers-reduced-motion warning if it's actually set 🤦‍♂️ ([ac5f15e](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/ac5f15e))
+* remove buggy createRef usage and use querySelector instead as it's more reliable here.. ([545068f](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/545068f))
+
+
+### Features
+
+* add a warning in console during development if prefers-reduced-motion is enabled ([82e9c16](https://github.com/TylerBarnes/gatsby-plugin-transition-link/commit/82e9c16))
+
+
+
 ## [1.19.2](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.19.1...v1.19.2) (2020-06-22)
 
 
