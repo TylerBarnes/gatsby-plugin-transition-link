@@ -8,3 +8,4 @@ package-lock.json
 src/.eslintrc.json
 src/package.json
 src/readme.md
+.idea/
