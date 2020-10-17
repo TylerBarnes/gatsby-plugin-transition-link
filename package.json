@@ -23,21 +23,23 @@
 		"release": "standard-version",
 		"copy-files": "mkdir lib || true && cp readme.md package.json lib",
 		"copy-files-src": "mkdir src || true && cp readme.md package.json src",
-		"build": "yarn copy-files && babel src --out-dir lib --copy-files --ignore **/__tests__",
-		"watch": "yarn copy-files && babel -w src --out-dir lib --copy-files --ignore **/__tests__ --verbose",
+		"build": "yarn copy-files && babel src --out-dir lib --copy-files --ignore **/__tests__ --extensions \".ts,.js,.tsx\" --source-maps",
+		"watch": "yarn copy-files && babel -w src --out-dir lib --copy-files --ignore **/__tests__ --verbose --extensions \".ts,.js,.tsx\" --source-maps",
 		"npm-publish": "git push --follow-tags origin master && yarn build && cd lib && npm publish && cd ../",
 		"release-publish": "npm run release && npm run npm-publish"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.1.2",
 		"@babel/core": "^7.1.2",
-		"@babel/plugin-proposal-class-properties": "^7.1.0",
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-react": "^7.0.0",
 		"rimraf": "^2.6.2",
 		"standard-version": "^5.0.2"
 	},
 	"dependencies": {
+		"@babel/plugin-proposal-private-methods": "^7.12.1",
+		"babel-plugin-root-import": "^6.5.0",
 		"babel-preset-gatsby-package": "^0.1.2",
 		"color-convert": "^1.9.3",
 		"json-bump": "^0.1.3",
