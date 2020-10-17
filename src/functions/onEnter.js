@@ -10,6 +10,7 @@ const onEnter = ({
 	pathname,
 	preventScrollJump,
 	hash,
+	locationKey,
 	entryProps: { delay = 0 },
 	appearAfter = 0,
 	e,
@@ -24,7 +25,7 @@ const onEnter = ({
 				const hashElement = document.getElementById(hash)
 
 				if (hashElement) {
-					const clientOffsetTop = hashElement.offsetTop;
+					const clientOffsetTop = hashElement.offsetTop
 					scrollTo = [0, clientOffsetTop]
 				}
 			}
@@ -36,8 +37,10 @@ const onEnter = ({
 		// scroll to the top after every navigation
 		let position = [0, 0]
 		try {
-			const storageKey = `@@scroll|${pathname}`
-			position = JSON.parse(sessionStorage.getItem(storageKey))
+			const storageKey = `@@scroll|${pathname}|${locationKey}`
+			const y = JSON.parse(sessionStorage.getItem(storageKey)) || 0
+
+			position = [0, y]
 		} catch (e) {
 			console.warn(
 				`[gatsby-plugin-transition-link] Unable to save state in sessionStorage; sessionStorage is not available.`
