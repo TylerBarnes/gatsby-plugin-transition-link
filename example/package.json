@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "^2.3.3",
+    "gatsby": "^2.24.80",
     "gatsby-plugin-manifest": "^2.0.6",
     "gatsby-plugin-ngrok-tunneling": "^1.1.5",
     "gatsby-plugin-offline": "^3.0.34",
