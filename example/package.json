@@ -11,7 +11,7 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-transition-link": "1.17.8",
-    "gsap": "^3.1.1",
+    "gsap": "^3.6.0",
     "ngrok": "^3.2.7",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
