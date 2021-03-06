@@ -135,7 +135,7 @@ export default class TransitionHandler extends Component {
 
 													return (
 														<TransitionRenderer
-															innerRef={this.transitionRendererRef}
+															ref={this.transitionRendererRef}
 															mount={mount}
 															entryZindex={
 																entryZindex
