@@ -1,8 +1,8 @@
-import React, { Component, cloneElement } from 'react'
+import React, { Component, cloneElement, forwardRef } from 'react'
 import { setTimeout, clearTimeout } from 'requestanimationframe-timer'
 import { PublicProvider } from '../context/createTransitionContext'
 
-export default class TransitionRenderer extends Component {
+class TransitionRenderer extends Component {
 	state = {
 		shouldBeVisible: !!!this.props.appearAfter,
 	}
@@ -51,6 +51,7 @@ export default class TransitionRenderer extends Component {
 				className={`tl-wrapper ${
 					mount ? 'tl-wrapper--mount' : 'tl-wrapper--unmount'
 				} tl-wrapper-status--${transitionStatus}`}
+				ref={this.props.innerRef}
 				style={{
 					zIndex: mount ? entryZindex : exitZindex,
 					opacity: this.state.shouldBeVisible ? 1 : 0,
@@ -68,3 +69,7 @@ export default class TransitionRenderer extends Component {
 		)
 	}
 }
+
+export default forwardRef(
+  (props, ref) => (<TransitionRenderer innerRef={ref} {...props} />)
+);

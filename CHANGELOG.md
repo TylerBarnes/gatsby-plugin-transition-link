@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.20.5...v1.21.0) (2021-03-06)
+
+### Features
+* updated [react-transition-group](https://github.com/reactjs/react-transition-group) dependency
+* fixed (`findDOMNode` deprecation notice)[https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage] in StrictMode
+
 ## [1.20.5](https://github.com/TylerBarnes/gatsby-plugin-transition-link/compare/v1.20.4...v1.20.5) (2020-10-17)
 
 
