@@ -48,6 +48,6 @@
 		"requestanimationframe-timer": "^1.0.4"
 	},
 	"peerDependencies": {
-		"react": "^17.0.2"
+		"react": "^16.8.5"
 	}
 }
