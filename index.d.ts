@@ -3,7 +3,7 @@
  * https://github.com/TylerBarnes/gatsby-plugin-transition-link/pull/202
  */
 
-declare module 'gatsby-plygin-transition-link/AniLink' {
+declare module 'gatsby-plugin-transition-link/AniLink' {
 	import { Component } from 'react';
 
 	interface AniLinkFade {
@@ -34,6 +34,8 @@ declare module 'gatsby-plygin-transition-link/AniLink' {
 		duration?: number;
 		top?: 'exit' | 'entry';
 		entryOffset?: number;
+		title?: string;
+		target?: string;
 	}
 	class AniLink extends Component<AniLinkProps & AniLinkTypes> {}
 	export default AniLink;
