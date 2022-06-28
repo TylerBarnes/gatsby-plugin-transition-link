@@ -1,4 +1,7 @@
+⚠️⚠️⚠️ __WARNING__: This project is currently unmaintained. ⚠️⚠️⚠️
+
 ![alt text](https://raw.githubusercontent.com/TylerBarnes/gatsby-plugin-transition-link/master/images/gatsby-plugin-transition-link.png "Gatsby Plugin Transition Link logo")
+
 
 # Gatsby Plugin Transition Link
 
