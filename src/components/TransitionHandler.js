@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Transition, TransitionGroup } from 'react-transition-group'
 import { Location } from '@reach/router'
 
@@ -13,6 +13,10 @@ import '../style.css'
 
 const DelayedTransition = delayTransitionRender(Transition)
 export default class TransitionHandler extends Component {
+	constructor (props) {
+		super(props);
+		this.transitionRendererRef = createRef();
+	}
 	render() {
 		const { props } = this
 		const { children, injectPageProps = true } = props
@@ -53,6 +57,7 @@ export default class TransitionHandler extends Component {
 											<DelayedTransition
 												key={pathname} // we're using seconds but transitiongroup uses ms
 												delay={getMs(entryDelay)}
+												nodeRef={this.transitionRendererRef}
 												timeout={{
 													enter: getMs(entryLength),
 													exit: getMs(exitLength),
@@ -130,6 +135,7 @@ export default class TransitionHandler extends Component {
 
 													return (
 														<TransitionRenderer
+															ref={this.transitionRendererRef}
 															mount={mount}
 															entryZindex={
 																entryZindex
